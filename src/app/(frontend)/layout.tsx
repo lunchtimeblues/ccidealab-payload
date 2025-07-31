@@ -6,7 +6,7 @@ import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
-import { Footer } from '@/Footer/Component'
+import { Footer } from '@/components/Footer'
 // import { Header } from '@/Header/Component'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
@@ -18,7 +18,9 @@ import { getServerSideURL } from '@/utilities/getURL'
 
 import { ViewTransitions } from 'next-view-transitions'
 
-import Nav from '@/components/Nav'
+import { AnimatedNav } from '@/components/AnimatedNav'
+import { MainContent } from '@/components/MainContent'
+import { SmoothScroll } from '@/components/SmoothScroll'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -37,15 +39,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </head>
         <body>
           <Providers>
-            <AdminBar
-              adminBarProps={{
-                preview: isEnabled,
-              }}
-            />
-            <Nav />
-            {/* <Header /> */}
-            {children}
-            <Footer />
+            <SmoothScroll>
+              <AdminBar
+                adminBarProps={{
+                  preview: isEnabled,
+                }}
+              />
+              <AnimatedNav />
+              {/* <Header /> */}
+              <MainContent>
+                {children}
+              </MainContent>
+              <Footer />
+            </SmoothScroll>
           </Providers>
         </body>
       </html>

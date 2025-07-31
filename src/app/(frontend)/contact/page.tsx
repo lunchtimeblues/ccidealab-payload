@@ -1,9 +1,58 @@
+import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
+
 export default function ContactPage() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-      <p className="mb-8">This is a simple contact page example.</p>
-      <p className="text-gray-600">Feel free to reach out with any questions or feedback.</p>
+    <div className="min-h-screen bg-gradient-to-br from-green-900 to-teal-900 text-white p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-5xl font-bold mb-8">Contact Us</h1>
+        <div className="prose prose-lg prose-invert max-w-none">
+          <p className="text-xl mb-6">
+            Get in touch with us - this page demonstrates smooth transitions!
+          </p>
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
+              <p className="mb-4">
+                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+              </p>
+              <div className="space-y-2">
+                <p><strong>Email:</strong> hello@example.com</p>
+                <p><strong>Phone:</strong> (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Main St, City, State 12345</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-2xl font-semibold mb-4">Office Hours</h3>
+              <div className="space-y-2">
+                <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
+                <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+                <p><strong>Sunday:</strong> Closed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-4 flex-wrap">
+          <PremiumTransitionLink
+            url="/"
+            label="← Home"
+            appearance="outline"
+            transitionType="fade"
+          />
+          <PremiumTransitionLink
+            url="/about"
+            label="About Us"
+            appearance="default"
+            transitionType="wipe"
+          />
+          <PremiumTransitionLink
+            url="/demo"
+            label="View Demo"
+            appearance="ghost"
+            transitionType="scale"
+          />
+        </div>
+      </div>
     </div>
   )
 }

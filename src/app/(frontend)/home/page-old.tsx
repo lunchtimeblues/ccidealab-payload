@@ -5,10 +5,10 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white text-black overflow-hidden">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
+      <section className="relative min-h-screen flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
 
         <div className="relative z-10 px-6 max-w-7xl mx-auto">
           <div className="relative flex items-center justify-center min-h-screen">
@@ -30,7 +30,7 @@ export default function HomePage() {
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
                             transform="translate(-87.000000, -582.000000)"
-                            fill="#000000"
+                            fill="#ffffff"
                             fillRule="nonzero"
                           >
                             <g transform="translate(87.400000, 582.840000)">
@@ -50,7 +50,7 @@ export default function HomePage() {
 
               <div className="relative sm:absolute sm:top-1/2 sm:left-[-2rem] sm:-translate-y-1/2 mt-12 sm:mt-0 sm:w-80 lg:w-96">
                 <ScrollRevealText delay={800}>
-                  <p className="text-sm sm:text-sm lg:text-lg font-light leading-relaxed text-gray-600 tracking-wide">
+                  <p className="text-sm sm:text-sm lg:text-lg font-light leading-relaxed text-gray-300 tracking-wide">
                     <span className="block mb-2">Motto® is a global strategy and design</span>
                     <span className="block mb-2">
                       firm for positioning, scaling, and reinventing
@@ -102,8 +102,7 @@ export default function HomePage() {
                       url="/services"
                       label="Explore our services →"
                       appearance="inline"
-                      transitionType="motto-wipe"
-                      transitionColor="#059669"
+                      transitionType="curtain"
                       className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
                     />
                   </div>
@@ -114,7 +113,7 @@ export default function HomePage() {
                       url="/work"
                       label="See our case studies →"
                       appearance="inline"
-                      transitionType="motto-wipe"
+                      transitionType="scale"
                       className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
                     />
                   </div>
@@ -125,7 +124,7 @@ export default function HomePage() {
                       url="/methodology"
                       label="Discover our methodology →"
                       appearance="inline"
-                      transitionType="motto-wipe"
+                      transitionType="wipe"
                       className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
                     />
                   </div>
@@ -137,8 +136,8 @@ export default function HomePage() {
       </section>
 
       {/* Animated Marquee Section */}
-      <section className="py-16 bg-white border-y border-gray-200">
-        <AnimatedMarquee speed={30} className="text-6xl font-bold text-black">
+      <section className="py-16 bg-black">
+        <AnimatedMarquee speed={30} className="text-6xl font-bold">
           <span className="mx-8">STRATEGY</span>
           <span className="mx-8">•</span>
           <span className="mx-8">DESIGN</span>
@@ -151,22 +150,22 @@ export default function HomePage() {
       </section>
 
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-32 px-6 bg-gray-900">
         <div className="max-w-7xl mx-auto">
           <ScrollRevealText>
-            <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">Featured Work</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center">Featured Work</h2>
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <MouseFollower key={item}>
                 <div className="group cursor-pointer">
-                  <div className="aspect-[4/3] bg-gray-200 rounded-lg mb-6 overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                  <div className="aspect-[4/3] bg-gray-800 rounded-lg mb-6 overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-gray-700 to-gray-800 group-hover:scale-105 transition-transform duration-500"></div>
                   </div>
                   <ScrollRevealText delay={item * 100}>
-                    <h3 className="text-xl font-semibold mb-2 text-black">Project {item}</h3>
-                    <p className="text-gray-600">Brand Identity & Web Development</p>
+                    <h3 className="text-xl font-semibold mb-2">Project {item}</h3>
+                    <p className="text-gray-400">Brand Identity & Web Development</p>
                   </ScrollRevealText>
                 </div>
               </MouseFollower>
@@ -179,7 +178,7 @@ export default function HomePage() {
                 url="/demo"
                 label="View All Work"
                 appearance="outline"
-                transitionType="motto-wipe"
+                transitionType="wipe"
                 className="px-8 py-4 text-lg"
               />
             </ScrollRevealText>
@@ -188,15 +187,15 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 px-6 bg-white">
+      <section className="py-32 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <ScrollRevealText>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black">
+            <h2 className="text-5xl md:text-6xl font-bold mb-8">
               Let&apos;s Create Something Amazing
             </h2>
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
-            <p className="text-xl text-gray-600 mb-12 leading-relaxed">
+            <p className="text-xl text-gray-400 mb-12 leading-relaxed">
               Ready to elevate your digital presence? We&apos;d love to hear about your project.
             </p>
           </ScrollRevealText>
@@ -206,9 +205,8 @@ export default function HomePage() {
               url="/contact"
               label="Start a Project"
               appearance="default"
-              transitionType="motto-wipe"
-              transitionColor="#dc2626"
-              className="px-12 py-6 text-xl bg-black text-white hover:bg-gray-800 transition-colors"
+              transitionType="fade"
+              className="px-12 py-6 text-xl bg-white text-black hover:bg-gray-200 transition-colors"
             />
           </ScrollRevealText>
         </div>
