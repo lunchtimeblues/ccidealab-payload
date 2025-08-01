@@ -16,7 +16,7 @@ export const Footer = () => {
         hour12: false,
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
       })
       setCurrentTime(timeString)
     }
@@ -56,29 +56,28 @@ export const Footer = () => {
       }}
     >
       <div className="relative z-10 px-6 py-24 lg:py-32 w-full">
-        <div className="max-w-7xl mx-auto">
-          
+        <div className="max-w-screen-2xl mx-auto">
           {/* Large CTA Section */}
           <div className="mb-24 lg:mb-32 text-center">
             <ScrollRevealText>
               <h2 className="text-7xl md:text-9xl lg:text-[12rem] xl:text-[16rem] font-bold leading-none tracking-tight mb-4">
-                Let's Work
+                Let&apos;s Work
               </h2>
             </ScrollRevealText>
-            
+
             <ScrollRevealText delay={200}>
               <h2 className="text-7xl md:text-9xl lg:text-[12rem] xl:text-[16rem] font-bold leading-none tracking-tight mb-16">
                 Together
               </h2>
             </ScrollRevealText>
-            
+
             <ScrollRevealText delay={400}>
-              <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
-                Ready to create something extraordinary? We'd love to hear about your vision 
+              <p className="text-xl lg:text-2xl text-gray-300 max-w-6xl mx-auto leading-relaxed mb-12">
+                Ready to create something extraordinary? We&apos;d love to hear about your vision
                 and explore how we can bring it to life together.
               </p>
             </ScrollRevealText>
-            
+
             <ScrollRevealText delay={600}>
               <PremiumTransitionLink
                 url="/contact"
@@ -100,12 +99,18 @@ export const Footer = () => {
                   <span className="text-gray-400 text-lg">© 2024 All rights reserved</span>
                 </div>
               </ScrollRevealText>
-              
+
               <ScrollRevealText delay={600}>
                 <div className="flex flex-wrap items-center gap-6 lg:gap-8 text-gray-400">
-                  <a href="#" className="hover:text-white transition-all duration-300">Privacy Policy</a>
-                  <a href="#" className="hover:text-white transition-all duration-300">Terms of Service</a>
-                  <a href="#" className="hover:text-white transition-all duration-300">Cookies</a>
+                  <a href="#" className="hover:text-white transition-all duration-300">
+                    Privacy Policy
+                  </a>
+                  <a href="#" className="hover:text-white transition-all duration-300">
+                    Terms of Service
+                  </a>
+                  <a href="#" className="hover:text-white transition-all duration-300">
+                    Cookies
+                  </a>
                   <span className="text-white font-mono tabular-nums">{currentTime}</span>
                 </div>
               </ScrollRevealText>
