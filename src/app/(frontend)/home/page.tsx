@@ -5,16 +5,14 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white text-black overflow-hidden">
+    <div className="min-h-screen bg-white text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-white">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
-
-        <div className="relative z-10 px-6 max-w-7xl mx-auto">
+        <div className="relative z-10 px-6">
           <div className="relative flex items-center justify-center min-h-screen">
             <div className="relative w-full">
               <h1
-                className="text-6xl sm:text-8xl lg:text-[12rem] xl:text-[16rem] leading-none font-bold uppercase tracking-tight"
+                className="text-5xl sm:text-6xl lg:text-[6rem] xl:text-[8rem] leading-none font-medium uppercase tracking-tight"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
@@ -23,9 +21,9 @@ export default function HomePage() {
                 <ScrollRevealText delay={200}>
                   <div className="sm:text-right -mr-1">Rallying</div>
                 </ScrollRevealText>
-                <div className="flex justify-between items-center sm:-ml-40">
+                <div className="flex justify-between sm:-ml-40">
                   <ScrollRevealText delay={400}>
-                    <div className="w-16 h-60 hidden sm:block">
+                    <div className="w-16 hidden sm:block">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -50,11 +48,9 @@ export default function HomePage() {
 
               <div className="relative sm:absolute sm:top-1/2 sm:left-[-2rem] sm:-translate-y-1/2 mt-12 sm:mt-0 sm:w-80 lg:w-96">
                 <ScrollRevealText delay={800}>
-                  <p className="text-sm sm:text-sm lg:text-lg font-light leading-relaxed text-gray-600 tracking-wide">
-                    <span className="block mb-2">Motto® is a global strategy and design</span>
-                    <span className="block mb-2">
-                      firm for positioning, scaling, and reinventing
-                    </span>
+                  <p className="sm:-ml-40 text-sm sm:text-sm lg:text-lg font-light leading-relaxed text-gray-600 tracking-wide">
+                    <span className="block">Motto® is a global strategy and design</span>
+                    <span className="block">firm for positioning, scaling, and reinventing</span>
                     <span className="block">companies in the tech and innovation space.</span>
                   </p>
                 </ScrollRevealText>
@@ -66,7 +62,7 @@ export default function HomePage() {
 
       {/* Services Section */}
       <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-screen-2xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-4">
               <ScrollRevealText>
@@ -152,9 +148,11 @@ export default function HomePage() {
 
       {/* Featured Work Section with Mouse Follower */}
       <section className="py-32 px-6 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-screen-2xl mx-auto">
           <ScrollRevealText>
-            <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">Featured Work</h2>
+            <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">
+              Featured Work
+            </h2>
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -189,7 +187,7 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <section className="py-32 px-6 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black">
               Let&apos;s Create Something Amazing

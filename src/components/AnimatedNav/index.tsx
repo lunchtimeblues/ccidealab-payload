@@ -55,7 +55,7 @@ export const AnimatedNav = () => {
           isScrolled ? 'bg-white/90 backdrop-blur-md py-4 border-b border-gray-200' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div className="max-w-screen-2xl mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
           <div className="relative z-10">
             <PremiumTransitionLink
