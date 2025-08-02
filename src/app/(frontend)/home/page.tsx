@@ -1,18 +1,19 @@
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { AnimatedMarquee } from '@/components/AnimatedMarquee'
+import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { MouseFollower } from '@/components/MouseFollower'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-gray-50 text-black">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white">
+      <section className="relative almost-full flex items-center justify-center bg-gray-100">
         <div className="relative z-10 px-6">
           <div className="relative flex items-center justify-center min-h-screen">
             <div className="relative w-full">
               <h1
-                className="text-5xl sm:text-6xl lg:text-[6rem] xl:text-[8rem] leading-none font-medium uppercase tracking-tight"
+                className="text-5xl sm:text-8xl lg:text-10xl xl:text-12xl leading-none font-medium uppercase tracking-tight"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
@@ -42,16 +43,15 @@ export default function HomePage() {
                   <ScrollRevealText delay={600}>
                     <div className="sm:text-center">Around</div>
                   </ScrollRevealText>
-                  <div className="hidden sm:block w-40"></div>
+                  <div className="hidden sm:block w-20"></div>
                 </div>
               </h1>
 
-              <div className="relative sm:absolute sm:top-1/2 sm:left-[-2rem] sm:-translate-y-1/2 mt-12 sm:mt-0 sm:w-80 lg:w-96">
+              <div className="relative sm:absolute sm:top-1/2 sm:left-[-2rem] sm:-translate-y-1/2 mt-12 sm:-mt-0 sm:-ml-12 sm:w-[14rem] lg:w-[16rem]">
                 <ScrollRevealText delay={800}>
-                  <p className="sm:-ml-40 text-sm sm:text-sm lg:text-lg font-light leading-relaxed text-gray-600 tracking-wide">
-                    <span className="block">Motto® is a global strategy and design</span>
-                    <span className="block">firm for positioning, scaling, and reinventing</span>
-                    <span className="block">companies in the tech and innovation space.</span>
+                  <p className="text-xs font-light leading-relaxed text-gray-600 tracking-wide">
+                    Motto® is a global strategy and design firm for positioning, scaling, and
+                    reinventing companies in the tech and innovation space.
                   </p>
                 </ScrollRevealText>
               </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
       </section>
 
       {/* Animated Marquee Section */}
-      <section className="py-16 bg-white border-y border-gray-200">
+      <section className="py-16 bg-gray-100 border-y border-gray-200">
         <AnimatedMarquee speed={30} className="text-6xl font-bold text-black">
           <span className="mx-8">STRATEGY</span>
           <span className="mx-8">•</span>
@@ -146,8 +146,15 @@ export default function HomePage() {
         </AnimatedMarquee>
       </section>
 
+      {/* Scroll-Responsive Dual Marquee Section */}
+      <ScrollMarquee
+        topText={['CREATIVE', '•', 'DIGITAL', '•', 'EXPERIENCE', '•']}
+        bottomText={['MOTION', '•', 'IDENTITY', '•', 'STRATEGY', '•']}
+        className="border-b border-gray-200"
+      />
+
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-32 px-6 bg-gray-100">
         <div className="max-w-screen-2xl mx-auto">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">
@@ -186,7 +193,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 px-6 bg-white">
+      <section className="py-32 px-6 bg-gray-100">
         <div className="max-w-6xl mx-auto text-center">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black">

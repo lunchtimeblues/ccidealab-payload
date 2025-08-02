@@ -32,15 +32,13 @@ export const MainContent = ({ children }: MainContentProps) => {
   }, [])
 
   return (
-    <main 
+    <main
       className="relative z-20 bg-white"
       style={{
         transform: `translateY(${scrollY * -0.2}px)`,
       }}
     >
       {children}
-      {/* Small spacer to create reveal effect */}
-      <div className="h-96 bg-white" />
     </main>
   )
 }

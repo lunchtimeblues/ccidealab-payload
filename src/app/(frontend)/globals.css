@@ -126,3 +126,9 @@ html[data-theme='light'] {
   z-index: 1;
   animation: none !important;
 }
+
+/* Custom Styles */
+
+.almost-full {
+  height: calc(100vh - 5rem);
+}
