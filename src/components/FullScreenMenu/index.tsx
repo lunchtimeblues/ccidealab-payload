@@ -6,7 +6,7 @@ import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 interface NavItem {
   label: string
   href: string
-  transitionType?: 'curtain' | 'scale' | 'wipe' | 'fade' | 'slide' | 'logoWipe'
+  transitionType?: 'logoWipe'
   transitionColor?: string
 }
 
@@ -84,7 +84,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose,
                   url={item.href}
                   label={item.label}
                   appearance="inline"
-                  transitionType={item.transitionType}
+                  transitionType="logoWipe"
                   transitionColor={item.transitionColor}
                   className="text-2xl md:text-4xl lg:text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 block"
                   onClick={handleLinkClick}

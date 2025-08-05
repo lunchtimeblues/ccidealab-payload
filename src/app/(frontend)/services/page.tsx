@@ -45,7 +45,7 @@ export default function ServicesPage() {
   ]
 
   return (
-    <main className="bg-gray-100 text-black">
+    <div className="bg-gray-100 text-black">
       {services.map((service, index) => (
         <section
           key={index}
@@ -102,6 +102,6 @@ export default function ServicesPage() {
           </div>
         </section>
       ))}
-    </main>
+    </div>
   )
 }

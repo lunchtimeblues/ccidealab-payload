@@ -13,20 +13,33 @@ export default function ContactPage() {
             <div>
               <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
               <p className="mb-4">
-                We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
+                We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as
+                possible.
               </p>
               <div className="space-y-2">
-                <p><strong>Email:</strong> hello@example.com</p>
-                <p><strong>Phone:</strong> (555) 123-4567</p>
-                <p><strong>Address:</strong> 123 Main St, City, State 12345</p>
+                <p>
+                  <strong>Email:</strong> hello@example.com
+                </p>
+                <p>
+                  <strong>Phone:</strong> (555) 123-4567
+                </p>
+                <p>
+                  <strong>Address:</strong> 123 Main St, City, State 12345
+                </p>
               </div>
             </div>
             <div>
               <h3 className="text-2xl font-semibold mb-4">Office Hours</h3>
               <div className="space-y-2">
-                <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
-                <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
-                <p><strong>Sunday:</strong> Closed</p>
+                <p>
+                  <strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM
+                </p>
+                <p>
+                  <strong>Saturday:</strong> 10:00 AM - 4:00 PM
+                </p>
+                <p>
+                  <strong>Sunday:</strong> Closed
+                </p>
               </div>
             </div>
           </div>
@@ -37,19 +50,19 @@ export default function ContactPage() {
             url="/"
             label="← Home"
             appearance="outline"
-            transitionType="fade"
+            transitionType="logoWipe"
           />
           <PremiumTransitionLink
             url="/about"
             label="About Us"
             appearance="default"
-            transitionType="wipe"
+            transitionType="logoWipe"
           />
           <PremiumTransitionLink
             url="/demo"
             label="View Demo"
             appearance="ghost"
-            transitionType="scale"
+            transitionType="logoWipe"
           />
         </div>
       </div>

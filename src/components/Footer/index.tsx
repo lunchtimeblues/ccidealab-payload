@@ -1,24 +1,34 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
+import { useEffect, useState, useRef } from 'react'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export const Footer = () => {
   const [currentTime, setCurrentTime] = useState('')
+  const [year, setYear] = useState('')
   const [scrollY, setScrollY] = useState(0)
+  const footerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const updateTime = () => {
       const now = new Date()
-      const timeString = now.toLocaleTimeString('en-US', {
-        timeZone: 'America/New_York',
+
+      // Vancouver timezone
+      const timeString = now.toLocaleTimeString('en-CA', {
+        timeZone: 'America/Vancouver',
         hour12: false,
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
       })
+
+      const yearString = now.toLocaleDateString('en-CA', {
+        timeZone: 'America/Vancouver',
+        year: 'numeric',
+      })
+
       setCurrentTime(timeString)
+      setYear(yearString)
     }
 
     updateTime()
@@ -26,97 +36,174 @@ export const Footer = () => {
     return () => clearInterval(interval)
   }, [])
 
+  // Footer animation based on scroll position
   useEffect(() => {
-    // Listen for Lenis scroll events
-    const handleLenisScroll = (e: CustomEvent) => {
-      setScrollY(e.detail.scroll)
+    const handleScroll = () => {
+      if (!footerRef.current) return
+
+      const footer = footerRef.current
+      const footerTop = footer.offsetTop
+      const windowHeight = window.innerHeight
+      const scrollTop = window.scrollY
+
+      // Calculate when footer should start animating
+      const triggerPoint = footerTop - windowHeight
+      const scrollProgress = Math.max(0, Math.min(1, (scrollTop - triggerPoint) / windowHeight))
+
+      setScrollY(scrollProgress)
     }
 
-    // Listen for custom Lenis scroll event
-    window.addEventListener('lenis-scroll', handleLenisScroll as EventListener)
-
-    // Fallback to regular scroll for compatibility
-    const handleScroll = () => {
-      setScrollY(window.scrollY)
+    // Listen for both regular scroll and Lenis scroll events
+    const handleLenisScroll = (e: CustomEvent) => {
+      handleScroll()
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('lenis-scroll', handleLenisScroll as EventListener)
+
+    // Initial calculation
+    handleScroll()
 
     return () => {
-      window.removeEventListener('lenis-scroll', handleLenisScroll as EventListener)
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('lenis-scroll', handleLenisScroll as EventListener)
     }
   }, [])
 
   return (
     <footer
-      className="bg-black text-white overflow-hidden min-h-screen flex items-center fixed inset-0 z-0"
+      ref={footerRef}
+      className="bg-[#151515] text-white px-6 md:px-12 pt-24 pb-10 text-sm relative"
       style={{
-        transform: `translateY(${scrollY * 0.1}px)`,
+        // Wearemotto-style footer animation: starts at -35% and moves to 0%
+        transform: `translate3d(0px, ${-35 + (scrollY * 35)}%, 0px)`,
       }}
     >
-      <div className="relative z-10 px-6 py-24 lg:py-32 w-full">
-        <div className="max-w-screen-2xl mx-auto">
-          {/* Large CTA Section */}
-          <div className="mb-24 lg:mb-32 text-center">
-            <ScrollRevealText>
-              <h2 className="text-7xl md:text-9xl lg:text-[12rem] xl:text-[16rem] font-bold leading-none tracking-tight mb-4">
-                Let&apos;s Work
-              </h2>
-            </ScrollRevealText>
-
-            <ScrollRevealText delay={200}>
-              <h2 className="text-7xl md:text-9xl lg:text-[12rem] xl:text-[16rem] font-bold leading-none tracking-tight mb-16">
-                Together
-              </h2>
-            </ScrollRevealText>
-
-            <ScrollRevealText delay={400}>
-              <p className="text-xl lg:text-2xl text-gray-300 max-w-6xl mx-auto leading-relaxed mb-12">
-                Ready to create something extraordinary? We&apos;d love to hear about your vision
-                and explore how we can bring it to life together.
-              </p>
-            </ScrollRevealText>
-
-            <ScrollRevealText delay={600}>
-              <PremiumTransitionLink
-                url="/contact"
-                label="Start a Project"
-                appearance="default"
-                transitionType="logoWipe"
-                transitionColor="#dc2626"
-                className="px-16 py-8 text-2xl bg-white text-black hover:bg-gray-200 transition-all duration-300 inline-block rounded-full"
-              />
-            </ScrollRevealText>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-800/50 pt-12 mt-12">
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-              <ScrollRevealText delay={400}>
-                <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
-                  <span className="text-3xl font-bold tracking-tight">C/C Idea Lab</span>
-                  <span className="text-gray-400 text-lg">© 2024 All rights reserved</span>
-                </div>
-              </ScrollRevealText>
-
-              <ScrollRevealText delay={600}>
-                <div className="flex flex-wrap items-center gap-6 lg:gap-8 text-gray-400">
-                  <a href="#" className="hover:text-white transition-all duration-300">
-                    Privacy Policy
-                  </a>
-                  <a href="#" className="hover:text-white transition-all duration-300">
-                    Terms of Service
-                  </a>
-                  <a href="#" className="hover:text-white transition-all duration-300">
-                    Cookies
-                  </a>
-                  <span className="text-white font-mono tabular-nums">{currentTime}</span>
-                </div>
-              </ScrollRevealText>
-            </div>
-          </div>
+      {/* Logo & Newsletter */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-16">
+        {/* Logo + Name */}
+        <div className="flex items-center gap-4 mb-8 md:mb-0">
+          <div className="w-6 h-6 bg-white" /> {/* Replace with your logo */}
+          <h1 className="text-4xl font-bold">
+            <sup className="text-xs align-super">®</sup>
+          </h1>
         </div>
+
+        {/* Email Signup */}
+        <div className="max-w-md w-full">
+          <ScrollRevealText delay={0}>
+            <p className="text-gray-400 mb-3">
+              Get valuable strategy, culture, and brand insights straight to your inbox.
+            </p>
+          </ScrollRevealText>
+
+          <form className="flex items-center border-b border-gray-600">
+            <input
+              type="email"
+              placeholder="Your email here"
+              className="bg-transparent flex-1 py-2 placeholder-gray-500 text-white outline-none"
+            />
+            <button type="submit" className="text-white text-xl px-2">
+              →
+            </button>
+          </form>
+
+          <p className="text-gray-500 text-xs mt-2">
+            By signing up to receive emails from Motto, you agree to our{' '}
+            <a href="#" className="underline">
+              Privacy Policy
+            </a>
+            . We treat your info responsibly.
+          </p>
+        </div>
+      </div>
+
+      <hr className="border-gray-700 mb-16" />
+
+      {/* Footer Links Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+        <div>
+          <ScrollRevealText>
+            <h4 className="font-semibold text-white mb-4">Company</h4>
+          </ScrollRevealText>
+          <ul className="space-y-1 text-gray-400">
+            {['Home', 'What We Do', 'About', 'Method', 'Work', 'Contact'].map((item, idx) => (
+              <li key={item}>
+                <ScrollRevealText delay={100 + idx * 50}>
+                  <a href="#" className="hover:text-white transition">
+                    {item}
+                  </a>
+                </ScrollRevealText>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <ScrollRevealText>
+            <h4 className="font-semibold text-white mb-4">Discover</h4>
+          </ScrollRevealText>
+          <ul className="space-y-1 text-gray-400">
+            {['Engagements', 'Speaking', 'VisionCamp®', 'Our Book', 'Shop', 'Shows'].map(
+              (item, idx) => (
+                <li key={item}>
+                  <ScrollRevealText delay={100 + idx * 50}>
+                    <a href="#" className="hover:text-white transition">
+                      {item}
+                    </a>
+                  </ScrollRevealText>
+                </li>
+              ),
+            )}
+          </ul>
+        </div>
+
+        <div>
+          <ScrollRevealText>
+            <h4 className="font-semibold text-white mb-4">Learn</h4>
+          </ScrollRevealText>
+          <ul className="space-y-1 text-gray-400">
+            {['Blog', 'Press & Media', 'Clients', 'Testimonials', 'FAQs', 'Careers'].map(
+              (item, idx) => (
+                <li key={item}>
+                  <ScrollRevealText delay={100 + idx * 50}>
+                    <a href="#" className="hover:text-white transition">
+                      {item}
+                    </a>
+                  </ScrollRevealText>
+                </li>
+              ),
+            )}
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom Row */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 text-xs">
+        <ScrollRevealText delay={0}>
+          <p>© 2005—{year} C/CIDEALAB® | NYC | DAL | LDN</p>
+        </ScrollRevealText>
+
+        <ScrollRevealText delay={200}>
+          <div className="flex items-center gap-4 mt-4 md:mt-0">
+            {/* Replace with real icons */}
+            <a href="#" className="hover:text-white">
+              in
+            </a>
+            <a href="#" className="hover:text-white">
+              ig
+            </a>
+            <a href="#" className="hover:text-white">
+              yt
+            </a>
+          </div>
+        </ScrollRevealText>
+
+        <ScrollRevealText delay={400}>
+          <a href="#" className="mt-4 md:mt-0 hover:text-white">
+            Back to top ↑
+          </a>
+        </ScrollRevealText>
       </div>
     </footer>
   )
