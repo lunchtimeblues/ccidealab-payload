@@ -7,7 +7,7 @@ interface Props {
 }
 
 /* Simplified component without redirects functionality */
-export const PayloadRedirects: React.FC<Props> = async ({ disableNotFound, url }) => {
+export const PayloadRedirects: React.FC<Props> = async ({ disableNotFound, url: _url }) => {
   // Since we removed redirects functionality, just handle the not found case
   if (disableNotFound) return null
 

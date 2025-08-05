@@ -212,7 +212,7 @@ export const usePremiumPageTransition = () => {
 
   // Main navigation function
   const navigateWithTransition = useCallback(
-    (href: string, transitionType: TransitionType = 'logoWipe', color?: string) => {
+    (href: string, _transitionType: TransitionType = 'logoWipe', color?: string) => {
       // Always use logoWipe with navigation
       mottoWipeWithNavigation(href, color)
     },

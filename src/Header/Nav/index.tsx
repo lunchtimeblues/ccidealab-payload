@@ -5,8 +5,8 @@ import React from 'react'
 import type { Header as HeaderType } from '@/payload-types'
 
 import { TransitionLink } from '@/components/TransitionLink'
-import Link from 'next/link'
-import { SearchIcon } from 'lucide-react'
+// import Link from 'next/link' // Unused import
+// import { SearchIcon } from 'lucide-react' // Unused import
 
 export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
   const navItems = data?.navItems || []

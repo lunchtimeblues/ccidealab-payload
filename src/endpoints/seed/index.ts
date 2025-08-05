@@ -4,7 +4,7 @@ const seed: Endpoint = {
   path: '/seed',
   method: 'get',
   handler: async (req) => {
-    const { payload } = req
+    const { payload: _payload } = req
 
     try {
       // Add your seeding logic here

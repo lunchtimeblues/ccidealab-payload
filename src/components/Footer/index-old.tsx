@@ -9,8 +9,8 @@ export const Footer = () => {
   const [scrollY, setScrollY] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const footerRef = useRef<HTMLElement>(null)
-  const backgroundRef = useRef<HTMLDivElement>(null)
-  const textRef = useRef<HTMLDivElement>(null)
+  // const backgroundRef = useRef<HTMLDivElement>(null) // Unused ref
+  // const textRef = useRef<HTMLDivElement>(null) // Unused ref
 
   // Update time every second
   useEffect(() => {
@@ -171,7 +171,7 @@ export const Footer = () => {
               <div className="overflow-hidden">
                 <ScrollRevealText>
                   <h2 className="text-7xl md:text-9xl lg:text-[12rem] xl:text-[16rem] font-bold leading-none tracking-tight mb-4 transform hover:scale-105 transition-transform duration-700 cursor-default">
-                    Let's Work
+                    Let&apos;s Work
                   </h2>
                 </ScrollRevealText>
               </div>
@@ -185,7 +185,7 @@ export const Footer = () => {
 
               <ScrollRevealText delay={400}>
                 <p className="text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
-                  Ready to create something extraordinary? We'd love to hear about your vision and
+                  Ready to create something extraordinary? We&apos;d love to hear about your vision and
                   explore how we can bring it to life together.
                 </p>
               </ScrollRevealText>
