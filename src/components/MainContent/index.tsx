@@ -39,8 +39,6 @@ export const MainContent = ({ children }: MainContentProps) => {
       }}
     >
       {children}
-      {/* Small spacer to create reveal effect */}
-      <div className="h-96 bg-white" />
     </main>
   )
 }

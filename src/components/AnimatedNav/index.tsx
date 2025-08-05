@@ -8,15 +8,20 @@ import { FullScreenMenu } from '@/components/FullScreenMenu'
 interface NavItem {
   label: string
   href: string
-  transitionType?: 'curtain' | 'scale' | 'wipe' | 'fade' | 'slide' | 'motto-wipe'
+  transitionType?: 'logoWipe'
   transitionColor?: string
 }
 
 const navItems: NavItem[] = [
-  { label: 'Work', href: '/work', transitionType: 'motto-wipe', transitionColor: '#1f2937' },
-  { label: 'About', href: '/about', transitionType: 'motto-wipe', transitionColor: '#7c3aed' },
-  { label: 'Services', href: '/services', transitionType: 'motto-wipe', transitionColor: '#059669' },
-  { label: 'Contact', href: '/contact', transitionType: 'motto-wipe', transitionColor: '#dc2626' },
+  { label: 'Work', href: '/work', transitionType: 'logoWipe', transitionColor: '#1f2937' },
+  { label: 'About', href: '/about', transitionType: 'logoWipe', transitionColor: '#7c3aed' },
+  {
+    label: 'Services',
+    href: '/services',
+    transitionType: 'logoWipe',
+    transitionColor: '#059669',
+  },
+  { label: 'Contact', href: '/contact', transitionType: 'logoWipe', transitionColor: '#dc2626' },
 ]
 
 export const AnimatedNav = () => {
@@ -52,7 +57,9 @@ export const AnimatedNav = () => {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
-          isScrolled ? 'bg-white/90 backdrop-blur-md py-4 border-b border-gray-200' : 'bg-transparent py-6'
+          isScrolled
+            ? 'bg-white/90 backdrop-blur-md py-4 border-b border-gray-200'
+            : 'bg-transparent py-6'
         }`}
       >
         <div className="max-w-screen-2xl mx-auto px-6 flex justify-between items-center">
@@ -60,9 +67,9 @@ export const AnimatedNav = () => {
           <div className="relative z-10">
             <PremiumTransitionLink
               url="/"
-              label="MOTTO®"
+              label="C/C IDEA LAB"
               appearance="inline"
-              transitionType="motto-wipe"
+              transitionType="logoWipe"
               className="text-2xl font-bold text-black hover:text-gray-600 transition-colors"
             />
           </div>

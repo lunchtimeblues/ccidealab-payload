@@ -6,7 +6,7 @@ import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 interface NavItem {
   label: string
   href: string
-  transitionType?: 'curtain' | 'scale' | 'wipe' | 'fade' | 'slide' | 'motto-wipe'
+  transitionType?: 'curtain' | 'scale' | 'wipe' | 'fade' | 'slide' | 'logoWipe'
   transitionColor?: string
 }
 
@@ -16,11 +16,7 @@ interface FullScreenMenuProps {
   navItems: NavItem[]
 }
 
-export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
-  isOpen,
-  onClose,
-  navItems
-}) => {
+export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose, navItems }) => {
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
@@ -58,9 +54,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
   return (
     <div
       className={`fixed inset-0 z-40 transition-all duration-700 ease-out ${
-        isOpen
-          ? 'opacity-100 pointer-events-auto'
-          : 'opacity-0 pointer-events-none'
+        isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
     >
       {/* Background overlay */}
@@ -80,12 +74,10 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               <li
                 key={item.href}
                 className={`transform transition-all duration-700 ease-out ${
-                  isOpen
-                    ? 'translate-y-0 opacity-100'
-                    : 'translate-y-8 opacity-0'
+                  isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 }`}
                 style={{
-                  transitionDelay: isOpen ? `${index * 100 + 200}ms` : '0ms'
+                  transitionDelay: isOpen ? `${index * 100 + 200}ms` : '0ms',
                 }}
               >
                 <PremiumTransitionLink
@@ -94,7 +86,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                   appearance="inline"
                   transitionType={item.transitionType}
                   transitionColor={item.transitionColor}
-                  className="text-4xl md:text-6xl lg:text-7xl font-bold text-white hover:text-gray-300 transition-colors duration-300 block"
+                  className="text-2xl md:text-4xl lg:text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 block"
                   onClick={handleLinkClick}
                 />
               </li>
@@ -105,38 +97,20 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         {/* Additional menu items */}
         <div
           className={`mt-16 md:mt-24 text-center transform transition-all duration-700 ease-out ${
-            isOpen
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-8 opacity-0'
+            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
           style={{
-            transitionDelay: isOpen ? `${navItems.length * 100 + 400}ms` : '0ms'
+            transitionDelay: isOpen ? `${navItems.length * 100 + 400}ms` : '0ms',
           }}
         >
           <div className="space-y-4 text-lg md:text-xl text-gray-300">
             <div>
-              <PremiumTransitionLink
-                url="/demo"
-                label="View Demo"
-                appearance="inline"
-                transitionType="motto-wipe"
-                className="hover:text-white transition-colors"
-                onClick={handleLinkClick}
-              />
-            </div>
-            <div>
-              <a
-                href="mailto:hello@motto.com"
-                className="hover:text-white transition-colors"
-              >
-                hello@motto.com
+              <a href="mailto:hello@motto.com" className="hover:text-white transition-colors">
+                hello@ccidealab.com
               </a>
             </div>
             <div>
-              <a
-                href="tel:+1234567890"
-                className="hover:text-white transition-colors"
-              >
+              <a href="tel:+1234567890" className="hover:text-white transition-colors">
                 +1 (234) 567-890
               </a>
             </div>
@@ -146,12 +120,10 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         {/* Social links */}
         <div
           className={`mt-12 md:mt-16 flex space-x-8 transform transition-all duration-700 ease-out ${
-            isOpen
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-8 opacity-0'
+            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
           style={{
-            transitionDelay: isOpen ? `${navItems.length * 100 + 600}ms` : '0ms'
+            transitionDelay: isOpen ? `${navItems.length * 100 + 600}ms` : '0ms',
           }}
         >
           {['Instagram', 'Twitter', 'LinkedIn', 'Dribbble'].map((social) => (
@@ -168,12 +140,10 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         {/* Close instruction */}
         <div
           className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-500 text-sm transition-all duration-700 ease-out ${
-            isOpen
-              ? 'translate-y-0 opacity-100'
-              : 'translate-y-4 opacity-0'
+            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
           style={{
-            transitionDelay: isOpen ? `${navItems.length * 100 + 800}ms` : '0ms'
+            transitionDelay: isOpen ? `${navItems.length * 100 + 800}ms` : '0ms',
           }}
         >
           Press ESC to close

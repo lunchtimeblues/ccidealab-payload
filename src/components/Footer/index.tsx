@@ -83,7 +83,7 @@ export const Footer = () => {
                 url="/contact"
                 label="Start a Project"
                 appearance="default"
-                transitionType="motto-wipe"
+                transitionType="logoWipe"
                 transitionColor="#dc2626"
                 className="px-16 py-8 text-2xl bg-white text-black hover:bg-gray-200 transition-all duration-300 inline-block rounded-full"
               />
@@ -95,7 +95,7 @@ export const Footer = () => {
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
               <ScrollRevealText delay={400}>
                 <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-8">
-                  <span className="text-3xl font-bold tracking-tight">MOTTO®</span>
+                  <span className="text-3xl font-bold tracking-tight">C/C Idea Lab</span>
                   <span className="text-gray-400 text-lg">© 2024 All rights reserved</span>
                 </div>
               </ScrollRevealText>

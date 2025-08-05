@@ -52,7 +52,7 @@ export const PremiumTransitionLink: React.FC<PremiumTransitionLinkType> = (props
     reference,
     size: sizeFromProps,
     url,
-    transitionType = 'motto-wipe',
+    transitionType = 'logoWipe',
     transitionColor,
     disableTransition = false,
     onClick,
@@ -73,11 +73,8 @@ export const PremiumTransitionLink: React.FC<PremiumTransitionLinkType> = (props
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
 
   // Determine if we should use transitions
-  const shouldUseTransition = 
-    !disableTransition && 
-    !newTab && 
-    isInternalLink(href) && 
-    typeof window !== 'undefined'
+  const shouldUseTransition =
+    !disableTransition && !newTab && isInternalLink(href) && typeof window !== 'undefined'
 
   const handleClick = (e: React.MouseEvent) => {
     if (shouldUseTransition) {
@@ -100,9 +97,9 @@ export const PremiumTransitionLink: React.FC<PremiumTransitionLinkType> = (props
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
-      <Link 
-        className={cn(className)} 
-        href={href || url || ''} 
+      <Link
+        className={cn(className)}
+        href={href || url || ''}
         onClick={handleClick}
         {...newTabProps}
       >
@@ -113,9 +110,9 @@ export const PremiumTransitionLink: React.FC<PremiumTransitionLinkType> = (props
 
   return (
     <Button asChild className={className} size={size} variant={appearance}>
-      <Link 
-        className={cn(className)} 
-        href={href || url || ''} 
+      <Link
+        className={cn(className)}
+        href={href || url || ''}
         onClick={handleClick}
         {...newTabProps}
       >

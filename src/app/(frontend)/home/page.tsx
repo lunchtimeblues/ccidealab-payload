@@ -5,9 +5,9 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-gray-100 text-black">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white">
+      <section className="relative min-h-screen flex items-center justify-center bg-gray-100">
         <div className="relative z-10 px-6">
           <div className="relative flex items-center justify-center min-h-screen">
             <div className="relative w-full">
@@ -49,7 +49,7 @@ export default function HomePage() {
               <div className="relative sm:absolute sm:top-1/2 sm:left-[-2rem] sm:-translate-y-1/2 mt-12 sm:mt-0 sm:w-80 lg:w-96">
                 <ScrollRevealText delay={800}>
                   <p className="sm:-ml-40 text-sm sm:text-sm lg:text-lg font-light leading-relaxed text-gray-600 tracking-wide">
-                    <span className="block">Motto® is a global strategy and design</span>
+                    <span className="block">C/C IDEA LAB is a global strategy and design</span>
                     <span className="block">firm for positioning, scaling, and reinventing</span>
                     <span className="block">companies in the tech and innovation space.</span>
                   </p>
@@ -79,7 +79,7 @@ export default function HomePage() {
               <ScrollRevealText delay={400}>
                 <div className="text-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
                   <p>
-                    Motto® is a brand strategy and design firm that partners with tech and
+                    C/C IDEA LAB is a brand strategy and design firm that partners with tech and
                     innovation companies to create impactful, future-ready brands. We collaborate
                     with visionary teams and design-led companies who need their brand to stand out,
                     matter more, drive growth, and amplify brand impact within modern culture.
@@ -98,7 +98,7 @@ export default function HomePage() {
                       url="/services"
                       label="Explore our services →"
                       appearance="inline"
-                      transitionType="motto-wipe"
+                      transitionType="logoWipe"
                       transitionColor="#059669"
                       className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
                     />
@@ -110,7 +110,7 @@ export default function HomePage() {
                       url="/work"
                       label="See our case studies →"
                       appearance="inline"
-                      transitionType="motto-wipe"
+                      transitionType="logoWipe"
                       className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
                     />
                   </div>
@@ -121,7 +121,7 @@ export default function HomePage() {
                       url="/methodology"
                       label="Discover our methodology →"
                       appearance="inline"
-                      transitionType="motto-wipe"
+                      transitionType="logoWipe"
                       className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
                     />
                   </div>
@@ -133,7 +133,7 @@ export default function HomePage() {
       </section>
 
       {/* Animated Marquee Section */}
-      <section className="py-16 bg-white border-y border-gray-200">
+      <section className="py-16 bg-gray-100 border-y border-gray-200">
         <AnimatedMarquee speed={30} className="text-6xl font-bold text-black">
           <span className="mx-8">STRATEGY</span>
           <span className="mx-8">•</span>
@@ -147,7 +147,7 @@ export default function HomePage() {
       </section>
 
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 px-6 bg-gray-50">
+      <section className="py-32 px-6 bg-gray-100">
         <div className="max-w-screen-2xl mx-auto">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">
@@ -159,7 +159,7 @@ export default function HomePage() {
             {[1, 2, 3, 4, 5, 6].map((item) => (
               <MouseFollower key={item}>
                 <div className="group cursor-pointer">
-                  <div className="aspect-[4/3] bg-gray-200 rounded-lg mb-6 overflow-hidden">
+                  <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                     <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
                   </div>
                   <ScrollRevealText delay={item * 100}>
@@ -177,7 +177,7 @@ export default function HomePage() {
                 url="/demo"
                 label="View All Work"
                 appearance="outline"
-                transitionType="motto-wipe"
+                transitionType="logoWipe"
                 className="px-8 py-4 text-lg"
               />
             </ScrollRevealText>
@@ -186,7 +186,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 px-6 bg-white">
+      <section className="py-32 px-6 bg-gray-100">
         <div className="max-w-6xl mx-auto text-center">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black">
@@ -204,7 +204,7 @@ export default function HomePage() {
               url="/contact"
               label="Start a Project"
               appearance="default"
-              transitionType="motto-wipe"
+              transitionType="logoWipe"
               transitionColor="#dc2626"
               className="px-12 py-6 text-xl bg-black text-white hover:bg-gray-800 transition-colors"
             />
