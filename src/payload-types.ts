@@ -174,7 +174,7 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ServicesBlock)[];
+  layout: (CallToActionBlock | ContentBlock | MediaBlock)[];
   meta?: {
     title?: string | null;
     /**
@@ -379,45 +379,6 @@ export interface MediaBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'mediaBlock';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ServicesBlock".
- */
-export interface ServicesBlock {
-  title: string;
-  subtitle?: string | null;
-  services: {
-    title: string;
-    description: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    };
-    features?:
-      | {
-          feature: string;
-          id?: string | null;
-        }[]
-      | null;
-    backgroundColor?: ('white' | 'gray-50' | 'gray-100' | 'black' | 'blue-50' | 'green-50' | 'purple-50') | null;
-    textColor?: ('black' | 'white' | 'gray-600' | 'gray-800') | null;
-    image?: (string | null) | Media;
-    id?: string | null;
-  }[];
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'services';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -635,7 +596,6 @@ export interface PagesSelect<T extends boolean = true> {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
-        services?: T | ServicesBlockSelect<T>;
       };
   meta?:
     | T
@@ -707,32 +667,6 @@ export interface ContentBlockSelect<T extends boolean = true> {
  */
 export interface MediaBlockSelect<T extends boolean = true> {
   media?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ServicesBlock_select".
- */
-export interface ServicesBlockSelect<T extends boolean = true> {
-  title?: T;
-  subtitle?: T;
-  services?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        features?:
-          | T
-          | {
-              feature?: T;
-              id?: T;
-            };
-        backgroundColor?: T;
-        textColor?: T;
-        image?: T;
-        id?: T;
-      };
   id?: T;
   blockName?: T;
 }
