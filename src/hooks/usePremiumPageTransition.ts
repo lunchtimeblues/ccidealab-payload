@@ -3,7 +3,7 @@
 import { useTransitionRouter } from 'next-view-transitions'
 import { useCallback } from 'react'
 
-export type TransitionType = 'logoWipe'
+export type TransitionType = 'logoWipe' | 'curtain' | 'scale' | 'wipe' | 'fade'
 
 export const usePremiumPageTransition = () => {
   const router = useTransitionRouter()
