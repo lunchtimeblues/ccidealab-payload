@@ -1,27 +1,31 @@
-import type { Endpoint } from 'payload'
+import type { Payload } from 'payload'
 
-const seed: Endpoint = {
-  path: '/seed',
-  method: 'get',
-  handler: async (req) => {
-    const { payload: _payload } = req
+interface SeedParams {
+  payload: Payload
+  req: any
+}
 
-    try {
-      // Add your seeding logic here
-      // For now, just return a success message
-      return Response.json({
-        success: true,
-        message: 'Seed endpoint is working'
-      })
-    } catch (error) {
-      return Response.json({
-        success: false,
-        message: 'Seed failed',
-        error: error instanceof Error ? error.message : 'Unknown error'
-      }, { status: 500 })
-    }
-  },
+export const seed = async ({ payload, req }: SeedParams): Promise<void> => {
+  try {
+    // Add your seeding logic here
+    console.log('Seeding data...')
+
+    // Example: Create some initial data
+    // await payload.create({
+    //   collection: 'pages',
+    //   data: {
+    //     title: 'Home',
+    //     slug: 'home',
+    //     // ... other fields
+    //   },
+    //   req,
+    // })
+
+    console.log('Seeding completed successfully')
+  } catch (error) {
+    console.error('Seeding failed:', error)
+    throw error
+  }
 }
 
 export default seed
-export { seed }

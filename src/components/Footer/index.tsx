@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export const Footer = () => {
-  const [currentTime, setCurrentTime] = useState('')
+  const [_currentTime, setCurrentTime] = useState('')
   const [year, setYear] = useState('')
   const [scrollY, setScrollY] = useState(0)
   const footerRef = useRef<HTMLElement>(null)
@@ -54,7 +54,7 @@ export const Footer = () => {
     }
 
     // Listen for both regular scroll and Lenis scroll events
-    const handleLenisScroll = (e: CustomEvent) => {
+    const handleLenisScroll = (_e: CustomEvent) => {
       handleScroll()
     }
 
