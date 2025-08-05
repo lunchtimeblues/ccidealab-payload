@@ -2,10 +2,10 @@ import type { Payload } from 'payload'
 
 interface SeedParams {
   payload: Payload
-  req: any
+  req: unknown
 }
 
-export const seed = async ({ payload, req }: SeedParams): Promise<void> => {
+export const seed = async ({ payload: _payload, req: _req }: SeedParams): Promise<void> => {
   try {
     // Add your seeding logic here
     console.log('Seeding data...')

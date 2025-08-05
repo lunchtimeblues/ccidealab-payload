@@ -5,13 +5,11 @@ import type { Page } from '@/payload-types'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
-import { ServicesBlock } from '@/blocks/Services/Component'
 
 const blockComponents = {
   content: ContentBlock,
   cta: CallToActionBlock,
   mediaBlock: MediaBlock,
-  services: ServicesBlock,
 }
 
 export const RenderBlocks: React.FC<{
@@ -31,8 +29,8 @@ export const RenderBlocks: React.FC<{
             const Block = blockComponents[blockType]
 
             if (Block) {
-              // Services block handles its own spacing
-              const wrapperClass = blockType === 'services' ? '' : 'my-16'
+              // Standard spacing for all blocks
+              const wrapperClass = 'my-16'
 
               return (
                 <div className={wrapperClass} key={index}>
