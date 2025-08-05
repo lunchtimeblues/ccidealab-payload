@@ -5,7 +5,6 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
-import { Services } from '../../blocks/Services/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
@@ -73,7 +72,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Services],
+              blocks: [CallToAction, Content, MediaBlock],
               required: true,
               admin: {
                 initCollapsed: true,
