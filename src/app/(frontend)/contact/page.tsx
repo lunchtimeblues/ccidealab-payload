@@ -13,7 +13,7 @@ export default function ContactPage() {
             <div>
               <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
               <p className="mb-4">
-                We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
               </p>
               <div className="space-y-2">
                 <p><strong>Email:</strong> hello@example.com</p>
