@@ -45,10 +45,24 @@ export const Footer = () => {
       const footerTop = footer.offsetTop
       const windowHeight = window.innerHeight
       const scrollTop = window.scrollY
+      const documentHeight = document.documentElement.scrollHeight
+      const maxScroll = documentHeight - windowHeight
 
       // Calculate when footer should start animating
       const triggerPoint = footerTop - windowHeight
-      const scrollProgress = Math.max(0, Math.min(1, (scrollTop - triggerPoint) / windowHeight))
+
+      // Improved calculation that ensures we reach 1.0 at the bottom
+      let scrollProgress
+      if (scrollTop <= triggerPoint) {
+        scrollProgress = 0
+      } else if (scrollTop >= maxScroll) {
+        // Ensure we reach exactly 1.0 when at the bottom of the page
+        scrollProgress = 1
+      } else {
+        // Calculate progress between trigger point and max scroll
+        const availableScrollDistance = maxScroll - triggerPoint
+        scrollProgress = Math.max(0, Math.min(1, (scrollTop - triggerPoint) / availableScrollDistance))
+      }
 
       setScrollY(scrollProgress)
     }
