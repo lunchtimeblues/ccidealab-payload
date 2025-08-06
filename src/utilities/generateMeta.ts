@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 
 import type { Media, Page, Config } from '../payload-types'
+// Fixed: Removed non-existent Post type import
 
 import { mergeOpenGraph } from './mergeOpenGraph'
 import { getServerSideURL } from './getURL'
