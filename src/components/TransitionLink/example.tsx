@@ -52,7 +52,7 @@ export const TransitionLinkExamples = () => {
           type="reference"
           reference={{
             relationTo: 'pages',
-            value: { slug: 'example-page' } // This would be actual page data
+            value: 'example-page-id' // This would be actual page ID from CMS
           }}
           label="CMS Page"
           appearance="default"
