@@ -122,7 +122,7 @@ export const SimpleStacking: React.FC<SimpleStackingProps> = ({
           return (
             <div
               key={index}
-              ref={(el) => (sectionRefs.current[index] = el)}
+              ref={(el) => { sectionRefs.current[index] = el }}
               className={`w-full h-screen flex items-center justify-center ${getBackgroundColorClass(service.backgroundColor)} transition-all duration-700 ease-out`}
               style={{
                 transform: isVisible ? 'scale(1)' : hasPassedThrough ? 'scale(0.95)' : 'scale(1)',
