@@ -1,5 +1,6 @@
 import { PayloadRequest, CollectionSlug } from 'payload'
 
+// Fixed: Removed non-existent 'posts' collection reference
 const collectionPrefixMap: Partial<Record<CollectionSlug, string>> = {
   pages: '',
 }
