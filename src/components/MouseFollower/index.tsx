@@ -20,9 +20,18 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     const container = containerRef.current
     if (!container) return
 
-    const handleMouseEnter = () => setIsVisible(true)
+    const handleMouseEnter = (e: MouseEvent) => {
+      // Set initial position immediately on enter to prevent top-left flash
+      const rect = container.getBoundingClientRect()
+      setPosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      })
+      setIsVisible(true)
+    }
+
     const handleMouseLeave = () => setIsVisible(false)
-    
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect()
       setPosition({

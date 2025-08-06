@@ -89,8 +89,8 @@ export const Footer = () => {
       ref={footerRef}
       className="bg-[#151515] text-white px-6 md:px-12 pt-24 pb-10 text-sm relative"
       style={{
-        // Wearemotto-style footer animation: starts at -35% and moves to 0%
-        transform: `translate3d(0px, ${-35 + (scrollY * 35)}%, 0px)`,
+        // Wearemotto-style footer animation: starts at -35% and moves to +5% for full visibility
+        transform: `translate3d(0px, ${-35 + (scrollY * 40)}%, 0px)`,
       }}
     >
       {/* Logo & Newsletter */}
