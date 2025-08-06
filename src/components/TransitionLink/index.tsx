@@ -6,7 +6,7 @@ import Link from 'next/link'
 import React from 'react'
 import { usePageTransition } from '@/hooks/usePageTransition'
 
-import type { Page, Post } from '@/payload-types'
+import type { Page } from '@/payload-types'
 
 type TransitionLinkType = {
   appearance?: 'inline' | ButtonProps['variant']
@@ -16,7 +16,7 @@ type TransitionLinkType = {
   newTab?: boolean | null
   reference?: {
     relationTo: 'pages'
-    value: Page | Post | string | number
+    value: Page | string | number
   } | null
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
