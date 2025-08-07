@@ -102,18 +102,39 @@ export const StackingSections: React.FC<StackingSectionsProps> = ({
 
       {/* Simple Scrolling Sections */}
       <div className="relative">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className={`w-full h-screen flex items-center justify-center ${getBackgroundColorClass(service.backgroundColor)}`}
-            style={{
-              // Simple stacking effect based on scroll
-              transform: scrollY > (index * window.innerHeight) + 200 ? 'scale(0.95)' : 'scale(1)',
-              filter: scrollY > (index * window.innerHeight) + window.innerHeight + 200 && index < services.length - 1 ? 'grayscale(0.7) brightness(0.7)' : 'none',
-              transition: 'transform 0.3s ease, filter 0.3s ease',
-            }}
-          >
-            <div className="max-w-screen-2xl mx-auto px-6 py-32 w-full">
+        {services.map((service, index) => {
+          // Calculate fade intensity based on scroll position
+          // Fade starts when next section begins to overlap, reaches max at 50% overlap
+          const sectionStart = index * window.innerHeight
+          const nextSectionStart = (index + 1) * window.innerHeight
+          const halfOverlap = nextSectionStart + (window.innerHeight * 0.5)
+
+          // Calculate fade opacity (0 to 0.5 for 50% black maximum)
+          let fadeOpacity = 0
+          if (scrollY > nextSectionStart && index < services.length - 1) {
+            const fadeProgress = Math.min(1, (scrollY - nextSectionStart) / (window.innerHeight * 0.5))
+            fadeOpacity = fadeProgress * 0.5 // Max 50% black
+          }
+
+          return (
+            <div
+              key={index}
+              className={`relative w-full h-screen flex items-center justify-center ${getBackgroundColorClass(service.backgroundColor)}`}
+              style={{
+                // Simple stacking effect based on scroll
+                transform: scrollY > sectionStart + 200 ? 'scale(0.95)' : 'scale(1)',
+                transition: 'transform 0.3s ease',
+              }}
+            >
+              {/* Fade to black overlay - Motto style */}
+              <div
+                className="absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
+                style={{
+                  opacity: fadeOpacity
+                }}
+              />
+
+            <div className="relative z-20 max-w-screen-2xl mx-auto px-6 py-32 w-full">
               <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 {/* Content */}
                 <div className={`space-y-8 ${getTextColorClass(service.textColor)}`}>
@@ -158,7 +179,7 @@ export const StackingSections: React.FC<StackingSectionsProps> = ({
 
             {/* Debug info */}
             <div className="fixed top-4 right-4 bg-black/50 text-white p-2 rounded text-xs z-50">
-              Section {index + 1} | ScrollY: {scrollY} | Working: {scrollY > 0 ? 'Yes' : 'No'}
+              Section {index + 1} | ScrollY: {scrollY} | Fade: {(fadeOpacity * 100).toFixed(1)}%
             </div>
           </div>
         ))}
