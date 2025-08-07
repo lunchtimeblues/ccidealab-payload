@@ -52,7 +52,7 @@ export default function ServicesPage() {
           className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black`}
         >
           <div className="min-h-screen">
-            <div className="hidden sm:block absolute inset-0 bg-gray-100 opacity-40 pointer-events-none z-10"></div>
+            <div className="hidden sm:block absolute inset-0 bg-black opacity-50 pointer-events-none z-10"></div>
 
             <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto relative z-20">
               <div className="col-span-12 pb-10 flex justify-between items-start">
