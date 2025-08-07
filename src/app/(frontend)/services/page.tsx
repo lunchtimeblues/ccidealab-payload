@@ -57,23 +57,22 @@ export default function ServicesPage() {
   return (
     <div className="bg-gray-100 text-black">
       {services.map((service, index) => {
-        // Better fade calculation based on section position in stack
-        // Since sections are sticky and stack on top of each other,
-        // we want sections underneath to fade as they get covered
+        // Calculate fade based on how much this section is covered by sections above
+        // Only sections that are actually being covered should fade
 
-        // Calculate how many sections are stacked on top of this one
-        const sectionsAbove = services.length - 1 - index
         const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800
 
-        // Start fading when there are sections above this one
-        // The more sections above, the more faded this section becomes
+        // Calculate fade opacity based on scroll position and section index
         let fadeOpacity = 0
-        if (sectionsAbove > 0) {
-          // Each section above contributes to the fade
-          // Fade increases with scroll position and number of sections above
-          const fadePerSection = 0.15 // 15% fade per section above
-          const scrollFactor = Math.min(1, scrollY / (viewportHeight * 0.5)) // Scroll influence
-          fadeOpacity = Math.min(0.5, sectionsAbove * fadePerSection * scrollFactor)
+
+        // Only start fading after we've scrolled past the first section
+        if (scrollY > viewportHeight * 0.5) {
+          // Calculate how much this section should be faded based on its position
+          // and how far we've scrolled
+          const scrollProgress = (scrollY - viewportHeight * 0.5) / (viewportHeight * 2)
+          const sectionFadeMultiplier = (services.length - 1 - index) / (services.length - 1)
+
+          fadeOpacity = Math.min(0.5, scrollProgress * sectionFadeMultiplier * 0.8)
         }
 
         return (
