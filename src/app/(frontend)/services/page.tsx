@@ -57,22 +57,24 @@ export default function ServicesPage() {
   return (
     <div className="bg-gray-100 text-black">
       {services.map((service, index) => {
-        // Calculate fade based on how much this section is covered by sections above
-        // Only sections that are actually being covered should fade
+        // Individual section fade: each section fades when the next section starts covering it
+        // This creates individual fade effects, not one large fade across all sections
 
         const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800
 
-        // Calculate fade opacity based on scroll position and section index
+        // Calculate when this specific section should start fading
+        // Each section starts fading when we scroll enough for the next section to begin covering it
+        const sectionTriggerPoint = index * viewportHeight * 0.8 // Sections are roughly 80vh apart in scroll
+        const fadeStartPoint = sectionTriggerPoint + viewportHeight * 0.3 // Start fade 30vh after trigger
+        const fadeEndPoint = fadeStartPoint + viewportHeight * 0.5 // Complete fade over 50vh of scroll
+
         let fadeOpacity = 0
 
-        // Only start fading after we've scrolled past the first section
-        if (scrollY > viewportHeight * 0.5) {
-          // Calculate how much this section should be faded based on its position
-          // and how far we've scrolled
-          const scrollProgress = (scrollY - viewportHeight * 0.5) / (viewportHeight * 2)
-          const sectionFadeMultiplier = (services.length - 1 - index) / (services.length - 1)
-
-          fadeOpacity = Math.min(0.5, scrollProgress * sectionFadeMultiplier * 0.8)
+        // Only fade this section if we've scrolled past its fade start point
+        // and this isn't the last section (last section never fades)
+        if (scrollY > fadeStartPoint && index < services.length - 1) {
+          const fadeProgress = Math.min(1, (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint))
+          fadeOpacity = fadeProgress * 0.5 // Max 50% black
         }
 
         return (
