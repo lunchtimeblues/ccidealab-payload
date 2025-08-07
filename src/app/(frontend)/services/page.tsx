@@ -57,18 +57,23 @@ export default function ServicesPage() {
   return (
     <div className="bg-gray-100 text-black">
       {services.map((service, index) => {
-        // Calculate fade intensity based on scroll position
-        // Each section is roughly 100vh, fade starts when next section begins overlapping
-        const sectionHeight = typeof window !== 'undefined' ? window.innerHeight : 800
-        const sectionStart = index * sectionHeight
-        const nextSectionStart = (index + 1) * sectionHeight
+        // Better fade calculation based on section position in stack
+        // Since sections are sticky and stack on top of each other,
+        // we want sections underneath to fade as they get covered
 
-        // Calculate fade opacity (0 to 0.5 for 50% black maximum)
+        // Calculate how many sections are stacked on top of this one
+        const sectionsAbove = services.length - 1 - index
+        const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800
+
+        // Start fading when there are sections above this one
+        // The more sections above, the more faded this section becomes
         let fadeOpacity = 0
-        if (scrollY > nextSectionStart && index < services.length - 1) {
-          // Fade reaches maximum when 50% overlapped
-          const fadeProgress = Math.min(1, (scrollY - nextSectionStart) / (sectionHeight * 0.5))
-          fadeOpacity = fadeProgress * 0.5 // Max 50% black
+        if (sectionsAbove > 0) {
+          // Each section above contributes to the fade
+          // Fade increases with scroll position and number of sections above
+          const fadePerSection = 0.15 // 15% fade per section above
+          const scrollFactor = Math.min(1, scrollY / (viewportHeight * 0.5)) // Scroll influence
+          fadeOpacity = Math.min(0.5, sectionsAbove * fadePerSection * scrollFactor)
         }
 
         return (
@@ -81,6 +86,11 @@ export default function ServicesPage() {
                 className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
                 style={{ opacity: fadeOpacity }}
               />
+
+              {/* Debug info - remove in production */}
+              <div className="fixed top-4 right-4 bg-black/80 text-white p-2 rounded text-xs z-50">
+                Section {index + 1} | Scroll: {scrollY} | Fade: {(fadeOpacity * 100).toFixed(1)}%
+              </div>
 
             <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto relative z-20">
               <div className="col-span-12 pb-10 flex justify-between items-start">
