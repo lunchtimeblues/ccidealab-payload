@@ -177,7 +177,7 @@ export const StackingSections: React.FC<StackingSectionsProps> = ({
               </div>
             </div>
 
-            {/* Debug info */}
+            {/* Debug info - Fade to black overlay working */}
             <div className="fixed top-4 right-4 bg-black/50 text-white p-2 rounded text-xs z-50">
               Section {index + 1} | ScrollY: {scrollY} | Fade: {(fadeOpacity * 100).toFixed(1)}%
             </div>
