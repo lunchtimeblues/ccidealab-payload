@@ -1,6 +1,16 @@
-// import Link from 'next/link' // Unused import
+'use client'
+
+import { useEffect, useState } from 'react'
 
 export default function ServicesPage() {
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const updateScroll = () => setScrollY(window.scrollY)
+
+    window.addEventListener('scroll', updateScroll, { passive: true })
+    return () => window.removeEventListener('scroll', updateScroll)
+  }, [])
   const services = [
     {
       title: 'Brand Strategy',
@@ -46,13 +56,31 @@ export default function ServicesPage() {
 
   return (
     <div className="bg-gray-100 text-black">
-      {services.map((service, index) => (
-        <section
-          key={index}
-          className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black`}
-        >
-          <div className="min-h-screen">
-            <div className="hidden sm:block absolute inset-0 bg-black opacity-50 pointer-events-none z-10"></div>
+      {services.map((service, index) => {
+        // Calculate fade intensity based on scroll position
+        // Each section is roughly 100vh, fade starts when next section begins overlapping
+        const sectionHeight = typeof window !== 'undefined' ? window.innerHeight : 800
+        const sectionStart = index * sectionHeight
+        const nextSectionStart = (index + 1) * sectionHeight
+
+        // Calculate fade opacity (0 to 0.5 for 50% black maximum)
+        let fadeOpacity = 0
+        if (scrollY > nextSectionStart && index < services.length - 1) {
+          // Fade reaches maximum when 50% overlapped
+          const fadeProgress = Math.min(1, (scrollY - nextSectionStart) / (sectionHeight * 0.5))
+          fadeOpacity = fadeProgress * 0.5 // Max 50% black
+        }
+
+        return (
+          <section
+            key={index}
+            className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black`}
+          >
+            <div className="min-h-screen">
+              <div
+                className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
+                style={{ opacity: fadeOpacity }}
+              />
 
             <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto relative z-20">
               <div className="col-span-12 pb-10 flex justify-between items-start">
@@ -101,7 +129,8 @@ export default function ServicesPage() {
             </div>
           </div>
         </section>
-      ))}
+        )
+      })}
     </div>
   )
 }
