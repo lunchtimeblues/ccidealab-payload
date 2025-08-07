@@ -182,7 +182,8 @@ export const StackingSections: React.FC<StackingSectionsProps> = ({
               Section {index + 1} | ScrollY: {scrollY} | Fade: {(fadeOpacity * 100).toFixed(1)}%
             </div>
           </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   )
