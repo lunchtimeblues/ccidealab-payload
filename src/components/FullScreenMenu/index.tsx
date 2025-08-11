@@ -137,7 +137,20 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose,
           ))}
         </div>
 
-        {/* Close instruction */}
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className={`absolute top-8 right-8 text-white hover:text-gray-300 transition-all duration-700 ease-out text-lg font-medium ${
+            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
+          }`}
+          style={{
+            transitionDelay: isOpen ? '100ms' : '0ms',
+          }}
+        >
+          Close
+        </button>
+
+        {/* ESC instruction */}
         <div
           className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-500 text-sm transition-all duration-700 ease-out ${
             isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'

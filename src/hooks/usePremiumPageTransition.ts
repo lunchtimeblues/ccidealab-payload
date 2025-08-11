@@ -24,23 +24,23 @@ export const usePremiumPageTransition = () => {
     `
     document.body.appendChild(backgroundOverlay)
 
-    // Stage 1: Wipe up from bottom
+    // Stage 1: Wipe up from bottom (faster)
     const stage1 = backgroundOverlay.animate(
       [{ transform: 'translateY(100%)' }, { transform: 'translateY(0%)' }],
       {
-        duration: 800,
+        duration: 500, // Reduced from 800ms
         easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         fill: 'forwards',
       },
     )
 
-    // Stage 2: Pause and then wipe up to top
+    // Stage 2: Pause and then wipe up to top (faster)
     stage1.addEventListener('finish', () => {
       setTimeout(() => {
         const stage2 = backgroundOverlay.animate(
           [{ transform: 'translateY(0%)' }, { transform: 'translateY(-100%)' }],
           {
-            duration: 800,
+            duration: 500, // Reduced from 800ms
             easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             fill: 'forwards',
           },
@@ -49,7 +49,7 @@ export const usePremiumPageTransition = () => {
         stage2.addEventListener('finish', () => {
           backgroundOverlay.remove()
         })
-      }, 400) // Brief pause in the middle
+      }, 200) // Reduced pause from 400ms
     })
 
     // Add logo overlay
@@ -69,7 +69,7 @@ export const usePremiumPageTransition = () => {
     logoOverlay.textContent = 'C/C IDEA LAB'
     document.body.appendChild(logoOverlay)
 
-    // Animate logo with coordinated timing
+    // Animate logo with coordinated timing (faster)
     setTimeout(() => {
       // Logo fades in
       logoOverlay.animate(
@@ -78,12 +78,12 @@ export const usePremiumPageTransition = () => {
           { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
         ],
         {
-          duration: 300,
+          duration: 200, // Faster logo animation
           easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           fill: 'forwards',
         },
       )
-    }, 400) // Show logo after first stage
+    }, 250) // Show logo after first stage (adjusted for faster timing)
 
     // Logo fades out
     setTimeout(() => {
@@ -94,7 +94,7 @@ export const usePremiumPageTransition = () => {
             { opacity: 0, transform: 'translate(-50%, -50%) scale(1.1)' },
           ],
           {
-            duration: 300,
+            duration: 200, // Faster logo animation
             easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             fill: 'forwards',
           },
@@ -102,7 +102,7 @@ export const usePremiumPageTransition = () => {
         .addEventListener('finish', () => {
           logoOverlay.remove()
         })
-    }, 1300) // Hide logo before second stage completes
+    }, 800) // Hide logo before second stage completes (adjusted for faster timing)
   }, [])
 
   // Navigation version that handles routing
@@ -122,23 +122,23 @@ export const usePremiumPageTransition = () => {
     `
       document.body.appendChild(backgroundOverlay)
 
-      // Stage 1: Wipe up from bottom
+      // Stage 1: Wipe up from bottom (faster)
       const stage1 = backgroundOverlay.animate(
         [{ transform: 'translateY(100%)' }, { transform: 'translateY(0%)' }],
         {
-          duration: 800,
+          duration: 500, // Reduced from 800ms
           easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
           fill: 'forwards',
         },
       )
 
-      // Stage 2: Pause and then wipe up to top
+      // Stage 2: Pause and then wipe up to top (faster)
       stage1.addEventListener('finish', () => {
         setTimeout(() => {
           const stage2 = backgroundOverlay.animate(
             [{ transform: 'translateY(0%)' }, { transform: 'translateY(-100%)' }],
             {
-              duration: 800,
+              duration: 500, // Reduced from 800ms
               easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               fill: 'forwards',
             },
@@ -147,7 +147,7 @@ export const usePremiumPageTransition = () => {
           stage2.addEventListener('finish', () => {
             backgroundOverlay.remove()
           })
-        }, 400) // Brief pause in the middle
+        }, 200) // Reduced pause from 400ms
       })
 
       // Add logo overlay
@@ -167,7 +167,7 @@ export const usePremiumPageTransition = () => {
       logoOverlay.textContent = 'C/C IDEA LAB'
       document.body.appendChild(logoOverlay)
 
-      // Animate logo with coordinated timing
+      // Animate logo with coordinated timing (faster)
       setTimeout(() => {
         // Logo fades in
         logoOverlay.animate(
@@ -176,12 +176,12 @@ export const usePremiumPageTransition = () => {
             { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
           ],
           {
-            duration: 300,
+            duration: 200, // Faster logo animation
             easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             fill: 'forwards',
           },
         )
-      }, 400) // Show logo after first stage
+      }, 250) // Show logo after first stage (adjusted for faster timing)
 
       // Logo fades out
       setTimeout(() => {
@@ -192,7 +192,7 @@ export const usePremiumPageTransition = () => {
               { opacity: 0, transform: 'translate(-50%, -50%) scale(1.1)' },
             ],
             {
-              duration: 300,
+              duration: 200, // Faster logo animation
               easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               fill: 'forwards',
             },
@@ -200,12 +200,12 @@ export const usePremiumPageTransition = () => {
           .addEventListener('finish', () => {
             logoOverlay.remove()
           })
-      }, 1300) // Hide logo before second stage completes
+      }, 800) // Hide logo before second stage completes (adjusted for faster timing)
 
-      // Navigate at the perfect moment
+      // Navigate at the perfect moment (faster)
       setTimeout(() => {
         router.push(href)
-      }, 800) // Navigate when overlay is covering the screen
+      }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],
   )

@@ -1,15 +1,18 @@
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { AnimatedMarquee } from '@/components/AnimatedMarquee'
+import { Container } from '@/components/Container'
+import { ScrollMarquee } from '@/components/ScrollMarquee'
+import { ScrollVideo } from '@/components/ScrollVideo'
 import { MouseFollower } from '@/components/MouseFollower'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-100 text-black">
+    <div className="almost-full-height bg-gray-100 text-black">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gray-100">
-        <div className="relative z-10 px-6">
-          <div className="relative flex items-center justify-center min-h-screen">
+      <section className="relative almost-full-height flex items-center justify-center bg-gray-100">
+        <Container size="xxl" className="relative z-10">
+          <div className="relative flex items-center justify-center almost-full-height">
             <div className="relative w-full">
               <h1
                 className="text-5xl sm:text-6xl lg:text-[6rem] xl:text-[8rem] leading-none font-medium uppercase tracking-tight"
@@ -48,7 +51,7 @@ export default function HomePage() {
 
               <div className="relative sm:absolute sm:top-1/2 sm:left-[-2rem] sm:-translate-y-1/2 mt-12 sm:mt-0 sm:w-80 lg:w-96">
                 <ScrollRevealText delay={800}>
-                  <p className="sm:-ml-40 text-sm sm:text-sm lg:text-lg font-light leading-relaxed text-gray-600 tracking-wide">
+                  <p className="sm:-ml-40 text-sm sm:text-sm lg:text-md font-light leading-relaxed text-gray-600 tracking-wide">
                     <span className="block">C/C IDEA LAB is a global strategy and design</span>
                     <span className="block">firm for positioning, scaling, and reinventing</span>
                     <span className="block">companies in the tech and innovation space.</span>
@@ -57,12 +60,21 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
+
+      {/* Scroll Video Section */}
+      <ScrollVideo
+        src="https://player.vimeo.com/progressive_redirect/playback/1107658120/rendition/1080p/file.mp4?loc=external&signature=5b4262eb299d2487592038466508758b4185bf8685deda59a21f735585a91e29"
+        autoPlay={true}
+        muted={true}
+        loop={true}
+        className="relative"
+      />
 
       {/* Services Section */}
       <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto px-6">
+        <Container size="xxl">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-4">
               <ScrollRevealText>
@@ -129,12 +141,12 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Animated Marquee Section */}
       <section className="py-16 bg-gray-100 border-y border-gray-200">
-        <AnimatedMarquee speed={30} className="text-6xl font-bold text-black">
+        <AnimatedMarquee speed={40} className="text-6xl font-bold text-black">
           <span className="mx-8">STRATEGY</span>
           <span className="mx-8">•</span>
           <span className="mx-8">DESIGN</span>
@@ -146,9 +158,51 @@ export default function HomePage() {
         </AnimatedMarquee>
       </section>
 
+      {/* Scroll-Responsive Marquee Section */}
+      <section className="py-32 bg-black text-white overflow-hidden">
+        <div className="mb-16 text-center">
+          <ScrollRevealText>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
+              Ideas Worth Rallying Around®
+            </h2>
+          </ScrollRevealText>
+          <ScrollRevealText delay={200}>
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto px-6 leading-relaxed">
+              Experience our philosophy in motion. The faster you scroll, the faster our ideas move—
+              <br className="hidden md:block" />
+              two streams of thought flowing in perfect opposition.
+            </p>
+          </ScrollRevealText>
+        </div>
+
+        <ScrollMarquee
+          baseSpeed={120}
+          maxSpeedMultiplier={5}
+          sensitivity={25}
+          smoothing={0.9}
+          className="space-y-12"
+          lineClassName="text-4xl md:text-6xl lg:text-8xl font-bold tracking-wider"
+        >
+          <span className="mx-16">IDEAS WORTH RALLYING AROUND</span>
+          <span className="mx-16 text-gray-500">•</span>
+          <span className="mx-16">STRATEGY & INNOVATION</span>
+          <span className="mx-16 text-gray-500">•</span>
+          <span className="mx-16">DESIGN THAT MATTERS</span>
+          <span className="mx-16 text-gray-500">•</span>
+          <span className="mx-16">BRANDS THAT INSPIRE</span>
+          <span className="mx-16 text-gray-500">•</span>
+        </ScrollMarquee>
+
+        <div className="mt-16 text-center">
+          <ScrollRevealText delay={400}>
+            <p className="text-sm text-gray-500 uppercase tracking-widest">Scroll to accelerate</p>
+          </ScrollRevealText>
+        </div>
+      </section>
+
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 px-6 bg-gray-100">
-        <div className="max-w-screen-2xl mx-auto">
+      <section className="py-32 bg-gray-100">
+        <Container size="xxl">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">
               Featured Work
@@ -182,12 +236,12 @@ export default function HomePage() {
               />
             </ScrollRevealText>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 px-6 bg-gray-100">
-        <div className="max-w-6xl mx-auto text-center">
+      <section className="py-32 bg-gray-100">
+        <Container size="lg" className="text-center">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black">
               Let&apos;s Create Something Amazing
@@ -209,7 +263,7 @@ export default function HomePage() {
               className="px-12 py-6 text-xl bg-black text-white hover:bg-gray-800 transition-colors"
             />
           </ScrollRevealText>
-        </div>
+        </Container>
       </section>
     </div>
   )

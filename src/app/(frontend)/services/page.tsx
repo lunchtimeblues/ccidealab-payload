@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { Container } from '@/components/Container'
 
 export default function ServicesPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -73,7 +74,10 @@ export default function ServicesPage() {
         // Only fade this section if we've scrolled past its fade start point
         // and this isn't the last section (last section never fades)
         if (scrollY > fadeStartPoint && index < services.length - 1) {
-          const fadeProgress = Math.min(1, (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint))
+          const fadeProgress = Math.min(
+            1,
+            (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint),
+          )
           fadeOpacity = fadeProgress * 0.5 // Max 50% black
         }
 
@@ -82,64 +86,63 @@ export default function ServicesPage() {
             key={index}
             className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black`}
           >
-            <div className="min-h-screen">
-              <div
-                className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
-                style={{ opacity: fadeOpacity }}
-              />
+            <Container size="xxl">
+              <div className="almost-full-height flex flex-col justify-center">
+                <div
+                  className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
+                  style={{ opacity: fadeOpacity }}
+                />
 
-              {/* Debug info - remove in production */}
-              <div className="fixed top-4 right-4 bg-black/80 text-white p-2 rounded text-xs z-50">
-                Section {index + 1} | Scroll: {scrollY} | Fade: {(fadeOpacity * 100).toFixed(1)}%
-              </div>
+                <div>
+                  <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto relative z-20">
+                    <div className="col-span-12 pb-10 flex justify-between items-start">
+                      <h2 className="uppercase text-3xl sm:text-5xl font-bold">{service.title}</h2>
+                      <span className="uppercase hidden sm:block text-5xl font-bold">
+                        {service.number}
+                      </span>
+                    </div>
+                  </div>
 
-            <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto relative z-20">
-              <div className="col-span-12 pb-10 flex justify-between items-start">
-                <h2 className="uppercase text-3xl sm:text-5xl font-bold">{service.title}</h2>
-                <span className="uppercase hidden sm:block text-5xl font-bold">
-                  {service.number}
-                </span>
-              </div>
-            </div>
+                  <div className="w-full border-t border-[#CFD5D7] mt-auto relative z-20">
+                    <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 sm:pt-20">
+                      <div className="flex flex-col justify-between col-span-12 sm:col-span-9">
+                        <p className="text-lg sm:text-xl leading-relaxed max-w-5xl mb-10 sm:mb-12">
+                          {service.description}
+                        </p>
 
-            <div className="w-full border-t border-[#CFD5D7] mt-auto relative z-20">
-              <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 sm:pt-20">
-                <div className="flex flex-col justify-between col-span-12 sm:col-span-9">
-                  <p className="text-lg sm:text-xl leading-relaxed max-w-5xl mb-10 sm:mb-12">
-                    {service.description}
-                  </p>
+                        <div className="flex flex-col sm:flex-row justify-between max-w-4xl pb-16 sm:pb-18">
+                          <ul className="mt-auto space-y-2 text-lg">
+                            {service.features1.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                          <ul className="mt-auto space-y-2 text-lg">
+                            {service.features2.map((item, i) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
 
-                  <div className="flex flex-col sm:flex-row justify-between max-w-4xl pb-16 sm:pb-18">
-                    <ul className="mt-auto space-y-2 text-lg">
-                      {service.features1.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                    <ul className="mt-auto space-y-2 text-lg">
-                      {service.features2.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
+                      <div className="col-span-12 sm:col-span-3 mb-10 sm:mb-0">
+                        <div className="relative w-full pt-[122%]">
+                          <video
+                            className="absolute top-0 left-0 w-full h-full object-cover"
+                            src={service.videoSrc}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="auto"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                <div className="col-span-12 sm:col-span-3 mb-10 sm:mb-0">
-                  <div className="relative w-full pt-[122%]">
-                    <video
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      src={service.videoSrc}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="auto"
-                    />
-                  </div>
-                </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </Container>
+          </section>
         )
       })}
     </div>

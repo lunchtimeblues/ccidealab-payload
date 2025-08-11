@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* Almost full height - ensures content below remains visible above the fold */
+  .almost-full-height {
+    min-height: calc(100vh - 120px); /* Desktop: leaves 120px for next section preview */
+  }
+
+  /* Responsive variants for different screen sizes */
+  @media (max-width: 768px) {
+    .almost-full-height {
+      min-height: calc(100vh - 80px); /* Mobile: leaves 80px for next section preview */
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .almost-full-height {
+      min-height: calc(100vh - 150px); /* Large screens: leaves 150px for better proportion */
+    }
+  }
+
+  /* Alternative variants for different use cases */
+  .almost-full-height-sm {
+    min-height: calc(100vh - 60px); /* Minimal preview */
+  }
+
+  .almost-full-height-lg {
+    min-height: calc(100vh - 200px); /* Large preview of next section */
+  }
+}
+
 @layer base {
   h1,
   h2,

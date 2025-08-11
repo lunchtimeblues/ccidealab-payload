@@ -61,7 +61,10 @@ export const Footer = () => {
       } else {
         // Calculate progress between trigger point and max scroll
         const availableScrollDistance = maxScroll - triggerPoint
-        scrollProgress = Math.max(0, Math.min(1, (scrollTop - triggerPoint) / availableScrollDistance))
+        scrollProgress = Math.max(
+          0,
+          Math.min(1, (scrollTop - triggerPoint) / availableScrollDistance),
+        )
       }
 
       setScrollY(scrollProgress)
@@ -87,10 +90,10 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-[#151515] text-white px-6 md:px-12 pt-24 pb-10 text-sm relative min-h-screen flex flex-col justify-center"
+      className="bg-[#151515] text-white px-6 md:px-12 pt-24 pb-10 text-sm relative flex flex-col justify-center"
       style={{
         // Wearemotto-style footer animation: starts at -35% and moves to 0%
-        transform: `translate3d(0px, ${-35 + (scrollY * 35)}%, 0px)`,
+        transform: `translate3d(0px, ${-35 + scrollY * 35}%, 0px)`,
       }}
     >
       {/* Logo & Newsletter */}
@@ -195,7 +198,7 @@ export const Footer = () => {
       {/* Bottom Row */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 text-xs">
         <ScrollRevealText delay={0}>
-          <p>© 2005—{year} C/CIDEALAB® | NYC | DAL | LDN</p>
+          <p>© 2012—{year} CCIDEALAB®</p>
         </ScrollRevealText>
 
         <ScrollRevealText delay={200}>

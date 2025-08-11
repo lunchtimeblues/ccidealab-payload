@@ -60,9 +60,9 @@ export const AnimatedNav = () => {
           isScrolled ? 'backdrop-blur-sm py-4' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-screen-2xl mx-auto px-6 flex justify-between items-center">
-          {/* Logo */}
-          <div className="relative z-10">
+        <div className="max-w-screen-2xl mx-auto px-6 flex items-center relative">
+          {/* Logo - Positioned absolutely to left */}
+          <div className="absolute left-6 z-10">
             <PremiumTransitionLink
               url="/"
               label="C/C IDEA LAB"
@@ -72,9 +72,9 @@ export const AnimatedNav = () => {
             />
           </div>
 
-          {/* Desktop Navigation Items - Visible at top, hidden when scrolled */}
-          <div className="flex items-center space-x-8">
-            {navItems.map((item, index) => (
+          {/* Desktop Navigation Items - Centered (excluding Contact) */}
+          <div className="flex items-center space-x-8 mx-auto">
+            {navItems.slice(0, -1).map((item, index) => (
               <div
                 key={item.href}
                 className={`transform transition-all duration-700 ease-out ${
@@ -85,7 +85,7 @@ export const AnimatedNav = () => {
                 style={{
                   transitionDelay: isScrolled
                     ? `${index * 50}ms`
-                    : `${(navItems.length - index - 1) * 150}ms`,
+                    : `${index * 150}ms`, // Changed to go left-to-right when returning to top
                 }}
               >
                 <PremiumTransitionLink
@@ -100,9 +100,27 @@ export const AnimatedNav = () => {
             ))}
           </div>
 
-          {/* Right side - Hamburger menus */}
-          <div className="flex items-center">
-            {/* Mobile Hamburger - Only appears when scrolled down */}
+          {/* Right side - Contact/Menu toggle - Positioned absolutely to right */}
+          <div className="absolute right-6 flex items-center">
+            {/* Contact Button - Only appears when at top */}
+            <div
+              className={`transition-all duration-700 ease-out ${
+                isScrolled
+                  ? 'opacity-0 translate-y-[-20px] pointer-events-none'
+                  : 'opacity-100 translate-y-0'
+              }`}
+            >
+              <PremiumTransitionLink
+                url="/contact"
+                label="Contact"
+                appearance="inline"
+                transitionType="logoWipe"
+                transitionColor="#dc2626"
+                className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
+              />
+            </div>
+
+            {/* Mobile Menu Button - Only appears when scrolled down */}
             <div
               className={`lg:hidden transition-all duration-700 ease-out ${
                 isScrolled
@@ -113,7 +131,7 @@ export const AnimatedNav = () => {
               <HamburgerMenu isOpen={isMenuOpen} onClick={toggleMenu} />
             </div>
 
-            {/* Desktop Hamburger - Only appears when scrolled down */}
+            {/* Desktop Menu Button - Only appears when scrolled down */}
             <div
               className={`hidden lg:block transition-all duration-700 ease-out ${
                 isScrolled
