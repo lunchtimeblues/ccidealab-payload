@@ -1,6 +1,6 @@
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
-import { ScrollMarquee } from '@/components/ScrollMarquee'
+
 // import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 
 export default function AboutPage() {

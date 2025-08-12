@@ -16,7 +16,7 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       infinite: false,
     })
 
-    lenis.on('scroll', (e: any) => {
+    lenis.on('scroll', (e: { scroll: number; velocity: number }) => {
       window.dispatchEvent(
         new CustomEvent('lenis-scroll', {
           detail: { scroll: e.scroll, velocity: e.velocity },

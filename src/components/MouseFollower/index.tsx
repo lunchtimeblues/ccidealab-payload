@@ -85,7 +85,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       container.removeEventListener('mouseleave', handleMouseLeave)
       container.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [config.offset])
+  }, [config.offset, updateFollowerPosition])
 
   return (
     <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>

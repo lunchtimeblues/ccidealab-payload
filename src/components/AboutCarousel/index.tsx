@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState, useCallback } from 'react'
-import { ScrollRevealText } from '@/components/ScrollRevealText'
+
 
 interface CarouselItem {
   id: number

@@ -17,7 +17,7 @@ export const DirectionalMouseFollower: React.FC<DirectionalMouseFollowerProps> =
 }) => {
   const [isVisible, setIsVisible] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right'>('right')
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [_mousePosition, _setMousePosition] = useState({ x: 0, y: 0 })
   const positionRef = useRef({ x: 0, y: 0 })
   const followerRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -79,7 +79,7 @@ export const DirectionalMouseFollower: React.FC<DirectionalMouseFollowerProps> =
       }
       
       setDirection(newDirection)
-      setMousePosition({ x: e.clientX, y: e.clientY })
+      _setMousePosition({ x: e.clientX, y: e.clientY })
       updateFollowerPosition()
     }
 

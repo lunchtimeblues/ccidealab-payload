@@ -51,12 +51,12 @@ export const Carousel: React.FC<CarouselProps> = ({
   const slideWidth = 400 // Fixed slide width
   const gap = 32 // Gap between slides
 
-  // Simple navigation functions
-  const nextSlide = () => {
+  // Simple navigation functions (keeping for potential future use)
+  const _nextSlide = () => {
     setCurrentIndex(prev => (prev + 1) % totalSlides)
   }
 
-  const prevSlide = () => {
+  const _prevSlide = () => {
     setCurrentIndex(prev => prev === 0 ? totalSlides - 1 : prev - 1)
   }
 

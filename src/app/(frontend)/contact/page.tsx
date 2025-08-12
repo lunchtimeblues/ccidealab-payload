@@ -14,13 +14,13 @@ export default function ContactPage() {
             <div className="relative w-full text-center">
               <ScrollRevealText>
                 <h1 className="text-5xl sm:text-6xl lg:text-[5rem] xl:text-[7rem] leading-none font-medium uppercase tracking-tight mb-8">
-                  Let's Create Together
+                  Let&apos;s Create Together
                 </h1>
               </ScrollRevealText>
               <ScrollRevealText delay={200}>
                 <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                   Ready to rally around your next big idea?
-                  <span className="font-medium text-black"> We'd love to hear from you.</span>
+                  <span className="font-medium text-black"> We&apos;d love to hear from you.</span>
                 </p>
               </ScrollRevealText>
             </div>
@@ -46,8 +46,8 @@ export default function ContactPage() {
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <p className="text-lg text-gray-700 leading-relaxed mb-12">
-                  Whether you're launching a new venture, transforming an existing brand,
-                  or exploring possibilities, we're here to help you create something extraordinary.
+                  Whether you&apos;re launching a new venture, transforming an existing brand,
+                  or exploring possibilities, we&apos;re here to help you create something extraordinary.
                 </p>
               </ScrollRevealText>
 
@@ -181,7 +181,7 @@ export default function ContactPage() {
                       <option value="25k-50k">$25,000 - $50,000</option>
                       <option value="50k-100k">$50,000 - $100,000</option>
                       <option value="100k-plus">$100,000+</option>
-                      <option value="discuss">Let's discuss</option>
+                      <option value="discuss">Let&apos;s discuss</option>
                     </select>
                   </div>
 
@@ -207,7 +207,7 @@ export default function ContactPage() {
                       className="mt-1 mr-3 h-4 w-4 text-black focus:ring-black border-gray-300 rounded-none"
                     />
                     <label htmlFor="newsletter" className="text-sm text-gray-600">
-                      I'd like to receive updates about C/C IDEA LAB's work and insights.
+                      I&apos;d like to receive updates about C/C IDEA LAB&apos;s work and insights.
                     </label>
                   </div>
 
@@ -231,14 +231,14 @@ export default function ContactPage() {
         <div className="mb-16 text-center">
           <ScrollRevealText>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-              Let's Work Together
+              Let&apos;s Work Together
             </h2>
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
             <p className="text-lg text-gray-400 max-w-3xl mx-auto px-6 leading-relaxed">
               Great partnerships create extraordinary results—
               <br className="hidden md:block" />
-              let's build something remarkable together.
+              let&apos;s build something remarkable together.
             </p>
           </ScrollRevealText>
         </div>
@@ -251,7 +251,7 @@ export default function ContactPage() {
           className="space-y-12"
           lineClassName="text-4xl md:text-6xl lg:text-8xl font-bold tracking-wider"
         >
-          <span className="mx-16">LET'S COLLABORATE</span>
+          <span className="mx-16">LET&apos;S COLLABORATE</span>
           <span className="mx-16 text-gray-500">•</span>
           <span className="mx-16">CREATE TOGETHER</span>
           <span className="mx-16 text-gray-500">•</span>
@@ -343,7 +343,7 @@ export default function ContactPage() {
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
             <p className="text-xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Don't let great ideas remain just ideas. Take the first step toward creating
+              Don&apos;t let great ideas remain just ideas. Take the first step toward creating
               something extraordinary that people will rally around.
             </p>
           </ScrollRevealText>
