@@ -207,8 +207,8 @@ export const Carousel: React.FC<CarouselProps> = ({
             >
               {React.isValidElement(child) && (child.type === 'img' || (child.type as React.ComponentType)?.displayName === 'Image') ? (
                 cloneElement(child as ReactElementWithProps, {
-                  className: `w-full h-full object-cover ${child.props.className || ''}`,
-                  style: { ...child.props.style }
+                  className: `w-full h-full object-cover ${(child as ReactElementWithProps).props.className || ''}`,
+                  style: { ...(child as ReactElementWithProps).props.style }
                 })
               ) : (
                 <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
