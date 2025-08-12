@@ -1,3 +1,7 @@
+'use client'
+
+import React from 'react'
+import Image from 'next/image'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 import { Container } from '@/components/Container'
@@ -5,8 +9,9 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { ScrollVideo } from '@/components/ScrollVideo'
 import { MouseFollower } from '@/components/MouseFollower'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
+import { Carousel } from '@/components/Carousel'
 
-export default function HomePage() {
+export default function HomePage(): React.JSX.Element {
   return (
     <div className="almost-full-height bg-gray-100 text-black">
       {/* Hero Section */}
@@ -158,48 +163,6 @@ export default function HomePage() {
         </AnimatedMarquee>
       </section>
 
-      {/* Scroll-Responsive Marquee Section */}
-      <section className="py-32 bg-black text-white overflow-hidden">
-        <div className="mb-16 text-center">
-          <ScrollRevealText>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-              Ideas Worth Rallying Around®
-            </h2>
-          </ScrollRevealText>
-          <ScrollRevealText delay={200}>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto px-6 leading-relaxed">
-              Experience our philosophy in motion. The faster you scroll, the faster our ideas move—
-              <br className="hidden md:block" />
-              two streams of thought flowing in perfect opposition.
-            </p>
-          </ScrollRevealText>
-        </div>
-
-        <ScrollMarquee
-          baseSpeed={120}
-          maxSpeedMultiplier={5}
-          sensitivity={25}
-          smoothing={0.9}
-          className="space-y-12"
-          lineClassName="text-4xl md:text-6xl lg:text-8xl font-bold tracking-wider"
-        >
-          <span className="mx-16">IDEAS WORTH RALLYING AROUND</span>
-          <span className="mx-16 text-gray-500">•</span>
-          <span className="mx-16">STRATEGY & INNOVATION</span>
-          <span className="mx-16 text-gray-500">•</span>
-          <span className="mx-16">DESIGN THAT MATTERS</span>
-          <span className="mx-16 text-gray-500">•</span>
-          <span className="mx-16">BRANDS THAT INSPIRE</span>
-          <span className="mx-16 text-gray-500">•</span>
-        </ScrollMarquee>
-
-        <div className="mt-16 text-center">
-          <ScrollRevealText delay={400}>
-            <p className="text-sm text-gray-500 uppercase tracking-widest">Scroll to accelerate</p>
-          </ScrollRevealText>
-        </div>
-      </section>
-
       {/* Featured Work Section with Mouse Follower */}
       <section className="py-32 bg-gray-100">
         <Container size="xxl">
@@ -210,60 +173,229 @@ export default function HomePage() {
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <MouseFollower key={item}>
-                <div className="group cursor-pointer">
-                  <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
-                  </div>
-                  <ScrollRevealText delay={item * 100}>
-                    <h3 className="text-xl font-semibold mb-2 text-black">Project {item}</h3>
-                    <p className="text-gray-600">Brand Identity & Web Development</p>
-                  </ScrollRevealText>
+            {/* Project 1 */}
+            <MouseFollower text="VIEW PROJECT">
+              <div className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
                 </div>
-              </MouseFollower>
-            ))}
-          </div>
+                <ScrollRevealText delay={100}>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Affinity Group</h3>
+                  <p className="text-gray-600">Brand Identity & Web Development</p>
+                </ScrollRevealText>
+              </div>
+            </MouseFollower>
 
-          <div className="text-center mt-16">
-            <ScrollRevealText delay={600}>
-              <PremiumTransitionLink
-                url="/demo"
-                label="View All Work"
-                appearance="outline"
-                transitionType="logoWipe"
-                className="px-8 py-4 text-lg"
-              />
+            {/* Project 2 */}
+            <MouseFollower text="EXPLORE WORK">
+              <div className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                </div>
+                <ScrollRevealText delay={200}>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Pokebar</h3>
+                  <p className="text-gray-600">Digital Strategy & UX Design</p>
+                </ScrollRevealText>
+              </div>
+            </MouseFollower>
+
+            {/* Project 3 */}
+            <MouseFollower text="SEE DETAILS">
+              <div className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                </div>
+                <ScrollRevealText delay={300}>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Marco Polo</h3>
+                  <p className="text-gray-600">Creative Direction & Branding</p>
+                </ScrollRevealText>
+              </div>
+            </MouseFollower>
+
+            {/* Project 4 */}
+            <MouseFollower text="DISCOVER MORE">
+              <div className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                </div>
+                <ScrollRevealText delay={400}>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Metrotown Notary</h3>
+                  <p className="text-gray-600">Investment Platform & Identity</p>
+                </ScrollRevealText>
+              </div>
+            </MouseFollower>
+
+            {/* Project 5 */}
+            <MouseFollower text="LEARN MORE">
+              <div className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                </div>
+                <ScrollRevealText delay={500}>
+                  <h3 className="text-xl font-semibold mb-2 text-black">Comm100</h3>
+                  <p className="text-gray-600">Product Design & Development</p>
+                </ScrollRevealText>
+              </div>
+            </MouseFollower>
+
+            {/* Project 6 */}
+            <MouseFollower text="VIEW CASE STUDY">
+              <div className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                </div>
+                <ScrollRevealText delay={600}>
+                  <h3 className="text-xl font-semibold mb-2 text-black">CityColor</h3>
+                  <p className="text-gray-600">Brand Strategy & Visual Identity</p>
+                </ScrollRevealText>
+              </div>
+            </MouseFollower>
+          </div>
+        </Container>
+      </section>
+
+      {/* Method Section */}
+      <section className="relative bg-gray-100 overflow-hidden">
+        {/* Background Marquee */}
+        <div className="absolute inset-0 z-0">
+          <ScrollMarquee
+            baseSpeed={80}
+            maxSpeedMultiplier={4}
+            className="opacity-10"
+            lineClassName="text-[8vw] font-bold uppercase tracking-tight leading-none"
+          >
+            <span className="mx-8">METHOD</span>
+            <span className="mx-8">✱</span>
+            <span className="mx-8">METHOD</span>
+            <span className="mx-8">✱</span>
+            <span className="mx-8">METHOD</span>
+            <span className="mx-8">✱</span>
+          </ScrollMarquee>
+        </div>
+
+        {/* Content */}
+        <Container size="xxl" className="relative z-10 py-24 lg:py-40">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Column */}
+            <div>
+              <ScrollRevealText>
+                <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                  Turning bold vision
+                  <br />
+                  into brand impact.
+                </h2>
+              </ScrollRevealText>
+              <ScrollRevealText delay={200}>
+                <p className="text-lg text-gray-700 leading-relaxed mb-8 max-w-lg">
+                  Brand transformations fall short because they stop at the surface— logos,
+                  taglines, campaigns. We go deeper, aligning your business around an Idea Worth
+                  Rallying Around®. The result? A brand your people will champion and your audience
+                  will love.
+                </p>
+              </ScrollRevealText>
+              <ScrollRevealText delay={400}>
+                <PremiumTransitionLink
+                  url="/method"
+                  label="Learn the C/C method"
+                  appearance="inline"
+                  transitionType="logoWipe"
+                  className="text-black border-b border-black hover:border-gray-500 hover:text-gray-500 transition-colors"
+                />
+              </ScrollRevealText>
+            </div>
+
+            {/* Right Column — Single Large Image */}
+            <ScrollRevealText delay={300}>
+              <div className="relative overflow-hidden rounded-lg aspect-[4/5]">
+                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center hover:from-gray-300 hover:to-gray-400 transition-all duration-700 ease-out">
+                  <div className="text-center">
+                    <p className="text-sm text-gray-500">Placeholder</p>
+                  </div>
+                </div>
+                {/* Optional subtle overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+              </div>
             </ScrollRevealText>
           </div>
         </Container>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-32 bg-gray-100">
-        <Container size="lg" className="text-center">
-          <ScrollRevealText>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black">
-              Let&apos;s Create Something Amazing
-            </h2>
-          </ScrollRevealText>
-          <ScrollRevealText delay={200}>
-            <p className="text-xl text-gray-600 mb-12 leading-relaxed">
-              Ready to elevate your digital presence? We&apos;d love to hear about your project.
-            </p>
-          </ScrollRevealText>
+      {/* About Section with Carousel */}
+      <section className="bg-gray-100">
+        <div className="py-24 lg:py-40">
+          {/* Carousel - starts at page-wrapper alignment but extends off page */}
+          <div className="mb-16">
+            <div className="page-wrapper">
+              <Carousel size="lg" autoPlay={true} autoPlayInterval={2000}>
+                <Image
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
+                  alt="Creative Vision - C/C IDEA LAB Studio"
+                  width={400}
+                  height={600}
+                  className="object-cover"
+                  priority
+                />
+                <Image
+                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center"
+                  alt="Digital Innovation - C/C IDEA LAB Tech"
+                  width={600}
+                  height={400}
+                  className="object-cover"
+                />
+                <Image
+                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=500&fit=crop&crop=center"
+                  alt="Brand Strategy - C/C IDEA LAB Strategy"
+                  width={400}
+                  height={500}
+                  className="object-cover"
+                />
+                <Image
+                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=400&fit=crop&crop=center"
+                  alt="Global Impact - C/C IDEA LAB Worldwide"
+                  width={500}
+                  height={400}
+                  className="object-cover"
+                />
+                <Image
+                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=700&fit=crop&crop=center"
+                  alt="Future Forward - C/C IDEA LAB Tomorrow"
+                  width={400}
+                  height={700}
+                  className="object-cover"
+                />
+              </Carousel>
+            </div>
+          </div>
 
-          <ScrollRevealText delay={400}>
-            <PremiumTransitionLink
-              url="/contact"
-              label="Start a Project"
-              appearance="default"
-              transitionType="logoWipe"
-              transitionColor="#dc2626"
-              className="px-12 py-6 text-xl bg-black text-white hover:bg-gray-800 transition-colors"
-            />
-          </ScrollRevealText>
-        </Container>
+          <Container size="xxl">
+            <div className="grid grid-cols-12 items-start pb-16">
+              {/* This empty spacer ensures the paragraph starts aligned at the 7th column on lg+ */}
+              <div className="hidden lg:block lg:col-span-6" />
+
+              {/* Paragraph column: full width on small, right half on large */}
+              <div className="col-span-12 lg:col-start-5 lg:col-span-8">
+                <ScrollRevealText>
+                  <p className="text-xl md:text-3xl lg:text-4xl font-medium leading-tight lg:leading-snug">
+                    CCIDEALAB® brings together a richly multicultural team with balanced
+                    perspectives and shared creativity.
+                  </p>
+                </ScrollRevealText>
+
+                <ScrollRevealText delay={200}>
+                  <div className="mt-8">
+                    <PremiumTransitionLink
+                      url="/about"
+                      label="Learn more about C/C IDEA LAB"
+                      appearance="inline"
+                      transitionType="logoWipe"
+                      className="text-black border-b border-black hover:border-gray-600 hover:text-gray-600 transition-colors pb-1"
+                    />
+                  </div>
+                </ScrollRevealText>
+              </div>
+            </div>
+          </Container>
+        </div>
       </section>
     </div>
   )

@@ -1,12 +1,13 @@
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
+import { Container } from '@/components/Container'
 
 export default function ScrollMarqueeDemo() {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center bg-white">
-        <div className="text-center px-6">
+        <Container className="text-center">
           <ScrollRevealText>
             <h1 className="text-6xl md:text-8xl font-bold mb-8 text-black">
               Scroll Marquee
@@ -18,12 +19,12 @@ export default function ScrollMarqueeDemo() {
               Scroll down to see the effect in action.
             </p>
           </ScrollRevealText>
-        </div>
+        </Container>
       </section>
 
       {/* Spacer content to enable scrolling */}
       <section className="py-32 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <Container size="sm" className="text-center">
           <ScrollRevealText>
             <h2 className="text-4xl font-bold mb-8 text-black">
               Keep Scrolling
@@ -35,25 +36,25 @@ export default function ScrollMarqueeDemo() {
               Try scrolling at different speeds to see the effect.
             </p>
           </ScrollRevealText>
-        </div>
+        </Container>
       </section>
 
       {/* Main ScrollMarquee Demo */}
       <section className="py-32 bg-black text-white overflow-hidden">
-        <div className="mb-16 text-center">
+        <Container className="mb-16 text-center">
           <ScrollRevealText>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
               Ideas Worth Rallying Around®
             </h2>
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto px-6 leading-relaxed">
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
               Experience our philosophy in motion. The faster you scroll, the faster our ideas move—
               <br className="hidden md:block" />
               two streams of thought flowing in perfect opposition.
             </p>
           </ScrollRevealText>
-        </div>
+        </Container>
         
         <ScrollMarquee
           baseSpeed={120}
@@ -72,30 +73,30 @@ export default function ScrollMarqueeDemo() {
           <span className="mx-16">BRANDS THAT INSPIRE</span>
           <span className="mx-16 text-gray-500">•</span>
         </ScrollMarquee>
-        
-        <div className="mt-16 text-center">
+
+        <Container className="mt-16 text-center">
           <ScrollRevealText delay={400}>
             <p className="text-sm text-gray-500 uppercase tracking-widest">
               Scroll to accelerate
             </p>
           </ScrollRevealText>
-        </div>
+        </Container>
       </section>
 
       {/* Alternative Demo with Different Settings */}
       <section className="py-32 bg-white overflow-hidden">
-        <div className="mb-16 text-center">
+        <Container className="mb-16 text-center">
           <ScrollRevealText>
             <h2 className="text-4xl font-bold mb-6 text-black">
               Alternative Configuration
             </h2>
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto px-6">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Same component with different sensitivity and speed settings.
             </p>
           </ScrollRevealText>
-        </div>
+        </Container>
         
         <ScrollMarquee
           baseSpeed={100}
@@ -116,7 +117,7 @@ export default function ScrollMarqueeDemo() {
 
       {/* More spacer content */}
       <section className="py-32 bg-gray-100">
-        <div className="max-w-4xl mx-auto px-6 text-center">
+        <Container size="sm" className="text-center">
           <ScrollRevealText>
             <h2 className="text-4xl font-bold mb-8 text-black">
               Component Features
@@ -156,23 +157,23 @@ export default function ScrollMarqueeDemo() {
               </div>
             </ScrollRevealText>
           </div>
-        </div>
+        </Container>
       </section>
 
       {/* Final spacer */}
       <section className="py-32 bg-gray-900 text-white">
-        <div className="text-center">
+        <Container className="text-center">
           <ScrollRevealText>
             <h2 className="text-4xl font-bold mb-6">
               Ready to Implement?
             </h2>
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto px-6">
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Check the component documentation and integrate it into your project.
             </p>
           </ScrollRevealText>
-        </div>
+        </Container>
       </section>
     </div>
   )

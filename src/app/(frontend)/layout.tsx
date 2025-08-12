@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 
 import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import { Sora } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -22,13 +21,20 @@ import { AnimatedNav } from '@/components/AnimatedNav'
 import { MainContent } from '@/components/MainContent'
 import { SmoothScroll } from '@/components/SmoothScroll'
 
+// Configure Sora font
+const sora = Sora({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sora',
+})
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
     <ViewTransitions>
       <html
-        className={cn(GeistSans.variable, GeistMono.variable)}
+        className={cn(sora.variable)}
         lang="en"
         suppressHydrationWarning
       >

@@ -57,12 +57,12 @@ export const AnimatedNav = () => {
       <nav
         ref={navRef}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
-          isScrolled ? 'backdrop-blur-sm py-4' : 'bg-transparent py-6'
+          isScrolled ? 'py-4' : 'py-6'
         }`}
       >
-        <div className="max-w-screen-2xl mx-auto px-6 flex items-center relative">
+        <div className="page-wrapper flex items-center relative">
           {/* Logo - Positioned absolutely to left */}
-          <div className="absolute left-6 z-10">
+          <div className="z-10">
             <PremiumTransitionLink
               url="/"
               label="C/C IDEA LAB"
@@ -83,9 +83,7 @@ export const AnimatedNav = () => {
                     : 'translate-y-0 opacity-100'
                 }`}
                 style={{
-                  transitionDelay: isScrolled
-                    ? `${index * 50}ms`
-                    : `${index * 150}ms`, // Changed to go left-to-right when returning to top
+                  transitionDelay: isScrolled ? `${index * 50}ms` : `${index * 150}ms`,
                 }}
               >
                 <PremiumTransitionLink
@@ -100,11 +98,11 @@ export const AnimatedNav = () => {
             ))}
           </div>
 
-          {/* Right side - Contact/Menu toggle - Positioned absolutely to right */}
-          <div className="absolute right-6 flex items-center">
+          {/* Right side - Contact/Menu toggle */}
+          <div className="relative flex items-center min-w-[80px] h-[40px] z-10">
             {/* Contact Button - Only appears when at top */}
             <div
-              className={`transition-all duration-700 ease-out ${
+              className={`absolute top-0 right-0 transition-all duration-700 ease-out ${
                 isScrolled
                   ? 'opacity-0 translate-y-[-20px] pointer-events-none'
                   : 'opacity-100 translate-y-0'
@@ -122,10 +120,10 @@ export const AnimatedNav = () => {
 
             {/* Mobile Menu Button - Only appears when scrolled down */}
             <div
-              className={`lg:hidden transition-all duration-700 ease-out ${
+              className={`absolute top-0 right-0 lg:hidden transition-all duration-700 ease-out ${
                 isScrolled
                   ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-[-20px] pointer-events-none'
+                  : 'opacity-0 translate-y-[20px] pointer-events-none'
               }`}
             >
               <HamburgerMenu isOpen={isMenuOpen} onClick={toggleMenu} />
@@ -133,10 +131,10 @@ export const AnimatedNav = () => {
 
             {/* Desktop Menu Button - Only appears when scrolled down */}
             <div
-              className={`hidden lg:block transition-all duration-700 ease-out ${
+              className={`absolute top-0 right-0 hidden lg:block transition-all duration-700 ease-out ${
                 isScrolled
                   ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-[-20px] pointer-events-none'
+                  : 'opacity-0 translate-y-[20px] pointer-events-none'
               }`}
             >
               <HamburgerMenu isOpen={isMenuOpen} onClick={toggleMenu} />

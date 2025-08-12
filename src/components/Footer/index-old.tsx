@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
+import { Container } from '@/components/Container'
 
 export const Footer = () => {
   const [currentTime, setCurrentTime] = useState('')
@@ -165,7 +166,7 @@ export const Footer = () => {
 
         {/* Main Footer Content */}
         <div className="relative z-10 px-6 py-24 lg:py-32 w-full">
-          <div className="max-w-7xl mx-auto">
+          <Container size="lg">
             {/* Large CTA Section with Motto-style Animation */}
             <div className="mb-24 lg:mb-32 text-center">
               <div className="overflow-hidden">
@@ -377,7 +378,7 @@ export const Footer = () => {
                 </ScrollRevealText>
               </div>
             </div>
-          </div>
+          </Container>
         </div>
       </footer>
     </div>

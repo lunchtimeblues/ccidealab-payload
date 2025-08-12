@@ -1,12 +1,13 @@
 # Container Component
 
-A responsive container component that provides consistent content width and spacing across your website. It ensures all content is properly contained within defined maximum widths and includes responsive padding.
+A hybrid container component that combines traditional responsive design with the modern soulidealab.com approach. This component provides consistent content width and spacing using both traditional Tailwind classes and modern CSS custom properties.
 
 ## Features
 
+- **Hybrid Approach**: Traditional sizes (sm, md, lg) + Modern soulidealab.com approach (xl, xxl, full)
+- **Modern CSS**: Uses CSS custom properties and `padding-inline` for xl+ sizes
 - **Responsive Design**: Automatically adjusts to different screen sizes
 - **Multiple Sizes**: Choose from predefined container sizes
-- **Consistent Spacing**: Standardized padding and margins
 - **Flexible**: Can be used with or without padding
 - **Centered Content**: Automatically centers content horizontally
 
@@ -21,32 +22,51 @@ A responsive container component that provides consistent content width and spac
 
 ## Container Sizes
 
-| Size | Max Width | Use Case |
-|------|-----------|----------|
-| `sm` | `max-w-4xl` (~896px) | Forms, narrow content, single column text |
-| `md` | `max-w-6xl` (~1152px) | Medium content, blog posts |
-| `lg` | `max-w-7xl` (~1280px) | Large content, contact sections |
-| `xl` | `max-w-[1600px]` (~1600px) | Main content, hero sections |
-| `xxl` | `max-w-[2000px]` (~2000px) | **Ultra-wide** (Motto-style), premium layouts |
-| `full` | `max-w-full` | Full width, special layouts |
+| Size | Max Width | Approach | Use Case |
+|------|-----------|----------|----------|
+| `sm` | `1200px` | **soulidealab.com** | Forms, narrow content, reading |
+| `md` | `max-w-6xl` (~1152px) | Traditional | Medium content, blog posts |
+| `lg` | `max-w-7xl` (~1280px) | Traditional | Large content, contact sections |
+| `xl` | `none` | **soulidealab.com** | Main content, hero sections |
+| `xxl` | `1600px` | **soulidealab.com** | Ultra-wide layouts, galleries |
+| `full` | `none` | **soulidealab.com** | Full width, special layouts |
+
+## Implementation Details
+
+### Traditional Sizes (md, lg)
+Uses traditional Tailwind responsive padding:
+```css
+px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20
+```
+
+### Modern Sizes (sm, xl, xxl, full)
+Uses soulidealab.com approach with CSS custom properties:
+```css
+padding-inline: calc(var(--spacing) * 4); /* 32px mobile */
+padding-inline: calc(var(--spacing) * 6); /* 48px desktop */
+```
 
 ## Usage
 
 ```tsx
 import { Container } from '@/components/Container'
 
-// Basic usage
+// Basic usage - uses soulidealab.com approach
 <Container>
   <h1>Your content here</h1>
 </Container>
 
 // Different sizes
 <Container size="sm">
-  <p>Narrow content for reading</p>
+  <p>Narrow content for reading (soulidealab.com style)</p>
 </Container>
 
-<Container size="lg">
-  <div>Large content area</div>
+<Container size="md">
+  <div>Medium content (traditional Tailwind)</div>
+</Container>
+
+<Container size="xxl">
+  <div>Ultra-wide content (soulidealab.com style)</div>
 </Container>
 
 // Without padding (for custom spacing)
@@ -55,21 +75,23 @@ import { Container } from '@/components/Container'
 </Container>
 
 // With additional classes
-<Container className="bg-white shadow-lg" size="md">
+<Container className="bg-white shadow-lg" size="xl">
   <div>Styled container</div>
 </Container>
 ```
 
-## Default Styling
+## Styling Approaches
 
-- **Horizontal Centering**: `mx-auto` centers the container
-- **Enhanced Responsive Padding**: Premium agency-style padding that scales with screen size:
-  - Mobile: `px-6` (24px)
-  - Medium: `md:px-8` (32px)
-  - Large: `lg:px-12` (48px)
-  - XL: `xl:px-16` (64px)
-  - 2XL: `2xl:px-20` (80px)
-- **Ultra-Wide Support**: Handles very large screens like Motto and other premium agencies
+### Modern Sizes (sm, xl, xxl, full) - soulidealab.com Style
+- **CSS Custom Properties**: Uses `--spacing: 0.5rem` for scalable design
+- **Modern CSS**: `padding-inline` for horizontal padding
+- **Simple Breakpoints**: 32px mobile, 48px desktop
+- **Position Relative**: Provides stacking context
+
+### Traditional Sizes (md, lg) - Tailwind Style
+- **Responsive Padding**: `px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20`
+- **Progressive Scaling**: 24px → 80px across breakpoints
+- **Familiar Approach**: Standard Tailwind responsive design
 
 ## Best Practices
 
