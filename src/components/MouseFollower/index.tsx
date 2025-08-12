@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 
 interface MouseFollowerProps {
   children: React.ReactNode
@@ -27,14 +27,14 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     offset: 72,
   }
 
-  const updateFollowerPosition = () => {
+  const updateFollowerPosition = useCallback(() => {
     const follower = followerRef.current
     if (!follower) return
 
     const { x, y } = positionRef.current
     const offset = config.offset
     follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
-  }
+  }, [config.offset])
 
   useEffect(() => {
     const container = containerRef.current

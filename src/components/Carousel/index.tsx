@@ -34,7 +34,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   const followerRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const autoPlayRef = useRef<NodeJS.Timeout>()
+  const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
 
   // Convert children to array for easier handling
   const childrenArray = Children.toArray(children).filter(child => React.isValidElement(child))
