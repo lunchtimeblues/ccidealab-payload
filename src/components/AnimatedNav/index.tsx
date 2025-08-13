@@ -16,9 +16,10 @@ interface AnimatedNavProps {
   navItems: NavItem[]
   isMenuOpen: boolean
   onToggleMenu: () => void
+  onNavigate: (url: string) => void
 }
 
-export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, onToggleMenu }) => {
+export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, onToggleMenu, onNavigate }) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
 
