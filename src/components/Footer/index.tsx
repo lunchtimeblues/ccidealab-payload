@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
+import Image from 'next/image'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export const Footer = () => {
@@ -100,8 +101,15 @@ export const Footer = () => {
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-16">
         {/* Logo + Name */}
         <div className="flex items-center gap-4 mb-8 md:mb-0">
-          <div className="w-6 h-6 bg-white" /> {/* Replace with your logo */}
+          <Image
+            src="/images/cc-logo-white-minimal.svg"
+            alt="C/C IDEA LAB Logo"
+            width={80}
+            height={32}
+            className="h-8 w-auto"
+          />
           <h1 className="text-4xl font-bold">
+            C/C IDEA LAB
             <sup className="text-xs align-super">®</sup>
           </h1>
         </div>

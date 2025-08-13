@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
-import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
+import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 
 interface NavItem {
   label: string
@@ -12,154 +12,199 @@ interface NavItem {
 
 interface FullScreenMenuProps {
   isOpen: boolean
+  isNavigating: boolean
   onClose: () => void
+  onNavigate: (url: string) => void
   navItems: NavItem[]
 }
 
-export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({ isOpen, onClose, navItems }) => {
+export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
+  isOpen,
+  isNavigating,
+  onClose,
+  onNavigate,
+  navItems
+}) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [scrollY, setScrollY] = useState(0)
+
+  const itemHeight = 120 // Height per menu item
+  const totalHeight = navItems.length * itemHeight
+
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
-
-    return () => {
-      document.body.style.overflow = 'unset'
+      return () => {
+        document.body.style.overflow = ''
+      }
     }
   }, [isOpen])
 
-  // Close menu on escape key
+  // Scroll and keyboard handling
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose()
+    if (!isOpen || !scrollContainerRef.current) return
+
+    const container = scrollContainerRef.current
+
+    const handleWheel = (e: WheelEvent) => {
+      setScrollY((prevScrollY) => {
+        let newScrollY = prevScrollY + e.deltaY * 0.8
+
+        // Normalize scroll position to create infinite loop
+        while (newScrollY >= totalHeight) {
+          newScrollY -= totalHeight
+        }
+        while (newScrollY < 0) {
+          newScrollY += totalHeight
+        }
+
+        return newScrollY
+      })
+    }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return
+
+      switch (e.key) {
+        case 'Escape':
+          e.preventDefault()
+          onClose()
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          setScrollY((prevScrollY) => {
+            let newScrollY = prevScrollY - 50
+            if (newScrollY < 0) newScrollY += totalHeight
+            return newScrollY
+          })
+          break
+        case 'ArrowDown':
+          e.preventDefault()
+          setScrollY((prevScrollY) => {
+            let newScrollY = prevScrollY + 50
+            if (newScrollY >= totalHeight) newScrollY -= totalHeight
+            return newScrollY
+          })
+          break
       }
     }
 
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape)
-    }
+    container.addEventListener('wheel', handleWheel, { passive: true })
+    document.addEventListener('keydown', handleKeyDown)
 
     return () => {
-      document.removeEventListener('keydown', handleEscape)
+      container.removeEventListener('wheel', handleWheel)
+      document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isOpen, onClose])
+  }, [isOpen, totalHeight, onClose])
 
-  const handleLinkClick = () => {
-    onClose()
+  const handleLinkClick = (url: string) => {
+    onNavigate(url)
   }
 
   return (
     <div
-      className={`fixed inset-0 z-40 transition-all duration-700 ease-out ${
-        isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      className={`fixed inset-0 z-[60] transition-all duration-700 ease-out ${
+        isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
     >
       {/* Background overlay */}
       <div
-        className={`absolute inset-0 bg-black transition-all duration-700 ease-out ${
-          isOpen ? 'opacity-95' : 'opacity-0'
+        className={`absolute inset-0 bg-black transition-transform duration-700 ease-out ${
+          isNavigating
+            ? '-translate-y-full' // Slide up when navigating
+            : isOpen
+              ? 'translate-y-0' // Normal open state
+              : '-translate-y-full' // Closed state
         }`}
         onClick={onClose}
       />
 
       {/* Menu content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center">
-        {/* Main navigation */}
-        <nav className="text-center">
-          <ul className="space-y-8 md:space-y-12">
-            {navItems.map((item, index) => (
-              <li
-                key={item.href}
-                className={`transform transition-all duration-700 ease-out ${
-                  isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-                }`}
-                style={{
-                  transitionDelay: isOpen ? `${index * 100 + 200}ms` : '0ms',
-                }}
-              >
-                <PremiumTransitionLink
-                  url={item.href}
-                  label={item.label}
-                  appearance="inline"
-                  transitionType="logoWipe"
-                  transitionColor={item.transitionColor}
-                  className="text-2xl md:text-4xl lg:text-4xl font-bold text-white hover:text-gray-300 transition-colors duration-300 block"
-                  onClick={handleLinkClick}
+      <div
+        className={`relative z-10 h-full flex items-center justify-center transition-transform duration-700 ease-out ${
+          isNavigating
+            ? '-translate-y-full' // Slide up when navigating
+            : isOpen
+              ? 'translate-y-0' // Normal open state
+              : '-translate-y-full' // Closed state
+        }`}
+      >
+        <div ref={scrollContainerRef} className="h-full w-full overflow-hidden" tabIndex={0}>
+          {/* Page wrapper alignment for consistent layout */}
+          <div className="page-wrapper h-full flex flex-col relative">
+            {/* Header with Logo and Close Button */}
+            <div className="flex-shrink-0 pt-8 pb-4 flex justify-between items-start relative z-30">
+              {/* Logo section */}
+              <div className="flex items-center justify-start">
+                <Image
+                  src="/images/cc-logo-white-minimal.svg"
+                  alt="C&C IDEA LAB Logo"
+                  width={160}
+                  height={64}
+                  className="h-16 w-auto"
                 />
-              </li>
-            ))}
-          </ul>
-        </nav>
+              </div>
 
-        {/* Additional menu items */}
-        <div
-          className={`mt-16 md:mt-24 text-center transform transition-all duration-700 ease-out ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}
-          style={{
-            transitionDelay: isOpen ? `${navItems.length * 100 + 400}ms` : '0ms',
-          }}
-        >
-          <div className="space-y-4 text-lg md:text-xl text-gray-300">
-            <div>
-              <a href="mailto:hello@motto.com" className="hover:text-white transition-colors">
-                hello@ccidealab.com
-              </a>
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="text-white hover:text-gray-300 transition-colors text-lg font-medium bg-transparent border-none cursor-pointer p-2 -m-2"
+                aria-label="Close menu"
+              >
+                Close
+              </button>
             </div>
-            <div>
-              <a href="tel:+1234567890" className="hover:text-white transition-colors">
-                +1 (234) 567-890
-              </a>
+
+            {/* Transform container for smooth infinite scroll */}
+            <div
+              className="flex-1 flex flex-col justify-center"
+              style={{
+                transform: `translateY(-${scrollY}px)`,
+              }}
+            >
+              {/* Render multiple copies for seamless loop */}
+              {Array.from({ length: 3 }, (_, copyIndex) => (
+                <div key={copyIndex} className="flex flex-col">
+                  {navItems.map((item, index) => (
+                    <div
+                      key={`${item.href}-${copyIndex}-${index}`}
+                      className="text-left w-full flex items-center group cursor-pointer"
+                      style={{ height: `${itemHeight}px` }}
+                    >
+                      {/* Number */}
+                      <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
+                        ({String(index + 1).padStart(2, '0')})
+                      </span>
+
+                      {/* Menu item */}
+                      <button
+                        onClick={() => handleLinkClick(item.href)}
+                        className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                      >
+                        {item.label.toUpperCase()}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Social links */}
+      {/* ESC instruction */}
+      <div className="absolute inset-0 pointer-events-none z-20">
         <div
-          className={`mt-12 md:mt-16 flex space-x-8 transform transition-all duration-700 ease-out ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          className={`absolute top-1/2 right-8 transform -translate-y-1/2 text-gray-500 text-sm transition-all duration-500 ease-out ${
+            isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
           }`}
           style={{
-            transitionDelay: isOpen ? `${navItems.length * 100 + 600}ms` : '0ms',
+            transitionDelay: isOpen ? '900ms' : '0ms',
           }}
         >
-          {['Instagram', 'Twitter', 'LinkedIn', 'Dribbble'].map((social) => (
-            <a
-              key={social}
-              href={`#${social.toLowerCase()}`}
-              className="text-gray-400 hover:text-white transition-colors text-sm md:text-base"
-            >
-              {social}
-            </a>
-          ))}
-        </div>
-
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className={`absolute top-8 right-8 text-white hover:text-gray-300 transition-all duration-700 ease-out text-lg font-medium ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
-          style={{
-            transitionDelay: isOpen ? '100ms' : '0ms',
-          }}
-        >
-          Close
-        </button>
-
-        {/* ESC instruction */}
-        <div
-          className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 text-gray-500 text-sm transition-all duration-700 ease-out ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
-          style={{
-            transitionDelay: isOpen ? `${navItems.length * 100 + 800}ms` : '0ms',
-          }}
-        >
-          Press ESC to close
+          <div className="writing-mode-vertical-rl text-orientation-mixed">Press ESC to close</div>
         </div>
       </div>
     </div>

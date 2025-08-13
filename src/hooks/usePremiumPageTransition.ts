@@ -59,14 +59,22 @@ export const usePremiumPageTransition = () => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: ${color === '#000' || color === 'black' ? 'white' : color === '#fff' || color === 'white' ? 'black' : 'white'};
-      font-size: 2rem;
-      font-weight: bold;
       z-index: 10000;
       pointer-events: none;
       opacity: 0;
     `
-    logoOverlay.textContent = 'C/C IDEA LAB'
+
+    // Create SVG logo element
+    const logoImg = document.createElement('img')
+    logoImg.src = '/images/cc-logo-black-minimal.svg'
+    logoImg.alt = 'C/C IDEA LAB Logo'
+    logoImg.style.cssText = `
+      width: 80px;
+      height: auto;
+      filter: ${color === '#000' || color === 'black' ? 'brightness(0) invert(1)' : 'brightness(0)'};
+    `
+
+    logoOverlay.appendChild(logoImg)
     document.body.appendChild(logoOverlay)
 
     // Animate logo with coordinated timing (faster)
@@ -157,14 +165,22 @@ export const usePremiumPageTransition = () => {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: ${color === '#000' || color === 'black' ? 'white' : color === '#fff' || color === 'white' ? 'black' : 'white'};
-      font-size: 2rem;
-      font-weight: bold;
       z-index: 10000;
       pointer-events: none;
       opacity: 0;
     `
-      logoOverlay.textContent = 'C/C IDEA LAB'
+
+      // Create SVG logo element
+      const logoImg = document.createElement('img')
+      logoImg.src = '/images/cc-logo-black-minimal.svg'
+      logoImg.alt = 'C/C IDEA LAB Logo'
+      logoImg.style.cssText = `
+        width: 80px;
+        height: auto;
+        filter: ${color === '#000' || color === 'black' ? 'brightness(0) invert(1)' : 'brightness(0)'};
+      `
+
+      logoOverlay.appendChild(logoImg)
       document.body.appendChild(logoOverlay)
 
       // Animate logo with coordinated timing (faster)

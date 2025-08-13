@@ -17,7 +17,7 @@ import { getServerSideURL } from '@/utilities/getURL'
 
 import { ViewTransitions } from 'next-view-transitions'
 
-import { AnimatedNav } from '@/components/AnimatedNav'
+import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { MainContent } from '@/components/MainContent'
 import { SmoothScroll } from '@/components/SmoothScroll'
 
@@ -33,11 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <ViewTransitions>
-      <html
-        className={cn(sora.variable)}
-        lang="en"
-        suppressHydrationWarning
-      >
+      <html className={cn(sora.variable)} lang="en" suppressHydrationWarning>
         <head>
           <InitTheme />
           <link href="/favicon.ico" rel="icon" sizes="32x32" />
@@ -51,11 +47,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                   preview: isEnabled,
                 }}
               />
-              <AnimatedNav />
+              <NavigationWrapper />
               {/* <Header /> */}
-              <MainContent>
-                {children}
-              </MainContent>
+              <MainContent>{children}</MainContent>
               <Footer />
             </SmoothScroll>
           </Providers>

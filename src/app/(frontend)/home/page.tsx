@@ -13,14 +13,14 @@ import { Carousel } from '@/components/Carousel'
 
 export default function HomePage(): React.JSX.Element {
   return (
-    <div className="almost-full-height bg-gray-100 text-black">
+    <div className="bg-gray-100 text-black">
       {/* Hero Section */}
-      <section className="relative almost-full-height flex items-center justify-center bg-gray-100">
-        <Container size="xxl" className="relative z-10">
-          <div className="relative flex items-center justify-center almost-full-height">
-            <div className="relative w-full">
+      <section className="relative almost-full-height">
+        <Container size="full" className="relative z-10">
+          <div className="relative flex items-center justify-center almost-full-height px-4 sm:px-6 lg:px-8">
+            <div className="relative w-full max-w-none pt-24 md:pt-0">
               <h1
-                className="text-5xl sm:text-6xl lg:text-[6rem] xl:text-[8rem] leading-none font-medium uppercase tracking-tight"
+                className="text-6xl sm:text-[5rem] md:text-[5.25rem] lg:text-[7.5rem] xl:text-[10rem] 2xl:text-[12rem] leading-tight lg:leading-none font-medium uppercase tracking-tight"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
@@ -29,9 +29,9 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={200}>
                   <div className="sm:text-right -mr-1">Rallying</div>
                 </ScrollRevealText>
-                <div className="flex justify-between sm:-ml-40">
+                <div className="flex justify-between items-center">
                   <ScrollRevealText delay={400}>
-                    <div className="w-16 hidden sm:block">
+                    <div className="w-16 sm:w-20 lg:w-20 xl:w-28 2xl:w-32 hidden sm:block">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -48,20 +48,19 @@ export default function HomePage(): React.JSX.Element {
                     </div>
                   </ScrollRevealText>
                   <ScrollRevealText delay={600}>
-                    <div className="sm:text-center">Around</div>
+                    <div className="sm:text-center flex-1 px-4">Around</div>
                   </ScrollRevealText>
-                  <div className="hidden sm:block w-40"></div>
+                  <div className="hidden sm:block w-16 sm:w-20 lg:w-24 xl:w-28 2xl:w-32"></div>
                 </div>
               </h1>
 
-              <div className="relative sm:absolute sm:top-1/2 sm:left-[-2rem] sm:-translate-y-1/2 mt-12 sm:mt-0 sm:w-80 lg:w-96">
-                <ScrollRevealText delay={800}>
-                  <p className="sm:-ml-40 text-sm sm:text-sm lg:text-md font-light leading-relaxed text-gray-600 tracking-wide">
-                    <span className="block">C/C IDEA LAB is a global strategy and design</span>
-                    <span className="block">firm for positioning, scaling, and reinventing</span>
-                    <span className="block">companies in the tech and innovation space.</span>
-                  </p>
-                </ScrollRevealText>
+              <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:right-0 mt-12 md:mt-0 md:w-60 lg:w-72 xl:w-80 2xl:w-96 pr-4">
+                <p className="text-md md:text-xs lg:text-sm xl:text-base leading-relaxed tracking-wide">
+                  <span className="block">
+                    C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
+                    reinventing companies in the tech and innovation space.
+                  </span>
+                </p>
               </div>
             </div>
           </div>

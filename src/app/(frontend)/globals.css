@@ -10,9 +10,26 @@
 }
 
 @layer utilities {
+  /* Hide scrollbars for infinite scroll menu */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  /* Vertical text for scroll instruction */
+  .writing-mode-vertical-rl {
+    writing-mode: vertical-rl;
+  }
+  .text-orientation-mixed {
+    text-orientation: mixed;
+  }
+
   /* Almost full height - ensures content below remains visible above the fold */
   .almost-full-height {
-    min-height: calc(100vh - 120px); /* Desktop: leaves 120px for next section preview */
+    min-height: calc(100vh - 69px); /* Desktop: leaves 120px for next section preview */
   }
 
   /* Responsive variants for different screen sizes */
@@ -27,17 +44,6 @@
       min-height: calc(100vh - 150px); /* Large screens: leaves 150px for better proportion */
     }
   }
-
-  /* Alternative variants for different use cases */
-  .almost-full-height-sm {
-    min-height: calc(100vh - 60px); /* Minimal preview */
-  }
-
-  .almost-full-height-lg {
-    min-height: calc(100vh - 200px); /* Large preview of next section */
-  }
-
-  /* Page Wrapper - Exact implementation from soulidealab.com */
   .page-wrapper {
     padding-inline: calc(var(--spacing) * 4);
     position: relative;
@@ -243,7 +249,8 @@ html[data-theme='light'] {
   }
 
   @keyframes pulse-gentle {
-    0%, 100% {
+    0%,
+    100% {
       transform: scale(1);
     }
     50% {

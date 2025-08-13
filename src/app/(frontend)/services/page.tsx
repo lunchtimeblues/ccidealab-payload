@@ -84,17 +84,19 @@ export default function ServicesPage() {
         return (
           <section
             key={index}
-            className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black`}
+            className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
           >
-            <Container size="xxl">
-              <div className="almost-full-height flex flex-col justify-center">
-                <div
-                  className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
-                  style={{ opacity: fadeOpacity }}
-                />
+            {/* Fade overlay now covers full section width */}
+            <div
+              className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
+              style={{ opacity: fadeOpacity }}
+            />
 
+            {/* Container moved inside to constrain content, not the fade effect */}
+            <Container size="xxl">
+              <div className="almost-full-height flex flex-col justify-center relative z-20">
                 <div>
-                  <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto relative z-20">
+                  <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto">
                     <div className="col-span-12 pb-10 flex justify-between items-start">
                       <h2 className="uppercase text-3xl sm:text-5xl font-bold">{service.title}</h2>
                       <span className="uppercase hidden sm:block text-5xl font-bold">
@@ -103,7 +105,7 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  <div className="w-full border-t border-[#CFD5D7] mt-auto relative z-20">
+                  <div className="w-full border-t border-[#CFD5D7] mt-auto">
                     <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 sm:pt-20">
                       <div className="flex flex-col justify-between col-span-12 sm:col-span-9">
                         <p className="text-lg sm:text-xl leading-relaxed max-w-5xl mb-10 sm:mb-12">
