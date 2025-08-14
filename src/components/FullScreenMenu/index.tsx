@@ -77,16 +77,10 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
       e.preventDefault() // Prevent default scroll behavior
 
       setScrollY((prevScrollY) => {
-        let newScrollY = prevScrollY + e.deltaY * 0.8
+        let newScrollY = prevScrollY + e.deltaY * 0.5 // Slower, smoother scrolling
 
-        // Improved normalization for smoother infinite loop
-        // Use modulo for more precise wrapping
-        while (newScrollY >= totalHeight) {
-          newScrollY -= totalHeight
-        }
-        while (newScrollY < 0) {
-          newScrollY += totalHeight
-        }
+        // Simple modulo-based wrapping for smoother transitions
+        newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
 
         return newScrollY
       })
@@ -103,16 +97,16 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         case 'ArrowUp':
           e.preventDefault()
           setScrollY((prevScrollY) => {
-            let newScrollY = prevScrollY - 50
-            if (newScrollY < 0) newScrollY += totalHeight
+            let newScrollY = prevScrollY - itemHeight
+            newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
             return newScrollY
           })
           break
         case 'ArrowDown':
           e.preventDefault()
           setScrollY((prevScrollY) => {
-            let newScrollY = prevScrollY + 50
-            if (newScrollY >= totalHeight) newScrollY -= totalHeight
+            let newScrollY = prevScrollY + itemHeight
+            newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
             return newScrollY
           })
           break
@@ -131,15 +125,10 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
       const deltaY = touchStartY - touchY
 
       setScrollY((prevScrollY) => {
-        let newScrollY = prevScrollY + deltaY * 0.5 // Slower scroll for touch
+        let newScrollY = prevScrollY + deltaY * 0.3 // Slower scroll for touch
 
-        // Normalize scroll position
-        while (newScrollY >= totalHeight) {
-          newScrollY -= totalHeight
-        }
-        while (newScrollY < 0) {
-          newScrollY += totalHeight
-        }
+        // Simple modulo-based wrapping
+        newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
 
         return newScrollY
       })
@@ -235,20 +224,16 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
 
             {/* Transform container for smooth infinite scroll */}
             <div
-              className="flex-1 flex flex-col"
+              className="flex-1 flex flex-col justify-center"
               style={{
                 transform: `translateY(-${scrollY}px)`,
-                paddingTop: `${totalHeight}px`, // Add padding to center the first visible copy
               }}
             >
-              {/* Render multiple copies for seamless loop - increased to 7 for better coverage */}
-              {Array.from({ length: 7 }, (_, copyIndex) => (
+              {/* Render multiple copies for seamless loop */}
+              {Array.from({ length: 3 }, (_, copyIndex) => (
                 <div
                   key={copyIndex}
                   className="flex flex-col"
-                  style={{
-                    transform: `translateY(${(copyIndex - 1) * totalHeight}px)`, // Offset by -1 to account for padding
-                  }}
                 >
                   {navItems.map((item, index) => (
                     <div
