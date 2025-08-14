@@ -78,19 +78,19 @@ export default function ServicesPage() {
             >
               <span className="mx-8">OUR</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} speed={4} className="text-current" />
+                <SpinningStar size={64} className="text-current" />
               </span>
               <span className="mx-8">SERVICES</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} speed={4} className="text-current" />
+                <SpinningStar size={64} className="text-current" />
               </span>
               <span className="mx-8">OUR</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} speed={4} className="text-current" />
+                <SpinningStar size={64} className="text-current" />
               </span>
               <span className="mx-8">SERVICES</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} speed={4} className="text-current" />
+                <SpinningStar size={64} className="text-current" />
               </span>
             </ScrollMarquee>
 
@@ -222,7 +222,7 @@ export default function ServicesPage() {
 
         // Calculate when this specific section should start fading
         // Each section starts fading when we scroll enough for the next section to begin covering it
-        const sectionTriggerPoint = servicesStartOffset + (index * viewportHeight * 0.9) // Sections are roughly 90vh apart
+        const sectionTriggerPoint = servicesStartOffset + index * viewportHeight * 0.9 // Sections are roughly 90vh apart
         const fadeStartPoint = sectionTriggerPoint + viewportHeight * 0.4 // Start fade 40vh after trigger
         const fadeEndPoint = fadeStartPoint + viewportHeight * 0.6 // Complete fade over 60vh of scroll
 

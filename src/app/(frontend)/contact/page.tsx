@@ -2,8 +2,6 @@ import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
-import { AnimatedMarquee } from '@/components/AnimatedMarquee'
-import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ContactPage() {
   return (
@@ -47,8 +45,9 @@ export default function ContactPage() {
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <p className="text-lg text-gray-700 leading-relaxed mb-12">
-                  Whether you&apos;re launching a new venture, transforming an existing brand,
-                  or exploring possibilities, we&apos;re here to help you create something extraordinary.
+                  Whether you&apos;re launching a new venture, transforming an existing brand, or
+                  exploring possibilities, we&apos;re here to help you create something
+                  extraordinary.
                 </p>
               </ScrollRevealText>
 
@@ -95,7 +94,10 @@ export default function ContactPage() {
                 <form className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label
+                        htmlFor="firstName"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
                         First Name *
                       </label>
                       <input
@@ -108,7 +110,10 @@ export default function ContactPage() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                      <label
+                        htmlFor="lastName"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
                         Last Name *
                       </label>
                       <input
@@ -137,7 +142,10 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="company"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Company
                     </label>
                     <input
@@ -150,7 +158,10 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="projectType" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="projectType"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Project Type
                     </label>
                     <select
@@ -169,7 +180,10 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="budget"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Project Budget
                     </label>
                     <select
@@ -187,7 +201,10 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
                       Tell us about your project *
                     </label>
                     <textarea
@@ -264,9 +281,7 @@ export default function ContactPage() {
 
         <div className="mt-16 text-center">
           <ScrollRevealText delay={400}>
-            <p className="text-sm text-gray-500 uppercase tracking-widest">
-              Ready when you are
-            </p>
+            <p className="text-sm text-gray-500 uppercase tracking-widest">Ready when you are</p>
           </ScrollRevealText>
         </div>
       </section>
@@ -278,13 +293,24 @@ export default function ContactPage() {
             <ScrollRevealText delay={200}>
               <div className="text-center lg:text-left">
                 <div className="w-16 h-16 bg-black rounded-full mx-auto lg:mx-0 mb-6 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-black">Quick Response</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  We value your time and typically respond to all inquiries within 24 hours during business days.
+                  We value your time and typically respond to all inquiries within 24 hours during
+                  business days.
                 </p>
               </div>
             </ScrollRevealText>
@@ -292,13 +318,24 @@ export default function ContactPage() {
             <ScrollRevealText delay={400}>
               <div className="text-center lg:text-left">
                 <div className="w-16 h-16 bg-black rounded-full mx-auto lg:mx-0 mb-6 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-black">Free Consultation</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Every project starts with a complimentary strategy session to understand your goals and explore possibilities.
+                  Every project starts with a complimentary strategy session to understand your
+                  goals and explore possibilities.
                 </p>
               </div>
             </ScrollRevealText>
@@ -306,48 +343,28 @@ export default function ContactPage() {
             <ScrollRevealText delay={600}>
               <div className="text-center lg:text-left">
                 <div className="w-16 h-16 bg-black rounded-full mx-auto lg:mx-0 mb-6 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <svg
+                    className="w-8 h-8 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-black">Rapid Turnaround</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  We understand the pace of business and work efficiently to deliver exceptional results on time.
+                  We understand the pace of business and work efficiently to deliver exceptional
+                  results on time.
                 </p>
               </div>
             </ScrollRevealText>
           </div>
-        </Container>
-      </section>
-
-      {/* Animated Marquee Section */}
-      <section className="py-16 bg-white border-y border-gray-200">
-        <AnimatedMarquee speed={40} className="text-6xl font-bold text-black">
-          <span className="mx-8">CONTACT</span>
-          <span className="mx-8">•</span>
-          <span className="mx-8">COLLABORATE</span>
-          <span className="mx-8">•</span>
-          <span className="mx-8">CREATE</span>
-          <span className="mx-8">•</span>
-          <span className="mx-8">CONNECT</span>
-          <span className="mx-8">•</span>
-        </AnimatedMarquee>
-      </section>
-
-      {/* Client Logos Marquee Section */}
-      <section className="py-12 bg-gray-50">
-        <Container size="full">
-          <div className="text-center mb-8">
-            <p className="text-sm uppercase tracking-wider text-gray-500 font-medium">
-              Brands We've Worked With
-            </p>
-          </div>
-          <ClientLogosMarquee
-            speed={70}
-            direction="right"
-            className="py-4"
-            logoClassName="min-w-[140px]"
-          />
         </Container>
       </section>
 
