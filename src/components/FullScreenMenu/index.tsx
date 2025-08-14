@@ -81,10 +81,11 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
 
         // Improved normalization for smoother infinite loop
         // Use modulo for more precise wrapping
-        if (newScrollY >= totalHeight) {
-          newScrollY = newScrollY % totalHeight
-        } else if (newScrollY < 0) {
-          newScrollY = totalHeight + (newScrollY % totalHeight)
+        while (newScrollY >= totalHeight) {
+          newScrollY -= totalHeight
+        }
+        while (newScrollY < 0) {
+          newScrollY += totalHeight
         }
 
         return newScrollY
@@ -133,10 +134,11 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         let newScrollY = prevScrollY + deltaY * 0.5 // Slower scroll for touch
 
         // Normalize scroll position
-        if (newScrollY >= totalHeight) {
-          newScrollY = newScrollY % totalHeight
-        } else if (newScrollY < 0) {
-          newScrollY = totalHeight + (newScrollY % totalHeight)
+        while (newScrollY >= totalHeight) {
+          newScrollY -= totalHeight
+        }
+        while (newScrollY < 0) {
+          newScrollY += totalHeight
         }
 
         return newScrollY
@@ -233,18 +235,19 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
 
             {/* Transform container for smooth infinite scroll */}
             <div
-              className="flex-1 flex flex-col justify-center"
+              className="flex-1 flex flex-col"
               style={{
                 transform: `translateY(-${scrollY}px)`,
+                paddingTop: `${totalHeight}px`, // Add padding to center the first visible copy
               }}
             >
-              {/* Render multiple copies for seamless loop - increased to 5 for better coverage */}
-              {Array.from({ length: 5 }, (_, copyIndex) => (
+              {/* Render multiple copies for seamless loop - increased to 7 for better coverage */}
+              {Array.from({ length: 7 }, (_, copyIndex) => (
                 <div
                   key={copyIndex}
                   className="flex flex-col"
                   style={{
-                    transform: `translateY(${copyIndex * totalHeight}px)`, // Sequential positioning for seamless loop
+                    transform: `translateY(${(copyIndex - 1) * totalHeight}px)`, // Offset by -1 to account for padding
                   }}
                 >
                   {navItems.map((item, index) => (
