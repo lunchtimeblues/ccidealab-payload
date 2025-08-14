@@ -244,7 +244,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                   key={copyIndex}
                   className="flex flex-col"
                   style={{
-                    transform: `translateY(${(copyIndex - 2) * totalHeight}px)`, // Center copies around current position
+                    transform: `translateY(${copyIndex * totalHeight}px)`, // Sequential positioning for seamless loop
                   }}
                 >
                   {navItems.map((item, index) => (
