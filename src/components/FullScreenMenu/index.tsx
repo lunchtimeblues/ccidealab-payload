@@ -23,7 +23,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
   isNavigating,
   onClose,
   onNavigate,
-  navItems
+  navItems,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
@@ -109,9 +109,9 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
     >
-      {/* Background overlay */}
+      {/* Multi-layer blur background */}
       <div
-        className={`absolute inset-0 bg-black transition-transform duration-700 ease-out ${
+        className={`absolute inset-0 transition-transform duration-700 ease-out ${
           isNavigating
             ? '-translate-y-full' // Slide up when navigating
             : isOpen
@@ -119,7 +119,22 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               : '-translate-y-full' // Closed state
         }`}
         onClick={onClose}
-      />
+      >
+        {/* Enhanced blur background with multiple layers */}
+        <div className="absolute inset-0 fullscreen-menu-blur bg-black/30" />
+
+        {/* Additional blur layer for extra depth */}
+        <div
+          className="absolute inset-0 backdrop-blur-xl bg-black/20"
+          style={{
+            backdropFilter: 'blur(24px) saturate(200%) contrast(120%)',
+            WebkitBackdropFilter: 'blur(24px) saturate(200%) contrast(120%)',
+          }}
+        />
+
+        {/* Subtle gradient overlay for visual depth */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30" />
+      </div>
 
       {/* Menu content */}
       <div

@@ -289,3 +289,18 @@ html[data-theme='light'] {
     cursor: none !important;
   }
 }
+
+/* Enhanced blur effects for fullscreen menu */
+.fullscreen-menu-blur {
+  backdrop-filter: blur(20px) saturate(180%) brightness(80%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(80%);
+  transform: translateZ(0);
+  will-change: backdrop-filter;
+}
+
+/* Fallback for browsers that don't support backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .fullscreen-menu-blur {
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+}
