@@ -27,6 +27,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
+  const [touchStartY, setTouchStartY] = useState(0)
 
   const itemHeight = 120 // Height per menu item
   const totalHeight = navItems.length * itemHeight
@@ -34,9 +35,34 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
   // Prevent body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
+      // Store original scroll position
+      const originalScrollY = window.scrollY
+
+      // Prevent body scroll with multiple methods
       document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${originalScrollY}px`
+      document.body.style.width = '100%'
+
+      // Prevent touch scrolling on mobile
+      const preventTouchMove = (e: TouchEvent) => {
+        e.preventDefault()
+      }
+
+      document.addEventListener('touchmove', preventTouchMove, { passive: false })
+
       return () => {
+        // Restore body scroll
         document.body.style.overflow = ''
+        document.body.style.position = ''
+        document.body.style.top = ''
+        document.body.style.width = ''
+
+        // Restore scroll position
+        window.scrollTo(0, originalScrollY)
+
+        // Remove touch event listener
+        document.removeEventListener('touchmove', preventTouchMove)
       }
     }
   }, [isOpen])
@@ -48,15 +74,17 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
     const container = scrollContainerRef.current
 
     const handleWheel = (e: WheelEvent) => {
+      e.preventDefault() // Prevent default scroll behavior
+
       setScrollY((prevScrollY) => {
         let newScrollY = prevScrollY + e.deltaY * 0.8
 
-        // Normalize scroll position to create infinite loop
-        while (newScrollY >= totalHeight) {
-          newScrollY -= totalHeight
-        }
-        while (newScrollY < 0) {
-          newScrollY += totalHeight
+        // Improved normalization for smoother infinite loop
+        // Use modulo for more precise wrapping
+        if (newScrollY >= totalHeight) {
+          newScrollY = newScrollY % totalHeight
+        } else if (newScrollY < 0) {
+          newScrollY = totalHeight + (newScrollY % totalHeight)
         }
 
         return newScrollY
@@ -90,14 +118,45 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
       }
     }
 
-    container.addEventListener('wheel', handleWheel, { passive: true })
+    // Touch event handlers for mobile
+    const handleTouchStart = (e: TouchEvent) => {
+      setTouchStartY(e.touches[0].clientY)
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      e.preventDefault() // Prevent default scroll
+
+      const touchY = e.touches[0].clientY
+      const deltaY = touchStartY - touchY
+
+      setScrollY((prevScrollY) => {
+        let newScrollY = prevScrollY + deltaY * 0.5 // Slower scroll for touch
+
+        // Normalize scroll position
+        if (newScrollY >= totalHeight) {
+          newScrollY = newScrollY % totalHeight
+        } else if (newScrollY < 0) {
+          newScrollY = totalHeight + (newScrollY % totalHeight)
+        }
+
+        return newScrollY
+      })
+
+      setTouchStartY(touchY)
+    }
+
+    container.addEventListener('wheel', handleWheel, { passive: false })
+    container.addEventListener('touchstart', handleTouchStart, { passive: false })
+    container.addEventListener('touchmove', handleTouchMove, { passive: false })
     document.addEventListener('keydown', handleKeyDown)
 
     return () => {
       container.removeEventListener('wheel', handleWheel)
+      container.removeEventListener('touchstart', handleTouchStart)
+      container.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isOpen, totalHeight, onClose])
+  }, [isOpen, totalHeight, onClose, touchStartY])
 
   const handleLinkClick = (url: string) => {
     onNavigate(url)
@@ -165,7 +224,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="text-white hover:text-gray-300 transition-colors text-lg font-medium bg-transparent border-none cursor-pointer p-2 -m-2"
+                className="text-white hover:text-white transition-colors text-lg font-medium bg-transparent border-none cursor-pointer p-2 -m-2"
                 aria-label="Close menu"
               >
                 Close
@@ -179,9 +238,15 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                 transform: `translateY(-${scrollY}px)`,
               }}
             >
-              {/* Render multiple copies for seamless loop */}
-              {Array.from({ length: 3 }, (_, copyIndex) => (
-                <div key={copyIndex} className="flex flex-col">
+              {/* Render multiple copies for seamless loop - increased to 5 for better coverage */}
+              {Array.from({ length: 5 }, (_, copyIndex) => (
+                <div
+                  key={copyIndex}
+                  className="flex flex-col"
+                  style={{
+                    transform: `translateY(${(copyIndex - 2) * totalHeight}px)`, // Center copies around current position
+                  }}
+                >
                   {navItems.map((item, index) => (
                     <div
                       key={`${item.href}-${copyIndex}-${index}`}
@@ -212,7 +277,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
       {/* ESC instruction */}
       <div className="absolute inset-0 pointer-events-none z-20">
         <div
-          className={`absolute top-1/2 right-8 transform -translate-y-1/2 text-gray-500 text-sm transition-all duration-500 ease-out ${
+          className={`absolute top-1/2 right-8 transform -translate-y-1/2 text-white text-sm transition-all duration-500 ease-out ${
             isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
           }`}
           style={{
