@@ -27,7 +27,6 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
-  const [touchStartY, setTouchStartY] = useState(0)
 
   const itemHeight = 120 // Height per menu item
   const totalHeight = navItems.length * itemHeight
@@ -74,13 +73,16 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
     const container = scrollContainerRef.current
 
     const handleWheel = (e: WheelEvent) => {
-      e.preventDefault() // Prevent default scroll behavior
-
       setScrollY((prevScrollY) => {
-        let newScrollY = prevScrollY + e.deltaY * 0.5 // Slower, smoother scrolling
+        let newScrollY = prevScrollY + e.deltaY * 0.8
 
-        // Simple modulo-based wrapping for smoother transitions
-        newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
+        // Normalize scroll position to create infinite loop
+        while (newScrollY >= totalHeight) {
+          newScrollY -= totalHeight
+        }
+        while (newScrollY < 0) {
+          newScrollY += totalHeight
+        }
 
         return newScrollY
       })
@@ -97,57 +99,30 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         case 'ArrowUp':
           e.preventDefault()
           setScrollY((prevScrollY) => {
-            let newScrollY = prevScrollY - itemHeight
-            newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
+            let newScrollY = prevScrollY - 50
+            if (newScrollY < 0) newScrollY += totalHeight
             return newScrollY
           })
           break
         case 'ArrowDown':
           e.preventDefault()
           setScrollY((prevScrollY) => {
-            let newScrollY = prevScrollY + itemHeight
-            newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
+            let newScrollY = prevScrollY + 50
+            if (newScrollY >= totalHeight) newScrollY -= totalHeight
             return newScrollY
           })
           break
       }
     }
 
-    // Touch event handlers for mobile
-    const handleTouchStart = (e: TouchEvent) => {
-      setTouchStartY(e.touches[0].clientY)
-    }
-
-    const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault() // Prevent default scroll
-
-      const touchY = e.touches[0].clientY
-      const deltaY = touchStartY - touchY
-
-      setScrollY((prevScrollY) => {
-        let newScrollY = prevScrollY + deltaY * 0.3 // Slower scroll for touch
-
-        // Simple modulo-based wrapping
-        newScrollY = ((newScrollY % totalHeight) + totalHeight) % totalHeight
-
-        return newScrollY
-      })
-
-      setTouchStartY(touchY)
-    }
-
-    container.addEventListener('wheel', handleWheel, { passive: false })
-    container.addEventListener('touchstart', handleTouchStart, { passive: false })
-    container.addEventListener('touchmove', handleTouchMove, { passive: false })
+    container.addEventListener('wheel', handleWheel, { passive: true })
     document.addEventListener('keydown', handleKeyDown)
 
     return () => {
       container.removeEventListener('wheel', handleWheel)
-      container.removeEventListener('touchstart', handleTouchStart)
-      container.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isOpen, totalHeight, onClose, touchStartY])
+  }, [isOpen, totalHeight, onClose])
 
   const handleLinkClick = (url: string) => {
     onNavigate(url)
@@ -229,11 +204,15 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                 transform: `translateY(-${scrollY}px)`,
               }}
             >
-              {/* Render multiple copies for seamless loop */}
-              {Array.from({ length: 3 }, (_, copyIndex) => (
+              {/* Render multiple copies for seamless loop - 5 copies for better offscreen coverage */}
+              {Array.from({ length: 5 }, (_, copyIndex) => (
                 <div
                   key={copyIndex}
                   className="flex flex-col"
+                  style={{
+                    // Position copies to ensure seamless transitions
+                    transform: `translateY(${(copyIndex - 2) * totalHeight}px)`,
+                  }}
                 >
                   {navItems.map((item, index) => (
                     <div
