@@ -39,24 +39,37 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
 
     if (!container || !video || !leftOverlay || !rightOverlay) return
 
-    // Set initial state - video loads immediately, no opening animation
+    // Calculate page-wrapper constraints
+    const getPageConstraints = () => {
+      const viewportWidth = window.innerWidth
+      const isMobile = viewportWidth < 768 // 48rem breakpoint
+      const sideSpacing = isMobile ? 32 : 48 // Match page-wrapper spacing
+      return { viewportWidth, sideSpacing }
+    }
+
+    const { viewportWidth, sideSpacing } = getPageConstraints()
+
+    // Set initial state - video starts at page-wrapper width
     gsap.set(video, {
       scale: 1,
       transformOrigin: 'center center'
     })
 
-    // Set initial state for side overlays - start hidden (video full width)
+    // Set initial state for side overlays - start visible (page-wrapper width)
+    const initialOverlayWidth = sideSpacing
+    const initialScaleX = initialOverlayWidth / (viewportWidth / 2)
+
     gsap.set(leftOverlay, {
-      scaleX: 0, // Start with no overlay (full width video)
-      transformOrigin: 'left center' // Left overlay grows from left edge
+      scaleX: Math.min(initialScaleX, 1), // Start with overlays visible (page-wrapper width)
+      transformOrigin: 'left center'
     })
 
     gsap.set(rightOverlay, {
-      scaleX: 0, // Start with no overlay (full width video)
-      transformOrigin: 'right center' // Right overlay grows from right edge
+      scaleX: Math.min(initialScaleX, 1), // Start with overlays visible (page-wrapper width)
+      transformOrigin: 'right center'
     })
 
-    // Create scroll-triggered side-closing animation
+    // Create scroll-triggered expansion animation
     ScrollTrigger.create({
       trigger: container,
       start: 'top bottom', // Start when video enters viewport
@@ -66,23 +79,19 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
         // Calculate progress (0 to 1) as user scrolls toward center
         const progress = self.progress
 
-        // Calculate the target width based on page-wrapper constraints
-        // page-wrapper uses: padding-inline: calc(var(--spacing) * 4) on mobile (32px)
-        // page-wrapper uses: padding-inline: calc(var(--spacing) * 6) on desktop (48px)
-        const viewportWidth = window.innerWidth
-        const isMobile = viewportWidth < 768 // 48rem breakpoint
-        const sideSpacing = isMobile ? 32 : 48 // Match page-wrapper spacing
+        // Recalculate constraints in case of resize
+        const { viewportWidth: currentViewportWidth, sideSpacing: currentSideSpacing } = getPageConstraints()
 
-        // Calculate overlay width needed to create page-wrapper alignment
-        // At progress 0: no overlays (full width video)
-        // At progress 1: overlays create page-wrapper spacing on each side
-        const targetOverlayWidth = sideSpacing
-        const currentOverlayWidth = targetOverlayWidth * progress
-        const scaleX = currentOverlayWidth / (viewportWidth / 2)
+        // Calculate overlay scaling for expansion effect
+        // At progress 0: overlays visible (page-wrapper width)
+        // At progress 1: overlays hidden (full width video)
+        const targetOverlayWidth = currentSideSpacing
+        const currentOverlayWidth = targetOverlayWidth * (1 - progress) // Reverse the progress
+        const scaleX = currentOverlayWidth / (currentViewportWidth / 2)
 
         // Apply the scaling to both overlays
         gsap.set([leftOverlay, rightOverlay], {
-          scaleX: Math.min(scaleX, 1), // Cap at 1 to prevent over-scaling
+          scaleX: Math.max(0, Math.min(scaleX, 1)), // Ensure scale stays between 0 and 1
         })
       }
     })
@@ -94,7 +103,7 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
 
   return (
     <div ref={containerRef} className={`relative w-full almost-full-height overflow-hidden ${className}`}>
-      {/* Video Element - loads immediately with no animation */}
+      {/* Video Element - starts at page-wrapper width, expands to full width */}
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
@@ -111,21 +120,21 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
         }}
       />
 
-      {/* Left side overlay - grows from left edge inward */}
+      {/* Left side overlay - starts visible, shrinks to reveal full width */}
       <div
         ref={leftOverlayRef}
-        className="absolute top-0 left-0 w-1/2 h-full bg-gray-100 z-10"
+        className="absolute top-0 left-0 w-1/2 h-full bg-white z-10"
         style={{
-          transformOrigin: 'left center' // Grows from left edge inward
+          transformOrigin: 'left center' // Shrinks from left edge inward
         }}
       />
 
-      {/* Right side overlay - grows from right edge inward */}
+      {/* Right side overlay - starts visible, shrinks to reveal full width */}
       <div
         ref={rightOverlayRef}
-        className="absolute top-0 right-0 w-1/2 h-full bg-gray-100 z-10"
+        className="absolute top-0 right-0 w-1/2 h-full bg-white z-10"
         style={{
-          transformOrigin: 'right center' // Grows from right edge inward
+          transformOrigin: 'right center' // Shrinks from right edge inward
         }}
       />
     </div>
