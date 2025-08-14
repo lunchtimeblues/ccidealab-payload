@@ -190,7 +190,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="text-white hover:text-white transition-colors text-lg font-medium bg-transparent border-none cursor-pointer p-2 -m-2"
+                className="text-white hover:text-gray-300 transition-colors text-lg font-medium bg-transparent border-none cursor-pointer p-2 -m-2"
                 aria-label="Close menu"
               >
                 Close
@@ -204,16 +204,9 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                 transform: `translateY(-${scrollY}px)`,
               }}
             >
-              {/* Render multiple copies for seamless loop - 5 copies for better offscreen coverage */}
-              {Array.from({ length: 5 }, (_, copyIndex) => (
-                <div
-                  key={copyIndex}
-                  className="flex flex-col"
-                  style={{
-                    // Position copies to ensure seamless transitions
-                    transform: `translateY(${(copyIndex - 2) * totalHeight}px)`,
-                  }}
-                >
+              {/* Render multiple copies for seamless loop */}
+              {Array.from({ length: 4 }, (_, copyIndex) => (
+                <div key={copyIndex} className="flex flex-col">
                   {navItems.map((item, index) => (
                     <div
                       key={`${item.href}-${copyIndex}-${index}`}
