@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState, useCallback, useMemo, Children, cloneElement } from 'react'
+import React, { useEffect, useRef, useState, useCallback, Children, cloneElement } from 'react'
 
 interface CarouselProps {
   children: React.ReactNode
@@ -39,7 +39,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     xl: 'h-[32rem]', // 512px
   }
 
-  const gap = 32 // Gap between slides
+  const _gap = 32 // Gap between slides (used in CSS classes)
 
   // Convert children to array for easier handling
   const childrenArray = Children.toArray(children).filter((child) => React.isValidElement(child))

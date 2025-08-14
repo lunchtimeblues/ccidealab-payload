@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { usePremiumPageTransition } from '@/hooks/usePremiumPageTransition'
 import { AnimatedNav } from '@/components/AnimatedNav'
 import { FullScreenMenu } from '@/components/FullScreenMenu'
@@ -21,7 +21,7 @@ const navItems: NavItem[] = [
 ]
 
 export const NavigationWrapper = () => {
-  const router = useRouter()
+
   const pathname = usePathname()
   const { navigateWithTransition } = usePremiumPageTransition()
   const [isMenuOpen, setIsMenuOpen] = useState(false)

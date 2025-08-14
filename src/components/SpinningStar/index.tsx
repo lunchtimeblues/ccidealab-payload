@@ -21,14 +21,8 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
   const animationRef = useRef<gsap.core.Tween | null>(null)
   const currentTimeScaleRef = useRef(1)
 
-  // Try to get marquee speed context, fallback to prop speed or default
-  let marqueeSpeed
-  try {
-    marqueeSpeed = useMarqueeSpeed()
-  } catch {
-    // Not inside a marquee context
-    marqueeSpeed = null
-  }
+  // Always call the hook - it will return default values if not in context
+  const marqueeSpeed = useMarqueeSpeed()
 
   // Determine the actual speed to use
   const actualSpeed = speed !== undefined ? speed : (marqueeSpeed?.baseSpinSpeed ?? 2)

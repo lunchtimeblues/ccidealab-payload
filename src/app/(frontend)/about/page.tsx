@@ -1,4 +1,5 @@
 import { Container } from '@/components/Container'
+import { PremiumTransitionLink } from '@/components'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
@@ -127,94 +128,56 @@ export default function AboutPage() {
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <ScrollRevealText delay={400}>
                   <p>
-                    C/C IDEA LAB was born from a simple observation: in a world saturated with
-                    noise, only the most compelling ideas break through. We don&apos;t just create
-                    brands; we craft rallying points that inspire action, drive change, and build
-                    lasting connections.
-                  </p>
-                </ScrollRevealText>
-                <ScrollRevealText delay={600}>
-                  <p>
-                    Our approach combines strategic thinking with creative excellence, ensuring
-                    every brand we touch becomes a beacon for its community. We work with visionary
-                    leaders and innovative companies who understand that great design isn&apos;t
-                    just about looking good—it&apos;s about making a difference.
-                  </p>
-                </ScrollRevealText>
-                <ScrollRevealText delay={800}>
-                  <p>
-                    From startups disrupting industries to established companies reinventing
-                    themselves, we partner with organizations ready to stand for something bigger
-                    than themselves.
+                    Here inside Motto®, diversity is critical to extracting insanely strategic and
+                    creative outcomes. Every person on our team comes together to amplify our
+                    individual and collective talents, so you can experience high-functioning
+                    diversity at work, delivering massive value for your company.
                   </p>
                 </ScrollRevealText>
               </div>
             </div>
           </div>
         </Container>
-      </section>
 
-      {/* About Section with Carousel */}
-      <section className="bg-gray-100">
-        <div className="py-24 lg:py-40">
-          {/* Carousel - aligned to page-wrapper constraints with overflow */}
-          <div className="mb-16">
-            <Carousel size="lg">
-                <Image
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
-                  alt="Creative Vision - C/C IDEA LAB Studio"
-                  width={400}
-                  height={600}
-                  className="object-cover"
-                  priority
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center"
-                  alt="Digital Innovation - C/C IDEA LAB Tech"
-                  width={600}
-                  height={400}
-                  className="object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=500&fit=crop&crop=center"
-                  alt="Brand Strategy - C/C IDEA LAB Strategy"
-                  width={400}
-                  height={500}
-                  className="object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=400&fit=crop&crop=center"
-                  alt="Global Impact - C/C IDEA LAB Worldwide"
-                  width={500}
-                  height={400}
-                  className="object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=700&fit=crop&crop=center"
-                  alt="Future Forward - C/C IDEA LAB Tomorrow"
-                  width={400}
-                  height={700}
-                  className="object-cover"
-                />
-              </Carousel>
-          </div>
-
-          <Container size="xxl">
-            <div className="grid grid-cols-12 items-start pb-16">
-              {/* This empty spacer ensures the paragraph starts aligned at the 7th column on lg+ */}
-              <div className="hidden lg:block lg:col-span-6" />
-
-              {/* Paragraph column: full width on small, right half on large */}
-              <div className="col-span-12 lg:col-start-5 lg:col-span-8">
-                <ScrollRevealText>
-                  <p className="text-xl md:text-3xl lg:text-4xl font-medium leading-tight lg:leading-snug">
-                    CCIDEALAB® brings together a richly multicultural team with balanced
-                    perspectives and shared creativity.
-                  </p>
-                </ScrollRevealText>
-              </div>
-            </div>
-          </Container>
+        <div className="mt-16">
+          <Carousel size="lg">
+            <Image
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
+              alt="Creative Vision - C/C IDEA LAB Studio"
+              width={400}
+              height={600}
+              className="object-cover"
+              priority
+            />
+            <Image
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center"
+              alt="Digital Innovation - C/C IDEA LAB Tech"
+              width={600}
+              height={400}
+              className="object-cover"
+            />
+            <Image
+              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=500&fit=crop&crop=center"
+              alt="Brand Strategy - C/C IDEA LAB Strategy"
+              width={400}
+              height={500}
+              className="object-cover"
+            />
+            <Image
+              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=400&fit=crop&crop=center"
+              alt="Global Impact - C/C IDEA LAB Worldwide"
+              width={500}
+              height={400}
+              className="object-cover"
+            />
+            <Image
+              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=700&fit=crop&crop=center"
+              alt="Future Forward - C/C IDEA LAB Tomorrow"
+              width={400}
+              height={700}
+              className="object-cover"
+            />
+          </Carousel>
         </div>
       </section>
 
@@ -271,6 +234,77 @@ export default function AboutPage() {
                 future, and in turn, promote creativity and new ideas.
               </p>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Parallax Image Section */}
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        alt="Modern office workspace"
+        size="80vh"
+        overlay={true}
+        overlayOpacity={0.3}
+        parallaxSpeed={0.6}
+      >
+        {/* <Container className="text-center text-white">
+          <ScrollRevealText>
+            <h2 className="text-5xl md:text-7xl font-bold mb-6">
+              Ideas Worth
+              <br />
+              Rallying Around®
+            </h2>
+          </ScrollRevealText>
+          <ScrollRevealText delay={200}>
+            <p className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
+              We believe in the power of bold ideas that bring people together
+            </p>
+          </ScrollRevealText>
+        </Container> */}
+      </ParallaxImage>
+
+      {/* Join Us Section */}
+      <section className="relative bg-gray-100 overflow-hidden">
+        <Container size="xxl" className="relative z-10 py-24 lg:py-32">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <ScrollRevealText>
+                <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                  Turning bold vision
+                  <br />
+                  into brand impact.
+                </h2>
+              </ScrollRevealText>
+              <ScrollRevealText delay={200}>
+                <p className="text-lg text-gray-700 leading-relaxed mb-8 max-w-lg">
+                  Brand transformations fall short because they stop at the surface— logos,
+                  taglines, campaigns. We go deeper, aligning your business around an Idea Worth
+                  Rallying Around®. The result? A brand your people will champion and your audience
+                  will love.
+                </p>
+              </ScrollRevealText>
+              <ScrollRevealText delay={400}>
+                <PremiumTransitionLink
+                  url="/method"
+                  label="Learn the C/C method"
+                  appearance="inline"
+                  transitionType="logoWipe"
+                  className="text-black border-b border-black hover:border-gray-500 hover:text-gray-500 transition-colors"
+                />
+              </ScrollRevealText>
+            </div>
+
+            <ScrollRevealText delay={300}>
+              <div className="relative overflow-hidden rounded-lg aspect-[4/5]">
+                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center hover:from-gray-300 hover:to-gray-400 transition-all duration-700 ease-out">
+                  <div className="text-center">
+                    <p className="text-sm text-gray-500">Placeholder</p>
+                  </div>
+                </div>
+                {/* Optional subtle overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+              </div>
+            </ScrollRevealText>
           </div>
         </Container>
       </section>
