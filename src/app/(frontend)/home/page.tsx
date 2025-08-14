@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { AnimatedMarquee } from '@/components/AnimatedMarquee'
+import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 import { Container } from '@/components/Container'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
@@ -161,6 +162,23 @@ export default function HomePage(): React.JSX.Element {
           <span className="mx-8">BRANDING</span>
           <span className="mx-8">•</span>
         </AnimatedMarquee>
+      </section>
+
+      {/* Client Logos Marquee Section */}
+      <section className="py-12 bg-white border-y border-gray-200">
+        <Container size="full">
+          <div className="text-center mb-8">
+            <p className="text-sm uppercase tracking-wider text-gray-500 font-medium">
+              Trusted by Leading Brands
+            </p>
+          </div>
+          <ClientLogosMarquee
+            speed={80}
+            direction="left"
+            className="py-4"
+            logoClassName="min-w-[140px]"
+          />
+        </Container>
       </section>
 
       {/* Featured Work Section with Mouse Follower */}

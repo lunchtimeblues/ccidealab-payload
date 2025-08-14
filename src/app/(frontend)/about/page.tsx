@@ -8,6 +8,7 @@ import { Carousel } from '@/components/Carousel'
 import Image from 'next/image'
 
 // import { AnimatedMarquee } from '@/components/AnimatedMarquee'
+import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function AboutPage() {
   return (
@@ -42,7 +43,7 @@ export default function AboutPage() {
             {/* Content */}
             <Container size="xl">
               <div className="max-w-3xl mt-12 md:mt-18">
-                <p className="text-2xl md:text-3xl leading-snug text-gray-400">
+                <p className="text-2xl md:text-3xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
                   mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
                   mottos for clients to serve as their Idea Worth Rallying Around®.
@@ -235,6 +236,31 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Client Logos Marquee Section */}
+      <section className="py-16 bg-white">
+        <Container size="full">
+          <div className="text-center mb-12">
+            <ScrollRevealText>
+              <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
+                Trusted Partners
+              </h2>
+            </ScrollRevealText>
+            <ScrollRevealText delay={200}>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                We've had the privilege of working with amazing brands and organizations
+                to bring their ideas to life.
+              </p>
+            </ScrollRevealText>
+          </div>
+          <ClientLogosMarquee
+            speed={90}
+            direction="left"
+            className="py-6"
+            logoClassName="min-w-[160px]"
+          />
         </Container>
       </section>
 

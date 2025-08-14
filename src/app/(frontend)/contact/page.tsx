@@ -3,6 +3,7 @@ import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { AnimatedMarquee } from '@/components/AnimatedMarquee'
+import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ContactPage() {
   return (
@@ -331,6 +332,23 @@ export default function ContactPage() {
           <span className="mx-8">CONNECT</span>
           <span className="mx-8">•</span>
         </AnimatedMarquee>
+      </section>
+
+      {/* Client Logos Marquee Section */}
+      <section className="py-12 bg-gray-50">
+        <Container size="full">
+          <div className="text-center mb-8">
+            <p className="text-sm uppercase tracking-wider text-gray-500 font-medium">
+              Brands We've Worked With
+            </p>
+          </div>
+          <ClientLogosMarquee
+            speed={70}
+            direction="right"
+            className="py-4"
+            logoClassName="min-w-[140px]"
+          />
+        </Container>
       </section>
 
       {/* Final CTA Section */}

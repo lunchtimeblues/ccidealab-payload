@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import { Container } from '@/components/Container'
+import { ScrollMarquee } from '@/components/ScrollMarquee'
+import { SpinningStar } from '@/components/SpinningStar'
+import { ScrollVideo } from '@/components/ScrollVideo'
+import { ScrollRevealText } from '@/components/ScrollRevealText'
+import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 
 export default function ServicesPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -57,6 +62,143 @@ export default function ServicesPage() {
 
   return (
     <div className="bg-gray-100 text-black">
+      {/* Hero Section */}
+      <section className="relative min-h-screen bg-gray-100">
+        <div className="flex flex-col justify-between pt-28 pb-8 min-h-screen">
+          <div>
+            {/* Marquee */}
+            <ScrollMarquee
+              baseSpeed={0.8}
+              maxSpeedMultiplier={2}
+              starSpinSpeed={4}
+              lines="single"
+              direction="right"
+              lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
+            >
+              <span className="mx-8">OUR</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">SERVICES</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">OUR</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">SERVICES</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+            </ScrollMarquee>
+
+            {/* Content */}
+            <Container size="xl">
+              <div className="max-w-3xl mt-12 md:mt-18">
+                <p className="text-2xl md:text-3xl leading-snug text-black">
+                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
+                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
+                  mottos for clients to serve as their Idea Worth Rallying Around®.
+                </p>
+              </div>
+            </Container>
+          </div>
+
+          {/* Hero Footer */}
+          <Container size="xl">
+            <div className="flex justify-between items-end w-full py-6 text-sm">
+              <a href="#about" className="border-b border-black hover:opacity-70 transition">
+                Learn more about our company <span className="inline-block ml-1">↓</span>
+              </a>
+              <span className="text-black/60">(SCROLL)</span>
+            </div>
+          </Container>
+        </div>
+      </section>
+
+      {/* Scroll Video Section */}
+      <ScrollVideo
+        src="https://player.vimeo.com/progressive_redirect/playback/1107658120/rendition/1080p/file.mp4?loc=external&signature=5b4262eb299d2487592038466508758b4185bf8685deda59a21f735585a91e29"
+        autoPlay={true}
+        muted={true}
+        loop={true}
+        className="relative"
+      />
+
+      {/* Services Section */}
+      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+        <Container size="xxl">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
+            <div className="lg:col-span-4">
+              <ScrollRevealText>
+                <p className="text-lg font-medium text-gray-600 mb-8 lg:mb-0">Think big with us.</p>
+              </ScrollRevealText>
+            </div>
+            <div className="lg:col-span-8">
+              <ScrollRevealText delay={200}>
+                <h3 className="text-4xl lg:text-5xl font-bold text-black mb-8 leading-tight">
+                  Great brands are more than famous names, they&apos;re Ideas Worth Rallying
+                  Around®.
+                </h3>
+              </ScrollRevealText>
+              <ScrollRevealText delay={400}>
+                <div className="text-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
+                  <p>
+                    C/C IDEA LAB is a brand strategy and design firm that partners with tech and
+                    innovation companies to create impactful, future-ready brands. We collaborate
+                    with visionary teams and design-led companies who need their brand to stand out,
+                    matter more, drive growth, and amplify brand impact within modern culture.
+                  </p>
+                </div>
+              </ScrollRevealText>
+              <ScrollRevealText delay={600}>
+                <div className="text-sm font-medium text-gray-500 mb-8 lg:pr-16">
+                  (CHOOSE YOUR PURPOSE)
+                </div>
+              </ScrollRevealText>
+              <div className="space-y-4">
+                <ScrollRevealText delay={800}>
+                  <div>
+                    <PremiumTransitionLink
+                      url="/services"
+                      label="Explore our services →"
+                      appearance="inline"
+                      transitionType="logoWipe"
+                      transitionColor="#059669"
+                      className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                    />
+                  </div>
+                </ScrollRevealText>
+                <ScrollRevealText delay={900}>
+                  <div>
+                    <PremiumTransitionLink
+                      url="/work"
+                      label="See our case studies →"
+                      appearance="inline"
+                      transitionType="logoWipe"
+                      className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                    />
+                  </div>
+                </ScrollRevealText>
+                <ScrollRevealText delay={1000}>
+                  <div>
+                    <PremiumTransitionLink
+                      url="/methodology"
+                      label="Discover our methodology →"
+                      appearance="inline"
+                      transitionType="logoWipe"
+                      className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                    />
+                  </div>
+                </ScrollRevealText>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Services Sections */}
       {services.map((service, index) => {
         // Individual section fade: each section fades when the next section starts covering it
         // This creates individual fade effects, not one large fade across all sections
@@ -93,10 +235,10 @@ export default function ServicesPage() {
             />
 
             {/* Container moved inside to constrain content, not the fade effect */}
-            <Container size="xxl">
+            <Container size="lg">
               <div className="almost-full-height flex flex-col justify-center relative z-20">
                 <div>
-                  <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto">
+                  <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto max-w-none">
                     <div className="col-span-12 pb-10 flex justify-between items-start">
                       <h2 className="uppercase text-3xl sm:text-5xl font-bold">{service.title}</h2>
                       <span className="uppercase hidden sm:block text-5xl font-bold">
