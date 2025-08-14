@@ -3,7 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
-import { AnimatedMarquee } from '@/components/AnimatedMarquee'
+// import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 import { Container } from '@/components/Container'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
@@ -150,35 +150,14 @@ export default function HomePage(): React.JSX.Element {
         </Container>
       </section>
 
-      {/* Animated Marquee Section */}
-      <section className="py-16 bg-gray-100">
-        <AnimatedMarquee speed={40} className="text-6xl font-bold text-black">
-          <span className="mx-8">STRATEGY</span>
-          <span className="mx-8">•</span>
-          <span className="mx-8">DESIGN</span>
-          <span className="mx-8">•</span>
-          <span className="mx-8">INNOVATION</span>
-          <span className="mx-8">•</span>
-          <span className="mx-8">BRANDING</span>
-          <span className="mx-8">•</span>
-        </AnimatedMarquee>
-      </section>
-
       {/* Client Logos Marquee Section */}
-      <section className="py-12 bg-white border-y border-gray-200">
-        <Container size="full">
-          <div className="text-center mb-8">
-            <p className="text-sm uppercase tracking-wider text-gray-500 font-medium">
-              Trusted by Leading Brands
-            </p>
-          </div>
-          <ClientLogosMarquee
-            speed={80}
-            direction="left"
-            className="py-4"
-            logoClassName="min-w-[140px]"
-          />
-        </Container>
+      <section className="py-12 bg-grey-100">
+        <ClientLogosMarquee
+          speed={80}
+          direction="left"
+          className="py-4"
+          logoClassName="min-w-[140px]"
+        />
       </section>
 
       {/* Featured Work Section with Mouse Follower */}
@@ -190,7 +169,7 @@ export default function HomePage(): React.JSX.Element {
             </h2>
           </ScrollRevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
             <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">

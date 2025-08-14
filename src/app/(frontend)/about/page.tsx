@@ -7,9 +7,6 @@ import { ParallaxImage } from '@/components/ParallaxImage'
 import { Carousel } from '@/components/Carousel'
 import Image from 'next/image'
 
-// import { AnimatedMarquee } from '@/components/AnimatedMarquee'
-import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
-
 export default function AboutPage() {
   return (
     <div className="bg-gray-100 text-black">
@@ -41,7 +38,7 @@ export default function AboutPage() {
             </ScrollMarquee>
 
             {/* Content */}
-            <Container size="xl">
+            <Container size="xxl">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-2xl md:text-3xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
@@ -53,7 +50,7 @@ export default function AboutPage() {
           </div>
 
           {/* Hero Footer */}
-          <Container size="xl">
+          <Container size="xxl">
             <div className="flex justify-between items-end w-full py-6 text-sm">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
@@ -110,7 +107,7 @@ export default function AboutPage() {
 
       {/* Story Section */}
       <section className="py-12 lg:py-24 bg-grey-100">
-        <Container size="xl">
+        <Container size="xxl">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-4">
               <ScrollRevealText>
@@ -141,7 +138,7 @@ export default function AboutPage() {
         </Container>
 
         <div className="mt-16">
-          <Carousel size="lg">
+          <Carousel>
             <Image
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
               alt="Creative Vision - C/C IDEA LAB Studio"
@@ -183,7 +180,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-gray-100 py-20">
-        <Container size="xl">
+        <Container size="xxl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
             <div>
               <span className="block text-6xl font-bold text-black mb-4">01.</span>
@@ -236,31 +233,6 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-        </Container>
-      </section>
-
-      {/* Client Logos Marquee Section */}
-      <section className="py-16 bg-white">
-        <Container size="full">
-          <div className="text-center mb-12">
-            <ScrollRevealText>
-              <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
-                Trusted Partners
-              </h2>
-            </ScrollRevealText>
-            <ScrollRevealText delay={200}>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                We've had the privilege of working with amazing brands and organizations
-                to bring their ideas to life.
-              </p>
-            </ScrollRevealText>
-          </div>
-          <ClientLogosMarquee
-            speed={90}
-            direction="left"
-            className="py-6"
-            logoClassName="min-w-[160px]"
-          />
         </Container>
       </section>
 

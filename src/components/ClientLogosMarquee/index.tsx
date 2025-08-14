@@ -14,7 +14,7 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
   speed = 60,
   direction = 'left',
   className = '',
-  logoClassName = ''
+  logoClassName = '',
 }) => {
   // Client logos data
   const clientLogos = [
@@ -22,62 +22,62 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
       src: '/images/clients/210903 _Affinity-logo-layout1-grey.svg',
       alt: 'Affinity',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/CityColorLogo_Full_400x@2x (1).png',
       alt: 'City Color',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/Comm100_Full-Logo_Rev.svg',
       alt: 'Comm100',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/MarcoPolo_Proposed Logo.svg',
       alt: 'Marco Polo',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/MetrotownNotary_black.svg',
       alt: 'Metrotown Notary',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/fanta-logo-full.svg',
       alt: 'Fanta',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/nice-logo.svg',
       alt: 'Nice',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/pokebar.png',
       alt: 'Pokebar',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/uber-eats-logo.svg',
       alt: 'Uber Eats',
       width: 120,
-      height: 60
+      height: 60,
     },
     {
       src: '/images/clients/wi_logo_L.png',
       alt: 'WI Logo',
       width: 120,
-      height: 60
-    }
+      height: 60,
+    },
   ]
 
   return (
@@ -92,7 +92,7 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
             alt={logo.alt}
             width={logo.width}
             height={logo.height}
-            className="max-h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+            className="max-h-24 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
             style={{
               filter: 'brightness(0.8) contrast(1.2)',
             }}

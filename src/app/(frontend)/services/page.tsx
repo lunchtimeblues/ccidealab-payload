@@ -7,6 +7,7 @@ import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollVideo } from '@/components/ScrollVideo'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
+import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ServicesPage() {
   const [scrollY, setScrollY] = useState(0)
@@ -77,24 +78,24 @@ export default function ServicesPage() {
             >
               <span className="mx-8">OUR</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
+                <SpinningStar size={64} speed={4} className="text-current" />
               </span>
               <span className="mx-8">SERVICES</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
+                <SpinningStar size={64} speed={4} className="text-current" />
               </span>
               <span className="mx-8">OUR</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
+                <SpinningStar size={64} speed={4} className="text-current" />
               </span>
               <span className="mx-8">SERVICES</span>
               <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
+                <SpinningStar size={64} speed={4} className="text-current" />
               </span>
             </ScrollMarquee>
 
             {/* Content */}
-            <Container size="xl">
+            <Container size="xxl">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-2xl md:text-3xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
@@ -198,6 +199,16 @@ export default function ServicesPage() {
         </Container>
       </section>
 
+      {/* Client Logos Marquee Section */}
+      <section className="py-12 bg-grey-100">
+        <ClientLogosMarquee
+          speed={80}
+          direction="left"
+          className="py-4"
+          logoClassName="min-w-[140px]"
+        />
+      </section>
+
       {/* Services Sections */}
       {services.map((service, index) => {
         // Individual section fade: each section fades when the next section starts covering it
@@ -205,11 +216,15 @@ export default function ServicesPage() {
 
         const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800
 
+        // Calculate the offset where services sections actually start
+        // Account for hero section (~100vh) + scroll video (~100vh) + services intro (~50vh)
+        const servicesStartOffset = viewportHeight * 2.5 // Approximate offset to services sections
+
         // Calculate when this specific section should start fading
         // Each section starts fading when we scroll enough for the next section to begin covering it
-        const sectionTriggerPoint = index * viewportHeight * 0.8 // Sections are roughly 80vh apart in scroll
-        const fadeStartPoint = sectionTriggerPoint + viewportHeight * 0.3 // Start fade 30vh after trigger
-        const fadeEndPoint = fadeStartPoint + viewportHeight * 0.5 // Complete fade over 50vh of scroll
+        const sectionTriggerPoint = servicesStartOffset + (index * viewportHeight * 0.9) // Sections are roughly 90vh apart
+        const fadeStartPoint = sectionTriggerPoint + viewportHeight * 0.4 // Start fade 40vh after trigger
+        const fadeEndPoint = fadeStartPoint + viewportHeight * 0.6 // Complete fade over 60vh of scroll
 
         let fadeOpacity = 0
 
@@ -220,7 +235,7 @@ export default function ServicesPage() {
             1,
             (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint),
           )
-          fadeOpacity = fadeProgress * 0.5 // Max 50% black
+          fadeOpacity = fadeProgress * 0.6 // Max 60% black for better visibility
         }
 
         return (
