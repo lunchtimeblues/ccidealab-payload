@@ -1,13 +1,11 @@
 'use client'
 
-import React, { useEffect, useRef, useState, useCallback, Children, cloneElement } from 'react'
+import React, { useEffect, useRef, useState, useCallback, useMemo, Children, cloneElement } from 'react'
 
 interface CarouselProps {
   children: React.ReactNode
   className?: string
   size?: 'sm' | 'md' | 'lg' | 'xl'
-  autoPlay?: boolean
-  autoPlayInterval?: number
 }
 
 interface ImageProps {
@@ -24,8 +22,6 @@ export const Carousel: React.FC<CarouselProps> = ({
   children,
   className = '',
   size = 'md',
-  autoPlay = true,
-  autoPlayInterval = 5000
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
@@ -34,54 +30,102 @@ export const Carousel: React.FC<CarouselProps> = ({
   const followerRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const autoPlayRef = useRef<NodeJS.Timeout | null>(null)
-
-  // Convert children to array for easier handling
-  const childrenArray = Children.toArray(children).filter(child => React.isValidElement(child))
-  const totalSlides = childrenArray.length
 
   // Size configurations for carousel height
   const sizeConfig = {
-    sm: 'h-64',    // 256px
-    md: 'h-80',    // 320px
-    lg: 'h-96',    // 384px
-    xl: 'h-[32rem]' // 512px
+    sm: 'h-64', // 256px
+    md: 'h-80', // 320px
+    lg: 'h-96', // 384px
+    xl: 'h-[32rem]', // 512px
   }
 
-  const slideWidth = 400 // Fixed slide width
   const gap = 32 // Gap between slides
+
+  // Convert children to array for easier handling
+  const childrenArray = Children.toArray(children).filter((child) => React.isValidElement(child))
+  const totalSlides = childrenArray.length
+
+  // For simplicity, we'll let CSS handle the sizing automatically
+  // Each image will be height-constrained and width will adjust naturally
 
   // Simple navigation functions (keeping for potential future use)
   const _nextSlide = () => {
-    setCurrentIndex(prev => (prev + 1) % totalSlides)
+    setCurrentIndex((prev) => (prev + 1) % totalSlides)
   }
 
   const _prevSlide = () => {
-    setCurrentIndex(prev => prev === 0 ? totalSlides - 1 : prev - 1)
+    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1))
   }
+
+  // Calculate page-wrapper constraints
+  const getPageWrapperConstraints = useCallback(() => {
+    const viewportWidth = window.innerWidth
+    const isMobile = viewportWidth < 768 // 48rem breakpoint from page-wrapper
+    const sideSpacing = isMobile ? 32 : 48 // Match page-wrapper spacing
+
+    return {
+      leftEdge: sideSpacing,
+      rightEdge: viewportWidth - sideSpacing,
+      contentWidth: viewportWidth - (sideSpacing * 2)
+    }
+  }, [])
+
+  // Calculate positioning styles for page-wrapper alignment with overflow on both sides
+  const getCarouselStyles = useCallback(() => {
+    return {
+      // Full width container to allow overflow on both sides
+      marginLeft: '0',
+      width: '100vw',
+      // No padding - we'll handle positioning with transforms
+    }
+  }, [])
+
+  // Calculate maximum slides that can be shown
+  const getMaxIndex = useCallback(() => {
+    if (!carouselRef.current || !containerRef.current || totalSlides <= 1) return 0
+
+    const constraints = getPageWrapperConstraints()
+    const carouselContainer = carouselRef.current
+    const totalWidth = carouselContainer.scrollWidth
+
+    // If all content fits within the visible area, don't allow scrolling
+    if (totalWidth <= constraints.contentWidth) return 0
+
+    // Calculate the maximum translation needed so the rightmost content
+    // aligns with the right edge of the page-wrapper content area
+    const maxTranslateX = totalWidth - constraints.contentWidth
+
+    // Convert this to slide index using average slide width
+    const averageSlideWidth = 300 // Same as used in positioning
+    const maxIndex = Math.floor(maxTranslateX / averageSlideWidth)
+
+    return Math.min(maxIndex, totalSlides - 1)
+  }, [totalSlides, getPageWrapperConstraints])
 
   // Update carousel position when currentIndex changes
   useEffect(() => {
     if (carouselRef.current) {
-      const translateX = currentIndex * (slideWidth + gap)
-      carouselRef.current.style.transform = `translateX(-${translateX}px)`
-    }
-  }, [currentIndex])
+      const constraints = getPageWrapperConstraints()
+      const maxIndex = getMaxIndex()
+      const clampedIndex = Math.min(currentIndex, maxIndex)
 
-  // Auto-play functionality
-  useEffect(() => {
-    if (autoPlay && totalSlides > 1) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentIndex(prev => (prev + 1) % totalSlides)
-      }, autoPlayInterval)
-
-      return () => {
-        if (autoPlayRef.current) {
-          clearInterval(autoPlayRef.current)
-        }
+      // For the last slide, calculate exact position to align with right edge
+      if (clampedIndex === maxIndex && maxIndex > 0) {
+        const totalWidth = carouselRef.current.scrollWidth
+        const exactTranslateX = totalWidth - constraints.contentWidth
+        const finalTranslateX = constraints.leftEdge - exactTranslateX
+        carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
+      } else {
+        // Simple slide-based positioning for other slides
+        const averageSlideWidth = 300
+        const slideTranslateX = clampedIndex * averageSlideWidth
+        const finalTranslateX = constraints.leftEdge - slideTranslateX
+        carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
       }
     }
-  }, [autoPlay, autoPlayInterval, totalSlides])
+  }, [currentIndex, getMaxIndex, getPageWrapperConstraints])
+
+
 
   // Mouse follower functionality
   const updateFollowerPosition = () => {
@@ -101,10 +145,6 @@ export const Carousel: React.FC<CarouselProps> = ({
 
   // Mouse event handlers
   const handleMouseEnter = useCallback((e: MouseEvent) => {
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current)
-    }
-
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
 
@@ -112,7 +152,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 
     positionRef.current = {
       x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      y: e.clientY - rect.top,
     }
 
     const offset = 48
@@ -129,18 +169,12 @@ export const Carousel: React.FC<CarouselProps> = ({
   }, [])
 
   const handleMouseLeave = useCallback(() => {
-    if (autoPlay && totalSlides > 1) {
-      autoPlayRef.current = setInterval(() => {
-        setCurrentIndex(prev => (prev + 1) % totalSlides)
-      }, autoPlayInterval)
-    }
-
     setIsVisible(false)
 
     if (containerRef.current) {
       containerRef.current.style.cursor = 'auto'
     }
-  }, [autoPlay, totalSlides, autoPlayInterval])
+  }, [])
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const rect = containerRef.current?.getBoundingClientRect()
@@ -150,25 +184,29 @@ export const Carousel: React.FC<CarouselProps> = ({
 
     positionRef.current = {
       x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      y: e.clientY - rect.top,
     }
 
     setDirection(newDirection)
     updateFollowerPosition()
   }, [])
 
-  const handleClick = useCallback((e: MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (!rect) return
+  const handleClick = useCallback(
+    (e: MouseEvent) => {
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) return
 
-    const clickDirection = determineDirection(e, rect)
+      const clickDirection = determineDirection(e, rect)
+      const maxIndex = getMaxIndex()
 
-    if (clickDirection === 'left') {
-      setCurrentIndex(prev => prev === 0 ? totalSlides - 1 : prev - 1)
-    } else {
-      setCurrentIndex(prev => (prev + 1) % totalSlides)
-    }
-  }, [totalSlides])
+      if (clickDirection === 'left') {
+        setCurrentIndex((prev) => Math.max(0, prev - 1))
+      } else {
+        setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
+      }
+    },
+    [getMaxIndex],
+  )
 
   useEffect(() => {
     const container = containerRef.current
@@ -187,31 +225,55 @@ export const Carousel: React.FC<CarouselProps> = ({
     }
   }, [handleMouseEnter, handleMouseLeave, handleMouseMove, handleClick])
 
+  // Handle window resize to recalculate boundaries and positioning
+  useEffect(() => {
+    const handleResize = () => {
+      // Clamp current index to new boundaries
+      const maxIndex = getMaxIndex()
+      setCurrentIndex((prev) => Math.min(prev, maxIndex))
+
+      // Force re-render to update positioning styles
+      if (containerRef.current) {
+        const styles = getCarouselStyles()
+        const carouselContainer = containerRef.current.querySelector('.overflow-hidden') as HTMLElement
+        if (carouselContainer) {
+          carouselContainer.style.marginLeft = styles.marginLeft
+          carouselContainer.style.width = styles.width
+        }
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [getMaxIndex, getCarouselStyles])
+
   return (
-    <div 
-      ref={containerRef}
-      className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}
-    >
-      {/* Carousel Container - extends off page to the right */}
-      <div className={`overflow-hidden ${sizeConfig[size]}`}>
+    <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
+      {/* Carousel Container - aligned to page-wrapper constraints */}
+      <div
+        className={`overflow-hidden ${sizeConfig[size]}`}
+        style={getCarouselStyles()}
+      >
         <div
           ref={carouselRef}
-          className="flex gap-8 transition-transform duration-500 ease-out h-full"
-          style={{ width: `${totalSlides * slideWidth + (totalSlides - 1) * gap}px` }}
+          className="flex gap-8 transition-transform duration-500 ease-out h-full items-center"
         >
           {childrenArray.map((child, index) => (
             <div
               key={index}
-              className={`flex-shrink-0 ${sizeConfig[size]} overflow-hidden rounded-lg`}
-              style={{ width: `${slideWidth}px` }}
+              className="flex-shrink-0 h-full flex items-center justify-center"
             >
-              {React.isValidElement(child) && (child.type === 'img' || (child.type as React.ComponentType)?.displayName === 'Image') ? (
+              {React.isValidElement(child) ? (
                 cloneElement(child as ReactElementWithProps, {
-                  className: `w-full h-full object-cover ${(child as ReactElementWithProps).props.className || ''}`,
-                  style: { ...(child as ReactElementWithProps).props.style }
+                  className: `h-full w-auto object-contain rounded-lg ${(child as ReactElementWithProps).props.className || ''}`,
+                  style: {
+                    maxHeight: '100%',
+                    width: 'auto',
+                    ...(child as ReactElementWithProps).props.style
+                  },
                 })
               ) : (
-                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                <div className="h-full aspect-square bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-lg">
                   <span className="text-gray-500">Invalid content</span>
                 </div>
               )}
@@ -225,7 +287,7 @@ export const Carousel: React.FC<CarouselProps> = ({
         ref={followerRef}
         className="absolute top-0 left-0 pointer-events-none z-50"
         style={{
-          transform: `translate(-48px, -48px)` // Initial position off-screen
+          transform: `translate(-48px, -48px)`, // Initial position off-screen
         }}
       >
         <div
@@ -234,22 +296,13 @@ export const Carousel: React.FC<CarouselProps> = ({
             rounded-full flex items-center justify-center
             shadow-lg relative overflow-hidden
             transition-all duration-300 ease-out
-            ${isVisible 
-              ? 'opacity-100 scale-100' 
-              : 'opacity-0 scale-75'
-            }
+            ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
           `}
         >
           {/* Direction indicator */}
           <div className="flex items-center justify-center">
             {direction === 'left' ? (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="text-black"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-black">
                 <path
                   d="M19 12H5M5 12L12 19M5 12L12 5"
                   stroke="currentColor"
@@ -259,13 +312,7 @@ export const Carousel: React.FC<CarouselProps> = ({
                 />
               </svg>
             ) : (
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                className="text-black"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-black">
                 <path
                   d="M5 12H19M19 12L12 5M19 12L12 19"
                   stroke="currentColor"

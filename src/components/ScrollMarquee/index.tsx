@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, createContext, useContext } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -9,14 +9,26 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
+// Context for sharing base spin speed with child components
+const MarqueeSpeedContext = createContext<{
+  baseSpinSpeed: number
+}>({
+  baseSpinSpeed: 2,
+})
+
+export const useMarqueeSpeed = () => useContext(MarqueeSpeedContext)
+
 interface ScrollMarqueeProps {
   children: React.ReactNode
-  baseSpeed?: number
+  baseSpeed?: number // Base animation speed (higher = faster, 50 = medium, 100 = fast)
   maxSpeedMultiplier?: number
   className?: string
   lineClassName?: string
   sensitivity?: number
   smoothing?: number
+  starSpinSpeed?: number // Speed for spinning stars in seconds per rotation
+  lines?: 'single' | 'dual' // Choose between single line or dual opposing lines
+  direction?: 'left' | 'right' // Direction for single line mode
 }
 
 export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
@@ -27,6 +39,9 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
   lineClassName = '',
   sensitivity = 50,
   smoothing = 0.92,
+  starSpinSpeed = 2,
+  lines = 'dual',
+  direction = 'left',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const line1Ref = useRef<HTMLDivElement>(null)
@@ -44,16 +59,40 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
     // Copy the ref value to a local variable for use in cleanup
     const animations = animationsRef.current
 
-    if (!container || !line1 || !line2) return
+    if (!container || !line1) return
+    if (lines === 'dual' && !line2) return
+
+    // Kill any existing animations first
+    if (animations.line1) {
+      animations.line1.kill()
+      animations.line1 = null
+    }
+    if (animations.line2) {
+      animations.line2.kill()
+      animations.line2 = null
+    }
 
     // Create continuous marquee effect using the classic approach
     const createAnimation = (element: HTMLElement, direction: 'left' | 'right') => {
+      // Get the element width to normalize speed
+      const elementWidth = element.offsetWidth
+
+      // Calculate duration based on content width for consistent visual speed
+      // We want consistent pixels per second across all marquees
+      // Formula: duration = (elementWidth / 2) / (baseSpeed * 10)
+      // This makes baseSpeed represent "pixels per 10ms" roughly
+      const pixelsToMove = elementWidth / 2 // We move 50% of the width
+      const pixelsPerSecond = baseSpeed * 100 // baseSpeed 5 = 500px/s, baseSpeed 1 = 100px/s
+      const duration = pixelsToMove / pixelsPerSecond
+
+
+
       if (direction === 'left') {
         // Move left: start at 0%, move to -50% (half width since content is duplicated)
         gsap.set(element, { xPercent: 0 })
         return gsap.to(element, {
           xPercent: -50,
-          duration: baseSpeed,
+          duration: duration,
           ease: 'none',
           repeat: -1,
           repeatDelay: 0,
@@ -63,7 +102,7 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
         gsap.set(element, { xPercent: -50 })
         return gsap.to(element, {
           xPercent: 0,
-          duration: baseSpeed,
+          duration: duration,
           ease: 'none',
           repeat: -1,
           repeatDelay: 0,
@@ -73,9 +112,17 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
 
     // Initialize animations with a small delay to ensure DOM is ready
     const initAnimations = () => {
-      if (line1 && line2) {
-        animationsRef.current.line1 = createAnimation(line1, 'left')
-        animationsRef.current.line2 = createAnimation(line2, 'right')
+      if (lines === 'single') {
+        // Single line mode - only animate line1
+        if (line1) {
+          animationsRef.current.line1 = createAnimation(line1, direction)
+        }
+      } else {
+        // Dual line mode - animate both lines in opposite directions
+        if (line1 && line2) {
+          animationsRef.current.line1 = createAnimation(line1, 'left')
+          animationsRef.current.line2 = createAnimation(line2, 'right')
+        }
       }
     }
 
@@ -108,6 +155,8 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
         velocityHistory.reduce((sum, v) => sum + v, 0) / velocityHistory.length
       scrollVelocityRef.current = smoothedVelocity
 
+
+
       lastScrollY = currentScrollY
       lastTime = currentTime
     }
@@ -118,6 +167,9 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
       // More responsive speed calculation using the sensitivity prop
       const speedMultiplier = Math.min(1 + velocity * sensitivity, maxSpeedMultiplier)
 
+
+
+      // Update marquee animations
       if (animationsRef.current.line1) {
         gsap.to(animationsRef.current.line1, {
           timeScale: speedMultiplier,
@@ -125,11 +177,23 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
           ease: 'power2.out',
         })
       }
-      if (animationsRef.current.line2) {
+      if (lines === 'dual' && animationsRef.current.line2) {
         gsap.to(animationsRef.current.line2, {
           timeScale: speedMultiplier,
           duration: 0.3,
           ease: 'power2.out',
+        })
+      }
+
+      // Update spinning stars
+      if (container) {
+        const stars = container.querySelectorAll('svg')
+        stars.forEach((star) => {
+          // @ts-expect-error - Custom property added by SpinningStar component
+          if (star._updateSpeed) {
+            // @ts-expect-error - Custom property added by SpinningStar component
+            star._updateSpeed(speedMultiplier)
+          }
         })
       }
     }
@@ -140,6 +204,7 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
       start: 'top bottom',
       end: 'bottom top',
       onUpdate: () => {
+
         updateScrollVelocity()
         updateAnimationSpeeds()
       },
@@ -158,10 +223,15 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
       if (animations.line2) {
         animations.line2.kill()
       }
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+      // Only kill ScrollTriggers that belong to this container
+      ScrollTrigger.getAll().forEach((trigger) => {
+        if (trigger.trigger === container) {
+          trigger.kill()
+        }
+      })
       clearInterval(decayInterval)
     }
-  }, [baseSpeed, maxSpeedMultiplier, sensitivity, smoothing])
+  }, [baseSpeed, maxSpeedMultiplier, sensitivity, smoothing, starSpinSpeed, lines, direction])
 
   // Create the marquee content element
   const MarqueeContent = () => (
@@ -173,26 +243,30 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
   )
 
   return (
-    <div ref={containerRef} className={`overflow-hidden ${className}`}>
-      {/* Line 1 - Moving Left */}
-      <div className="relative overflow-hidden">
-        <div
-          ref={line1Ref}
-          className={`inline-flex whitespace-nowrap will-change-transform ${lineClassName}`}
-        >
-          <MarqueeContent />
+    <MarqueeSpeedContext.Provider value={{ baseSpinSpeed: starSpinSpeed }}>
+      <div ref={containerRef} className={`overflow-hidden ${className}`}>
+        {/* Line 1 - Always present */}
+        <div className="relative overflow-hidden">
+          <div
+            ref={line1Ref}
+            className={`inline-flex whitespace-nowrap will-change-transform ${lineClassName}`}
+          >
+            <MarqueeContent />
+          </div>
         </div>
-      </div>
 
-      {/* Line 2 - Moving Right */}
-      <div className="relative overflow-hidden">
-        <div
-          ref={line2Ref}
-          className={`inline-flex whitespace-nowrap will-change-transform ${lineClassName}`}
-        >
-          <MarqueeContent />
-        </div>
+        {/* Line 2 - Only in dual mode */}
+        {lines === 'dual' && (
+          <div className="relative overflow-hidden">
+            <div
+              ref={line2Ref}
+              className={`inline-flex whitespace-nowrap will-change-transform ${lineClassName}`}
+            >
+              <MarqueeContent />
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </MarqueeSpeedContext.Provider>
   )
 }

@@ -6,6 +6,7 @@ import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 import { Container } from '@/components/Container'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
+import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollVideo } from '@/components/ScrollVideo'
 import { MouseFollower } from '@/components/MouseFollower'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
@@ -149,7 +150,7 @@ export default function HomePage(): React.JSX.Element {
       </section>
 
       {/* Animated Marquee Section */}
-      <section className="py-16 bg-gray-100 border-y border-gray-200">
+      <section className="py-16 bg-gray-100">
         <AnimatedMarquee speed={40} className="text-6xl font-bold text-black">
           <span className="mx-8">STRATEGY</span>
           <span className="mx-8">•</span>
@@ -172,7 +173,6 @@ export default function HomePage(): React.JSX.Element {
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Project 1 */}
             <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -185,7 +185,6 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            {/* Project 2 */}
             <MouseFollower text="EXPLORE WORK">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -198,7 +197,6 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            {/* Project 3 */}
             <MouseFollower text="SEE DETAILS">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -211,7 +209,6 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            {/* Project 4 */}
             <MouseFollower text="DISCOVER MORE">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -224,7 +221,6 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            {/* Project 5 */}
             <MouseFollower text="LEARN MORE">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -237,7 +233,6 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            {/* Project 6 */}
             <MouseFollower text="VIEW CASE STUDY">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -255,27 +250,30 @@ export default function HomePage(): React.JSX.Element {
 
       {/* Method Section */}
       <section className="relative bg-gray-100 overflow-hidden">
-        {/* Background Marquee */}
         <div className="absolute inset-0 z-0">
           <ScrollMarquee
-            baseSpeed={80}
-            maxSpeedMultiplier={4}
-            className="opacity-10"
-            lineClassName="text-[8vw] font-bold uppercase tracking-tight leading-none"
+            baseSpeed={0.8}
+            maxSpeedMultiplier={2}
+            starSpinSpeed={4}
+            lineClassName="text-[8vw] font-light uppercase tracking-tight leading-none"
           >
             <span className="mx-8">METHOD</span>
-            <span className="mx-8">✱</span>
+            <span className="mx-8 flex items-center">
+              <SpinningStar size={64} className="text-current" />
+            </span>
             <span className="mx-8">METHOD</span>
-            <span className="mx-8">✱</span>
+            <span className="mx-8 flex items-center">
+              <SpinningStar size={64} className="text-current" />
+            </span>
             <span className="mx-8">METHOD</span>
-            <span className="mx-8">✱</span>
+            <span className="mx-8 flex items-center">
+              <SpinningStar size={64} className="text-current" />
+            </span>
           </ScrollMarquee>
         </div>
 
-        {/* Content */}
         <Container size="xxl" className="relative z-10 py-24 lg:py-40">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Column */}
             <div>
               <ScrollRevealText>
                 <h2 className="text-4xl md:text-5xl font-bold mb-8">
@@ -303,7 +301,6 @@ export default function HomePage(): React.JSX.Element {
               </ScrollRevealText>
             </div>
 
-            {/* Right Column — Single Large Image */}
             <ScrollRevealText delay={300}>
               <div className="relative overflow-hidden rounded-lg aspect-[4/5]">
                 <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center hover:from-gray-300 hover:to-gray-400 transition-all duration-700 ease-out">
@@ -322,48 +319,39 @@ export default function HomePage(): React.JSX.Element {
       {/* About Section with Carousel */}
       <section className="bg-gray-100">
         <div className="py-24 lg:py-40">
-          {/* Carousel - starts at page-wrapper alignment but extends off page */}
+          {/* Carousel - aligned to page-wrapper constraints with overflow */}
           <div className="mb-16">
-            <div className="page-wrapper">
-              <Carousel size="lg" autoPlay={true} autoPlayInterval={2000}>
-                <Image
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
-                  alt="Creative Vision - C/C IDEA LAB Studio"
-                  width={400}
-                  height={600}
-                  className="object-cover"
-                  priority
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center"
-                  alt="Digital Innovation - C/C IDEA LAB Tech"
-                  width={600}
-                  height={400}
-                  className="object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=500&fit=crop&crop=center"
-                  alt="Brand Strategy - C/C IDEA LAB Strategy"
-                  width={400}
-                  height={500}
-                  className="object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=400&fit=crop&crop=center"
-                  alt="Global Impact - C/C IDEA LAB Worldwide"
-                  width={500}
-                  height={400}
-                  className="object-cover"
-                />
-                <Image
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=700&fit=crop&crop=center"
-                  alt="Future Forward - C/C IDEA LAB Tomorrow"
-                  width={400}
-                  height={700}
-                  className="object-cover"
-                />
-              </Carousel>
-            </div>
+            <Carousel size="lg">
+              <Image
+                src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
+                alt="Creative Vision - C/C IDEA LAB Studio"
+                width={400}
+                height={600}
+                className="object-cover"
+                priority
+              />
+              <Image
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center"
+                alt="Digital Innovation - C/C IDEA LAB Tech"
+                width={600}
+                height={400}
+                className="object-cover"
+              />
+              <Image
+                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=600&fit=crop&crop=center"
+                alt="Urban Aesthetics"
+                width={400}
+                height={600}
+                className="object-cover"
+              />
+              <Image
+                src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=600&h=400&fit=crop&crop=center"
+                alt="Coastal Horizon"
+                width={600}
+                height={400}
+                className="object-cover"
+              />
+            </Carousel>
           </div>
 
           <Container size="xxl">

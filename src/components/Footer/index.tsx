@@ -104,14 +104,10 @@ export const Footer = () => {
           <Image
             src="/images/cc-logo-white-minimal.svg"
             alt="C/C IDEA LAB Logo"
-            width={80}
-            height={32}
-            className="h-8 w-auto"
+            width={125}
+            height={40}
+            className="h-32 w-auto"
           />
-          <h1 className="text-4xl font-bold">
-            C/C IDEA LAB
-            <sup className="text-xs align-super">®</sup>
-          </h1>
         </div>
 
         {/* Email Signup */}

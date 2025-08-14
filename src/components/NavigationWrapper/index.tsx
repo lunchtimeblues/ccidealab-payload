@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, useRef } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import { usePremiumPageTransition } from '@/hooks/usePremiumPageTransition'
 import { AnimatedNav } from '@/components/AnimatedNav'
 import { FullScreenMenu } from '@/components/FullScreenMenu'
 
@@ -21,27 +22,75 @@ const navItems: NavItem[] = [
 
 export const NavigationWrapper = () => {
   const router = useRouter()
+  const pathname = usePathname()
+  const { navigateWithTransition } = usePremiumPageTransition()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isNavigating, setIsNavigating] = useState(false)
+  const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const previousPathnameRef = useRef(pathname)
   const exitAnimationTime = 700 // ms — match your CSS transition
+
+  // Listen for pathname changes to detect when navigation is complete
+  useEffect(() => {
+    // If pathname changed and we're navigating, the page has loaded
+    if (isNavigating && pathname !== previousPathnameRef.current) {
+      console.log('📄 Page loaded, pathname changed to:', pathname)
+
+      // Clear any existing timeout
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current)
+        navigationTimeoutRef.current = null
+      }
+
+      // Close menu after page load
+      console.log('🎯 Closing menu after page load')
+      setIsMenuOpen(false)
+      setIsNavigating(false)
+    }
+
+    // Update the previous pathname reference
+    previousPathnameRef.current = pathname
+  }, [pathname, isNavigating])
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current)
+      }
+    }
+  }, [])
 
   const navigateWithMenuTransition = (url: string) => {
     console.log('🔗 Navigating to:', url)
 
+    // Don't navigate if we're already on this page
+    if (pathname === url) {
+      console.log('🚫 Already on this page, just closing menu')
+      setIsMenuOpen(false)
+      return
+    }
+
+    // Find the nav item to get its transition color
+    const navItem = navItems.find(item => item.href === url)
+    const transitionColor = navItem?.transitionColor || '#000'
+
     // Trigger exit animation
     setIsNavigating(true)
 
-    // Wait for animation to complete, then navigate
+    // Wait for animation to complete, then start logo wipe transition
     setTimeout(() => {
-      console.log('⏰ Animation complete, starting navigation')
-      router.push(url)
+      console.log('⏰ Animation complete, starting logo wipe navigation')
 
-      // Wait longer for page to actually load before closing menu
-      setTimeout(() => {
-        console.log('📄 Page should be loaded, closing menu')
+      // Use the premium transition with the item's color
+      navigateWithTransition(url, 'logoWipe', transitionColor)
+
+      // Set a fallback timeout in case pathname change detection fails
+      navigationTimeoutRef.current = setTimeout(() => {
+        console.log('⚠️ Fallback timeout reached, closing menu')
         setIsMenuOpen(false)
         setIsNavigating(false)
-      }, 1500) // Additional delay for page load
+      }, 3000) // 3 second fallback
     }, exitAnimationTime)
   }
 
@@ -58,7 +107,6 @@ export const NavigationWrapper = () => {
       <AnimatedNav
         isMenuOpen={isMenuOpen}
         onToggleMenu={toggleMenu}
-        onNavigate={navigateWithMenuTransition}
         navItems={navItems}
       />
 
