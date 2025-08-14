@@ -26,6 +26,7 @@ export const Carousel: React.FC<CarouselProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right'>('right')
+  const [isMounted, setIsMounted] = useState(false)
   const positionRef = useRef({ x: 0, y: 0 })
   const followerRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
@@ -48,6 +49,11 @@ export const Carousel: React.FC<CarouselProps> = ({
   // For simplicity, we'll let CSS handle the sizing automatically
   // Each image will be height-constrained and width will adjust naturally
 
+  // Set mounted state on client
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
   // Simple navigation functions (keeping for potential future use)
   const _nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % totalSlides)
@@ -59,6 +65,15 @@ export const Carousel: React.FC<CarouselProps> = ({
 
   // Calculate page-wrapper constraints
   const getPageWrapperConstraints = useCallback(() => {
+    if (typeof window === 'undefined') {
+      // Return default values for SSR
+      return {
+        leftEdge: 48,
+        rightEdge: 1200,
+        contentWidth: 1104
+      }
+    }
+
     const viewportWidth = window.innerWidth
     const isMobile = viewportWidth < 768 // 48rem breakpoint from page-wrapper
     const sideSpacing = isMobile ? 32 : 48 // Match page-wrapper spacing

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Image from 'next/image'
@@ -35,8 +35,15 @@ export const ParallaxImage: React.FC<ParallaxImageProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const imageRef = useRef<HTMLDivElement>(null)
+  const [isMounted, setIsMounted] = useState(false)
+
+  // Set mounted state on client
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
+    if (!isMounted) return // Don't run on server
     const container = containerRef.current
     const image = imageRef.current
 
@@ -70,7 +77,7 @@ export const ParallaxImage: React.FC<ParallaxImageProps> = ({
       parallaxTween.kill()
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
-  }, [parallaxSpeed])
+  }, [parallaxSpeed, isMounted])
 
   const heightClass = size === 'full' ? 'h-screen' : 'h-[80vh]'
 

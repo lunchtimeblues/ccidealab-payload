@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, createContext, useContext } from 'react'
+import { useEffect, useRef, createContext, useContext, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -47,12 +47,20 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
   const line1Ref = useRef<HTMLDivElement>(null)
   const line2Ref = useRef<HTMLDivElement>(null)
   const scrollVelocityRef = useRef(0)
+  const [isMounted, setIsMounted] = useState(false)
   const animationsRef = useRef<{ line1: gsap.core.Tween | null; line2: gsap.core.Tween | null }>({
     line1: null,
     line2: null,
   })
 
+  // Set mounted state on client
   useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isMounted) return // Don't run on server
+
     const container = containerRef.current
     const line1 = line1Ref.current
     const line2 = line2Ref.current
@@ -130,12 +138,14 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
     requestAnimationFrame(initAnimations)
 
     // Enhanced scroll velocity tracking
-    let lastScrollY = window.scrollY
+    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0
     let lastTime = Date.now()
     const velocityHistory: number[] = []
     const maxHistoryLength = 5
 
     const updateScrollVelocity = () => {
+      if (typeof window === 'undefined') return
+
       const currentScrollY = window.scrollY
       const currentTime = Date.now()
       const deltaY = Math.abs(currentScrollY - lastScrollY)
@@ -231,7 +241,7 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
       })
       clearInterval(decayInterval)
     }
-  }, [baseSpeed, maxSpeedMultiplier, sensitivity, smoothing, starSpinSpeed, lines, direction])
+  }, [baseSpeed, maxSpeedMultiplier, sensitivity, smoothing, starSpinSpeed, lines, direction, isMounted])
 
   // Create the marquee content element
   const MarqueeContent = () => (
