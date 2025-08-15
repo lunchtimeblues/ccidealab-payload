@@ -42,12 +42,13 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       return
     }
 
-    // Detect which marquee line this star is on by checking parent elements
+    // Detect which marquee line this star is on and the marquee direction
     let rotationDirection = -360 // Default: counter-clockwise
     let currentElement = star.parentElement
     let lineIndex = 0
+    let marqueeDirection = 'left' // Default direction
 
-    // Walk up the DOM to find which marquee line we're in
+    // Walk up the DOM to find which marquee line we're in and get direction
     while (currentElement) {
       if (currentElement.parentElement?.classList.contains('relative') &&
           currentElement.parentElement?.classList.contains('overflow-hidden')) {
@@ -58,15 +59,30 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
             child.classList.contains('relative') && child.classList.contains('overflow-hidden')
           )
           lineIndex = lines.indexOf(currentElement.parentElement)
+
+          // Try to detect marquee direction from data attribute or context
+          // Look for direction indicators in parent elements
+          let directionElement = marqueeContainer
+          while (directionElement) {
+            if (directionElement.dataset?.direction) {
+              marqueeDirection = directionElement.dataset.direction
+              break
+            }
+            directionElement = directionElement.parentElement
+          }
         }
         break
       }
       currentElement = currentElement.parentElement
     }
 
-    // For dual line marquees: line 0 (first) spins counter-clockwise, line 1 (second) spins clockwise
-    if (lineIndex === 1) {
-      rotationDirection = 360 // Clockwise for second line
+    // Determine rotation direction based on marquee direction and line
+    if (lineIndex === 0) {
+      // First line (or single line): match marquee direction
+      rotationDirection = marqueeDirection === 'right' ? 360 : -360
+    } else {
+      // Second line in dual marquee: opposite direction for visual contrast
+      rotationDirection = marqueeDirection === 'right' ? -360 : 360
     }
 
     // Create continuous rotation animation
@@ -95,11 +111,8 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
 
     currentTimeScaleRef.current = speedMultiplier
 
-    gsap.to(animationRef.current, {
-      timeScale: speedMultiplier,
-      duration: 0.3,
-      ease: 'power2.out',
-    })
+    // Use immediate timeScale update instead of tweening to avoid conflicts
+    animationRef.current.timeScale(speedMultiplier)
   }, [syncWithMarquee, actualSpeed])
 
   // Store the update function on the element for parent access

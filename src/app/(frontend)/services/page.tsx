@@ -84,14 +84,6 @@ export default function ServicesPage() {
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">OUR</span>
-              <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
-              </span>
-              <span className="mx-8">SERVICES</span>
-              <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
-              </span>
             </ScrollMarquee>
 
             {/* Content */}

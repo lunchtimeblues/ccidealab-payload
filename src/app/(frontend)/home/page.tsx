@@ -170,7 +170,7 @@ export default function HomePage(): React.JSX.Element {
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
@@ -182,7 +182,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="EXPLORE WORK">
+            <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
@@ -194,7 +194,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="SEE DETAILS">
+            <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
@@ -206,7 +206,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="DISCOVER MORE">
+            <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
@@ -218,7 +218,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="LEARN MORE">
+            <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
@@ -230,7 +230,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW CASE STUDY">
+            <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>

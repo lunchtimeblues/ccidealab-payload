@@ -254,7 +254,7 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
 
   return (
     <MarqueeSpeedContext.Provider value={{ baseSpinSpeed: starSpinSpeed }}>
-      <div ref={containerRef} className={`overflow-hidden ${className}`}>
+      <div ref={containerRef} className={`overflow-hidden ${className}`} data-direction={direction}>
         {/* Line 1 - Always present */}
         <div className="relative overflow-hidden">
           <div
