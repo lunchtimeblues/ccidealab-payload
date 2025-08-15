@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useCallback } from 'react'
 import { gsap } from 'gsap'
-import Image from 'next/image'
 import { useMarqueeSpeed } from '@/components/ScrollMarquee'
 
 interface SpinningStarProps {
@@ -10,7 +9,6 @@ interface SpinningStarProps {
   size?: number
   speed?: number // rotation speed in seconds per full rotation (overrides marquee speed)
   syncWithMarquee?: boolean // Whether to sync with parent marquee speed
-  useLogo?: boolean // Whether to use logo instead of star icon
 }
 
 export const SpinningStar: React.FC<SpinningStarProps> = ({
@@ -18,9 +16,8 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
   size = 24,
   speed, // No default - will use marquee speed if not provided
   syncWithMarquee = true,
-  useLogo = false,
 }) => {
-  const starRef = useRef<HTMLDivElement>(null)
+  const starRef = useRef<SVGSVGElement>(null)
   const animationRef = useRef<gsap.core.Tween | null>(null)
   const currentTimeScaleRef = useRef(1)
 
@@ -37,15 +34,35 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
 
     let currentElement = star.parentElement
     let marqueeDirection = 'left' // Default direction
+    let marqueeContainer = null
 
     // Walk up the DOM to find marquee direction
     while (currentElement) {
       // Look for the ScrollMarquee container with data-direction attribute
       if (currentElement.dataset?.direction) {
+        marqueeContainer = currentElement
         marqueeDirection = currentElement.dataset.direction
         break
       }
       currentElement = currentElement.parentElement
+    }
+
+    // For dual-line marquees, determine which line this star is in
+    if (marqueeContainer) {
+      const lines = marqueeContainer.children
+      if (lines.length === 2) {
+        // This is a dual-line marquee
+        // Find which line contains this star
+        let starLine = star.closest('.relative.overflow-hidden')
+        if (starLine === lines[0]) {
+          // First line always moves left in dual mode
+          marqueeDirection = 'left'
+        } else if (starLine === lines[1]) {
+          // Second line always moves right in dual mode
+          marqueeDirection = 'right'
+        }
+      }
+      // For single-line marquees, use the data-direction attribute as-is
     }
 
     // Always match the marquee scroll direction for all lines
@@ -124,37 +141,19 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
   }, [updateSpeed, syncWithMarquee])
 
   return (
-    <div
+    <svg
       ref={starRef}
+      width={size}
+      height={size}
+      viewBox="0 0 112 112"
       className={`inline-block ${className}`}
-      style={{
-        willChange: 'transform',
-        width: size,
-        height: size,
-      }}
+      style={{ willChange: 'transform' }}
     >
-      {useLogo ? (
-        <Image
-          src="/images/cc-logo-black-minimal.svg"
-          alt="C&C IDEA LAB Logo"
-          width={size}
-          height={size}
-          className="w-full h-full object-contain"
-        />
-      ) : (
-        <svg
-          width={size}
-          height={size}
-          viewBox="0 0 112 112"
-          className="w-full h-full"
-        >
-          <path
-            className="fill-current"
-            d="m111.547 59.968-50.391-1.406 36.64 34.531-5.155 5.157L58.11 61.61 59.516 112h-7.188l1.407-50.39-34.532 36.64-5.156-5.157 36.64-34.53-50.39 1.405v-7.187l50.39 1.641-36.64-34.61 5.156-5.078 34.532 36.641L52.328.985h7.188l-1.406 50.39 34.53-36.64 5.157 5.077-36.641 34.61 50.39-1.407z"
-            fillRule="nonzero"
-          />
-        </svg>
-      )}
-    </div>
+      <path
+        className="fill-current"
+        d="m111.547 59.968-50.391-1.406 36.64 34.531-5.155 5.157L58.11 61.61 59.516 112h-7.188l1.407-50.39-34.532 36.64-5.156-5.157 36.64-34.53-50.39 1.405v-7.187l50.39 1.641-36.64-34.61 5.156-5.078 34.532 36.641L52.328.985h7.188l-1.406 50.39 34.53-36.64 5.157 5.077-36.641 34.61 50.39-1.407z"
+        fillRule="nonzero"
+      />
+    </svg>
   )
 }
