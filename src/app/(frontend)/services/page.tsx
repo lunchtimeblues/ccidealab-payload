@@ -16,6 +16,7 @@ export default function ServicesPage() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([])
 
   // Set up Intersection Observer for fade effects
+  // References the old scroll-based fade logic but uses Intersection Observer
   useEffect(() => {
     const observers: IntersectionObserver[] = []
 
@@ -28,17 +29,22 @@ export default function ServicesPage() {
             const rect = entry.boundingClientRect
             const viewportHeight = window.innerHeight
 
-            // Calculate fade based on how much the section is covered by the next section
+            // Calculate fade based on the old scroll logic but using intersection data
             let fadeOpacity = 0
 
+            // Only fade if this isn't the last section (same as old logic)
             if (entry.isIntersecting && index < sectionRefs.current.length - 1) {
-              // Calculate fade based on intersection ratio and position
               const distanceFromTop = rect.top
 
-              // Start fading when section is in upper portion of viewport
-              if (distanceFromTop < viewportHeight * 0.3) {
-                const fadeProgress = Math.max(0, (viewportHeight * 0.3 - distanceFromTop) / (viewportHeight * 0.3))
-                fadeOpacity = Math.min(fadeProgress * 0.6, 0.6) // Max 60% opacity
+              // Replicate old fade timing: start fade when section is 40vh from top
+              // Complete fade over 60vh of scroll (similar to old fadeStartPoint/fadeEndPoint)
+              const fadeStartPoint = viewportHeight * 0.4 // Start fade at 40vh from top
+              const fadeRange = viewportHeight * 0.6 // Complete over 60vh
+
+              if (distanceFromTop < fadeStartPoint) {
+                const fadeProgress = Math.max(0, (fadeStartPoint - distanceFromTop) / fadeRange)
+                // 🎯 FADE PERCENTAGE CONTROL: Change 0.3 to adjust max fade opacity
+                fadeOpacity = Math.min(fadeProgress * 0.3, 0.3) // Max 30% black opacity
               }
             }
 
@@ -49,8 +55,8 @@ export default function ServicesPage() {
           })
         },
         {
-          threshold: Array.from({ length: 21 }, (_, i) => i / 20), // 0 to 1 in 0.05 steps
-          rootMargin: '0px 0px -20% 0px' // Trigger when section is 20% from bottom
+          threshold: Array.from({ length: 51 }, (_, i) => i / 50), // More granular detection
+          rootMargin: '0px 0px 0px 0px' // No margin for precise detection
         }
       )
 
@@ -258,12 +264,7 @@ export default function ServicesPage() {
             ref={(el) => { sectionRefs.current[index] = el }}
             className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
           >
-            {/* Fade overlay using Intersection Observer data */}
-            <div
-              className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
-              style={{ opacity: fadeOpacity }}
-            />
-            {/* Fade overlay now covers full section width */}
+            {/* Fade overlay covers ALL content - full section width */}
             <div
               className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
               style={{ opacity: fadeOpacity }}
