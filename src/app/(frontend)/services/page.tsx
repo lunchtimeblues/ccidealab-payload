@@ -10,26 +10,8 @@ import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ServicesPage() {
-  const [scrollY, setScrollY] = useState(0)
-
-  useEffect(() => {
-    const updateScroll = () => setScrollY(window.scrollY)
-
-    // Use requestAnimationFrame to throttle updates and avoid conflicts
-    let ticking = false
-    const throttledUpdateScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          updateScroll()
-          ticking = false
-        })
-        ticking = true
-      }
-    }
-
-    window.addEventListener('scroll', throttledUpdateScroll, { passive: true })
-    return () => window.removeEventListener('scroll', throttledUpdateScroll)
-  }, [])
+  // Removed scroll listener to prevent interference with ScrollMarquee
+  // This should fix the SpinningStar scroll behavior issue
   const services = [
     {
       title: 'Brand Strategy',
@@ -79,24 +61,26 @@ export default function ServicesPage() {
       <section className="relative min-h-screen bg-gray-100">
         <div className="flex flex-col justify-between pt-28 pb-8 min-h-screen">
           <div>
-            {/* Marquee */}
-            <ScrollMarquee
-              baseSpeed={0.8}
-              maxSpeedMultiplier={2}
-              starSpinSpeed={4}
-              lines="single"
-              direction="right"
-              lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
-            >
-              <span className="mx-8">OUR</span>
-              <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
-              </span>
-              <span className="mx-8">SERVICES</span>
-              <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
-              </span>
-            </ScrollMarquee>
+            {/* Isolated Marquee Container */}
+            <div className="isolate" style={{ isolation: 'isolate' }}>
+              <ScrollMarquee
+                baseSpeed={0.8}
+                maxSpeedMultiplier={2}
+                starSpinSpeed={4}
+                lines="single"
+                direction="right"
+                lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
+              >
+                <span className="mx-8">OUR</span>
+                <span className="mx-8 flex items-center">
+                  <SpinningStar size={64} className="text-current" />
+                </span>
+                <span className="mx-8">SERVICES</span>
+                <span className="mx-8 flex items-center">
+                  <SpinningStar size={64} className="text-current" />
+                </span>
+              </ScrollMarquee>
+            </div>
 
             {/* Content */}
             <Container size="xxl">
@@ -232,15 +216,14 @@ export default function ServicesPage() {
 
         let fadeOpacity = 0
 
-        // Only fade this section if we've scrolled past its fade start point
-        // and this isn't the last section (last section never fades)
-        if (scrollY > fadeStartPoint && index < services.length - 1) {
-          const fadeProgress = Math.min(
-            1,
-            (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint),
-          )
-          fadeOpacity = fadeProgress * 0.6 // Max 60% black for better visibility
-        }
+        // Temporarily disable fade effect to isolate ScrollMarquee
+        // if (scrollY > fadeStartPoint && index < services.length - 1) {
+        //   const fadeProgress = Math.min(
+        //     1,
+        //     (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint),
+        //   )
+        //   fadeOpacity = fadeProgress * 0.6 // Max 60% black for better visibility
+        // }
 
         return (
           <section
