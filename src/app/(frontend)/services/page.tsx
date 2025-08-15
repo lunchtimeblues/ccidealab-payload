@@ -137,8 +137,6 @@ export default function ServicesPage() {
                     size={64}
                     className="text-current"
                     useLogo={true}
-                    logoVariant="minimal"
-                    logoColor="black"
                   />
                 </span>
                 <span className="mx-8">SERVICES</span>
@@ -147,8 +145,6 @@ export default function ServicesPage() {
                     size={64}
                     className="text-current"
                     useLogo={true}
-                    logoVariant="minimal"
-                    logoColor="black"
                   />
                 </span>
               </ScrollMarquee>

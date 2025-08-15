@@ -10,8 +10,6 @@ interface SpinningStarProps {
   size?: number
   speed?: number // rotation speed in seconds per full rotation (overrides marquee speed)
   syncWithMarquee?: boolean // Whether to sync with parent marquee speed
-  logoVariant?: 'minimal' | 'medium' | 'full' // Which logo variant to use
-  logoColor?: 'white' | 'black' // Logo color variant
   useLogo?: boolean // Whether to use logo instead of star icon
 }
 
@@ -20,8 +18,6 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
   size = 24,
   speed, // No default - will use marquee speed if not provided
   syncWithMarquee = true,
-  logoVariant = 'minimal',
-  logoColor = 'white',
   useLogo = false,
 }) => {
   const starRef = useRef<HTMLDivElement>(null)
@@ -33,22 +29,6 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
 
   // Determine the actual speed to use
   const actualSpeed = speed !== undefined ? speed : (marqueeSpeed?.baseSpinSpeed ?? 2)
-
-  // Get logo path based on variant and color
-  const getLogoPath = () => {
-    const colorSuffix = logoColor === 'white' ? 'white' : 'black'
-
-    switch (logoVariant) {
-      case 'minimal':
-        return `/images/cc-logo-${colorSuffix}-minimal.svg`
-      case 'medium':
-        return `/images/cc-logo-${colorSuffix}-medium.svg`
-      case 'full':
-        return `/images/cc-logo-${colorSuffix}-full.svg`
-      default:
-        return `/images/cc-logo-${colorSuffix}-minimal.svg`
-    }
-  }
 
   // Determine rotation direction based on marquee direction
   const getRotationDirection = useCallback(() => {
@@ -154,7 +134,7 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     >
       {useLogo ? (
         <Image
-          src={getLogoPath()}
+          src="/images/cc-logo-black-minimal.svg"
           alt="C&C IDEA LAB Logo"
           width={size}
           height={size}
