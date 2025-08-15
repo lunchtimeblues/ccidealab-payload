@@ -50,6 +50,7 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
 
     // Always match the marquee scroll direction for all lines
     // Right scroll = clockwise (positive), Left scroll = counter-clockwise (negative)
+    console.log('🌟 SpinningStar direction detected:', marqueeDirection, '→', marqueeDirection === 'right' ? 'clockwise' : 'counter-clockwise')
     return marqueeDirection === 'right' ? 360 : -360
   }, [])
 

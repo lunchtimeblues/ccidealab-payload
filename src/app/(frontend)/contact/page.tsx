@@ -266,6 +266,7 @@ export default function ContactPage() {
           maxSpeedMultiplier={5}
           sensitivity={25}
           smoothing={0.9}
+          lines="dual"
           className="space-y-12"
           lineClassName="text-4xl md:text-6xl lg:text-8xl font-bold tracking-wider"
         >

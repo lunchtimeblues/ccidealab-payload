@@ -252,6 +252,7 @@ export default function HomePage(): React.JSX.Element {
             baseSpeed={0.8}
             maxSpeedMultiplier={2}
             starSpinSpeed={4}
+            lines="dual"
             lineClassName="text-[8vw] font-light uppercase tracking-tight leading-none"
           >
             <span className="mx-8">METHOD</span>
