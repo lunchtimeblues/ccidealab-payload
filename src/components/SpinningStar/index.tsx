@@ -37,27 +37,16 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
 
     // Walk up the DOM to find marquee direction
     while (currentElement) {
-      if (currentElement.parentElement?.classList.contains('relative') &&
-          currentElement.parentElement?.classList.contains('overflow-hidden')) {
-        // Found a marquee line container
-        const marqueeContainer = currentElement.parentElement.parentElement
-        if (marqueeContainer) {
-          // Try to detect marquee direction from data attribute or context
-          let directionElement: HTMLElement | null = marqueeContainer
-          while (directionElement) {
-            if (directionElement.dataset?.direction) {
-              marqueeDirection = directionElement.dataset.direction
-              break
-            }
-            directionElement = directionElement.parentElement
-          }
-        }
+      // Look for the ScrollMarquee container with data-direction attribute
+      if (currentElement.dataset?.direction) {
+        marqueeDirection = currentElement.dataset.direction
         break
       }
       currentElement = currentElement.parentElement
     }
 
     // Always match the marquee scroll direction for all lines
+    // Right scroll = clockwise (positive), Left scroll = counter-clockwise (negative)
     return marqueeDirection === 'right' ? 360 : -360
   }, [])
 
@@ -81,13 +70,15 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     // Direction is now determined by getRotationDirection function
 
     // Create continuous rotation animation
+    // Use a large rotation value to ensure continuous spinning
+    const targetRotation = rotationDirection > 0 ? '+=360' : '-=360'
+
     animationRef.current = gsap.to(star, {
-      rotation: rotationDirection,
+      rotation: targetRotation,
       duration: actualSpeed,
       ease: 'none',
       repeat: -1,
       transformOrigin: 'center center',
-      paused: false, // Ensure it starts playing
     })
 
     // Set initial timeScale to 1
@@ -108,30 +99,13 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     // If base speed is 0, don't update (star should remain static)
     if (actualSpeed === 0 || !animationRef.current || !syncWithMarquee) return
 
-    // Avoid unnecessary updates with a small threshold
-    if (Math.abs(speedMultiplier - currentTimeScaleRef.current) < 0.05) return
-
     currentTimeScaleRef.current = speedMultiplier
 
-    // Kill the current animation and create a new one with adjusted duration
-    if (animationRef.current) {
-      const currentRotation = gsap.getProperty(starRef.current, 'rotation') as number
-      animationRef.current.kill()
-
-      // Create new animation with adjusted speed
-      const newDuration = actualSpeed / speedMultiplier
-      animationRef.current = gsap.fromTo(starRef.current,
-        { rotation: currentRotation },
-        {
-          rotation: currentRotation + (rotationDirection > 0 ? 360 : -360),
-          duration: newDuration,
-          ease: 'none',
-          repeat: -1,
-          transformOrigin: 'center center',
-        }
-      )
+    // Simple, direct timeScale update - no tweening, no killing
+    if (animationRef.current && animationRef.current.timeScale) {
+      animationRef.current.timeScale(speedMultiplier)
     }
-  }, [syncWithMarquee, actualSpeed, rotationDirection])
+  }, [syncWithMarquee, actualSpeed])
 
   // Store the update function on the element for parent access
   useEffect(() => {
