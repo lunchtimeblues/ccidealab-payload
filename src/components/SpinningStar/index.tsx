@@ -53,7 +53,7 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       if (lines.length === 2) {
         // This is a dual-line marquee
         // Find which line contains this star
-        let starLine = star.closest('.relative.overflow-hidden')
+        const starLine = star.closest('.relative.overflow-hidden')
         if (starLine === lines[0]) {
           // First line always moves left in dual mode
           marqueeDirection = 'left'
@@ -67,11 +67,16 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
 
     // Always match the marquee scroll direction for all lines
     // Right scroll = clockwise (positive), Left scroll = counter-clockwise (negative)
-    console.log('🌟 SpinningStar direction detected:', marqueeDirection, '→', marqueeDirection === 'right' ? 'clockwise' : 'counter-clockwise')
-    return marqueeDirection === 'right' ? 360 : -360
+    const direction = marqueeDirection === 'right' ? 360 : -360
+    console.log(
+      '🌟 SpinningStar direction detected:',
+      marqueeDirection,
+      '→',
+      marqueeDirection === 'right' ? 'clockwise ↻' : 'counter-clockwise ↺',
+      `(${direction}°)`
+    )
+    return direction
   }, [])
-
-  const rotationDirection = getRotationDirection()
 
   // Create the base spinning animation
   useEffect(() => {
@@ -88,7 +93,8 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       return
     }
 
-    // Direction is now determined by getRotationDirection function
+    // Get rotation direction when creating animation (DOM is ready)
+    const rotationDirection = getRotationDirection()
 
     // Create continuous rotation animation
     // Use a large rotation value to ensure continuous spinning
@@ -106,6 +112,9 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     if (animationRef.current) {
       animationRef.current.timeScale(1)
       currentTimeScaleRef.current = 1
+      console.log('✅ SpinningStar animation created:', targetRotation, 'duration:', actualSpeed + 's')
+    } else {
+      console.log('❌ SpinningStar animation failed to create')
     }
 
     return () => {
@@ -113,7 +122,7 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
         animationRef.current.kill()
       }
     }
-  }, [actualSpeed, rotationDirection])
+  }, [actualSpeed, getRotationDirection])
 
   // Expose a method to update speed from parent
   const updateSpeed = useCallback(
