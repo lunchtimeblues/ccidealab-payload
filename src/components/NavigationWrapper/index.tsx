@@ -28,6 +28,14 @@ export const NavigationWrapper = () => {
   const [isNavigating, setIsNavigating] = useState(false)
   const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const previousPathnameRef = useRef(pathname)
+
+  // Scroll to top on route change
+  useEffect(() => {
+    if (previousPathnameRef.current !== pathname) {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+      previousPathnameRef.current = pathname
+    }
+  }, [pathname])
   const exitAnimationTime = 700 // ms — match your CSS transition
 
   // Listen for pathname changes to detect when navigation is complete

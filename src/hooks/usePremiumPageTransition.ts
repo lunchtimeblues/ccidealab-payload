@@ -221,6 +221,10 @@ export const usePremiumPageTransition = () => {
       // Navigate at the perfect moment (faster)
       setTimeout(() => {
         router.push(href)
+        // Scroll to top after navigation
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'instant' })
+        }, 100) // Small delay to ensure page has loaded
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],
