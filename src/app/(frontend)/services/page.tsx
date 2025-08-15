@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Container } from '@/components/Container'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
@@ -10,8 +10,58 @@ import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ServicesPage() {
-  // Removed scroll listener to prevent interference with ScrollMarquee
-  // This should fix the SpinningStar scroll behavior issue
+  // Use Intersection Observer for fade effects instead of scroll listeners
+  // This won't interfere with ScrollMarquee's scroll handling
+  const [sectionVisibility, setSectionVisibility] = useState<{ [key: number]: number }>({})
+  const sectionRefs = useRef<(HTMLElement | null)[]>([])
+
+  // Set up Intersection Observer for fade effects
+  useEffect(() => {
+    const observers: IntersectionObserver[] = []
+
+    sectionRefs.current.forEach((section, index) => {
+      if (!section) return
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const rect = entry.boundingClientRect
+            const viewportHeight = window.innerHeight
+
+            // Calculate fade based on how much the section is covered by the next section
+            let fadeOpacity = 0
+
+            if (entry.isIntersecting && index < sectionRefs.current.length - 1) {
+              // Calculate fade based on intersection ratio and position
+              const distanceFromTop = rect.top
+
+              // Start fading when section is in upper portion of viewport
+              if (distanceFromTop < viewportHeight * 0.3) {
+                const fadeProgress = Math.max(0, (viewportHeight * 0.3 - distanceFromTop) / (viewportHeight * 0.3))
+                fadeOpacity = Math.min(fadeProgress * 0.6, 0.6) // Max 60% opacity
+              }
+            }
+
+            setSectionVisibility(prev => ({
+              ...prev,
+              [index]: fadeOpacity
+            }))
+          })
+        },
+        {
+          threshold: Array.from({ length: 21 }, (_, i) => i / 20), // 0 to 1 in 0.05 steps
+          rootMargin: '0px 0px -20% 0px' // Trigger when section is 20% from bottom
+        }
+      )
+
+      observer.observe(section)
+      observers.push(observer)
+    })
+
+    return () => {
+      observers.forEach(observer => observer.disconnect())
+    }
+  }, [])
   const services = [
     {
       title: 'Brand Strategy',
@@ -197,39 +247,22 @@ export default function ServicesPage() {
         />
       </section>
 
-      {/* Services Sections */}
+      {/* Services Sections - Using Intersection Observer for fade effects */}
       {services.map((service, index) => {
-        // Individual section fade: each section fades when the next section starts covering it
-        // This creates individual fade effects, not one large fade across all sections
-
-        const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 800
-
-        // Calculate the offset where services sections actually start
-        // Account for hero section (~100vh) + scroll video (~100vh) + services intro (~50vh)
-        const servicesStartOffset = viewportHeight * 2.5 // Approximate offset to services sections
-
-        // Calculate when this specific section should start fading
-        // Each section starts fading when we scroll enough for the next section to begin covering it
-        const sectionTriggerPoint = servicesStartOffset + index * viewportHeight * 0.9 // Sections are roughly 90vh apart
-        const fadeStartPoint = sectionTriggerPoint + viewportHeight * 0.4 // Start fade 40vh after trigger
-        const fadeEndPoint = fadeStartPoint + viewportHeight * 0.6 // Complete fade over 60vh of scroll
-
-        let fadeOpacity = 0
-
-        // Temporarily disable fade effect to isolate ScrollMarquee
-        // if (scrollY > fadeStartPoint && index < services.length - 1) {
-        //   const fadeProgress = Math.min(
-        //     1,
-        //     (scrollY - fadeStartPoint) / (fadeEndPoint - fadeStartPoint),
-        //   )
-        //   fadeOpacity = fadeProgress * 0.6 // Max 60% black for better visibility
-        // }
+        // Get fade opacity from Intersection Observer
+        const fadeOpacity = sectionVisibility[index] || 0
 
         return (
           <section
             key={index}
+            ref={(el) => { sectionRefs.current[index] = el }}
             className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
           >
+            {/* Fade overlay using Intersection Observer data */}
+            <div
+              className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
+              style={{ opacity: fadeOpacity }}
+            />
             {/* Fade overlay now covers full section width */}
             <div
               className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
