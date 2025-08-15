@@ -45,7 +45,6 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     // Detect which marquee line this star is on and the marquee direction
     let rotationDirection = -360 // Default: counter-clockwise
     let currentElement = star.parentElement
-    let lineIndex = 0
     let marqueeDirection = 'left' // Default direction
 
     // Walk up the DOM to find which marquee line we're in and get direction
@@ -55,14 +54,14 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
         // Found a marquee line container
         const marqueeContainer = currentElement.parentElement.parentElement
         if (marqueeContainer) {
-          const lines = Array.from(marqueeContainer.children).filter(child =>
-            child.classList.contains('relative') && child.classList.contains('overflow-hidden')
-          )
-          lineIndex = lines.indexOf(currentElement.parentElement)
+          // We no longer need lineIndex since all stars spin in same direction
+          // const lines = Array.from(marqueeContainer.children).filter(child =>
+          //   child.classList.contains('relative') && child.classList.contains('overflow-hidden')
+          // )
 
           // Try to detect marquee direction from data attribute or context
           // Look for direction indicators in parent elements
-          let directionElement = marqueeContainer
+          let directionElement: HTMLElement | null = marqueeContainer
           while (directionElement) {
             if (directionElement.dataset?.direction) {
               marqueeDirection = directionElement.dataset.direction
