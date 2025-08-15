@@ -27,40 +27,22 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
   // Determine the actual speed to use
   const actualSpeed = speed !== undefined ? speed : (marqueeSpeed?.baseSpinSpeed ?? 2)
 
-  // Create the base spinning animation
-  useEffect(() => {
+  // Determine rotation direction based on marquee direction
+  const getRotationDirection = useCallback(() => {
     const star = starRef.current
-    if (!star) return
+    if (!star) return -360
 
-    // If speed is 0, don't create animation (static star)
-    if (actualSpeed === 0) {
-      // Kill any existing animation
-      if (animationRef.current) {
-        animationRef.current.kill()
-        animationRef.current = null
-      }
-      return
-    }
-
-    // Detect which marquee line this star is on and the marquee direction
-    let rotationDirection = -360 // Default: counter-clockwise
     let currentElement = star.parentElement
     let marqueeDirection = 'left' // Default direction
 
-    // Walk up the DOM to find which marquee line we're in and get direction
+    // Walk up the DOM to find marquee direction
     while (currentElement) {
       if (currentElement.parentElement?.classList.contains('relative') &&
           currentElement.parentElement?.classList.contains('overflow-hidden')) {
         // Found a marquee line container
         const marqueeContainer = currentElement.parentElement.parentElement
         if (marqueeContainer) {
-          // We no longer need lineIndex since all stars spin in same direction
-          // const lines = Array.from(marqueeContainer.children).filter(child =>
-          //   child.classList.contains('relative') && child.classList.contains('overflow-hidden')
-          // )
-
           // Try to detect marquee direction from data attribute or context
-          // Look for direction indicators in parent elements
           let directionElement: HTMLElement | null = marqueeContainer
           while (directionElement) {
             if (directionElement.dataset?.direction) {
@@ -76,8 +58,27 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     }
 
     // Always match the marquee scroll direction for all lines
-    // Right scroll = clockwise rotation, Left scroll = counter-clockwise rotation
-    rotationDirection = marqueeDirection === 'right' ? 360 : -360
+    return marqueeDirection === 'right' ? 360 : -360
+  }, [])
+
+  const rotationDirection = getRotationDirection()
+
+  // Create the base spinning animation
+  useEffect(() => {
+    const star = starRef.current
+    if (!star) return
+
+    // If speed is 0, don't create animation (static star)
+    if (actualSpeed === 0) {
+      // Kill any existing animation
+      if (animationRef.current) {
+        animationRef.current.kill()
+        animationRef.current = null
+      }
+      return
+    }
+
+    // Direction is now determined by getRotationDirection function
 
     // Create continuous rotation animation
     animationRef.current = gsap.to(star, {
@@ -107,14 +108,30 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     // If base speed is 0, don't update (star should remain static)
     if (actualSpeed === 0 || !animationRef.current || !syncWithMarquee) return
 
-    // Remove the threshold check - allow all updates
+    // Avoid unnecessary updates with a small threshold
+    if (Math.abs(speedMultiplier - currentTimeScaleRef.current) < 0.05) return
+
     currentTimeScaleRef.current = speedMultiplier
 
-    // Use immediate timeScale update instead of tweening to avoid conflicts
-    if (animationRef.current && typeof animationRef.current.timeScale === 'function') {
-      animationRef.current.timeScale(speedMultiplier)
+    // Kill the current animation and create a new one with adjusted duration
+    if (animationRef.current) {
+      const currentRotation = gsap.getProperty(starRef.current, 'rotation') as number
+      animationRef.current.kill()
+
+      // Create new animation with adjusted speed
+      const newDuration = actualSpeed / speedMultiplier
+      animationRef.current = gsap.fromTo(starRef.current,
+        { rotation: currentRotation },
+        {
+          rotation: currentRotation + (rotationDirection > 0 ? 360 : -360),
+          duration: newDuration,
+          ease: 'none',
+          repeat: -1,
+          transformOrigin: 'center center',
+        }
+      )
     }
-  }, [syncWithMarquee, actualSpeed])
+  }, [syncWithMarquee, actualSpeed, rotationDirection])
 
   // Store the update function on the element for parent access
   useEffect(() => {
