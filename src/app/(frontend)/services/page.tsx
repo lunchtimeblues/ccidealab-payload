@@ -15,8 +15,20 @@ export default function ServicesPage() {
   useEffect(() => {
     const updateScroll = () => setScrollY(window.scrollY)
 
-    window.addEventListener('scroll', updateScroll, { passive: true })
-    return () => window.removeEventListener('scroll', updateScroll)
+    // Use requestAnimationFrame to throttle updates and avoid conflicts
+    let ticking = false
+    const throttledUpdateScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', throttledUpdateScroll, { passive: true })
+    return () => window.removeEventListener('scroll', throttledUpdateScroll)
   }, [])
   const services = [
     {

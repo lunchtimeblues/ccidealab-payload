@@ -92,20 +92,23 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
         animationRef.current.kill()
       }
     }
-  }, [actualSpeed])
+  }, [actualSpeed, rotationDirection])
 
   // Expose a method to update speed from parent
-  const updateSpeed = useCallback((speedMultiplier: number) => {
-    // If base speed is 0, don't update (star should remain static)
-    if (actualSpeed === 0 || !animationRef.current || !syncWithMarquee) return
+  const updateSpeed = useCallback(
+    (speedMultiplier: number) => {
+      // If base speed is 0, don't update (star should remain static)
+      if (actualSpeed === 0 || !animationRef.current || !syncWithMarquee) return
 
-    currentTimeScaleRef.current = speedMultiplier
+      currentTimeScaleRef.current = speedMultiplier
 
-    // Simple, direct timeScale update - no tweening, no killing
-    if (animationRef.current && animationRef.current.timeScale) {
-      animationRef.current.timeScale(speedMultiplier)
-    }
-  }, [syncWithMarquee, actualSpeed])
+      // Simple, direct timeScale update - no tweening, no killing
+      if (animationRef.current && animationRef.current.timeScale) {
+        animationRef.current.timeScale(speedMultiplier)
+      }
+    },
+    [syncWithMarquee, actualSpeed],
+  )
 
   // Store the update function on the element for parent access
   useEffect(() => {
