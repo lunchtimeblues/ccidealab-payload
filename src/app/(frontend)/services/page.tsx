@@ -16,7 +16,7 @@ export default function ServicesPage() {
   const sectionRefs = useRef<(HTMLElement | null)[]>([])
 
   // Set up Intersection Observer for fade effects
-  // References the old scroll-based fade logic but uses Intersection Observer
+  // Observe each section and fade the PREVIOUS section when this one enters
   useEffect(() => {
     const observers: IntersectionObserver[] = []
 
@@ -29,40 +29,38 @@ export default function ServicesPage() {
             const rect = entry.boundingClientRect
             const viewportHeight = window.innerHeight
 
-            // Calculate fade based on when next section starts to overlap
-            let fadeOpacity = 0
+            // When THIS section enters viewport, fade the PREVIOUS section
+            if (index > 0) { // Skip first section (no previous section to fade)
+              const prevSectionIndex = index - 1
+              let fadeOpacity = 0
 
-            // Only fade if this isn't the last section and check for next section overlap
-            if (entry.isIntersecting && index < sectionRefs.current.length - 1) {
-              // Check if the next section exists and is starting to overlap
-              const nextSection = sectionRefs.current[index + 1]
-              if (nextSection) {
-                const nextSectionRect = nextSection.getBoundingClientRect()
-                const nextSectionTop = nextSectionRect.top
+              // Calculate fade based on how much this section has entered the viewport
+              if (entry.isIntersecting) {
+                const sectionTop = rect.top
 
-                // Start fade when next section is close to viewport (about to overlap)
-                // Complete fade when next section fully covers this section
-                if (nextSectionTop < viewportHeight) {
-                  // Calculate how much the next section is overlapping
-                  const overlapDistance = viewportHeight - nextSectionTop
-                  const maxOverlap = viewportHeight * 0.8 // Fade completes over 80vh of overlap
+                // Start fade when this section starts entering viewport
+                // Complete fade when this section is well into viewport
+                if (sectionTop < viewportHeight) {
+                  const entryDistance = viewportHeight - sectionTop
+                  const maxEntry = viewportHeight * 0.8 // Fade completes over 80vh of entry
 
-                  const fadeProgress = Math.min(overlapDistance / maxOverlap, 1)
+                  const fadeProgress = Math.min(entryDistance / maxEntry, 1)
                   // 🎯 FADE PERCENTAGE CONTROL: Change 0.3 to adjust max fade opacity
                   fadeOpacity = fadeProgress * 0.3 // Max 30% black opacity
                 }
               }
-            }
 
-            setSectionVisibility((prev) => ({
-              ...prev,
-              [index]: fadeOpacity,
-            }))
+              // Apply fade to the PREVIOUS section
+              setSectionVisibility((prev) => ({
+                ...prev,
+                [prevSectionIndex]: fadeOpacity,
+              }))
+            }
           })
         },
         {
-          threshold: Array.from({ length: 51 }, (_, i) => i / 50), // More granular detection
-          rootMargin: '0px 0px 0px 0px', // No margin for precise detection
+          threshold: Array.from({ length: 101 }, (_, i) => i / 100), // Very granular detection
+          rootMargin: '0px 0px -10% 0px', // Start detecting when section is 10% into viewport
         },
       )
 
