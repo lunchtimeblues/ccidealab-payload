@@ -133,11 +133,23 @@ export default function ServicesPage() {
               >
                 <span className="mx-8">OUR</span>
                 <span className="mx-8 flex items-center">
-                  <SpinningStar size={64} className="text-current" />
+                  <SpinningStar
+                    size={64}
+                    className="text-current"
+                    useLogo={true}
+                    logoVariant="minimal"
+                    logoColor="black"
+                  />
                 </span>
                 <span className="mx-8">SERVICES</span>
                 <span className="mx-8 flex items-center">
-                  <SpinningStar size={64} className="text-current" />
+                  <SpinningStar
+                    size={64}
+                    className="text-current"
+                    useLogo={true}
+                    logoVariant="minimal"
+                    logoColor="black"
+                  />
                 </span>
               </ScrollMarquee>
             </div>

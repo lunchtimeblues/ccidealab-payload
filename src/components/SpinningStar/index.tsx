@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback } from 'react'
 import { gsap } from 'gsap'
+import Image from 'next/image'
 import { useMarqueeSpeed } from '@/components/ScrollMarquee'
 
 interface SpinningStarProps {
@@ -9,6 +10,9 @@ interface SpinningStarProps {
   size?: number
   speed?: number // rotation speed in seconds per full rotation (overrides marquee speed)
   syncWithMarquee?: boolean // Whether to sync with parent marquee speed
+  logoVariant?: 'minimal' | 'medium' | 'full' // Which logo variant to use
+  logoColor?: 'white' | 'black' // Logo color variant
+  useLogo?: boolean // Whether to use logo instead of star icon
 }
 
 export const SpinningStar: React.FC<SpinningStarProps> = ({
@@ -16,8 +20,11 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
   size = 24,
   speed, // No default - will use marquee speed if not provided
   syncWithMarquee = true,
+  logoVariant = 'minimal',
+  logoColor = 'white',
+  useLogo = false,
 }) => {
-  const starRef = useRef<SVGSVGElement>(null)
+  const starRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<gsap.core.Tween | null>(null)
   const currentTimeScaleRef = useRef(1)
 
@@ -26,6 +33,22 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
 
   // Determine the actual speed to use
   const actualSpeed = speed !== undefined ? speed : (marqueeSpeed?.baseSpinSpeed ?? 2)
+
+  // Get logo path based on variant and color
+  const getLogoPath = () => {
+    const colorSuffix = logoColor === 'white' ? 'white' : 'black'
+
+    switch (logoVariant) {
+      case 'minimal':
+        return `/images/cc-logo-${colorSuffix}-minimal.svg`
+      case 'medium':
+        return `/images/cc-logo-${colorSuffix}-medium.svg`
+      case 'full':
+        return `/images/cc-logo-${colorSuffix}-full.svg`
+      default:
+        return `/images/cc-logo-${colorSuffix}-minimal.svg`
+    }
+  }
 
   // Determine rotation direction based on marquee direction
   const getRotationDirection = useCallback(() => {
@@ -120,19 +143,37 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
   }, [updateSpeed, syncWithMarquee])
 
   return (
-    <svg
+    <div
       ref={starRef}
-      width={size}
-      height={size}
-      viewBox="0 0 112 112"
       className={`inline-block ${className}`}
-      style={{ willChange: 'transform' }}
+      style={{
+        willChange: 'transform',
+        width: size,
+        height: size,
+      }}
     >
-      <path
-        className="fill-current"
-        d="m111.547 59.968-50.391-1.406 36.64 34.531-5.155 5.157L58.11 61.61 59.516 112h-7.188l1.407-50.39-34.532 36.64-5.156-5.157 36.64-34.53-50.39 1.405v-7.187l50.39 1.641-36.64-34.61 5.156-5.078 34.532 36.641L52.328.985h7.188l-1.406 50.39 34.53-36.64 5.157 5.077-36.641 34.61 50.39-1.407z"
-        fillRule="nonzero"
-      />
-    </svg>
+      {useLogo ? (
+        <Image
+          src={getLogoPath()}
+          alt="C&C IDEA LAB Logo"
+          width={size}
+          height={size}
+          className="w-full h-full object-contain"
+        />
+      ) : (
+        <svg
+          width={size}
+          height={size}
+          viewBox="0 0 112 112"
+          className="w-full h-full"
+        >
+          <path
+            className="fill-current"
+            d="m111.547 59.968-50.391-1.406 36.64 34.531-5.155 5.157L58.11 61.61 59.516 112h-7.188l1.407-50.39-34.532 36.64-5.156-5.157 36.64-34.53-50.39 1.405v-7.187l50.39 1.641-36.64-34.61 5.156-5.078 34.532 36.641L52.328.985h7.188l-1.406 50.39 34.53-36.64 5.157 5.077-36.641 34.61 50.39-1.407z"
+            fillRule="nonzero"
+          />
+        </svg>
+      )}
+    </div>
   )
 }
