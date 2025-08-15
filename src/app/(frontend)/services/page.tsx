@@ -29,35 +29,41 @@ export default function ServicesPage() {
             const rect = entry.boundingClientRect
             const viewportHeight = window.innerHeight
 
-            // Calculate fade based on the old scroll logic but using intersection data
+            // Calculate fade based on when next section starts to overlap
             let fadeOpacity = 0
 
-            // Only fade if this isn't the last section (same as old logic)
+            // Only fade if this isn't the last section and check for next section overlap
             if (entry.isIntersecting && index < sectionRefs.current.length - 1) {
-              const distanceFromTop = rect.top
+              // Check if the next section exists and is starting to overlap
+              const nextSection = sectionRefs.current[index + 1]
+              if (nextSection) {
+                const nextSectionRect = nextSection.getBoundingClientRect()
+                const nextSectionTop = nextSectionRect.top
 
-              // Replicate old fade timing: start fade when section is 40vh from top
-              // Complete fade over 60vh of scroll (similar to old fadeStartPoint/fadeEndPoint)
-              const fadeStartPoint = viewportHeight * 0.4 // Start fade at 40vh from top
-              const fadeRange = viewportHeight * 0.6 // Complete over 60vh
+                // Start fade when next section is close to viewport (about to overlap)
+                // Complete fade when next section fully covers this section
+                if (nextSectionTop < viewportHeight) {
+                  // Calculate how much the next section is overlapping
+                  const overlapDistance = viewportHeight - nextSectionTop
+                  const maxOverlap = viewportHeight * 0.8 // Fade completes over 80vh of overlap
 
-              if (distanceFromTop < fadeStartPoint) {
-                const fadeProgress = Math.max(0, (fadeStartPoint - distanceFromTop) / fadeRange)
-                // 🎯 FADE PERCENTAGE CONTROL: Change 0.3 to adjust max fade opacity
-                fadeOpacity = Math.min(fadeProgress * 0.3, 0.3) // Max 30% black opacity
+                  const fadeProgress = Math.min(overlapDistance / maxOverlap, 1)
+                  // 🎯 FADE PERCENTAGE CONTROL: Change 0.3 to adjust max fade opacity
+                  fadeOpacity = fadeProgress * 0.3 // Max 30% black opacity
+                }
               }
             }
 
-            setSectionVisibility(prev => ({
+            setSectionVisibility((prev) => ({
               ...prev,
-              [index]: fadeOpacity
+              [index]: fadeOpacity,
             }))
           })
         },
         {
           threshold: Array.from({ length: 51 }, (_, i) => i / 50), // More granular detection
-          rootMargin: '0px 0px 0px 0px' // No margin for precise detection
-        }
+          rootMargin: '0px 0px 0px 0px', // No margin for precise detection
+        },
       )
 
       observer.observe(section)
@@ -65,7 +71,7 @@ export default function ServicesPage() {
     })
 
     return () => {
-      observers.forEach(observer => observer.disconnect())
+      observers.forEach((observer) => observer.disconnect())
     }
   }, [])
   const services = [
@@ -253,20 +259,21 @@ export default function ServicesPage() {
         />
       </section>
 
-      {/* Services Sections - Using Intersection Observer for fade effects */}
+      {/* Services Sections */}
       {services.map((service, index) => {
-        // Get fade opacity from Intersection Observer
         const fadeOpacity = sectionVisibility[index] || 0
 
         return (
           <section
             key={index}
-            ref={(el) => { sectionRefs.current[index] = el }}
+            ref={(el) => {
+              sectionRefs.current[index] = el
+            }}
             className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
           >
-            {/* Fade overlay covers ALL content - full section width */}
+            {/* Fade overlay covers ALL content including videos - highest z-index */}
             <div
-              className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-10 transition-opacity duration-300 ease-out"
+              className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-50 transition-opacity duration-300 ease-out"
               style={{ opacity: fadeOpacity }}
             />
 
