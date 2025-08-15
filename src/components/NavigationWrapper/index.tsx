@@ -29,10 +29,30 @@ export const NavigationWrapper = () => {
   const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const previousPathnameRef = useRef(pathname)
 
-  // Scroll to top on route change
+  // Scroll to top on route change with multiple fallbacks
   useEffect(() => {
     if (previousPathnameRef.current !== pathname) {
-      window.scrollTo({ top: 0, behavior: 'instant' })
+      // Disable browser scroll restoration
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'
+      }
+
+      // Multiple scroll-to-top attempts with different timings
+      const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'instant' })
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+      }
+
+      // Immediate scroll
+      scrollToTop()
+
+      // Fallback scrolls with delays
+      setTimeout(scrollToTop, 0)
+      setTimeout(scrollToTop, 50)
+      setTimeout(scrollToTop, 100)
+      setTimeout(scrollToTop, 200)
+
       previousPathnameRef.current = pathname
     }
   }, [pathname])

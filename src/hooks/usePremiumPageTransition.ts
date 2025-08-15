@@ -220,11 +220,25 @@ export const usePremiumPageTransition = () => {
 
       // Navigate at the perfect moment (faster)
       setTimeout(() => {
+        // Disable browser scroll restoration before navigation
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual'
+        }
+
         router.push(href)
-        // Scroll to top after navigation
-        setTimeout(() => {
+
+        // Multiple scroll-to-top attempts after navigation
+        const scrollToTop = () => {
           window.scrollTo({ top: 0, behavior: 'instant' })
-        }, 100) // Small delay to ensure page has loaded
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+        }
+
+        // Immediate and delayed scroll attempts
+        setTimeout(scrollToTop, 50)
+        setTimeout(scrollToTop, 100)
+        setTimeout(scrollToTop, 200)
+        setTimeout(scrollToTop, 300)
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],

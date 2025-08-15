@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Lenis from '@studio-freight/lenis' // You're still using the old package
 
 interface SmoothScrollProps {
@@ -8,13 +9,23 @@ interface SmoothScrollProps {
 }
 
 export const SmoothScroll = ({ children }: SmoothScrollProps) => {
+  const lenisRef = useRef<Lenis | null>(null)
+  const pathname = usePathname()
+
   useEffect(() => {
+    // Disable browser scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       touchMultiplier: 2,
       infinite: false,
     })
+
+    lenisRef.current = lenis
 
     lenis.on('scroll', (e: { scroll: number; velocity: number }) => {
       window.dispatchEvent(
@@ -35,6 +46,14 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       lenis.destroy()
     }
   }, [])
+
+  // Scroll to top on route change using Lenis
+  useEffect(() => {
+    if (lenisRef.current) {
+      // Use Lenis to scroll to top smoothly
+      lenisRef.current.scrollTo(0, { immediate: true })
+    }
+  }, [pathname])
 
   return <>{children}</>
 }
