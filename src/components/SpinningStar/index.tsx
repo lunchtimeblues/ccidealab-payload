@@ -76,14 +76,9 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       currentElement = currentElement.parentElement
     }
 
-    // Determine rotation direction based on marquee direction and line
-    if (lineIndex === 0) {
-      // First line (or single line): match marquee direction
-      rotationDirection = marqueeDirection === 'right' ? 360 : -360
-    } else {
-      // Second line in dual marquee: opposite direction for visual contrast
-      rotationDirection = marqueeDirection === 'right' ? -360 : 360
-    }
+    // Always match the marquee scroll direction for all lines
+    // Right scroll = clockwise rotation, Left scroll = counter-clockwise rotation
+    rotationDirection = marqueeDirection === 'right' ? 360 : -360
 
     // Create continuous rotation animation
     animationRef.current = gsap.to(star, {
@@ -92,7 +87,14 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       ease: 'none',
       repeat: -1,
       transformOrigin: 'center center',
+      paused: false, // Ensure it starts playing
     })
+
+    // Set initial timeScale to 1
+    if (animationRef.current) {
+      animationRef.current.timeScale(1)
+      currentTimeScaleRef.current = 1
+    }
 
     return () => {
       if (animationRef.current) {
@@ -106,13 +108,13 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     // If base speed is 0, don't update (star should remain static)
     if (actualSpeed === 0 || !animationRef.current || !syncWithMarquee) return
 
-    // Avoid unnecessary updates
-    if (Math.abs(speedMultiplier - currentTimeScaleRef.current) < 0.01) return
-
+    // Remove the threshold check - allow all updates
     currentTimeScaleRef.current = speedMultiplier
 
     // Use immediate timeScale update instead of tweening to avoid conflicts
-    animationRef.current.timeScale(speedMultiplier)
+    if (animationRef.current && typeof animationRef.current.timeScale === 'function') {
+      animationRef.current.timeScale(speedMultiplier)
+    }
   }, [syncWithMarquee, actualSpeed])
 
   // Store the update function on the element for parent access
