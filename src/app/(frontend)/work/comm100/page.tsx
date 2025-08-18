@@ -8,9 +8,9 @@ export default function Comm100Page() {
     <div className="bg-white text-black">
       {/* Hero Section */}
       <ParallaxImage
-        src="/images/comm100/hero.jpg" // replace with actual hero image path
+        src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&h=1080&fit=crop&crop=center"
         alt="Comm100 Customer Service Platform"
-        size="100vh"
+        size="full"
         overlay={true}
         overlayOpacity={0.3}
         parallaxSpeed={0.5}
@@ -65,7 +65,7 @@ export default function Comm100Page() {
       {/* Large Image */}
       <section>
         <Image
-          src="/images/comm100/branding-1.jpg"
+          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&h=1080&fit=crop&crop=center"
           alt="Branding Presentation"
           width={1920}
           height={1080}
@@ -83,14 +83,14 @@ export default function Comm100Page() {
           </ScrollRevealText>
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/comm100/item-1.jpg"
+              src="https://images.unsplash.com/photo-1553484771-371a605b060b?w=800&h=800&fit=crop&crop=center"
               alt="Comm100 Branded Materials"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/comm100/item-2.jpg"
+              src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=800&fit=crop&crop=center"
               alt="Platform Interface Design"
               width={800}
               height={800}
@@ -104,7 +104,7 @@ export default function Comm100Page() {
       <section className="py-16">
         <Container size="xxl">
           <Image
-            src="/images/comm100/billboard.jpg"
+            src="https://images.unsplash.com/photo-1541746972996-4e0b0f93e586?w=1600&h=900&fit=crop&crop=center"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -122,7 +122,7 @@ export default function Comm100Page() {
             </h3>
           </ScrollRevealText>
           <Image
-            src="/images/comm100/bus-stop.jpg"
+            src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?w=1600&h=900&fit=crop&crop=center"
             alt="Bus Stop Ads"
             width={1600}
             height={900}
@@ -136,14 +136,14 @@ export default function Comm100Page() {
         <Container size="xxl">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/comm100/signage.jpg"
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=800&fit=crop&crop=center"
               alt="Signage Design"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/comm100/phone.jpg"
+              src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=800&fit=crop&crop=center"
               alt="Mobile View"
               width={800}
               height={800}
@@ -152,7 +152,7 @@ export default function Comm100Page() {
           </div>
           <div className="mt-8">
             <Image
-              src="/images/comm100/business-cards.jpg"
+              src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1600&h=900&fit=crop&crop=center"
               alt="Business Cards"
               width={1600}
               height={900}

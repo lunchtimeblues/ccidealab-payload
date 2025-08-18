@@ -1,12 +1,8 @@
 import { Container } from '@/components/Container'
-import { PremiumTransitionLink } from '@/components'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
-import { ParallaxImage } from '@/components/ParallaxImage'
-import { Carousel } from '@/components/Carousel'
 import { MouseFollower } from '@/components/MouseFollower'
-import Image from 'next/image'
 
 export default function WorkPage() {
   return (
