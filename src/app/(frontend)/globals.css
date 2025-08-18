@@ -304,25 +304,3 @@ html[data-theme='light'] {
     background: rgba(0, 0, 0, 0.8) !important;
   }
 }
-
-/* Navigation theme classes - simple CSS approach */
-.nav-light {
-  --nav-text-color: #000000;
-  --nav-logo-filter: none;
-}
-
-.nav-dark {
-  --nav-text-color: #ffffff;
-  --nav-logo-filter: invert(1);
-}
-
-/* Apply to navigation elements */
-.nav-text {
-  color: var(--nav-text-color, #000000) !important;
-  transition: color 0.3s ease;
-}
-
-.nav-logo {
-  filter: var(--nav-logo-filter, none);
-  transition: filter 0.3s ease;
-}

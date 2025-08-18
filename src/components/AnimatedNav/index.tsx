@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { HamburgerMenu } from '@/components/HamburgerMenu'
-import { useSimpleNavTheme } from '@/hooks/useSimpleNavTheme'
 import Image from 'next/image'
 
 interface NavItem {
@@ -22,7 +21,6 @@ interface AnimatedNavProps {
 export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, onToggleMenu }) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
-  const isDarkSection = useSimpleNavTheme()
 
   useEffect(() => {
     if (isMenuOpen) return // pause scroll detection while menu open
@@ -41,10 +39,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
   }, [isMenuOpen])
 
   return (
-    <nav
-      ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 py-6 ${isDarkSection ? 'nav-dark' : 'nav-light'}`}
-    >
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-6">
       <div className="page-wrapper flex items-center">
         {/* Logo */}
         <div
@@ -58,7 +53,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               alt="C&C IDEA LAB Logo"
               width={160}
               height={64}
-              className="h-16 w-auto nav-logo"
+              className="h-16 w-auto"
             />
           </PremiumTransitionLink>
         </div>
@@ -83,7 +78,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 appearance="inline"
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
-                className="nav-text hover:opacity-70 transition-all text-lg font-medium"
+                className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
               />
             </div>
           ))}
@@ -111,7 +106,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               appearance="inline"
               transitionType="logoWipe"
               transitionColor="#666666ff"
-              className="nav-text hover:opacity-70 transition-all text-lg font-medium"
+              className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
             />
           </div>
 
