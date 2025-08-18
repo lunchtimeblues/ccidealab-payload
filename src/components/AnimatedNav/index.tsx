@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { HamburgerMenu } from '@/components/HamburgerMenu'
-import { useNavigationTheme } from '@/hooks/useNavigationTheme'
 import Image from 'next/image'
 
 interface NavItem {
@@ -21,7 +20,7 @@ interface AnimatedNavProps {
 
 export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, onToggleMenu }) => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { isDarkBackground, navRef } = useNavigationTheme()
+  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     if (isMenuOpen) return // pause scroll detection while menu open
@@ -48,17 +47,16 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
             isMenuOpen ? 'pointer-events-none opacity-50' : ''
           }`}
         >
-          <div style={{ filter: isDarkBackground ? 'invert(1)' : 'none' }}>
-            <PremiumTransitionLink url="/" appearance="inline" transitionType="logoWipe">
-              <Image
-                src="/images/cc-logo-black-full.svg"
-                alt="C&C IDEA LAB Logo"
-                width={160}
-                height={64}
-                className="h-16 w-auto"
-              />
-            </PremiumTransitionLink>
-          </div>
+          <PremiumTransitionLink url="/" appearance="inline" transitionType="logoWipe">
+            <Image
+              src="/images/cc-logo-black-full.svg"
+              alt="C&C IDEA LAB Logo"
+              width={160}
+              height={64}
+              className="h-16 w-auto"
+              style={{ mixBlendMode: 'difference' }}
+            />
+          </PremiumTransitionLink>
         </div>
 
         {/* Desktop Nav */}
@@ -75,16 +73,15 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 transitionDelay: isScrolled || isMenuOpen ? `${index * 50}ms` : `${index * 150}ms`,
               }}
             >
-              <div style={{ filter: isDarkBackground ? 'invert(1)' : 'none' }}>
-                <PremiumTransitionLink
-                  url={item.href}
-                  label={item.label}
-                  appearance="inline"
-                  transitionType={item.transitionType}
-                  transitionColor={item.transitionColor}
-                  className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
-                />
-              </div>
+              <PremiumTransitionLink
+                url={item.href}
+                label={item.label}
+                appearance="inline"
+                transitionType={item.transitionType}
+                transitionColor={item.transitionColor}
+                className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
+                style={{ mixBlendMode: 'difference' }}
+              />
             </div>
           ))}
         </div>
@@ -105,16 +102,15 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               transitionDelay: isScrolled ? '0ms' : '200ms',
             }}
           >
-            <div style={{ filter: isDarkBackground ? 'invert(1)' : 'none' }}>
-              <PremiumTransitionLink
-                url="/contact"
-                label="Contact"
-                appearance="inline"
-                transitionType="logoWipe"
-                transitionColor="#666666ff"
-                className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
-              />
-            </div>
+            <PremiumTransitionLink
+              url="/contact"
+              label="Contact"
+              appearance="inline"
+              transitionType="logoWipe"
+              transitionColor="#666666ff"
+              className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
+              style={{ mixBlendMode: 'difference' }}
+            />
           </div>
 
           {/* Hamburger */}
@@ -126,7 +122,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               transitionDelay: isScrolled ? '100ms' : '0ms',
             }}
           >
-            <HamburgerMenu isOpen={isMenuOpen} onClick={onToggleMenu} isDarkBackground={isDarkBackground} />
+            <HamburgerMenu isOpen={isMenuOpen} onClick={onToggleMenu} />
           </div>
         </div>
       </div>
