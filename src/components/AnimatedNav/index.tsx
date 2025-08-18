@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { HamburgerMenu } from '@/components/HamburgerMenu'
+import { useNavigationTheme } from '@/hooks/useNavigationTheme'
 import Image from 'next/image'
 
 interface NavItem {
@@ -20,7 +21,7 @@ interface AnimatedNavProps {
 
 export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, onToggleMenu }) => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const navRef = useRef<HTMLElement>(null)
+  const { isDarkBackground, navRef } = useNavigationTheme()
 
   useEffect(() => {
     if (isMenuOpen) return // pause scroll detection while menu open
@@ -47,7 +48,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
             isMenuOpen ? 'pointer-events-none opacity-50' : ''
           }`}
         >
-          <div style={{ filter: 'invert(1)' }}>
+          <div style={{ filter: isDarkBackground ? 'invert(1)' : 'none' }}>
             <PremiumTransitionLink url="/" appearance="inline" transitionType="logoWipe">
               <Image
                 src="/images/cc-logo-black-full.svg"
@@ -74,7 +75,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 transitionDelay: isScrolled || isMenuOpen ? `${index * 50}ms` : `${index * 150}ms`,
               }}
             >
-              <div style={{ filter: 'invert(1)' }}>
+              <div style={{ filter: isDarkBackground ? 'invert(1)' : 'none' }}>
                 <PremiumTransitionLink
                   url={item.href}
                   label={item.label}
@@ -104,7 +105,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               transitionDelay: isScrolled ? '0ms' : '200ms',
             }}
           >
-            <div style={{ filter: 'invert(1)' }}>
+            <div style={{ filter: isDarkBackground ? 'invert(1)' : 'none' }}>
               <PremiumTransitionLink
                 url="/contact"
                 label="Contact"
@@ -125,7 +126,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               transitionDelay: isScrolled ? '100ms' : '0ms',
             }}
           >
-            <HamburgerMenu isOpen={isMenuOpen} onClick={onToggleMenu} />
+            <HamburgerMenu isOpen={isMenuOpen} onClick={onToggleMenu} isDarkBackground={isDarkBackground} />
           </div>
         </div>
       </div>

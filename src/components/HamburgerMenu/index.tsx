@@ -4,12 +4,14 @@ interface HamburgerMenuProps {
   isOpen: boolean
   onClick: () => void
   className?: string
+  isDarkBackground?: boolean
 }
 
 export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   isOpen,
   onClick,
-  className = ''
+  className = '',
+  isDarkBackground = false
 }) => {
   return (
     <button
@@ -19,7 +21,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     >
       <span
         className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
-        style={{ filter: 'invert(1)' }}
+        style={{ filter: isDarkBackground ? 'invert(1)' : 'none' }}
       >
         {isOpen ? 'Close' : 'Menu'}
       </span>
