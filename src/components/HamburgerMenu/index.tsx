@@ -19,7 +19,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
     >
       <span
         className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
-        style={{ mixBlendMode: 'difference' }}
+        style={{ filter: 'invert(1)' }}
       >
         {isOpen ? 'Close' : 'Menu'}
       </span>

@@ -47,16 +47,17 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
             isMenuOpen ? 'pointer-events-none opacity-50' : ''
           }`}
         >
-          <PremiumTransitionLink url="/" appearance="inline" transitionType="logoWipe">
-            <Image
-              src="/images/cc-logo-black-full.svg"
-              alt="C&C IDEA LAB Logo"
-              width={160}
-              height={64}
-              className="h-16 w-auto"
-              style={{ mixBlendMode: 'difference' }}
-            />
-          </PremiumTransitionLink>
+          <div style={{ filter: 'invert(1)' }}>
+            <PremiumTransitionLink url="/" appearance="inline" transitionType="logoWipe">
+              <Image
+                src="/images/cc-logo-black-full.svg"
+                alt="C&C IDEA LAB Logo"
+                width={160}
+                height={64}
+                className="h-16 w-auto"
+              />
+            </PremiumTransitionLink>
+          </div>
         </div>
 
         {/* Desktop Nav */}
@@ -73,15 +74,16 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 transitionDelay: isScrolled || isMenuOpen ? `${index * 50}ms` : `${index * 150}ms`,
               }}
             >
-              <PremiumTransitionLink
-                url={item.href}
-                label={item.label}
-                appearance="inline"
-                transitionType={item.transitionType}
-                transitionColor={item.transitionColor}
-                className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
-                style={{ mixBlendMode: 'difference' }}
-              />
+              <div style={{ filter: 'invert(1)' }}>
+                <PremiumTransitionLink
+                  url={item.href}
+                  label={item.label}
+                  appearance="inline"
+                  transitionType={item.transitionType}
+                  transitionColor={item.transitionColor}
+                  className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
+                />
+              </div>
             </div>
           ))}
         </div>
@@ -102,15 +104,16 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               transitionDelay: isScrolled ? '0ms' : '200ms',
             }}
           >
-            <PremiumTransitionLink
-              url="/contact"
-              label="Contact"
-              appearance="inline"
-              transitionType="logoWipe"
-              transitionColor="#666666ff"
-              className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
-              style={{ mixBlendMode: 'difference' }}
-            />
+            <div style={{ filter: 'invert(1)' }}>
+              <PremiumTransitionLink
+                url="/contact"
+                label="Contact"
+                appearance="inline"
+                transitionType="logoWipe"
+                transitionColor="#666666ff"
+                className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
+              />
+            </div>
           </div>
 
           {/* Hamburger */}
