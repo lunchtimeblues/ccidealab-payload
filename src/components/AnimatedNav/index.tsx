@@ -80,6 +80,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
                 className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
+                style={{ mixBlendMode: 'difference' }}
               />
             </div>
           ))}
@@ -108,6 +109,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               transitionType="logoWipe"
               transitionColor="#666666ff"
               className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
+              style={{ mixBlendMode: 'difference' }}
             />
           </div>
 

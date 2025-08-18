@@ -8,20 +8,20 @@ export default function Comm100Page() {
     <div className="bg-white text-black">
       {/* Hero Section */}
       <ParallaxImage
-        src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&h=1080&fit=crop&crop=center"
+        src="/images/comm100/comm100_hero_bg.jpg"
         alt="Comm100 Customer Service Platform"
         size="full"
         overlay={true}
-        overlayOpacity={0.3}
+        overlayOpacity={0.15}
         parallaxSpeed={0.5}
       >
         <Container size="xxl" className="h-full flex flex-col justify-center">
           <ScrollRevealText>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">Comm100</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">Comm100</h1>
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
-            <p className="max-w-xl text-lg md:text-xl leading-relaxed">
-              Comm100 is a leading customer service platform that helps businesses deliver 
+            <p className="max-w-xl text-lg md:text-xl leading-relaxed text-white">
+              Comm100 is a leading customer service platform that helps businesses deliver
               exceptional customer experiences through omnichannel communication solutions.
             </p>
           </ScrollRevealText>
@@ -29,35 +29,33 @@ export default function Comm100Page() {
       </ParallaxImage>
 
       {/* Project Overview */}
-      <section className="py-16 lg:py-24">
-        <Container size="xxl">
-          <div className="grid lg:grid-cols-12 gap-8">
-            {/* Left column */}
-            <div className="lg:col-span-4 space-y-2 text-sm">
-              <p>Project Overview</p>
-              <ul className="space-y-1 text-gray-500">
-                <li>Client</li>
-                <li>Year</li>
-                <li>Services</li>
-              </ul>
-            </div>
+      <section className="py-16 lg:py-24 bg-grey-100">
+        <Container size="xxl" className="grid lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-4">
+            <h3 className="text-xl font-semibold mb-6">Project Overview</h3>
+            <ul className="space-y-6 text-gray-700 text-base">
+              <li className="flex flex-col">
+                <span className="border-t border-gray-300 pt-2">Year</span>
+              </li>
+              <li className="flex flex-col">
+                <span className="border-t border-gray-300 pt-2">Scope</span>
+              </li>
+              <li className="flex flex-col">
+                <span className="border-t border-gray-300 pt-2">Industry</span>
+              </li>
+            </ul>
+          </div>
 
-            {/* Right column */}
-            <div className="lg:col-span-8">
-              <ScrollRevealText>
-                <h2 className="text-2xl md:text-3xl font-semibold mb-4">
-                  Elevating Customer Experience Through Design.
-                </h2>
-              </ScrollRevealText>
-              <ScrollRevealText delay={200}>
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  In the competitive customer service technology space, we crafted a modern 
-                  brand identity for Comm100 that communicates reliability, innovation, and 
-                  human connection. The result bridges technology with empathy, creating 
-                  lasting customer relationships.
-                </p>
-              </ScrollRevealText>
-            </div>
+          <div className="lg:col-span-8">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-4 leading-snug">
+              Every channel.
+              <br />
+              One platform.
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+              Powered by AI and automation, Comm100 platform unifies communication across every
+              touchpoint, from live chat to social media, to deliver seamless, personalized support.
+            </p>
           </div>
         </Container>
       </section>
@@ -77,9 +75,7 @@ export default function Comm100Page() {
       <section className="py-16">
         <Container size="xxl">
           <ScrollRevealText>
-            <h3 className="text-2xl md:text-3xl font-semibold mb-8">
-              Clean. Confident. Cohesive.
-            </h3>
+            <h3 className="text-2xl md:text-3xl font-semibold mb-8">Clean. Confident. Cohesive.</h3>
           </ScrollRevealText>
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
