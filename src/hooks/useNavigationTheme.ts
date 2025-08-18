@@ -11,23 +11,22 @@ export const useNavigationTheme = () => {
       if (!navRef.current) return
 
       try {
-        // Temporarily hide the navigation to sample what's behind it
-        const nav = navRef.current
-        const originalVisibility = nav.style.visibility
-        nav.style.visibility = 'hidden'
-
         // Get the navigation element's position
+        const nav = navRef.current
         const navRect = nav.getBoundingClientRect()
         const centerX = navRect.left + navRect.width / 2
         const centerY = navRect.top + navRect.height / 2
 
-        // Sample multiple points for better accuracy
+        // Sample points below the navigation (where content would be)
         const samplePoints = [
-          { x: centerX, y: centerY },
-          { x: centerX - 50, y: centerY },
-          { x: centerX + 50, y: centerY },
-          { x: centerX, y: centerY + 20 },
+          { x: centerX, y: centerY + 100 }, // Directly below nav center
+          { x: centerX - 100, y: centerY + 100 }, // Below and left
+          { x: centerX + 100, y: centerY + 100 }, // Below and right
+          { x: centerX, y: centerY + 150 }, // Further below
         ]
+
+        console.log('📍 Navigation rect:', navRect)
+        console.log('🎯 Sample points:', samplePoints)
 
         let totalBrightness = 0
         let validSamples = 0
@@ -54,24 +53,29 @@ export const useNavigationTheme = () => {
               backgroundColor = window.getComputedStyle(document.body).backgroundColor
             }
 
-            // Parse RGB values
+            // Parse RGB values with better debugging
             const rgbMatch = backgroundColor.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+
+            console.log('🔍 Sampling point:', point, 'element:', element.tagName, 'backgroundColor:', backgroundColor)
 
             if (rgbMatch) {
               const r = parseInt(rgbMatch[1])
               const g = parseInt(rgbMatch[2])
               const b = parseInt(rgbMatch[3])
 
+              console.log('✅ RGB values:', { r, g, b })
+
               // Calculate brightness using luminance formula
               const brightness = (r * 299 + g * 587 + b * 114) / 1000
               totalBrightness += brightness
               validSamples++
+
+              console.log('💡 Brightness:', brightness)
+            } else {
+              console.log('❌ Failed to parse RGB from:', backgroundColor)
             }
           }
         }
-
-        // Restore navigation visibility
-        nav.style.visibility = originalVisibility
 
         if (validSamples > 0) {
           const averageBrightness = totalBrightness / validSamples
@@ -86,12 +90,23 @@ export const useNavigationTheme = () => {
           })
 
           setIsDarkBackground(isDark)
+        } else {
+          // Fallback: check body background color
+          const bodyStyle = window.getComputedStyle(document.body)
+          const bodyBg = bodyStyle.backgroundColor
+          console.log('🔄 Fallback to body background:', bodyBg)
+
+          const rgbMatch = bodyBg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+          if (rgbMatch) {
+            const r = parseInt(rgbMatch[1])
+            const g = parseInt(rgbMatch[2])
+            const b = parseInt(rgbMatch[3])
+            const brightness = (r * 299 + g * 587 + b * 114) / 1000
+            setIsDarkBackground(brightness < 140)
+            console.log('🔄 Fallback brightness:', brightness)
+          }
         }
       } catch (error) {
-        // Restore navigation visibility in case of error
-        if (navRef.current) {
-          navRef.current.style.visibility = ''
-        }
         console.warn('Background detection error:', error)
       }
     }
