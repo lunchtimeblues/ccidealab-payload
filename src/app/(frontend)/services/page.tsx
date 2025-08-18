@@ -30,7 +30,8 @@ export default function ServicesPage() {
             const viewportHeight = window.innerHeight
 
             // When THIS section enters viewport, fade the PREVIOUS section
-            if (index > 0) { // Skip first section (no previous section to fade)
+            if (index > 0) {
+              // Skip first section (no previous section to fade)
               const prevSectionIndex = index - 1
               let fadeOpacity = 0
 
@@ -128,7 +129,7 @@ export default function ServicesPage() {
                 maxSpeedMultiplier={2}
                 starSpinSpeed={4}
                 lines="single"
-                direction="right"
+                direction="left"
                 lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
               >
                 <span className="mx-8">OUR</span>

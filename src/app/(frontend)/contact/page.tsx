@@ -1,7 +1,6 @@
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
-import { ScrollMarquee } from '@/components/ScrollMarquee'
 
 export default function ContactPage() {
   return (
@@ -28,7 +27,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-32 lg:py-48 bg-white">
+      <section className="py-32 lg:py-48 bg-grey-100">
         <Container size="xl">
           <div className="grid lg:grid-cols-12 gap-16">
             {/* Contact Information */}
@@ -244,131 +243,6 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      {/* Scroll Marquee Section */}
-      <section className="py-32 bg-black text-white overflow-hidden">
-        <div className="mb-16 text-center">
-          <ScrollRevealText>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-              Let&apos;s Work Together
-            </h2>
-          </ScrollRevealText>
-          <ScrollRevealText delay={200}>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto px-6 leading-relaxed">
-              Great partnerships create extraordinary results—
-              <br className="hidden md:block" />
-              let&apos;s build something remarkable together.
-            </p>
-          </ScrollRevealText>
-        </div>
-
-        <ScrollMarquee
-          baseSpeed={120}
-          maxSpeedMultiplier={5}
-          sensitivity={25}
-          smoothing={0.9}
-          lines="dual"
-          className="space-y-12"
-          lineClassName="text-4xl md:text-6xl lg:text-8xl font-bold tracking-wider"
-        >
-          <span className="mx-16">LET&apos;S COLLABORATE</span>
-          <span className="mx-16 text-gray-500">•</span>
-          <span className="mx-16">CREATE TOGETHER</span>
-          <span className="mx-16 text-gray-500">•</span>
-          <span className="mx-16">BUILD SOMETHING GREAT</span>
-          <span className="mx-16 text-gray-500">•</span>
-          <span className="mx-16">MAKE AN IMPACT</span>
-          <span className="mx-16 text-gray-500">•</span>
-        </ScrollMarquee>
-
-        <div className="mt-16 text-center">
-          <ScrollRevealText delay={400}>
-            <p className="text-sm text-gray-500 uppercase tracking-widest">Ready when you are</p>
-          </ScrollRevealText>
-        </div>
-      </section>
-
-      {/* Additional Information Section */}
-      <section className="py-32 lg:py-48 bg-gray-100">
-        <Container size="xl">
-          <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
-            <ScrollRevealText delay={200}>
-              <div className="text-center lg:text-left">
-                <div className="w-16 h-16 bg-black rounded-full mx-auto lg:mx-0 mb-6 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-black">Quick Response</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We value your time and typically respond to all inquiries within 24 hours during
-                  business days.
-                </p>
-              </div>
-            </ScrollRevealText>
-
-            <ScrollRevealText delay={400}>
-              <div className="text-center lg:text-left">
-                <div className="w-16 h-16 bg-black rounded-full mx-auto lg:mx-0 mb-6 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-black">Free Consultation</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Every project starts with a complimentary strategy session to understand your
-                  goals and explore possibilities.
-                </p>
-              </div>
-            </ScrollRevealText>
-
-            <ScrollRevealText delay={600}>
-              <div className="text-center lg:text-left">
-                <div className="w-16 h-16 bg-black rounded-full mx-auto lg:mx-0 mb-6 flex items-center justify-center">
-                  <svg
-                    className="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-black">Rapid Turnaround</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We understand the pace of business and work efficiently to deliver exceptional
-                  results on time.
-                </p>
-              </div>
-            </ScrollRevealText>
-          </div>
-        </Container>
-      </section>
-
       {/* Final CTA Section */}
       <section className="py-32 lg:py-48 bg-gray-100">
         <Container size="lg" className="text-center">
@@ -383,57 +257,6 @@ export default function ContactPage() {
               something extraordinary that people will rally around.
             </p>
           </ScrollRevealText>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <ScrollRevealText delay={400}>
-              <PremiumTransitionLink
-                url="/about"
-                label="Learn About Us"
-                appearance="outline"
-                transitionType="logoWipe"
-                transitionColor="#7c3aed"
-                className="px-12 py-6 text-xl border-2 border-black text-black hover:bg-black hover:text-white transition-colors"
-              />
-            </ScrollRevealText>
-            <ScrollRevealText delay={600}>
-              <PremiumTransitionLink
-                url="/services"
-                label="Our Services"
-                appearance="outline"
-                transitionType="logoWipe"
-                transitionColor="#059669"
-                className="px-12 py-6 text-xl border-2 border-black text-black hover:bg-black hover:text-white transition-colors"
-              />
-            </ScrollRevealText>
-          </div>
-
-          <div className="mt-16 pt-16 border-t border-gray-200">
-            <ScrollRevealText delay={800}>
-              <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-500">
-                <PremiumTransitionLink
-                  url="/"
-                  label="← Home"
-                  appearance="inline"
-                  transitionType="logoWipe"
-                  className="hover:text-black transition-colors"
-                />
-                <PremiumTransitionLink
-                  url="/work"
-                  label="View Our Work"
-                  appearance="inline"
-                  transitionType="logoWipe"
-                  className="hover:text-black transition-colors"
-                />
-                <PremiumTransitionLink
-                  url="/scroll-marquee-demo"
-                  label="See Demo"
-                  appearance="inline"
-                  transitionType="logoWipe"
-                  className="hover:text-black transition-colors"
-                />
-              </div>
-            </ScrollRevealText>
-          </div>
         </Container>
       </section>
     </div>

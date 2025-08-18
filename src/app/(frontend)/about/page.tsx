@@ -20,7 +20,7 @@ export default function AboutPage() {
               maxSpeedMultiplier={2}
               starSpinSpeed={4}
               lines="single"
-              direction="right"
+              direction="left"
               lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">ABOUT</span>
@@ -50,7 +50,7 @@ export default function AboutPage() {
           </div>
 
           {/* Hero Footer */}
-          <Container size="xxl">
+          <Container size="xl">
             <div className="flex justify-between items-end w-full py-6 text-sm">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
