@@ -17,10 +17,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
       className={`relative flex items-center justify-center group ${className}`}
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
     >
-      <span
-        className="text-black hover:text-gray-600 transition-colors text-lg font-medium"
-        style={{ mixBlendMode: 'difference' }}
-      >
+      <span className="nav-text hover:opacity-70 transition-all text-lg font-medium">
         {isOpen ? 'Close' : 'Menu'}
       </span>
     </button>
