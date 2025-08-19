@@ -290,17 +290,29 @@ html[data-theme='light'] {
   }
 }
 
-/* Enhanced blur effects for fullscreen menu */
+/* Optimized blur effects for fullscreen menu - Windows/PC performance focused */
 .fullscreen-menu-blur {
-  backdrop-filter: blur(20px) saturate(180%) brightness(80%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(80%);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   transform: translateZ(0);
   will-change: backdrop-filter;
+  /* Windows-specific optimizations */
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Fallback for browsers that don't support backdrop-filter */
 @supports not (backdrop-filter: blur(1px)) {
   .fullscreen-menu-blur {
+    background: rgba(0, 0, 0, 0.75) !important;
+  }
+}
+
+/* Windows-specific performance optimizations */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .fullscreen-menu-blur {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     background: rgba(0, 0, 0, 0.8) !important;
   }
 }

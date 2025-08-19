@@ -1,5 +1,5 @@
 import { Container } from '@/components/Container'
-import { PremiumTransitionLink } from '@/components'
+import { TransitionLink } from '@/components'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
@@ -282,7 +282,7 @@ export default function AboutPage() {
                 </p>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <PremiumTransitionLink
+                <TransitionLink
                   url="/method"
                   label="Learn the C/C method"
                   appearance="inline"

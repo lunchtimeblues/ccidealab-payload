@@ -4,7 +4,7 @@ import { Button, type ButtonProps } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
 import Link from 'next/link'
 import React from 'react'
-import { usePageTransition } from '@/hooks/usePageTransition'
+import { usePageTransition, type TransitionType } from '@/hooks/usePageTransition'
 
 import type { Page } from '@/payload-types'
 
@@ -21,8 +21,11 @@ type TransitionLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
-  // New prop to disable transitions if needed
+  // Enhanced transition options
+  transitionType?: TransitionType
+  transitionColor?: string
   disableTransition?: boolean
+  onClick?: () => void
 }
 
 const isExternalUrl = (url: string): boolean => {
@@ -30,13 +33,11 @@ const isExternalUrl = (url: string): boolean => {
     const urlObj = new URL(url, window.location.origin)
     return urlObj.origin !== window.location.origin
   } catch {
-    // If URL parsing fails, assume it's internal
     return false
   }
 }
 
 const isInternalLink = (href: string): boolean => {
-  // Check if it's a relative path or same origin
   return href.startsWith('/') || href.startsWith('#') || !isExternalUrl(href)
 }
 
@@ -51,7 +52,10 @@ export const TransitionLink: React.FC<TransitionLinkType> = (props) => {
     reference,
     size: sizeFromProps,
     url,
+    transitionType = 'logoWipe',
+    transitionColor,
     disableTransition = false,
+    onClick,
   } = props
 
   const { navigateWithTransition } = usePageTransition()
@@ -69,16 +73,16 @@ export const TransitionLink: React.FC<TransitionLinkType> = (props) => {
   const newTabProps = newTab ? { rel: 'noopener noreferrer', target: '_blank' } : {}
 
   // Determine if we should use transitions
-  const shouldUseTransition = 
-    !disableTransition && 
-    !newTab && 
-    isInternalLink(href) && 
-    typeof window !== 'undefined'
+  const shouldUseTransition =
+    !disableTransition && !newTab && isInternalLink(href) && typeof window !== 'undefined'
 
   const handleClick = (e: React.MouseEvent) => {
     if (shouldUseTransition) {
       e.preventDefault()
-      navigateWithTransition(href)
+      onClick?.() // Call the onClick handler first (to close menu, etc.)
+      navigateWithTransition(href, transitionType, transitionColor)
+    } else {
+      onClick?.() // Call onClick for external links too
     }
     // If not using transition, let the default Link behavior handle it
   }
@@ -93,9 +97,9 @@ export const TransitionLink: React.FC<TransitionLinkType> = (props) => {
   /* Ensure we don't break any styles set by richText */
   if (appearance === 'inline') {
     return (
-      <Link 
-        className={cn(className)} 
-        href={href || url || ''} 
+      <Link
+        className={cn(className)}
+        href={href || url || ''}
         onClick={handleClick}
         {...newTabProps}
       >
@@ -106,9 +110,9 @@ export const TransitionLink: React.FC<TransitionLinkType> = (props) => {
 
   return (
     <Button asChild className={className} size={size} variant={appearance}>
-      <Link 
-        className={cn(className)} 
-        href={href || url || ''} 
+      <Link
+        className={cn(className)}
+        href={href || url || ''}
         onClick={handleClick}
         {...newTabProps}
       >
@@ -117,3 +121,20 @@ export const TransitionLink: React.FC<TransitionLinkType> = (props) => {
     </Button>
   )
 }
+
+// Export individual transition components for specific use cases
+export const CurtainLink: React.FC<Omit<TransitionLinkType, 'transitionType'>> = (props) => (
+  <TransitionLink {...props} transitionType="curtain" />
+)
+
+export const ScaleLink: React.FC<Omit<TransitionLinkType, 'transitionType'>> = (props) => (
+  <TransitionLink {...props} transitionType="scale" />
+)
+
+export const WipeLink: React.FC<Omit<TransitionLinkType, 'transitionType'>> = (props) => (
+  <TransitionLink {...props} transitionType="wipe" />
+)
+
+export const FadeLink: React.FC<Omit<TransitionLinkType, 'transitionType'>> = (props) => (
+  <TransitionLink {...props} transitionType="fade" />
+)

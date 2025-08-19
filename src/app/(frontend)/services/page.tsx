@@ -6,7 +6,7 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollVideo } from '@/components/ScrollVideo'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
-import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
+import { TransitionLink } from '@/components/TransitionLink'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ServicesPage() {
@@ -210,7 +210,7 @@ export default function ServicesPage() {
               <div className="space-y-4">
                 <ScrollRevealText delay={800}>
                   <div>
-                    <PremiumTransitionLink
+                    <TransitionLink
                       url="/services"
                       label="Explore our services →"
                       appearance="inline"
@@ -222,7 +222,7 @@ export default function ServicesPage() {
                 </ScrollRevealText>
                 <ScrollRevealText delay={900}>
                   <div>
-                    <PremiumTransitionLink
+                    <TransitionLink
                       url="/work"
                       label="See our case studies →"
                       appearance="inline"
@@ -233,7 +233,7 @@ export default function ServicesPage() {
                 </ScrollRevealText>
                 <ScrollRevealText delay={1000}>
                   <div>
-                    <PremiumTransitionLink
+                    <TransitionLink
                       url="/methodology"
                       label="Discover our methodology →"
                       appearance="inline"

@@ -2,8 +2,8 @@
 
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
+
+import { TransitionLink } from '@/components/TransitionLink'
 // import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 import { Container } from '@/components/Container'
@@ -113,7 +113,7 @@ export default function HomePage(): React.JSX.Element {
               <div className="space-y-4">
                 <ScrollRevealText delay={800}>
                   <div>
-                    <PremiumTransitionLink
+                    <TransitionLink
                       url="/services"
                       label="Explore our services →"
                       appearance="inline"
@@ -125,7 +125,7 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
                 <ScrollRevealText delay={900}>
                   <div>
-                    <PremiumTransitionLink
+                    <TransitionLink
                       url="/work"
                       label="See our case studies →"
                       appearance="inline"
@@ -136,7 +136,7 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
                 <ScrollRevealText delay={1000}>
                   <div>
-                    <PremiumTransitionLink
+                    <TransitionLink
                       url="/methodology"
                       label="Discover our methodology →"
                       appearance="inline"
@@ -220,7 +220,7 @@ export default function HomePage(): React.JSX.Element {
             </MouseFollower>
 
             <MouseFollower text="VIEW PROJECT">
-              <PremiumTransitionLink url="/work/comm100" className="group cursor-pointer">
+              <TransitionLink url="/work/comm100" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
                 </div>
@@ -228,7 +228,7 @@ export default function HomePage(): React.JSX.Element {
                   <h3 className="text-xl font-semibold mb-2 text-black">Comm100</h3>
                   <p className="text-gray-600">Product Design & Development</p>
                 </ScrollRevealText>
-              </PremiumTransitionLink>
+              </TransitionLink>
             </MouseFollower>
 
             <MouseFollower text="COMING SOON">
@@ -290,7 +290,7 @@ export default function HomePage(): React.JSX.Element {
                 </p>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <PremiumTransitionLink
+                <TransitionLink
                   url="/method"
                   label="Learn the C/C method"
                   appearance="inline"
@@ -369,7 +369,7 @@ export default function HomePage(): React.JSX.Element {
 
                 <ScrollRevealText delay={200}>
                   <div className="mt-8">
-                    <PremiumTransitionLink
+                    <TransitionLink
                       url="/about"
                       label="Learn more about C/C IDEA LAB"
                       appearance="inline"

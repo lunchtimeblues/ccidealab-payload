@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
-import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
+import { TransitionLink } from '@/components/TransitionLink'
 import { HamburgerMenu } from '@/components/HamburgerMenu'
 import Image from 'next/image'
 
@@ -47,7 +47,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
             isMenuOpen ? 'pointer-events-none opacity-50' : ''
           }`}
         >
-          <PremiumTransitionLink url="/" appearance="inline" transitionType="logoWipe">
+          <TransitionLink url="/" appearance="inline" transitionType="logoWipe">
             <Image
               src="/images/cc-logo-black-full.svg"
               alt="C&C IDEA LAB Logo"
@@ -55,7 +55,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               height={64}
               className="h-16 w-auto"
             />
-          </PremiumTransitionLink>
+          </TransitionLink>
         </div>
 
         {/* Desktop Nav */}
@@ -72,7 +72,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 transitionDelay: isScrolled || isMenuOpen ? `${index * 50}ms` : `${index * 150}ms`,
               }}
             >
-              <PremiumTransitionLink
+              <TransitionLink
                 url={item.href}
                 label={item.label}
                 appearance="inline"
@@ -100,7 +100,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               transitionDelay: isScrolled ? '0ms' : '200ms',
             }}
           >
-            <PremiumTransitionLink
+            <TransitionLink
               url="/contact"
               label="Contact"
               appearance="inline"

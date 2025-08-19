@@ -1,86 +1,139 @@
 # TransitionLink Component
 
-A drop-in replacement for the CMSLink component that adds smooth page transitions using next-view-transitions.
+High-end page transitions inspired by premium agency websites like wearemotto.com, using next-view-transitions.
 
-## Features
+## 🎨 Available Transition Types
 
-- **Automatic transition detection**: Only applies transitions to internal links
-- **External link handling**: External links and new tab links work normally without transitions
-- **Same API as CMSLink**: Drop-in replacement with identical props
-- **Customizable**: Can disable transitions per link if needed
+### 1. **Slide** (Your Original)
+- Slides up with clip-path reveal
+- Duration: 1500ms
+- Easing: `cubic-bezier(0.87, 0, 0.13, 1)`
 
-## Usage
+### 2. **Curtain** (Agency Style)
+- Horizontal slide transition
+- Old page slides left, new page slides in from right
+- Duration: 800ms
+- Easing: `cubic-bezier(0.77, 0, 0.175, 1)`
+
+### 3. **Scale** (Zoom Effect)
+- Old page scales down and fades out
+- New page scales up and fades in
+- Duration: 600ms
+- Easing: `cubic-bezier(0.25, 0.46, 0.45, 0.94)`
+
+### 4. **Wipe** (Horizontal Reveal)
+- New page wipes in from left using clip-path
+- Duration: 1000ms
+- Easing: `cubic-bezier(0.87, 0, 0.13, 1)`
+
+### 5. **Fade** (Clean Crossfade)
+- Simple opacity transition
+- Duration: 400ms
+- Easing: `ease-out` / `ease-in`
+
+## 🚀 Usage
 
 ### Basic Usage
-
 ```tsx
 import { TransitionLink } from '@/components/TransitionLink'
 
-// Simple internal link with transition
-<TransitionLink url="/about" label="About Us" />
+<TransitionLink
+  url="/about"
+  label="About Us"
+  transitionType="curtain"
+  appearance="default"
+/>
+```
 
-// Reference-based link (CMS content)
-<TransitionLink 
+### Shorthand Components
+```tsx
+import {
+  CurtainLink,
+  ScaleLink,
+  WipeLink,
+  FadeLink
+} from '@/components/TransitionLink'
+
+<CurtainLink url="/contact" label="Contact" />
+<ScaleLink url="/projects" label="Projects" />
+<WipeLink url="/services" label="Services" />
+<FadeLink url="/blog" label="Blog" />
+```
+
+### With CMS References
+```tsx
+<TransitionLink
   type="reference"
   reference={{
     relationTo: 'pages',
     value: pageData
   }}
+  transitionType="scale"
   appearance="default"
 />
-
-// External link (no transition applied automatically)
-<TransitionLink 
-  url="https://external-site.com" 
-  label="External Link" 
-  newTab={true}
-/>
 ```
 
-### Migration from CMSLink
+## 🎯 Recommended Usage by Context
 
-Simply replace `CMSLink` imports with `TransitionLink`:
+- **Navigation Links**: `curtain` or `fade`
+- **Call-to-Action Buttons**: `scale` or `wipe`
+- **Portfolio/Gallery**: `scale`
+- **Blog/Content**: `fade` or `slide`
+- **Landing Page CTAs**: `wipe` or `curtain`
 
-```tsx
-// Before
-import { CMSLink } from '@/components/Link'
-
-// After  
-import { TransitionLink } from '@/components/TransitionLink'
-```
-
-All existing props work exactly the same!
-
-### Advanced Usage
-
-```tsx
-// Disable transition for specific link
-<TransitionLink 
-  url="/no-transition-page"
-  label="No Transition"
-  disableTransition={true}
-/>
-
-// Button appearance with transition
-<TransitionLink
-  url="/contact"
-  label="Contact Us"
-  appearance="default"
-  size="lg"
-/>
-```
-
-## Props
+## 🔧 Props
 
 All CMSLink props are supported, plus:
 
-- `disableTransition?: boolean` - Disable transition for this specific link
+- `transitionType?: 'slide' | 'curtain' | 'scale' | 'wipe' | 'fade'`
+- `disableTransition?: boolean`
 
-## How it works
+## 🎨 Customization
 
-1. **Internal links** (`/about`, `/contact`, etc.) → Applies smooth transition
-2. **External links** (`https://...`) → Normal navigation, no transition
-3. **New tab links** (`newTab={true}`) → Normal navigation, no transition
-4. **Hash links** (`#section`) → Normal navigation, no transition
+To create your own transition, extend the `usePremiumPageTransition` hook:
 
-The component automatically detects the link type and applies transitions only when appropriate.
+```tsx
+const customTransition = useCallback(() => {
+  // Old page animation
+  document.documentElement.animate([
+    { /* start state */ },
+    { /* end state */ }
+  ], {
+    duration: 800,
+    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    fill: 'forwards',
+    pseudoElement: '::view-transition-old(root)',
+  })
+
+  // New page animation
+  document.documentElement.animate([
+    { /* start state */ },
+    { /* end state */ }
+  ], {
+    duration: 800,
+    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    fill: 'forwards',
+    pseudoElement: '::view-transition-new(root)',
+  })
+}, [])
+```
+
+## 🌟 Demo
+
+Import and use the demo component to see all transitions in action:
+
+```tsx
+import { TransitionDemo } from '@/components/TransitionLink/demo'
+
+<TransitionDemo />
+```
+
+## 🔄 Usage
+
+Simply import and use:
+
+```tsx
+import { TransitionLink } from '@/components/TransitionLink'
+// or use shorthand components
+import { CurtainLink } from '@/components/TransitionLink'
+```

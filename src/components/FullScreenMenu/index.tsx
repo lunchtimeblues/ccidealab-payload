@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 interface NavItem {
@@ -25,11 +25,8 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
   onNavigate,
   navItems,
 }) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [scrollY, setScrollY] = useState(0)
-
+  const menuContainerRef = useRef<HTMLDivElement>(null)
   const itemHeight = 120 // Height per menu item
-  const totalHeight = navItems.length * itemHeight
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -66,63 +63,20 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
     }
   }, [isOpen])
 
-  // Scroll and keyboard handling
+  // Simplified keyboard handling - only ESC key
   useEffect(() => {
-    if (!isOpen || !scrollContainerRef.current) return
-
-    const container = scrollContainerRef.current
-
-    const handleWheel = (e: WheelEvent) => {
-      setScrollY((prevScrollY) => {
-        let newScrollY = prevScrollY + e.deltaY * 0.8
-
-        // Normalize scroll position to create infinite loop
-        while (newScrollY >= totalHeight) {
-          newScrollY -= totalHeight
-        }
-        while (newScrollY < 0) {
-          newScrollY += totalHeight
-        }
-
-        return newScrollY
-      })
-    }
+    if (!isOpen) return
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isOpen) return
-
-      switch (e.key) {
-        case 'Escape':
-          e.preventDefault()
-          onClose()
-          break
-        case 'ArrowUp':
-          e.preventDefault()
-          setScrollY((prevScrollY) => {
-            let newScrollY = prevScrollY - 50
-            if (newScrollY < 0) newScrollY += totalHeight
-            return newScrollY
-          })
-          break
-        case 'ArrowDown':
-          e.preventDefault()
-          setScrollY((prevScrollY) => {
-            let newScrollY = prevScrollY + 50
-            if (newScrollY >= totalHeight) newScrollY -= totalHeight
-            return newScrollY
-          })
-          break
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
       }
     }
 
-    container.addEventListener('wheel', handleWheel, { passive: true })
     document.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      container.removeEventListener('wheel', handleWheel)
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isOpen, totalHeight, onClose])
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
 
   const handleLinkClick = (url: string) => {
     onNavigate(url)
@@ -134,7 +88,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         isOpen ? 'pointer-events-auto' : 'pointer-events-none'
       }`}
     >
-      {/* Multi-layer blur background */}
+      {/* Optimized single-layer blur background */}
       <div
         className={`absolute inset-0 transition-transform duration-700 ease-out ${
           isNavigating
@@ -145,20 +99,16 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         }`}
         onClick={onClose}
       >
-        {/* Enhanced blur background with multiple layers */}
-        <div className="absolute inset-0 fullscreen-menu-blur bg-black/30" />
-
-        {/* Additional blur layer for extra depth */}
+        {/* Single optimized blur layer for better Windows/PC performance */}
         <div
-          className="absolute inset-0 backdrop-blur-xl bg-black/20"
+          className="absolute inset-0 bg-black/40"
           style={{
-            backdropFilter: 'blur(24px) saturate(200%) contrast(120%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(200%) contrast(120%)',
+            backdropFilter: 'blur(16px) saturate(150%)',
+            WebkitBackdropFilter: 'blur(16px) saturate(150%)',
+            transform: 'translateZ(0)', // Force hardware acceleration
+            willChange: 'backdrop-filter',
           }}
         />
-
-        {/* Subtle gradient overlay for visual depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-black/30" />
       </div>
 
       {/* Menu content */}
@@ -171,7 +121,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               : '-translate-y-full' // Closed state
         }`}
       >
-        <div ref={scrollContainerRef} className="h-full w-full overflow-hidden" tabIndex={0}>
+        <div ref={menuContainerRef} className="h-full w-full overflow-hidden" tabIndex={0}>
           {/* Page wrapper alignment for consistent layout */}
           <div className="page-wrapper h-full flex flex-col relative">
             {/* Header with Logo and Close Button */}
@@ -197,38 +147,31 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               </button>
             </div>
 
-            {/* Transform container for smooth infinite scroll */}
-            <div
-              className="flex-1 flex flex-col justify-center"
-              style={{
-                transform: `translateY(-${scrollY}px)`,
-              }}
-            >
-              {/* Render multiple copies for seamless loop */}
-              {Array.from({ length: 4 }, (_, copyIndex) => (
-                <div key={copyIndex} className="flex flex-col">
-                  {navItems.map((item, index) => (
-                    <div
-                      key={`${item.href}-${copyIndex}-${index}`}
-                      className="text-left w-full flex items-center group cursor-pointer"
-                      style={{ height: `${itemHeight}px` }}
-                    >
-                      {/* Number */}
-                      <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
-                        ({String(index + 1).padStart(2, '0')})
-                      </span>
+            {/* Optimized menu container - simplified for better performance */}
+            <div className="flex-1 flex flex-col justify-center">
+              {/* Single set of menu items - removed infinite scroll complexity */}
+              <div className="flex flex-col">
+                {navItems.map((item, index) => (
+                  <div
+                    key={`${item.href}-${index}`}
+                    className="text-left w-full flex items-center group cursor-pointer transform transition-transform duration-300 hover:scale-105"
+                    style={{ height: `${itemHeight}px` }}
+                  >
+                    {/* Number */}
+                    <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
+                      ({String(index + 1).padStart(2, '0')})
+                    </span>
 
-                      {/* Menu item */}
-                      <button
-                        onClick={() => handleLinkClick(item.href)}
-                        className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
-                      >
-                        {item.label.toUpperCase()}
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              ))}
+                    {/* Menu item */}
+                    <button
+                      onClick={() => handleLinkClick(item.href)}
+                      className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                    >
+                      {item.label.toUpperCase()}
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

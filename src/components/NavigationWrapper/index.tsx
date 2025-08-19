@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import { usePremiumPageTransition } from '@/hooks/usePremiumPageTransition'
+import { usePageTransition } from '@/hooks/usePageTransition'
 import { AnimatedNav } from '@/components/AnimatedNav'
 import { FullScreenMenu } from '@/components/FullScreenMenu'
 
@@ -23,7 +23,7 @@ const navItems: NavItem[] = [
 export const NavigationWrapper = () => {
 
   const pathname = usePathname()
-  const { navigateWithTransition } = usePremiumPageTransition()
+  const { navigateWithTransition } = usePageTransition()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isNavigating, setIsNavigating] = useState(false)
   const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
