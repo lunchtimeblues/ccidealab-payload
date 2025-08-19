@@ -179,11 +179,10 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               : '-translate-y-full' // Closed state
         }`}
       >
-        <div ref={scrollContainerRef} className="h-full w-full overflow-hidden" tabIndex={0}>
-          {/* Page wrapper alignment for consistent layout */}
-          <div className="page-wrapper h-full flex flex-col relative">
-            {/* Header with Logo and Close Button */}
-            <div className="flex-shrink-0 pt-8 pb-4 flex justify-between items-start relative z-30">
+        <div ref={scrollContainerRef} className="h-full w-full overflow-hidden relative" tabIndex={0}>
+          {/* Header with Logo and Close Button - Absolutely positioned */}
+          <div className="absolute top-0 left-0 right-0 z-30">
+            <div className="page-wrapper pt-8 pb-4 flex justify-between items-start">
               {/* Logo section */}
               <div className="flex items-center justify-start">
                 <Image
@@ -204,15 +203,19 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                 Close
               </button>
             </div>
+          </div>
 
-            {/* Optimized infinite scroll container with performance improvements */}
-            <div
-              className="flex-1 flex flex-col justify-center"
-              style={{
-                transform: `translateY(-${scrollY}px)`,
-                willChange: 'transform', // Optimize for transform animations
-              }}
-            >
+          {/* Menu items container - Centered independently */}
+          <div className="absolute inset-0 flex items-center justify-center z-20">
+            <div className="page-wrapper w-full">
+              {/* Optimized infinite scroll container with performance improvements */}
+              <div
+                className="flex flex-col justify-center"
+                style={{
+                  transform: `translateY(-${scrollY}px)`,
+                  willChange: 'transform', // Optimize for transform animations
+                }}
+              >
               {/* Render optimized copies for seamless infinite scroll */}
               {Array.from({ length: 3 }, (_, copyIndex) => (
                 <div key={copyIndex} className="flex flex-col">
@@ -246,13 +249,14 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                   ))}
                 </div>
               ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* ESC instruction */}
-      <div className="absolute inset-0 pointer-events-none z-20">
+      <div className="absolute inset-0 pointer-events-none z-40">
         <div
           className={`absolute top-1/2 right-8 transform -translate-y-1/2 text-white text-sm transition-all duration-500 ease-out ${
             isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
