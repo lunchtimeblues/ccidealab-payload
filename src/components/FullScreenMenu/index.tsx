@@ -238,7 +238,6 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         style={{
                           // Optimize text rendering
                           textRendering: 'optimizeSpeed',
-                          fontDisplay: 'swap',
                         }}
                       >
                         {item.label.toUpperCase()}
