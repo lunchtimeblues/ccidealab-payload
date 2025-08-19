@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { PremiumTransitionLink } from '@/components/PremiumTransitionLink'
 // import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
@@ -218,8 +219,8 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
-              <div className="group cursor-pointer">
+            <MouseFollower text="VIEW PROJECT">
+              <PremiumTransitionLink url="/work/comm100" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
                 </div>
@@ -227,7 +228,7 @@ export default function HomePage(): React.JSX.Element {
                   <h3 className="text-xl font-semibold mb-2 text-black">Comm100</h3>
                   <p className="text-gray-600">Product Design & Development</p>
                 </ScrollRevealText>
-              </div>
+              </PremiumTransitionLink>
             </MouseFollower>
 
             <MouseFollower text="COMING SOON">

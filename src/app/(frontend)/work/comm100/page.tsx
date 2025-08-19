@@ -2,6 +2,7 @@ import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
+import { ScrollVideo } from '@/components/ScrollVideo'
 
 export default function Comm100Page() {
   return (
@@ -60,16 +61,14 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      {/* Large Image */}
-      <section>
-        <Image
-          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920&h=1080&fit=crop&crop=center"
-          alt="Branding Presentation"
-          width={1920}
-          height={1080}
-          className="w-full h-auto"
-        />
-      </section>
+      {/* Scroll Video Section */}
+      <ScrollVideo
+        src="https://player.vimeo.com/progressive_redirect/playback/1111163690/rendition/1080p/file.mp4?loc=external&signature=736322fd08c3faf0a0d4de2dea4f8c54673d794cc788f604f3e5962448d66a4e"
+        autoPlay={true}
+        muted={true}
+        loop={true}
+        className="relative"
+      />
 
       {/* Section: Clean Confident Cohesive */}
       <section className="py-16">
