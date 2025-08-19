@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 interface NavItem {
@@ -25,8 +25,11 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
   onNavigate,
   navItems,
 }) => {
-  const menuContainerRef = useRef<HTMLDivElement>(null)
+  const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [scrollY, setScrollY] = useState(0)
+
   const itemHeight = 120 // Height per menu item
+  const totalHeight = navItems.length * itemHeight
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -63,20 +66,75 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
     }
   }, [isOpen])
 
-  // Simplified keyboard handling - only ESC key
+  // Optimized scroll and keyboard handling with performance improvements
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen || !scrollContainerRef.current) return
+
+    const container = scrollContainerRef.current
+
+    // Throttled scroll handler for better performance
+    let scrollTimeout: NodeJS.Timeout
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault()
+
+      // Clear previous timeout
+      if (scrollTimeout) clearTimeout(scrollTimeout)
+
+      // Throttle scroll updates for better performance
+      scrollTimeout = setTimeout(() => {
+        setScrollY((prevScrollY) => {
+          let newScrollY = prevScrollY + e.deltaY * 0.6 // Reduced sensitivity for smoother feel
+
+          // Normalize scroll position to create infinite loop
+          while (newScrollY >= totalHeight) {
+            newScrollY -= totalHeight
+          }
+          while (newScrollY < 0) {
+            newScrollY += totalHeight
+          }
+
+          return newScrollY
+        })
+      }, 8) // 8ms throttle for ~120fps max update rate
+    }
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault()
-        onClose()
+      if (!isOpen) return
+
+      switch (e.key) {
+        case 'Escape':
+          e.preventDefault()
+          onClose()
+          break
+        case 'ArrowUp':
+          e.preventDefault()
+          setScrollY((prevScrollY) => {
+            let newScrollY = prevScrollY - 40 // Reduced step for smoother movement
+            if (newScrollY < 0) newScrollY += totalHeight
+            return newScrollY
+          })
+          break
+        case 'ArrowDown':
+          e.preventDefault()
+          setScrollY((prevScrollY) => {
+            let newScrollY = prevScrollY + 40 // Reduced step for smoother movement
+            if (newScrollY >= totalHeight) newScrollY -= totalHeight
+            return newScrollY
+          })
+          break
       }
     }
 
+    // Use passive: false for wheel to allow preventDefault
+    container.addEventListener('wheel', handleWheel, { passive: false })
     document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [isOpen, onClose])
+
+    return () => {
+      if (scrollTimeout) clearTimeout(scrollTimeout)
+      container.removeEventListener('wheel', handleWheel)
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isOpen, totalHeight, onClose])
 
   const handleLinkClick = (url: string) => {
     onNavigate(url)
@@ -121,7 +179,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               : '-translate-y-full' // Closed state
         }`}
       >
-        <div ref={menuContainerRef} className="h-full w-full overflow-hidden" tabIndex={0}>
+        <div ref={scrollContainerRef} className="h-full w-full overflow-hidden" tabIndex={0}>
           {/* Page wrapper alignment for consistent layout */}
           <div className="page-wrapper h-full flex flex-col relative">
             {/* Header with Logo and Close Button */}
@@ -147,31 +205,48 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               </button>
             </div>
 
-            {/* Optimized menu container - simplified for better performance */}
-            <div className="flex-1 flex flex-col justify-center">
-              {/* Single set of menu items - removed infinite scroll complexity */}
-              <div className="flex flex-col">
-                {navItems.map((item, index) => (
-                  <div
-                    key={`${item.href}-${index}`}
-                    className="text-left w-full flex items-center group cursor-pointer transform transition-transform duration-300 hover:scale-105"
-                    style={{ height: `${itemHeight}px` }}
-                  >
-                    {/* Number */}
-                    <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
-                      ({String(index + 1).padStart(2, '0')})
-                    </span>
-
-                    {/* Menu item */}
-                    <button
-                      onClick={() => handleLinkClick(item.href)}
-                      className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+            {/* Optimized infinite scroll container with performance improvements */}
+            <div
+              className="flex-1 flex flex-col justify-center"
+              style={{
+                transform: `translateY(-${scrollY}px)`,
+                willChange: 'transform', // Optimize for transform animations
+              }}
+            >
+              {/* Render optimized copies for seamless infinite scroll */}
+              {Array.from({ length: 3 }, (_, copyIndex) => (
+                <div key={copyIndex} className="flex flex-col">
+                  {navItems.map((item, index) => (
+                    <div
+                      key={`${item.href}-${copyIndex}-${index}`}
+                      className="text-left w-full flex items-center group cursor-pointer"
+                      style={{
+                        height: `${itemHeight}px`,
+                        // Use transform3d for hardware acceleration
+                        transform: 'translate3d(0, 0, 0)',
+                      }}
                     >
-                      {item.label.toUpperCase()}
-                    </button>
-                  </div>
-                ))}
-              </div>
+                      {/* Number */}
+                      <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
+                        ({String(index + 1).padStart(2, '0')})
+                      </span>
+
+                      {/* Menu item */}
+                      <button
+                        onClick={() => handleLinkClick(item.href)}
+                        className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                        style={{
+                          // Optimize text rendering
+                          textRendering: 'optimizeSpeed',
+                          fontDisplay: 'swap',
+                        }}
+                      >
+                        {item.label.toUpperCase()}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         </div>
