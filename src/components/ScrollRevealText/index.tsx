@@ -43,7 +43,7 @@ export const ScrollRevealText: React.FC<ScrollRevealTextProps> = ({
     <div ref={elementRef} className={`overflow-hidden ${className}`}>
       <div
         className={`transition-transform duration-1000 ease-out ${
-          isVisible ? 'translate-y-0' : 'translate-y-full'
+          isVisible ? 'translate-y-0' : 'translate-y-[120%]'
         }`}
       >
         {children}
