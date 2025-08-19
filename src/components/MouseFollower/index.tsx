@@ -105,14 +105,21 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
             ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
           `}
         >
-          {/* Curved text around the circle using SVG */}
+          {/* Split text around the circle using SVG - distributed evenly on opposite sides */}
           <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 144 144">
             <defs>
               <path id="circle-path" d="M 72,72 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" />
             </defs>
+            {/* First half of text starting at top */}
             <text className="text-xs font-medium tracking-[0.2em] fill-current">
               <textPath href="#circle-path" startOffset="0%">
-                {text} • {text} •
+                {text}
+              </textPath>
+            </text>
+            {/* Second half of text starting at bottom (50% around the circle) */}
+            <text className="text-xs font-medium tracking-[0.2em] fill-current">
+              <textPath href="#circle-path" startOffset="50%">
+                {text}
               </textPath>
             </text>
           </svg>
