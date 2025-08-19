@@ -24,7 +24,7 @@ export default function HomePage(): React.JSX.Element {
           <div className="relative flex items-center justify-center almost-full-height px-4 sm:px-6 lg:px-8">
             <div className="relative w-full max-w-none pt-24 md:pt-0">
               <h1
-                className="text-6xl sm:text-[5rem] md:text-[5.25rem] lg:text-[7.5rem] xl:text-[10rem] 2xl:text-[12rem] leading-tight lg:leading-none font-medium uppercase tracking-tight"
+                className="text-fluid-9xl leading-tight lg:leading-none font-medium uppercase tracking-tight"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
@@ -59,7 +59,7 @@ export default function HomePage(): React.JSX.Element {
               </h1>
 
               <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:right-0 mt-12 md:mt-0 md:w-60 lg:w-72 xl:w-80 2xl:w-96 pr-4">
-                <p className="text-md md:text-xs lg:text-sm xl:text-base leading-relaxed tracking-wide">
+                <p className="text-fluid-base leading-relaxed tracking-wide">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
                     reinventing companies in the tech and innovation space.
@@ -86,18 +86,18 @@ export default function HomePage(): React.JSX.Element {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
             <div className="lg:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 lg:mb-0">Think big with us.</p>
+                <p className="text-fluid-lg font-medium text-gray-600 mb-8 lg:mb-0">Think big with us.</p>
               </ScrollRevealText>
             </div>
             <div className="lg:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
                   Great brands are more than famous names, they&apos;re Ideas Worth Rallying
                   Around®.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-fluid-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
                   <p>
                     C/C IDEA LAB is a brand strategy and design firm that partners with tech and
                     innovation companies to create impactful, future-ready brands. We collaborate
@@ -166,9 +166,7 @@ export default function HomePage(): React.JSX.Element {
       <section className="py-32 bg-gray-100">
         <Container size="xxl">
           <ScrollRevealText>
-            <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">
-              Featured Work
-            </h2>
+            <h2 className="text-fluid-6xl font-bold mb-16 text-black">Select Works</h2>
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -184,7 +182,7 @@ export default function HomePage(): React.JSX.Element {
                   />
                 </div>
                 <ScrollRevealText delay={100}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Affinity Group</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Affinity Group</h3>
                   <p className="text-gray-600">Brand Identity & Web Development</p>
                 </ScrollRevealText>
               </div>
@@ -202,7 +200,7 @@ export default function HomePage(): React.JSX.Element {
                   />
                 </div>
                 <ScrollRevealText delay={200}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Pokebar</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Pokebar</h3>
                   <p className="text-gray-600">Digital Strategy & UX Design</p>
                 </ScrollRevealText>
               </div>
@@ -220,7 +218,7 @@ export default function HomePage(): React.JSX.Element {
                   />
                 </div>
                 <ScrollRevealText delay={300}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Marco Polo</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Marco Polo</h3>
                   <p className="text-gray-600">Creative Direction & Branding</p>
                 </ScrollRevealText>
               </div>
@@ -238,7 +236,7 @@ export default function HomePage(): React.JSX.Element {
                   />
                 </div>
                 <ScrollRevealText delay={400}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Metrotown Notary</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Metrotown Notary</h3>
                   <p className="text-gray-600">Investment Platform & Identity</p>
                 </ScrollRevealText>
               </div>
@@ -256,7 +254,7 @@ export default function HomePage(): React.JSX.Element {
                   />
                 </div>
                 <ScrollRevealText delay={500}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Comm100</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Comm100</h3>
                   <p className="text-gray-600">Product Design & Development</p>
                 </ScrollRevealText>
               </TransitionLink>
@@ -274,7 +272,7 @@ export default function HomePage(): React.JSX.Element {
                   />
                 </div>
                 <ScrollRevealText delay={600}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">CityColor</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">CityColor</h3>
                   <p className="text-gray-600">Brand Strategy & Visual Identity</p>
                 </ScrollRevealText>
               </div>
@@ -312,14 +310,14 @@ export default function HomePage(): React.JSX.Element {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollRevealText>
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                <h2 className="text-fluid-5xl font-bold mb-8">
                   Turning bold vision
                   <br />
                   into brand impact.
                 </h2>
               </ScrollRevealText>
               <ScrollRevealText delay={200}>
-                <p className="text-lg text-gray-700 leading-relaxed mb-8 max-w-lg">
+                <p className="text-fluid-lg text-gray-700 leading-relaxed mb-8 max-w-lg">
                   Brand transformations fall short because they stop at the surface— logos,
                   taglines, campaigns. We go deeper, aligning your business around an Idea Worth
                   Rallying Around®. The result? A brand your people will champion and your audience
@@ -398,7 +396,7 @@ export default function HomePage(): React.JSX.Element {
               {/* Paragraph column: full width on small, right half on large */}
               <div className="col-span-12 lg:col-start-5 lg:col-span-8">
                 <ScrollRevealText>
-                  <p className="text-xl md:text-3xl lg:text-4xl font-medium leading-tight lg:leading-snug">
+                  <p className="text-fluid-4xl font-medium leading-tight lg:leading-snug">
                     CCIDEALAB® brings together a richly multicultural team with balanced
                     perspectives and shared creativity.
                   </p>

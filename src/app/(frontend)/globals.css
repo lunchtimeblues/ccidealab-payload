@@ -6,6 +6,15 @@
 @layer base {
   html {
     font-family: var(--font-sora), system-ui, sans-serif;
+    /* Fluid typography system - only applies on tablet+ */
+    font-size: 16px; /* Mobile: fixed 16px base */
+  }
+
+  /* Tablet and Desktop: Fluid scaling */
+  @media (min-width: 650px) {
+    html {
+      font-size: calc(10 * 100vw / var(--size));
+    }
   }
 }
 
@@ -147,6 +156,16 @@
 
     /* Spacing system from soulidealab.com */
     --spacing: 0.5rem; /* 8px base unit - gives us 32px mobile, 48px desktop */
+
+    /* Fluid Typography System - Mobile uses fixed sizes to prevent too-small text */
+    --size: 390; /* Mobile baseline - but we'll override with fixed sizes */
+  }
+
+  /* Tablet and Desktop: Fluid scaling system */
+  @media (min-width: 650px) {
+    :root {
+      --size: 1500; /* Desktop baseline for fluid scaling */
+    }
   }
 
   [data-theme='dark'] {
@@ -287,6 +306,49 @@ html[data-theme='light'] {
 
   .cursor-none * {
     cursor: none !important;
+  }
+
+  /* Fluid Typography Classes - Hybrid approach */
+  /* Mobile: Fixed sizes to prevent too-small text */
+  .text-fluid-xs { font-size: 12px; }
+  .text-fluid-sm { font-size: 14px; }
+  .text-fluid-base { font-size: 16px; }
+  .text-fluid-lg { font-size: 18px; }
+  .text-fluid-xl { font-size: 20px; }
+  .text-fluid-2xl { font-size: 24px; }
+  .text-fluid-3xl { font-size: 30px; }
+  .text-fluid-4xl { font-size: 36px; }
+  .text-fluid-5xl { font-size: 48px; }
+  .text-fluid-6xl { font-size: 60px; }
+  .text-fluid-7xl { font-size: 72px; }
+  .text-fluid-8xl { font-size: 96px; }
+  .text-fluid-9xl { font-size: 128px; }
+
+  /* Hero-specific sizes for the homepage */
+  .text-fluid-hero-sm { font-size: 48px; }   /* Mobile hero */
+  .text-fluid-hero-md { font-size: 72px; }   /* Mobile hero large */
+  .text-fluid-hero-lg { font-size: 96px; }   /* Mobile hero extra large */
+
+  /* Tablet and Desktop: Fluid scaling with rem units */
+  @media (min-width: 650px) {
+    .text-fluid-xs { font-size: 1.2rem; }   /* ~12px at 1500px viewport */
+    .text-fluid-sm { font-size: 1.4rem; }   /* ~14px */
+    .text-fluid-base { font-size: 1.6rem; } /* ~16px */
+    .text-fluid-lg { font-size: 1.8rem; }   /* ~18px */
+    .text-fluid-xl { font-size: 2rem; }     /* ~20px */
+    .text-fluid-2xl { font-size: 2.4rem; }  /* ~24px */
+    .text-fluid-3xl { font-size: 3rem; }    /* ~30px */
+    .text-fluid-4xl { font-size: 3.6rem; }  /* ~36px */
+    .text-fluid-5xl { font-size: 4.8rem; }  /* ~48px */
+    .text-fluid-6xl { font-size: 6rem; }    /* ~60px */
+    .text-fluid-7xl { font-size: 7.2rem; }  /* ~72px */
+    .text-fluid-8xl { font-size: 9.6rem; }  /* ~96px */
+    .text-fluid-9xl { font-size: 12.8rem; } /* ~128px */
+
+    /* Hero-specific fluid sizes */
+    .text-fluid-hero-sm { font-size: 4.8rem; }   /* ~48px base, scales up */
+    .text-fluid-hero-md { font-size: 7.2rem; }   /* ~72px base, scales up */
+    .text-fluid-hero-lg { font-size: 9.6rem; }   /* ~96px base, scales up */
   }
 }
 
