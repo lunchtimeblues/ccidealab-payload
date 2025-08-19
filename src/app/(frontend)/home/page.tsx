@@ -4,6 +4,7 @@ import React from 'react'
 import Image from 'next/image'
 
 import { TransitionLink } from '@/components/TransitionLink'
+import { QuickVideo } from '@/components/QuickVideo'
 // import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 import { Container } from '@/components/Container'
@@ -174,7 +175,13 @@ export default function HomePage(): React.JSX.Element {
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163775/rendition/1080p/file.mp4?loc=external&signature=a4f82a401110df04c78a21d68e0a53b92198a859b1a14b0eabaa60bdf69fa37c"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <ScrollRevealText delay={100}>
                   <h3 className="text-xl font-semibold mb-2 text-black">Affinity Group</h3>
@@ -186,7 +193,13 @@ export default function HomePage(): React.JSX.Element {
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163834/rendition/1080p/file.mp4?loc=external&signature=1d394a50f40749523873c42ec92b0b9177a3827d888000c24d688993f47ee793"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <ScrollRevealText delay={200}>
                   <h3 className="text-xl font-semibold mb-2 text-black">Pokebar</h3>
@@ -198,7 +211,13 @@ export default function HomePage(): React.JSX.Element {
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163809/rendition/1080p/file.mp4?loc=external&signature=9c62d16e134344639b26289eae9f721f646692945979ed5a8f4f2647aaeec55c"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <ScrollRevealText delay={300}>
                   <h3 className="text-xl font-semibold mb-2 text-black">Marco Polo</h3>
@@ -210,7 +229,13 @@ export default function HomePage(): React.JSX.Element {
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163826/rendition/1080p/file.mp4?loc=external&signature=26aef7e436f91aa3408dded6efdb69542ea5e337ae73ca3c03f29454067755ba"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <ScrollRevealText delay={400}>
                   <h3 className="text-xl font-semibold mb-2 text-black">Metrotown Notary</h3>
@@ -222,7 +247,13 @@ export default function HomePage(): React.JSX.Element {
             <MouseFollower text="VIEW PROJECT">
               <TransitionLink url="/work/comm100" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163790/rendition/1080p/file.mp4?loc=external&signature=54c579983b73bdb221c6bb53c48f0df0b57d84265c3f0d2107c29cebb979337e"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <ScrollRevealText delay={500}>
                   <h3 className="text-xl font-semibold mb-2 text-black">Comm100</h3>
@@ -234,7 +265,13 @@ export default function HomePage(): React.JSX.Element {
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 group-hover:scale-105 transition-transform duration-500"></div>
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163782/rendition/1080p/file.mp4?loc=external&signature=57e4abd75ba0a501a702c52df8c7be01d2dea6097c192f481de11f147aaa85f8"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <ScrollRevealText delay={600}>
                   <h3 className="text-xl font-semibold mb-2 text-black">CityColor</h3>

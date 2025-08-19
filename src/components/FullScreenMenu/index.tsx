@@ -179,7 +179,11 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               : '-translate-y-full' // Closed state
         }`}
       >
-        <div ref={scrollContainerRef} className="h-full w-full overflow-hidden relative" tabIndex={0}>
+        <div
+          ref={scrollContainerRef}
+          className="h-full w-full overflow-hidden relative"
+          tabIndex={0}
+        >
           {/* Header with Logo and Close Button - Absolutely positioned */}
           <div className="absolute top-0 left-0 right-0 z-30">
             <div className="page-wrapper pt-8 pb-4 flex justify-between items-start">
@@ -216,39 +220,39 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                   willChange: 'transform', // Optimize for transform animations
                 }}
               >
-              {/* Render optimized copies for seamless infinite scroll */}
-              {Array.from({ length: 3 }, (_, copyIndex) => (
-                <div key={copyIndex} className="flex flex-col">
-                  {navItems.map((item, index) => (
-                    <div
-                      key={`${item.href}-${copyIndex}-${index}`}
-                      className="text-left w-full flex items-center group cursor-pointer"
-                      style={{
-                        height: `${itemHeight}px`,
-                        // Use transform3d for hardware acceleration
-                        transform: 'translate3d(0, 0, 0)',
-                      }}
-                    >
-                      {/* Number */}
-                      <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
-                        ({String(index + 1).padStart(2, '0')})
-                      </span>
-
-                      {/* Menu item */}
-                      <button
-                        onClick={() => handleLinkClick(item.href)}
-                        className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                {/* Render optimized copies for seamless infinite scroll */}
+                {Array.from({ length: 4 }, (_, copyIndex) => (
+                  <div key={copyIndex} className="flex flex-col">
+                    {navItems.map((item, index) => (
+                      <div
+                        key={`${item.href}-${copyIndex}-${index}`}
+                        className="text-left w-full flex items-center group cursor-pointer"
                         style={{
-                          // Optimize text rendering
-                          textRendering: 'optimizeSpeed',
+                          height: `${itemHeight}px`,
+                          // Use transform3d for hardware acceleration
+                          transform: 'translate3d(0, 0, 0)',
                         }}
                       >
-                        {item.label.toUpperCase()}
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              ))}
+                        {/* Number */}
+                        <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
+                          ({String(index + 1).padStart(2, '0')})
+                        </span>
+
+                        {/* Menu item */}
+                        <button
+                          onClick={() => handleLinkClick(item.href)}
+                          className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                          style={{
+                            // Optimize text rendering
+                            textRendering: 'optimizeSpeed',
+                          }}
+                        >
+                          {item.label.toUpperCase()}
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
