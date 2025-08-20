@@ -32,9 +32,11 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     if (!follower) return
 
     const { x, y } = positionRef.current
-    const offset = config.offset
-    follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
-  }, [config.offset])
+    // For w-64 h-64 (256px), we need to offset by half: 128px
+    const offset = 128
+    follower.style.left = `${x - offset}px`
+    follower.style.top = `${y - offset}px`
+  }, [])
 
   useEffect(() => {
     const container = containerRef.current
@@ -48,9 +50,10 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
         y: e.clientY,
       }
 
-      // Set position immediately without transition
-      const offset = config.offset
-      follower.style.transform = `translate(${positionRef.current.x - offset}px, ${positionRef.current.y - offset}px)`
+      // Set position immediately without transition - hardcode offset for w-64 h-64
+      const offset = 128
+      follower.style.left = `${positionRef.current.x - offset}px`
+      follower.style.top = `${positionRef.current.y - offset}px`
 
       // Simple entrance - just show
       setIsVisible(true)
@@ -91,9 +94,10 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       {children}
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 pointer-events-none z-50"
+        className="fixed pointer-events-none z-50"
         style={{
-          transform: `translate(-9999px, -9999px)`, // Initial position off-screen
+          left: '-9999px',
+          top: '-9999px', // Initial position off-screen
         }}
       >
         <div
