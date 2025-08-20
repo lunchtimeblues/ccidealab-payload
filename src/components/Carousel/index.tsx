@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState, useCallback, Children, cloneElement
 interface CarouselProps {
   children: React.ReactNode
   className?: string
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 }
 
 interface ImageProps {
@@ -18,11 +18,7 @@ interface ReactElementWithProps extends React.ReactElement {
   props: ImageProps
 }
 
-export const Carousel: React.FC<CarouselProps> = ({
-  children,
-  className = '',
-  size = 'md',
-}) => {
+export const Carousel: React.FC<CarouselProps> = ({ children, className = '', size = 'md' }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right'>('right')
@@ -38,6 +34,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     md: 'h-80', // 320px
     lg: 'h-96', // 384px
     xl: 'h-[32rem]', // 512px
+    xxl: 'h-[64rem]',
   }
 
   const _gap = 32 // Gap between slides (used in CSS classes)
@@ -70,7 +67,7 @@ export const Carousel: React.FC<CarouselProps> = ({
       return {
         leftEdge: 48,
         rightEdge: 1200,
-        contentWidth: 1104
+        contentWidth: 1104,
       }
     }
 
@@ -81,7 +78,7 @@ export const Carousel: React.FC<CarouselProps> = ({
     return {
       leftEdge: sideSpacing,
       rightEdge: viewportWidth - sideSpacing,
-      contentWidth: viewportWidth - (sideSpacing * 2)
+      contentWidth: viewportWidth - sideSpacing * 2,
     }
   }, [])
 
@@ -139,8 +136,6 @@ export const Carousel: React.FC<CarouselProps> = ({
       }
     }
   }, [currentIndex, getMaxIndex, getPageWrapperConstraints])
-
-
 
   // Mouse follower functionality
   const updateFollowerPosition = () => {
@@ -250,7 +245,9 @@ export const Carousel: React.FC<CarouselProps> = ({
       // Force re-render to update positioning styles
       if (containerRef.current) {
         const styles = getCarouselStyles()
-        const carouselContainer = containerRef.current.querySelector('.overflow-hidden') as HTMLElement
+        const carouselContainer = containerRef.current.querySelector(
+          '.overflow-hidden',
+        ) as HTMLElement
         if (carouselContainer) {
           carouselContainer.style.marginLeft = styles.marginLeft
           carouselContainer.style.width = styles.width
@@ -265,26 +262,20 @@ export const Carousel: React.FC<CarouselProps> = ({
   return (
     <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
       {/* Carousel Container - aligned to page-wrapper constraints */}
-      <div
-        className={`overflow-hidden ${sizeConfig[size]}`}
-        style={getCarouselStyles()}
-      >
+      <div className={`overflow-hidden ${sizeConfig[size]}`} style={getCarouselStyles()}>
         <div
           ref={carouselRef}
           className="flex gap-8 transition-transform duration-500 ease-out h-full items-center"
         >
           {childrenArray.map((child, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 h-full flex items-center justify-center"
-            >
+            <div key={index} className="flex-shrink-0 h-full flex items-center justify-center">
               {React.isValidElement(child) ? (
                 cloneElement(child as ReactElementWithProps, {
                   className: `h-full w-auto object-contain rounded-lg ${(child as ReactElementWithProps).props.className || ''}`,
                   style: {
                     maxHeight: '100%',
                     width: 'auto',
-                    ...(child as ReactElementWithProps).props.style
+                    ...(child as ReactElementWithProps).props.style,
                   },
                 })
               ) : (

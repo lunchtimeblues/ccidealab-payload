@@ -316,22 +316,13 @@ export default function HomePage(): React.JSX.Element {
                   into brand impact.
                 </h2>
               </ScrollRevealText>
-              <ScrollRevealText delay={200}>
-                <p className="text-fluid-lg text-gray-700 leading-relaxed mb-8 max-w-lg">
+              <ScrollRevealText delay={200} className="flex align-center justify-center">
+                <p className="text-fluid-lg text-black leading-relaxed mb-8 max-w-2xl">
                   Brand transformations fall short because they stop at the surface— logos,
                   taglines, campaigns. We go deeper, aligning your business around an Idea Worth
                   Rallying Around®. The result? A brand your people will champion and your audience
                   will love.
                 </p>
-              </ScrollRevealText>
-              <ScrollRevealText delay={400}>
-                <TransitionLink
-                  url="/method"
-                  label="Learn the C/C method"
-                  appearance="inline"
-                  transitionType="logoWipe"
-                  className="text-black border-b border-black hover:border-gray-500 hover:text-gray-500 transition-colors"
-                />
               </ScrollRevealText>
             </div>
 
@@ -355,7 +346,7 @@ export default function HomePage(): React.JSX.Element {
         <div className="py-24 md:py-40">
           {/* Carousel - aligned to page-wrapper constraints with overflow */}
           <div className="mb-16">
-            <Carousel size="lg">
+            <Carousel size="xxl">
               <Image
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
                 alt="Creative Vision - C/C IDEA LAB Studio"
@@ -403,13 +394,13 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
 
                 <ScrollRevealText delay={200}>
-                  <div className="mt-8">
+                  <div className="text-fluid-lg mt-16">
                     <TransitionLink
                       url="/about"
                       label="Learn more about C/C IDEA LAB"
                       appearance="inline"
                       transitionType="logoWipe"
-                      className="text-black border-b border-black hover:border-gray-600 hover:text-gray-600 transition-colors pb-1"
+                      className="text-black border-b border-black hover:border-gray-600 hover:text-gray-600 transition-colors"
                     />
                   </div>
                 </ScrollRevealText>

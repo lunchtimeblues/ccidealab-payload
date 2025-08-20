@@ -26,15 +26,15 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-32 md:py-48 bg-grey-100">
-        <Container size="xl">
-          <div className="grid md:grid-cols-12 gap-16">
+      <section className="py-32 sm:py-48 bg-grey-100">
+        <Container size="xxl">
+          <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
             {/* Contact Information */}
-            <div className="md:col-span-5">
+            <div className="col-span-12 sm:col-span-5">
               <ScrollRevealText>
-                <h2 className="text-fluid-sm font-medium text-gray-500 uppercase tracking-widest mb-4">
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
                   Get in Touch
-                </h2>
+                </p>
               </ScrollRevealText>
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
@@ -42,7 +42,7 @@ export default function ContactPage() {
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <p className="text-fluid-lg text-gray-700 leading-relaxed mb-12">
+                <p className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
                   Whether you&apos;re launching a new venture, transforming an existing brand, or
                   exploring possibilities, we&apos;re here to help you create something
                   extraordinary.
@@ -87,7 +87,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="md:col-span-7">
+            <div className="col-span-12 sm:col-span-7">
               <ScrollRevealText delay={400}>
                 <form className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-6">

@@ -106,33 +106,33 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
-      <section className="py-12 md:py-24 bg-grey-100">
+      <section className="py-32 sm:py-48 bg-grey-100">
         <Container size="xxl">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
-            <div className="md:col-span-4">
+          <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
+            <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
-                <h2 className="text-fluid-sm font-medium text-gray-500 uppercase tracking-widest mb-4">
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
                   Our Story
-                </h2>
+                </p>
               </ScrollRevealText>
             </div>
-            <div className="md:col-span-8">
+            <div className="col-span-12 sm:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-3xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-base text-black mb-8 leading-tight">
                   Founded on the belief that great brands are more than logos—they&apos;re
                   movements.
                 </h3>
               </ScrollRevealText>
-              <div className="space-y-6 text-fluid-lg text-gray-700 leading-relaxed">
-                <ScrollRevealText delay={400}>
+              <ScrollRevealText delay={400}>
+                <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
                   <p>
                     Here inside Motto®, diversity is critical to extracting insanely strategic and
                     creative outcomes. Every person on our team comes together to amplify our
                     individual and collective talents, so you can experience high-functioning
                     diversity at work, delivering massive value for your company.
                   </p>
-                </ScrollRevealText>
-              </div>
+                </div>
+              </ScrollRevealText>
             </div>
           </div>
         </Container>
@@ -179,7 +179,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-gray-100 py-20">
+      <section className="bg-gray-100 py-32 sm:py-48">
         <Container size="xxl">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-12">
             <div>
@@ -263,8 +263,8 @@ export default function AboutPage() {
 
       {/* Join Us Section */}
       <section className="relative bg-gray-100 overflow-hidden">
-        <Container size="xxl" className="relative z-10 py-24 md:py-32">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+        <Container size="xxl" className="relative z-10 py-24 sm:py-40">
+          <div className="grid sm:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollRevealText>
                 <h2 className="text-fluid-5xl font-bold mb-8">
@@ -274,7 +274,7 @@ export default function AboutPage() {
                 </h2>
               </ScrollRevealText>
               <ScrollRevealText delay={200}>
-                <p className="text-fluid-lg text-gray-700 leading-relaxed mb-8 max-w-lg">
+                <p className="text-fluid-lg text-black leading-relaxed mb-8 max-w-2xl">
                   Brand transformations fall short because they stop at the surface— logos,
                   taglines, campaigns. We go deeper, aligning your business around an Idea Worth
                   Rallying Around®. The result? A brand your people will champion and your audience

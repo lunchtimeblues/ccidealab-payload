@@ -60,13 +60,13 @@ export default function WorkPage() {
       </section>
 
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 bg-gray-100">
+      <section className="py-32 sm:py-48 bg-gray-100">
         <Container size="xxl">
           <ScrollRevealText>
-            <h2 className="text-fluid-6xl font-bold mb-16 text-center text-black">Featured Work</h2>
+            <h2 className="text-fluid-7xl font-bold mb-16 text-center text-black">Selected Work</h2>
           </ScrollRevealText>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-8">
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
