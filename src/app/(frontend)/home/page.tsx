@@ -24,7 +24,7 @@ export default function HomePage(): React.JSX.Element {
           <div className="relative flex items-center justify-center almost-full-height px-4 sm:px-6 lg:px-8">
             <div className="relative w-full max-w-none pt-24 md:pt-0">
               <h1
-                className="text-fluid-hero-xl leading-tight md:leading-none font-medium uppercase tracking-tight"
+                className="text-fluid-9xl leading-tight md:leading-none font-medium uppercase tracking-tight"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
@@ -58,8 +58,8 @@ export default function HomePage(): React.JSX.Element {
                 </div>
               </h1>
 
-              <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:right-0 mt-12 md:mt-0 md:w-60 lg:w-72 xl:w-80 2xl:w-96 pr-4">
-                <p className="text-fluid-base leading-relaxed tracking-wide">
+              <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:right-0 mt-12 md:mt-0 md:w-1/2 pr-4">
+                <p className="text-fluid-xl leading-relaxed tracking-wide">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
                     reinventing companies in the tech and innovation space.

@@ -30,9 +30,9 @@ export default function Comm100Page() {
       </ParallaxImage>
 
       {/* Project Overview */}
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
-        <Container size="xxl" className="grid lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-4">
+      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
+        <Container size="xxl" className="grid md:grid-cols-12 gap-8">
+          <div className="md:col-span-4">
             <h3 className="text-xl font-semibold mb-6">Project Overview</h3>
             <ul className="space-y-6 text-gray-700 text-base">
               <li className="flex flex-col">
@@ -47,7 +47,7 @@ export default function Comm100Page() {
             </ul>
           </div>
 
-          <div className="lg:col-span-6 lg:col-start-7">
+          <div className="md:col-span-6 md:col-start-7">
             <h2 className="text-3xl md:text-4xl font-semibold mb-4 leading-snug">
               Every channel.
               <br />
@@ -74,22 +74,22 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
         <Container size="xxl">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
-            <div className="lg:col-span-4">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+            <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 lg:mb-0">Objective</p>
+                <p className="text-lg font-medium text-gray-600 mb-8 md:mb-0">Objective</p>
               </ScrollRevealText>
             </div>
-            <div className="lg:col-span-8">
+            <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
                   Comprehensive Brand Refresh & Marketing transformation
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-lg text-gray-700 leading-relaxed mb-8 md:pr-16">
                   <p>
                     Our goal was to reposition Comm100 as a future-ready tech company without losing
                     its human touch. This meant a full brand refresh, from visual identity and
@@ -129,12 +129,12 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
         <Container size="xxl">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
-            <div className="lg:col-span-4">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+            <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 lg:mb-0">Strategy</p>
+                <p className="text-lg font-medium text-gray-600 mb-8 md:mb-0">Strategy</p>
               </ScrollRevealText>
             </div>
             <div className="lg:col-span-8">
@@ -171,24 +171,24 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
         <Container size="xxl">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
-            <div className="lg:col-span-4">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+            <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 lg:mb-0">Brand Application</p>
+                <p className="text-lg font-medium text-gray-600 mb-8 md:mb-0">Brand Application</p>
               </ScrollRevealText>
             </div>
-            <div className="lg:col-span-8">
+            <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
                   Supporting
                   <br />
                   Higher Education Engagement
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-lg text-gray-700 leading-relaxed mb-8 md:pr-16">
                   <p>
                     To help Comm100 stand out at major higher-ed conferences, we developed engaging
                     graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
