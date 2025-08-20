@@ -120,28 +120,26 @@ export default function ServicesPage() {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-28 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-64 pb-8 min-h-screen">
           <div>
-            {/* Isolated Marquee Container */}
-            <div className="isolate" style={{ isolation: 'isolate' }}>
-              <ScrollMarquee
-                baseSpeed={0.8}
-                maxSpeedMultiplier={2}
-                starSpinSpeed={4}
-                lines="single"
-                direction="left"
-                lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
-              >
-                <span className="mx-8">OUR</span>
-                <span className="mx-8 flex items-center">
-                  <SpinningStar size={64} className="text-current" />
-                </span>
-                <span className="mx-8">SERVICES</span>
-                <span className="mx-8 flex items-center">
-                  <SpinningStar size={64} className="text-current" />
-                </span>
-              </ScrollMarquee>
-            </div>
+            {/* Marquee */}
+            <ScrollMarquee
+              baseSpeed={0.8}
+              maxSpeedMultiplier={2}
+              starSpinSpeed={4}
+              lines="single"
+              direction="left"
+              lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
+            >
+              <span className="mx-8">OUR</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">SERVICES</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+            </ScrollMarquee>
 
             {/* Content */}
             <Container size="xxl">
@@ -157,7 +155,7 @@ export default function ServicesPage() {
 
           {/* Hero Footer */}
           <Container size="xl">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -182,69 +180,27 @@ export default function ServicesPage() {
           <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
             <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
-                  Think big with us.
-                </p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">(What we do)</p>
               </ScrollRevealText>
             </div>
             <div className="col-span-12 sm:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
-                  Great brands are more than famous names, they&apos;re Ideas Worth Rallying
-                  Around®.
+                  Brand strategy and brand systems built to unlock what&#39;s next for your
+                  organization.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-xl text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    C/C IDEA LAB is a brand strategy and design firm that partners with tech and
-                    innovation companies to create impactful, future-ready brands. We collaborate
-                    with visionary teams and design-led companies who need their brand to stand out,
-                    matter more, drive growth, and amplify brand impact within modern culture.
+                    When you’re navigating pivotal moments of growth, evolution, or reinvention,
+                    what you do now will shape your future. Whether it’s scaling fast, entering new
+                    markets, preparing for your next funding round, or launching a new innovation,
+                    we define what makes your brand matter and develop the ideas and systems that
+                    carry your vision forward.
                   </p>
                 </div>
               </ScrollRevealText>
-              <ScrollRevealText delay={600}>
-                <div className="text-fluid-sm font-medium text-gray-500 mb-8 lg:pr-16">
-                  (CHOOSE YOUR PURPOSE)
-                </div>
-              </ScrollRevealText>
-              <div className="space-y-4">
-                <ScrollRevealText delay={800}>
-                  <div>
-                    <TransitionLink
-                      url="/services"
-                      label="Explore our services →"
-                      appearance="inline"
-                      transitionType="logoWipe"
-                      transitionColor="#059669"
-                      className="text-black hover:text-gray-500 border-b-2 border-black hover:border-gray-500 transition-colors pb-1"
-                    />
-                  </div>
-                </ScrollRevealText>
-                <ScrollRevealText delay={900}>
-                  <div>
-                    <TransitionLink
-                      url="/work"
-                      label="See our case studies →"
-                      appearance="inline"
-                      transitionType="logoWipe"
-                      className="text-black hover:text-gray-500 border-b-2 border-black hover:border-gray-500 transition-colors pb-1"
-                    />
-                  </div>
-                </ScrollRevealText>
-                <ScrollRevealText delay={1000}>
-                  <div>
-                    <TransitionLink
-                      url="/methodology"
-                      label="Discover our methodology →"
-                      appearance="inline"
-                      transitionType="logoWipe"
-                      className="text-black hover:text-gray-500 border-b-2 border-black hover:border-gray-500 transition-colors pb-1"
-                    />
-                  </div>
-                </ScrollRevealText>
-              </div>
             </div>
           </div>
         </Container>
@@ -252,12 +208,7 @@ export default function ServicesPage() {
 
       {/* Client Logos Marquee Section */}
       <section className="py-12 bg-grey-100">
-        <ClientLogosMarquee
-          speed={20}
-          direction="left"
-          className="py-4"
-          logoClassName="min-w-[140px]"
-        />
+        <ClientLogosMarquee speed={20} direction="left" className="py-4" />
       </section>
 
       {/* Services Sections */}
@@ -270,7 +221,7 @@ export default function ServicesPage() {
             ref={(el) => {
               sectionRefs.current[index] = el
             }}
-            className={`border-t border-[#CFD5D7] sticky top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
+            className={`md:sticky md:top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
           >
             {/* Fade overlay covers ALL content including videos - highest z-index */}
             <div
@@ -279,32 +230,32 @@ export default function ServicesPage() {
             />
 
             {/* Container moved inside to constrain content, not the fade effect */}
-            <Container size="lg">
-              <div className="almost-full-height flex flex-col justify-center relative z-20">
-                <div>
-                  <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto max-w-none">
+            <Container size="xxl" className="w-full">
+              <div className="min-h-screen md:h-screen">
+                <div className="h-full flex flex-col justify-center relative z-20">
+                  <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 md:pt-56 sm:pb-20 mb-auto max-w-none">
                     <div className="col-span-12 pb-10 flex justify-between items-start">
-                      <h2 className="uppercase text-fluid-4xl font-medium">{service.title}</h2>
-                      <span className="uppercase hidden sm:block text-fluid-5xl font-medium">
+                      <h2 className="uppercase text-fluid-7xl font-medium">{service.title}</h2>
+                      <span className="uppercase hidden sm:block text-fluid-7xl font-medium">
                         {service.number}
                       </span>
                     </div>
                   </div>
 
-                  <div className="w-full border-t border-[#CFD5D7] mt-auto">
+                  <div className="border-t border-[#CFD5D7] mt-auto sm:mb-32">
                     <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 sm:pt-20">
                       <div className="flex flex-col justify-between col-span-12 sm:col-span-9">
-                        <p className="text-fluid-lg leading-relaxed max-w-5xl mb-10 sm:mb-12">
+                        <p className="text-fluid-lg leading-relaxed max-w-6xl mb-10 sm:mb-12">
                           {service.description}
                         </p>
 
-                        <div className="flex flex-col sm:flex-row justify-between max-w-4xl pb-16 sm:pb-18">
-                          <ul className="mt-auto space-y-2 text-fluid-lg">
+                        <div className="flex flex-col sm:flex-row justify-between max-w-5xl pb-16 sm:pb-18">
+                          <ul className="mt-auto space-y-2 text-fluid-xl">
                             {service.features1.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
                           </ul>
-                          <ul className="mt-auto space-y-2 text-fluid-lg">
+                          <ul className="mt-auto space-y-2 text-fluid-xl">
                             {service.features2.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
