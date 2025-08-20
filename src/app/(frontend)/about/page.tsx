@@ -12,7 +12,7 @@ export default function AboutPage() {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-28 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-64 pb-8 min-h-screen">
           <div>
             {/* Marquee */}
             <ScrollMarquee
@@ -21,7 +21,7 @@ export default function AboutPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">ABOUT</span>
               <span className="mx-8 flex items-center">
@@ -51,7 +51,7 @@ export default function AboutPage() {
 
           {/* Hero Footer */}
           <Container size="xl">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -92,7 +92,7 @@ export default function AboutPage() {
           maxSpeedMultiplier={2}
           lines="dual"
           starSpinSpeed={4}
-          lineClassName="text-[12vw] font-semi-bold uppercase tracking-tight leading-none"
+          lineClassName="text-[10vw] font-semi-bold uppercase tracking-tight leading-none"
         >
           <span className="mx-8">MEET THE TEAM</span>
           <span className="mx-8 flex items-center">
@@ -111,9 +111,7 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
             <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
-                  Our Story
-                </p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Our Story</p>
               </ScrollRevealText>
             </div>
             <div className="col-span-12 sm:col-span-8">
@@ -138,7 +136,7 @@ export default function AboutPage() {
         </Container>
 
         <div className="mt-16">
-          <Carousel>
+          <Carousel size="xxl">
             <Image
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
               alt="Creative Vision - C/C IDEA LAB Studio"
@@ -183,7 +181,7 @@ export default function AboutPage() {
         <Container size="xxl">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-12">
             <div>
-              <span className="block text-fluid-6xl font-bold text-black mb-4">01.</span>
+              <span className="block text-fluid-6xl font-medium text-black mb-4">01.</span>
               <h3 className="font-semibold text-fluid-lg text-black mb-2">Do Big Things®</h3>
               <p className="text-gray-500 text-fluid-base">
                 We dare to do big things, create big ideas, make big leaps, and take big risks.
@@ -191,43 +189,43 @@ export default function AboutPage() {
             </div>
 
             <div>
-              <span className="block text-fluid-6xl font-bold text-black mb-4">02.</span>
-              <h3 className="font-semibold text-fluid-lg text-black mb-2">We Before Me</h3>
-              <p className="text-gray-500 text-fluid-base">
+              <span className="block text-fluid-6xl font-medium text-black mb-4">02.</span>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">We Before Me</h3>
+              <p className="text-gray-500 text-fluid-lg">
                 We work as a team to get the best from each other. No one can move a mountain alone.
               </p>
             </div>
 
             <div>
-              <span className="block text-fluid-6xl font-bold text-black mb-4">03.</span>
-              <h3 className="font-semibold text-fluid-lg text-black mb-2">Great Not Good</h3>
-              <p className="text-gray-500 text-fluid-base">
+              <span className="block text-fluid-6xl font-medium text-black mb-4">03.</span>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Great Not Good</h3>
+              <p className="text-gray-500 text-fluid-lg">
                 We are obsessed with excellence and refuse to accept mediocrity or good enough.
               </p>
             </div>
 
             <div>
-              <span className="block text-fluid-6xl font-bold text-black mb-4">04.</span>
-              <h3 className="font-semibold text-fluid-lg text-black mb-2">Radical Candor</h3>
-              <p className="text-gray-500 text-fluid-base">
+              <span className="block text-fluid-6xl font-medium text-black mb-4">04.</span>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Radical Candor</h3>
+              <p className="text-gray-500 text-fluid-lg">
                 We recognize conflict as a healthy and valuable tool that makes us more innovative
                 and collaborative.
               </p>
             </div>
 
             <div>
-              <span className="block text-fluid-6xl font-bold text-black mb-4">05.</span>
-              <h3 className="font-semibold text-fluid-lg text-black mb-2">Play Offense</h3>
-              <p className="text-gray-500 text-fluid-base">
+              <span className="block text-fluid-6xl font-medium text-black mb-4">05.</span>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Play Offense</h3>
+              <p className="text-gray-500 text-fluid-lg">
                 We spend as much time as possible doing and as little time as possible talking about
                 doing.
               </p>
             </div>
 
             <div>
-              <span className="block text-fluid-6xl font-bold text-black mb-4">06.</span>
-              <h3 className="font-semibold text-fluid-lg text-black mb-2">Glass Half Full</h3>
-              <p className="text-gray-500 text-fluid-base">
+              <span className="block text-fluid-6xl font-medium text-black mb-4">06.</span>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Glass Half Full</h3>
+              <p className="text-gray-500 text-fluid-lg">
                 Positivity creates opportunity; pessimism kills it. We are optimistic about the
                 future, and in turn, promote creativity and new ideas.
               </p>

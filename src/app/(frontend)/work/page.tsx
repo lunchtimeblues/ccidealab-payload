@@ -79,8 +79,8 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={100}>
-                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Affinity Group</h3>
-                  <p className="text-gray-600">Brand Identity & Web Development</p>
+                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Affinity Group</h3>
+                  <p className="text-gray-500 text-fluid-lg">Brand Identity & Web Development</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -97,8 +97,8 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={200}>
-                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Pokebar</h3>
-                  <p className="text-gray-600">Digital Strategy & UX Design</p>
+                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Pokebar</h3>
+                  <p className="text-gray-500 text-fluid-lg">Digital Strategy & UX Design</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -107,7 +107,7 @@ export default function WorkPage() {
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
-                    src="https://player.vimeo.com/progressive_redirect/playback/1111163809/rendition/1080p/file.mp4?loc=external&signature=9c62d16e134344639b26289eae9f721f646692945979ed5a8f4f2647aaeec55c"
+                    src="https://player.vimeo.com/progressive_redirect/playbook/1111163809/rendition/1080p/file.mp4?loc=external&signature=9c62d16e134344639b26289eae9f721f646692945979ed5a8f4f2647aaeec55c"
                     autoPlay={true}
                     muted={true}
                     loop={true}
@@ -115,8 +115,8 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={300}>
-                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Marco Polo</h3>
-                  <p className="text-gray-600">Creative Direction & Branding</p>
+                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Marco Polo</h3>
+                  <p className="text-gray-500 text-fluid-lg">Creative Direction & Branding</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -133,8 +133,8 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={400}>
-                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Metrotown Notary</h3>
-                  <p className="text-gray-600">Investment Platform & Identity</p>
+                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Metrotown Notary</h3>
+                  <p className="text-gray-500 text-fluid-lg">Investment Platform & Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -151,8 +151,8 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={500}>
-                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Comm100</h3>
-                  <p className="text-gray-600">Product Design & Development</p>
+                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Comm100</h3>
+                  <p className="text-gray-500 text-fluid-lg">Product Design & Development</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>
@@ -169,8 +169,8 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={600}>
-                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">CityColor</h3>
-                  <p className="text-gray-600">Brand Strategy & Visual Identity</p>
+                  <h3 className="text-fluid-xl font-medium mb-2 text-black">CityColor</h3>
+                  <p className="text-gray-500 text-fluid-lg">Brand Strategy & Visual Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>

@@ -52,22 +52,22 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <ScrollRevealText delay={600}>
                   <div>
-                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Email</h4>
-                    <p className="text-fluid-lg text-gray-600">hello@ccidealab.com</p>
+                    <h4 className="text-fluid-xl font-medium mb-2 text-black">Email</h4>
+                    <p className="text-fluid-lg text-gray-500">hello@ccidealab.com</p>
                   </div>
                 </ScrollRevealText>
 
                 <ScrollRevealText delay={700}>
                   <div>
-                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Phone</h4>
-                    <p className="text-fluid-lg text-gray-600">+1 (555) 123-4567</p>
+                    <h4 className="text-fluid-xl font-medium mb-2 text-black">Phone</h4>
+                    <p className="text-fluid-lg text-gray-500">+1 (555) 123-4567</p>
                   </div>
                 </ScrollRevealText>
 
                 <ScrollRevealText delay={800}>
                   <div>
-                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Office Hours</h4>
-                    <div className="text-fluid-lg text-gray-600 space-y-1">
+                    <h4 className="text-fluid-xl font-medium mb-2 text-black">Office Hours</h4>
+                    <div className="text-fluid-lg text-gray-500 space-y-1">
                       <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
                       <p>Saturday: 10:00 AM - 2:00 PM PST</p>
                       <p>Sunday: By appointment only</p>
@@ -77,8 +77,8 @@ export default function ContactPage() {
 
                 <ScrollRevealText delay={900}>
                   <div>
-                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Response Time</h4>
-                    <p className="text-fluid-lg text-gray-600">
+                    <h4 className="text-fluid-xl font-medium mb-2 text-black">Response Time</h4>
+                    <p className="text-fluid-lg text-gray-500">
                       We typically respond within 24 hours during business days.
                     </p>
                   </div>

@@ -177,23 +177,23 @@ export default function ServicesPage() {
       />
 
       {/* Services Section */}
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
         <Container size="xxl">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16">
-            <div className="lg:col-span-4">
+          <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
+            <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 lg:mb-0">Think big with us.</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Think big with us.</p>
               </ScrollRevealText>
             </div>
-            <div className="lg:col-span-8">
+            <div className="col-span-12 sm:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
                   Great brands are more than famous names, they&apos;re Ideas Worth Rallying
                   Around®.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
                   <p>
                     C/C IDEA LAB is a brand strategy and design firm that partners with tech and
                     innovation companies to create impactful, future-ready brands. We collaborate
@@ -216,7 +216,7 @@ export default function ServicesPage() {
                       appearance="inline"
                       transitionType="logoWipe"
                       transitionColor="#059669"
-                      className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                      className="text-black hover:text-gray-500 border-b-2 border-black hover:border-gray-500 transition-colors pb-1"
                     />
                   </div>
                 </ScrollRevealText>
@@ -227,7 +227,7 @@ export default function ServicesPage() {
                       label="See our case studies →"
                       appearance="inline"
                       transitionType="logoWipe"
-                      className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                      className="text-black hover:text-gray-500 border-b-2 border-black hover:border-gray-500 transition-colors pb-1"
                     />
                   </div>
                 </ScrollRevealText>
@@ -238,7 +238,7 @@ export default function ServicesPage() {
                       label="Discover our methodology →"
                       appearance="inline"
                       transitionType="logoWipe"
-                      className="text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                      className="text-black hover:text-gray-500 border-b-2 border-black hover:border-gray-500 transition-colors pb-1"
                     />
                   </div>
                 </ScrollRevealText>
@@ -282,8 +282,8 @@ export default function ServicesPage() {
                 <div>
                   <div className="w-full grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-40 sm:pb-20 mb-auto max-w-none">
                     <div className="col-span-12 pb-10 flex justify-between items-start">
-                      <h2 className="uppercase text-3xl sm:text-5xl font-bold">{service.title}</h2>
-                      <span className="uppercase hidden sm:block text-5xl font-bold">
+                      <h2 className="uppercase text-fluid-4xl font-medium">{service.title}</h2>
+                      <span className="uppercase hidden sm:block text-fluid-5xl font-medium">
                         {service.number}
                       </span>
                     </div>

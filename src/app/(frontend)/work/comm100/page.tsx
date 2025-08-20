@@ -18,7 +18,7 @@ export default function Comm100Page() {
       >
         <Container size="xxl" className="h-full flex flex-col justify-center">
           <ScrollRevealText>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">Comm100</h1>
+            <h1 className="text-fluid-7xl font-medium mb-4 text-white">Comm100</h1>
           </ScrollRevealText>
           <ScrollRevealText delay={200}>
             <p className="max-w-xl text-lg md:text-xl leading-relaxed text-white">
@@ -30,11 +30,11 @@ export default function Comm100Page() {
       </ParallaxImage>
 
       {/* Project Overview */}
-      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
-        <Container size="xxl" className="grid md:grid-cols-12 gap-8">
-          <div className="md:col-span-4">
-            <h3 className="text-xl font-semibold mb-6">Project Overview</h3>
-            <ul className="space-y-6 text-gray-700 text-base">
+      <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
+        <Container size="xxl" className="grid sm:grid-cols-12 gap-8">
+          <div className="col-span-12 sm:col-span-4">
+            <h3 className="text-fluid-xl font-medium mb-6">Project Overview</h3>
+            <ul className="space-y-6 text-gray-500 text-fluid-base">
               <li className="flex flex-col">
                 <span className="border-t border-gray-300 pt-2">Year</span>
               </li>
@@ -47,13 +47,13 @@ export default function Comm100Page() {
             </ul>
           </div>
 
-          <div className="md:col-span-6 md:col-start-7">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-4 leading-snug">
+          <div className="col-span-12 sm:col-span-6 sm:col-start-7">
+            <h2 className="text-fluid-4xl font-medium mb-4 leading-snug">
               Every channel.
               <br />
               One platform.
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-2xl">
+            <p className="text-fluid-lg text-gray-500 leading-relaxed max-w-2xl">
               Powered by AI and automation, Comm100 platform unifies communication across every
               touchpoint, from live chat to social media, to deliver seamless, personalized support.
             </p>
@@ -79,7 +79,7 @@ export default function Comm100Page() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 md:mb-0">Objective</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Objective</p>
               </ScrollRevealText>
             </div>
             <div className="md:col-span-8">
@@ -89,7 +89,7 @@ export default function Comm100Page() {
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-lg text-gray-700 leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
                   <p>
                     Our goal was to reposition Comm100 as a future-ready tech company without losing
                     its human touch. This meant a full brand refresh, from visual identity and
@@ -134,7 +134,7 @@ export default function Comm100Page() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 md:mb-0">Strategy</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Strategy</p>
               </ScrollRevealText>
             </div>
             <div className="lg:col-span-8">
@@ -144,7 +144,7 @@ export default function Comm100Page() {
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-lg text-gray-700 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 lg:pr-16">
                   <p>
                     We built a brand system that balances cutting-edge technology with empathy and
                     clarity. The design emphasizes accessibility and confidence, while messaging
@@ -176,7 +176,7 @@ export default function Comm100Page() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-lg font-medium text-gray-600 mb-8 md:mb-0">Brand Application</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Brand Application</p>
               </ScrollRevealText>
             </div>
             <div className="md:col-span-8">
@@ -188,7 +188,7 @@ export default function Comm100Page() {
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-lg text-gray-700 leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
                   <p>
                     To help Comm100 stand out at major higher-ed conferences, we developed engaging
                     graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
