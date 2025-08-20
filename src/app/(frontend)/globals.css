@@ -386,11 +386,25 @@ html[data-theme='light'] {
       font-size: 10rem;
     } /* ~100px */
     .text-fluid-8xl {
-      font-size: 12rem;
+      font-size: 13rem;
     } /* ~120px */
     .text-fluid-9xl {
-      font-size: 14rem;
+      font-size: 16rem;
     } /* ~140px */
+  }
+
+  /* Hero logo before "Ideas" text */
+  .hero-ideas-text::before {
+    content: '';
+    display: inline-block;
+    width: 0.8em; /* Scales with font size */
+    height: 0.8em;
+    margin-right: 0.2em;
+    background-image: url('/images/cc-logo-black-minimal.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
   }
 }
 
