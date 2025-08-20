@@ -108,16 +108,24 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
           {/* Split text around the circle using SVG - distributed evenly on opposite sides */}
           <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 256 256">
             <defs>
-              <path id="circle-path" d="M 128,128 m -90,0 a 90,90 0 1,1 180,0 a 90,90 0 1,1 -180,0" />
+              <path id="circle-path" d="M 128,128 m -100,0 a 100,100 0 1,1 200,0 a 100,100 0 1,1 -200,0" />
             </defs>
             {/* First half of text starting at top */}
-            <text className="text-sm font-medium tracking-[0.2em] fill-current">
+            <text
+              className="font-medium fill-current"
+              fontSize="16"
+              letterSpacing="0.1em"
+            >
               <textPath href="#circle-path" startOffset="0%">
                 {text}
               </textPath>
             </text>
             {/* Second half of text starting at bottom (50% around the circle) */}
-            <text className="text-sm font-medium tracking-[0.2em] fill-current">
+            <text
+              className="font-medium fill-current"
+              fontSize="16"
+              letterSpacing="0.1em"
+            >
               <textPath href="#circle-path" startOffset="50%">
                 {text}
               </textPath>
@@ -127,8 +135,8 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
           {/* Central arrow */}
           <div className="relative z-10 flex items-center justify-center">
             <svg
-              width="32"
-              height="32"
+              width="40"
+              height="40"
               viewBox="0 0 24 24"
               fill="none"
               className="transition-all duration-400 ease-out"
