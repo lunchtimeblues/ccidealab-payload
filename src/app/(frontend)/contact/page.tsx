@@ -10,12 +10,12 @@ export default function ContactPage() {
           <div className="relative flex items-center justify-center min-h-screen">
             <div className="relative w-full text-center">
               <ScrollRevealText>
-                <h1 className="text-5xl sm:text-6xl lg:text-[5rem] xl:text-[7rem] leading-none font-medium uppercase tracking-tight mb-8">
+                <h1 className="text-fluid-8xl leading-none font-medium uppercase tracking-tight mb-8">
                   Let&apos;s Create Together
                 </h1>
               </ScrollRevealText>
               <ScrollRevealText delay={200}>
-                <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-fluid-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                   Ready to rally around your next big idea?
                   <span className="font-medium text-black"> We&apos;d love to hear from you.</span>
                 </p>
@@ -26,23 +26,23 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-32 lg:py-48 bg-grey-100">
+      <section className="py-32 md:py-48 bg-grey-100">
         <Container size="xl">
-          <div className="grid lg:grid-cols-12 gap-16">
+          <div className="grid md:grid-cols-12 gap-16">
             {/* Contact Information */}
-            <div className="lg:col-span-5">
+            <div className="md:col-span-5">
               <ScrollRevealText>
-                <h2 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-4">
+                <h2 className="text-fluid-sm font-medium text-gray-500 uppercase tracking-widest mb-4">
                   Get in Touch
                 </h2>
               </ScrollRevealText>
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
                   Start a conversation that matters.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <p className="text-lg text-gray-700 leading-relaxed mb-12">
+                <p className="text-fluid-lg text-gray-700 leading-relaxed mb-12">
                   Whether you&apos;re launching a new venture, transforming an existing brand, or
                   exploring possibilities, we&apos;re here to help you create something
                   extraordinary.
@@ -52,22 +52,22 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <ScrollRevealText delay={600}>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-black">Email</h4>
-                    <p className="text-lg text-gray-600">hello@ccidealab.com</p>
+                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Email</h4>
+                    <p className="text-fluid-lg text-gray-600">hello@ccidealab.com</p>
                   </div>
                 </ScrollRevealText>
 
                 <ScrollRevealText delay={700}>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-black">Phone</h4>
-                    <p className="text-lg text-gray-600">+1 (555) 123-4567</p>
+                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Phone</h4>
+                    <p className="text-fluid-lg text-gray-600">+1 (555) 123-4567</p>
                   </div>
                 </ScrollRevealText>
 
                 <ScrollRevealText delay={800}>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-black">Office Hours</h4>
-                    <div className="text-lg text-gray-600 space-y-1">
+                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Office Hours</h4>
+                    <div className="text-fluid-lg text-gray-600 space-y-1">
                       <p>Monday - Friday: 9:00 AM - 6:00 PM PST</p>
                       <p>Saturday: 10:00 AM - 2:00 PM PST</p>
                       <p>Sunday: By appointment only</p>
@@ -77,8 +77,8 @@ export default function ContactPage() {
 
                 <ScrollRevealText delay={900}>
                   <div>
-                    <h4 className="text-xl font-bold mb-2 text-black">Response Time</h4>
-                    <p className="text-lg text-gray-600">
+                    <h4 className="text-fluid-xl font-bold mb-2 text-black">Response Time</h4>
+                    <p className="text-fluid-lg text-gray-600">
                       We typically respond within 24 hours during business days.
                     </p>
                   </div>
@@ -87,14 +87,14 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="lg:col-span-7">
+            <div className="md:col-span-7">
               <ScrollRevealText delay={400}>
                 <form className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label
                         htmlFor="firstName"
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
                       >
                         First Name *
                       </label>
@@ -230,7 +230,7 @@ export default function ContactPage() {
                   <div className="pt-4">
                     <button
                       type="submit"
-                      className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
+                      className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-fluid-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
                     >
                       Send Message
                     </button>

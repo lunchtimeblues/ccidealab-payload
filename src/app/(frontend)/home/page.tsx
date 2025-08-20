@@ -54,7 +54,7 @@ export default function HomePage(): React.JSX.Element {
                   <ScrollRevealText delay={600}>
                     <div className="sm:text-center flex-1 px-4">Around</div>
                   </ScrollRevealText>
-                  <div className="hidden sm:block w-16 sm:w-20 md:w-24 xl:w-28 2xl:w-32"></div>
+                  <div className="hidden sm:block w-16 sm:w-20 md:w-24"></div>
                 </div>
               </h1>
 
@@ -81,7 +81,7 @@ export default function HomePage(): React.JSX.Element {
       />
 
       {/* Services Section */}
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
         <Container size="xxl">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
@@ -171,7 +171,7 @@ export default function HomePage(): React.JSX.Element {
             <h2 className="text-fluid-6xl font-bold mb-16 text-black">Select Works</h2>
           </ScrollRevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -308,8 +308,8 @@ export default function HomePage(): React.JSX.Element {
           </ScrollMarquee>
         </div>
 
-        <Container size="xxl" className="relative z-10 py-24 lg:py-40">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <Container size="xxl" className="relative z-10 py-24 md:py-40">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollRevealText>
                 <h2 className="text-fluid-5xl font-bold mb-8">
@@ -341,7 +341,7 @@ export default function HomePage(): React.JSX.Element {
               <div className="relative overflow-hidden rounded-lg aspect-[4/5]">
                 <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center hover:from-gray-300 hover:to-gray-400 transition-all duration-700 ease-out">
                   <div className="text-center">
-                    <p className="text-sm text-gray-500">Placeholder</p>
+                    <p className="text-fluid-sm text-gray-500">Placeholder</p>
                   </div>
                 </div>
                 {/* Optional subtle overlay */}
@@ -354,7 +354,7 @@ export default function HomePage(): React.JSX.Element {
 
       {/* About Section with Carousel */}
       <section className="bg-gray-100">
-        <div className="py-24 lg:py-40">
+        <div className="py-24 md:py-40">
           {/* Carousel - aligned to page-wrapper constraints with overflow */}
           <div className="mb-16">
             <Carousel size="lg">
@@ -393,12 +393,12 @@ export default function HomePage(): React.JSX.Element {
           <Container size="xxl">
             <div className="grid grid-cols-12 items-start pb-16">
               {/* This empty spacer ensures the paragraph starts aligned at the 7th column on lg+ */}
-              <div className="hidden lg:block lg:col-span-6" />
+              <div className="hidden md:block md:col-span-6" />
 
               {/* Paragraph column: full width on small, right half on large */}
-              <div className="col-span-12 lg:col-start-5 lg:col-span-8">
+              <div className="col-span-12 md:col-start-5 md:col-span-8">
                 <ScrollRevealText>
-                  <p className="text-fluid-4xl font-medium leading-tight lg:leading-snug">
+                  <p className="text-fluid-4xl font-medium leading-tight md:leading-snug">
                     CCIDEALAB® brings together a richly multicultural team with balanced
                     perspectives and shared creativity.
                   </p>

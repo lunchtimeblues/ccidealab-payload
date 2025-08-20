@@ -9,17 +9,15 @@ interface HamburgerMenuProps {
 export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   isOpen,
   onClick,
-  className = ''
+  className = '',
 }) => {
   return (
     <button
       onClick={onClick}
-      className={`relative flex items-center justify-center group ${className}`}
+      className={`relative flex items-center justify-center text-black font-medium group ${className}`}
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
     >
-      <span className="text-black hover:text-gray-600 transition-colors text-lg font-medium">
-        {isOpen ? 'Close' : 'Menu'}
-      </span>
+      <span className="text-fluid-2xl">{isOpen ? 'Close' : 'Menu'}</span>
     </button>
   )
 }

@@ -39,7 +39,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
   }, [isMenuOpen])
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-6">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-20">
       <div className="page-wrapper flex items-center">
         {/* Logo */}
         <div
@@ -53,7 +53,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               alt="C&C IDEA LAB Logo"
               width={160}
               height={64}
-              className="h-16 w-auto"
+              className="h-32 w-auto"
             />
           </TransitionLink>
         </div>
@@ -63,7 +63,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
           {navItems.slice(0, -1).map((item, index) => (
             <div
               key={item.href}
-              className={`transform transition-all duration-700 ease-out ${
+              className={`text-black font-medium transform transition-all duration-700 ease-out ${
                 isScrolled || isMenuOpen
                   ? 'translate-y-[-100px] opacity-0 pointer-events-none'
                   : 'translate-y-0 opacity-100'
@@ -78,7 +78,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 appearance="inline"
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
-                className="text-fluid-xl text-black hover:text-gray-600 transition-colors font-medium"
+                className="text-fluid-2xl "
               />
             </div>
           ))}
@@ -88,7 +88,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
         <div className="relative flex items-center min-w-[80px]">
           {/* Contact */}
           <div
-            className={`absolute right-0 transition-all ${
+            className={`absolute right-0 transition-all text-black font-medium ${
               isScrolled
                 ? 'transform -translate-x-[80px] opacity-100 duration-300'
                 : 'transform translate-x-0 opacity-100 duration-700'
@@ -106,11 +106,10 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               appearance="inline"
               transitionType="logoWipe"
               transitionColor="#666666ff"
-              className="text-fluid-2xl text-black hover:text-gray-600 transition-colors font-medium"
+              className="text-fluid-2xl"
             />
           </div>
 
-          {/* Hamburger */}
           <div
             className={`absolute right-0 transition-opacity ${
               isScrolled ? 'opacity-100 duration-200' : 'opacity-0 pointer-events-none duration-300'

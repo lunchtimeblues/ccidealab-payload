@@ -402,12 +402,6 @@ html[data-theme='light'] {
     background-image: url('/images/cc-logo-black-minimal.svg');
     transform: translateY(0.25em);
   }
-
-  /* Ensure fluid typography classes don't override text colors */
-  .text-fluid-xl.text-black,
-  .text-fluid-2xl.text-black {
-    color: #000000 !important;
-  }
 }
 
 /* Optimized blur effects for fullscreen menu - Windows/PC performance focused */

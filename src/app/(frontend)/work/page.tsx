@@ -39,7 +39,7 @@ export default function WorkPage() {
             {/* Content */}
             <Container size="xxl">
               <div className="max-w-3xl mt-12 md:mt-18">
-                <p className="text-2xl md:text-3xl leading-snug text-black">
+                <p className="text-fluid-2xl leading-snug text-black">
                   See how we partner with visionary teams to build brands that stand out and push
                   the boundaries of innovation.
                 </p>
@@ -49,7 +49,7 @@ export default function WorkPage() {
 
           {/* Hero Footer */}
           <Container size="xl">
-            <div className="flex justify-between items-end w-full py-6 text-sm">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -63,12 +63,12 @@ export default function WorkPage() {
       <section className="py-32 bg-gray-100">
         <Container size="xxl">
           <ScrollRevealText>
-            <h2 className="text-5xl md:text-6xl font-bold mb-16 text-center text-black">
+            <h2 className="text-fluid-6xl font-bold mb-16 text-center text-black">
               Featured Work
             </h2>
           </ScrollRevealText>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <MouseFollower text="COMING SOON">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
@@ -81,7 +81,7 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={100}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Affinity Group</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Affinity Group</h3>
                   <p className="text-gray-600">Brand Identity & Web Development</p>
                 </ScrollRevealText>
               </div>
@@ -99,7 +99,7 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={200}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Pokebar</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Pokebar</h3>
                   <p className="text-gray-600">Digital Strategy & UX Design</p>
                 </ScrollRevealText>
               </div>
@@ -117,7 +117,7 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={300}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Marco Polo</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Marco Polo</h3>
                   <p className="text-gray-600">Creative Direction & Branding</p>
                 </ScrollRevealText>
               </div>
@@ -135,7 +135,7 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={400}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Metrotown Notary</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Metrotown Notary</h3>
                   <p className="text-gray-600">Investment Platform & Identity</p>
                 </ScrollRevealText>
               </div>
@@ -153,7 +153,7 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={500}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">Comm100</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">Comm100</h3>
                   <p className="text-gray-600">Product Design & Development</p>
                 </ScrollRevealText>
               </TransitionLink>
@@ -171,7 +171,7 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={600}>
-                  <h3 className="text-xl font-semibold mb-2 text-black">CityColor</h3>
+                  <h3 className="text-fluid-xl font-semibold mb-2 text-black">CityColor</h3>
                   <p className="text-gray-600">Brand Strategy & Visual Identity</p>
                 </ScrollRevealText>
               </div>
