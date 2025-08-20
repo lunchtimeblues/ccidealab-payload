@@ -186,7 +186,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         >
           {/* Header with Logo and Close Button - Absolutely positioned */}
           <div className="absolute top-0 left-0 right-0 z-30">
-            <div className="page-wrapper pt-8 pb-4 flex justify-between items-start">
+            <div className="page-wrapper py-16 flex justify-between items-center">
               {/* Logo section */}
               <div className="flex items-center justify-start">
                 <Image
@@ -194,14 +194,14 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                   alt="C&C IDEA LAB Logo"
                   width={160}
                   height={64}
-                  className="h-16 w-auto"
+                  className="h-36 w-auto"
                 />
               </div>
 
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="text-white hover:text-gray-300 transition-colors text-lg font-medium bg-transparent border-none cursor-pointer p-2 -m-2"
+                className="text-white hover:text-gray-300 transition-colors text-fluid-2xl font-medium bg-transparent border-none cursor-pointer"
                 aria-label="Close menu"
               >
                 Close
@@ -241,7 +241,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         {/* Menu item */}
                         <button
                           onClick={() => handleLinkClick(item.href)}
-                          className="text-5xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                          className="text-7xl sm:text-[15rem] font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
                           style={{
                             // Optimize text rendering
                             textRendering: 'optimizeSpeed',
@@ -262,14 +262,16 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
       {/* ESC instruction */}
       <div className="absolute inset-0 pointer-events-none z-40">
         <div
-          className={`absolute top-1/2 right-8 transform -translate-y-1/2 text-white text-sm transition-all duration-500 ease-out ${
+          className={`absolute top-1/2 right-16 transform -translate-y-1/2 text-white text-sm transition-all duration-500 ease-out ${
             isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
           }`}
           style={{
             transitionDelay: isOpen ? '900ms' : '0ms',
           }}
         >
-          <div className="writing-mode-vertical-rl text-orientation-mixed">Press ESC to close</div>
+          <div className="text-fluid-xl writing-mode-vertical-rl text-orientation-mixed">
+            Press ESC to close
+          </div>
         </div>
       </div>
     </div>

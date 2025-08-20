@@ -23,8 +23,8 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     bg: 'bg-white/90 backdrop-blur-md rounded-full',
     text: 'text-black',
     border: 'border border-gray-200/30',
-    size: 'w-36 h-36',
-    offset: 72,
+    size: 'w-64 h-64',
+    offset: 128, // Half of 256px (w-64 h-64)
   }
 
   const updateFollowerPosition = useCallback(() => {
@@ -106,18 +106,18 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
           `}
         >
           {/* Split text around the circle using SVG - distributed evenly on opposite sides */}
-          <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 144 144">
+          <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 256 256">
             <defs>
-              <path id="circle-path" d="M 72,72 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" />
+              <path id="circle-path" d="M 128,128 m -90,0 a 90,90 0 1,1 180,0 a 90,90 0 1,1 -180,0" />
             </defs>
             {/* First half of text starting at top */}
-            <text className="text-xs font-medium tracking-[0.2em] fill-current">
+            <text className="text-sm font-medium tracking-[0.2em] fill-current">
               <textPath href="#circle-path" startOffset="0%">
                 {text}
               </textPath>
             </text>
             {/* Second half of text starting at bottom (50% around the circle) */}
-            <text className="text-xs font-medium tracking-[0.2em] fill-current">
+            <text className="text-sm font-medium tracking-[0.2em] fill-current">
               <textPath href="#circle-path" startOffset="50%">
                 {text}
               </textPath>
@@ -127,8 +127,8 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
           {/* Central arrow */}
           <div className="relative z-10 flex items-center justify-center">
             <svg
-              width="20"
-              height="20"
+              width="32"
+              height="32"
               viewBox="0 0 24 24"
               fill="none"
               className="transition-all duration-400 ease-out"

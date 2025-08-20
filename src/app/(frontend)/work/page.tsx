@@ -11,7 +11,7 @@ export default function WorkPage() {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-28 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-64 pb-8 min-h-screen">
           <div>
             {/* Marquee */}
             <ScrollMarquee
@@ -20,7 +20,7 @@ export default function WorkPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[8vw] font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">WORK</span>
               <span className="mx-8 flex items-center">
@@ -49,7 +49,7 @@ export default function WorkPage() {
 
           {/* Hero Footer */}
           <Container size="xl">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -63,9 +63,7 @@ export default function WorkPage() {
       <section className="py-32 bg-gray-100">
         <Container size="xxl">
           <ScrollRevealText>
-            <h2 className="text-fluid-6xl font-bold mb-16 text-center text-black">
-              Featured Work
-            </h2>
+            <h2 className="text-fluid-6xl font-bold mb-16 text-center text-black">Featured Work</h2>
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 gap-8">
