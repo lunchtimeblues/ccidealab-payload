@@ -93,8 +93,6 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
       const pixelsPerSecond = baseSpeed * 100 // baseSpeed 5 = 500px/s, baseSpeed 1 = 100px/s
       const duration = pixelsToMove / pixelsPerSecond
 
-
-
       if (direction === 'left') {
         // Move left: start at 0%, move to -50% (half width since content is duplicated)
         gsap.set(element, { xPercent: 0 })
@@ -165,8 +163,6 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
         velocityHistory.reduce((sum, v) => sum + v, 0) / velocityHistory.length
       scrollVelocityRef.current = smoothedVelocity
 
-
-
       lastScrollY = currentScrollY
       lastTime = currentTime
     }
@@ -176,8 +172,6 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
       const velocity = scrollVelocityRef.current
       // More responsive speed calculation using the sensitivity prop
       const speedMultiplier = Math.min(1 + velocity * sensitivity, maxSpeedMultiplier)
-
-
 
       // Update marquee animations
       if (animationsRef.current.line1) {
@@ -214,7 +208,6 @@ export const ScrollMarquee: React.FC<ScrollMarqueeProps> = ({
       start: 'top bottom',
       end: 'bottom top',
       onUpdate: () => {
-
         updateScrollVelocity()
         updateAnimationSpeeds()
       },

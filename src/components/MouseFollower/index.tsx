@@ -42,11 +42,10 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     if (!container || !follower) return
 
     const handleMouseEnter = (e: MouseEvent) => {
-      // Set initial position immediately on enter to prevent top-left flash
-      const rect = container.getBoundingClientRect()
+      // Use global mouse position for better alignment
       positionRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+        x: e.clientX,
+        y: e.clientY,
       }
 
       // Set position immediately without transition
@@ -68,10 +67,10 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     }
 
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect()
+      // Use global mouse position for consistent alignment
       positionRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+        x: e.clientX,
+        y: e.clientY,
       }
       updateFollowerPosition()
     }
@@ -92,7 +91,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       {children}
       <div
         ref={followerRef}
-        className="absolute top-0 left-0 pointer-events-none z-50"
+        className="fixed top-0 left-0 pointer-events-none z-50"
         style={{
           transform: `translate(-9999px, -9999px)`, // Initial position off-screen
         }}
