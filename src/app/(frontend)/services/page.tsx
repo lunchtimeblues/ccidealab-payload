@@ -146,7 +146,7 @@ export default function ServicesPage() {
             {/* Content */}
             <Container size="xxl">
               <div className="max-w-3xl mt-12 md:mt-18">
-                <p className="text-2xl md:text-3xl leading-snug text-black">
+                <p className="text-fluid-2xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
                   mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
                   mottos for clients to serve as their Idea Worth Rallying Around®.
@@ -157,7 +157,7 @@ export default function ServicesPage() {
 
           {/* Hero Footer */}
           <Container size="xl">
-            <div className="flex justify-between items-end w-full py-6 text-sm">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -182,7 +182,9 @@ export default function ServicesPage() {
           <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
             <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Think big with us.</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
+                  Think big with us.
+                </p>
               </ScrollRevealText>
             </div>
             <div className="col-span-12 sm:col-span-8">
@@ -203,7 +205,7 @@ export default function ServicesPage() {
                 </div>
               </ScrollRevealText>
               <ScrollRevealText delay={600}>
-                <div className="text-sm font-medium text-gray-500 mb-8 lg:pr-16">
+                <div className="text-fluid-sm font-medium text-gray-500 mb-8 lg:pr-16">
                   (CHOOSE YOUR PURPOSE)
                 </div>
               </ScrollRevealText>
@@ -292,17 +294,17 @@ export default function ServicesPage() {
                   <div className="w-full border-t border-[#CFD5D7] mt-auto">
                     <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 sm:pt-20">
                       <div className="flex flex-col justify-between col-span-12 sm:col-span-9">
-                        <p className="text-lg sm:text-xl leading-relaxed max-w-5xl mb-10 sm:mb-12">
+                        <p className="text-fluid-lg leading-relaxed max-w-5xl mb-10 sm:mb-12">
                           {service.description}
                         </p>
 
                         <div className="flex flex-col sm:flex-row justify-between max-w-4xl pb-16 sm:pb-18">
-                          <ul className="mt-auto space-y-2 text-lg">
+                          <ul className="mt-auto space-y-2 text-fluid-lg">
                             {service.features1.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
                           </ul>
-                          <ul className="mt-auto space-y-2 text-lg">
+                          <ul className="mt-auto space-y-2 text-fluid-lg">
                             {service.features2.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
