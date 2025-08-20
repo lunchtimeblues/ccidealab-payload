@@ -24,7 +24,7 @@ export default function HomePage(): React.JSX.Element {
           <div className="relative flex items-center justify-center almost-full-height px-4 sm:px-6 lg:px-8">
             <div className="relative w-full max-w-none pt-24 md:pt-0">
               <h1
-                className="text-fluid-9xl leading-tight lg:leading-none font-medium uppercase tracking-tight"
+                className="text-fluid-hero-xl leading-tight lg:leading-none font-medium uppercase tracking-tight"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
@@ -91,7 +91,7 @@ export default function HomePage(): React.JSX.Element {
             </div>
             <div className="lg:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-6xl font-bold text-black mb-8 leading-tight">
                   Great brands are more than famous names, they&apos;re Ideas Worth Rallying
                   Around®.
                 </h3>
@@ -166,7 +166,7 @@ export default function HomePage(): React.JSX.Element {
       <section className="py-32 bg-gray-100">
         <Container size="xxl">
           <ScrollRevealText>
-            <h2 className="text-fluid-6xl font-bold mb-16 text-black">Select Works</h2>
+            <h2 className="text-fluid-7xl font-bold mb-16 text-black">Select Works</h2>
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
@@ -310,7 +310,7 @@ export default function HomePage(): React.JSX.Element {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollRevealText>
-                <h2 className="text-fluid-5xl font-bold mb-8">
+                <h2 className="text-fluid-6xl font-bold mb-8">
                   Turning bold vision
                   <br />
                   into brand impact.
@@ -396,7 +396,7 @@ export default function HomePage(): React.JSX.Element {
               {/* Paragraph column: full width on small, right half on large */}
               <div className="col-span-12 lg:col-start-5 lg:col-span-8">
                 <ScrollRevealText>
-                  <p className="text-fluid-4xl font-medium leading-tight lg:leading-snug">
+                  <p className="text-fluid-5xl font-medium leading-tight lg:leading-snug">
                     CCIDEALAB® brings together a richly multicultural team with balanced
                     perspectives and shared creativity.
                   </p>

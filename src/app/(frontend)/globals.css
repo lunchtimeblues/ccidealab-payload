@@ -308,47 +308,45 @@ html[data-theme='light'] {
     cursor: none !important;
   }
 
-  /* Fluid Typography Classes - Hybrid approach */
-  /* Mobile: Fixed sizes to prevent too-small text */
+  /* Fluid Typography Classes - Wearemotto.com inspired sizing */
+  /* Mobile: Fixed sizes optimized for readability */
   .text-fluid-xs { font-size: 12px; }
   .text-fluid-sm { font-size: 14px; }
   .text-fluid-base { font-size: 16px; }
   .text-fluid-lg { font-size: 18px; }
-  .text-fluid-xl { font-size: 20px; }
-  .text-fluid-2xl { font-size: 24px; }
-  .text-fluid-3xl { font-size: 30px; }
-  .text-fluid-4xl { font-size: 36px; }
-  .text-fluid-5xl { font-size: 48px; }
-  .text-fluid-6xl { font-size: 60px; }
-  .text-fluid-7xl { font-size: 72px; }
+  .text-fluid-xl { font-size: 22px; }
+  .text-fluid-2xl { font-size: 28px; }
+  .text-fluid-3xl { font-size: 36px; }
+  .text-fluid-4xl { font-size: 44px; }
+  .text-fluid-5xl { font-size: 56px; }
+  .text-fluid-6xl { font-size: 68px; }
+  .text-fluid-7xl { font-size: 80px; }
   .text-fluid-8xl { font-size: 96px; }
-  .text-fluid-9xl { font-size: 128px; }
+  .text-fluid-9xl { font-size: 112px; }
 
-  /* Hero-specific sizes for the homepage */
-  .text-fluid-hero-sm { font-size: 48px; }   /* Mobile hero */
-  .text-fluid-hero-md { font-size: 72px; }   /* Mobile hero large */
-  .text-fluid-hero-lg { font-size: 96px; }   /* Mobile hero extra large */
+  /* Hero-specific sizes - wearemotto.com style large text */
+  .text-fluid-hero { font-size: 64px; }      /* Mobile hero - large but readable */
+  .text-fluid-hero-xl { font-size: 80px; }   /* Mobile hero - extra large */
 
-  /* Tablet and Desktop: Fluid scaling with rem units */
+  /* Tablet and Desktop: Fluid scaling with wearemotto.com proportions */
   @media (min-width: 650px) {
     .text-fluid-xs { font-size: 1.2rem; }   /* ~12px at 1500px viewport */
     .text-fluid-sm { font-size: 1.4rem; }   /* ~14px */
     .text-fluid-base { font-size: 1.6rem; } /* ~16px */
     .text-fluid-lg { font-size: 1.8rem; }   /* ~18px */
-    .text-fluid-xl { font-size: 2rem; }     /* ~20px */
-    .text-fluid-2xl { font-size: 2.4rem; }  /* ~24px */
-    .text-fluid-3xl { font-size: 3rem; }    /* ~30px */
-    .text-fluid-4xl { font-size: 3.6rem; }  /* ~36px */
-    .text-fluid-5xl { font-size: 4.8rem; }  /* ~48px */
-    .text-fluid-6xl { font-size: 6rem; }    /* ~60px */
-    .text-fluid-7xl { font-size: 7.2rem; }  /* ~72px */
+    .text-fluid-xl { font-size: 2.2rem; }   /* ~22px */
+    .text-fluid-2xl { font-size: 2.8rem; }  /* ~28px */
+    .text-fluid-3xl { font-size: 3.6rem; }  /* ~36px */
+    .text-fluid-4xl { font-size: 4.4rem; }  /* ~44px */
+    .text-fluid-5xl { font-size: 5.6rem; }  /* ~56px */
+    .text-fluid-6xl { font-size: 6.8rem; }  /* ~68px */
+    .text-fluid-7xl { font-size: 8rem; }    /* ~80px */
     .text-fluid-8xl { font-size: 9.6rem; }  /* ~96px */
-    .text-fluid-9xl { font-size: 12.8rem; } /* ~128px */
+    .text-fluid-9xl { font-size: 11.2rem; } /* ~112px */
 
-    /* Hero-specific fluid sizes */
-    .text-fluid-hero-sm { font-size: 4.8rem; }   /* ~48px base, scales up */
-    .text-fluid-hero-md { font-size: 7.2rem; }   /* ~72px base, scales up */
-    .text-fluid-hero-lg { font-size: 9.6rem; }   /* ~96px base, scales up */
+    /* Hero-specific fluid sizes - wearemotto.com inspired */
+    .text-fluid-hero { font-size: 8rem; }     /* ~80px base, scales beautifully */
+    .text-fluid-hero-xl { font-size: 12rem; } /* ~120px base, massive impact */
   }
 }
 
