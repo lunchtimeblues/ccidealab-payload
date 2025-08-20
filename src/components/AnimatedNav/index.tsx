@@ -78,7 +78,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 appearance="inline"
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
-                className="text-black hover:text-gray-600 transition-colors text-xl font-medium"
+                className="text-fluid-xl text-black hover:text-gray-600 transition-colors font-medium"
               />
             </div>
           ))}
@@ -106,7 +106,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               appearance="inline"
               transitionType="logoWipe"
               transitionColor="#666666ff"
-              className="text-black hover:text-gray-600 transition-colors text-xl font-medium"
+              className="text-fluid-2xl text-black hover:text-gray-600 transition-colors font-medium"
             />
           </div>
 

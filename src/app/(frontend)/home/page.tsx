@@ -35,7 +35,7 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
                 <div className="flex justify-between items-center">
                   <ScrollRevealText delay={400}>
-                    <div className="w-16 sm:w-20 md:w-20 xl:w-28 2xl:w-32 hidden sm:block">
+                    <div className="w-40 md:w-40 hidden sm:block">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -58,8 +58,8 @@ export default function HomePage(): React.JSX.Element {
                 </div>
               </h1>
 
-              <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:right-0 mt-12 md:mt-0 md:w-1/3 pr-4">
-                <p className="text-fluid-xl leading-normal tracking-wide text-right">
+              <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:right-0 mt-12 md:w-1/3 pr-4">
+                <p className="text-fluid-lg font-medium leading-normal tracking-wide text-right">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
                     reinventing companies in the tech and innovation space.
