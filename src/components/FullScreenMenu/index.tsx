@@ -201,7 +201,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="text-white hover:text-gray-300 transition-colors text-fluid-2xl font-medium bg-transparent border-none cursor-pointer"
+                className="text-white hover:text-gray-300 transition-colors text-fluid-xl font-medium bg-transparent border-none cursor-pointer"
                 aria-label="Close menu"
               >
                 Close

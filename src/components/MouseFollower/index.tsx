@@ -87,7 +87,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       container.removeEventListener('mouseleave', handleMouseLeave)
       container.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [config.offset, updateFollowerPosition])
+  }, [updateFollowerPosition])
 
   return (
     <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
@@ -152,6 +152,8 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
                 strokeLinejoin="round"
               />
             </svg>
+            {/* Debug: Small dot to show exact center */}
+            <div className="absolute w-2 h-2 bg-red-500 rounded-full" style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}></div>
           </div>
         </div>
       </div>

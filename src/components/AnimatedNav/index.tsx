@@ -53,7 +53,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               alt="C&C IDEA LAB Logo"
               width={160}
               height={64}
-              className="h-32 w-auto"
+              className="h-32"
             />
           </TransitionLink>
         </div>
@@ -78,14 +78,14 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 appearance="inline"
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
-                className="text-fluid-2xl "
+                className="text-fluid-xl "
               />
             </div>
           ))}
         </div>
 
         {/* Right Side */}
-        <div className="relative flex items-center min-w-[80px]">
+        <div className="relative flex items-center min-w-[160px]">
           {/* Contact */}
           <div
             className={`absolute right-0 transition-all text-black font-medium ${
@@ -106,7 +106,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               appearance="inline"
               transitionType="logoWipe"
               transitionColor="#666666ff"
-              className="text-fluid-2xl"
+              className="text-fluid-xl"
             />
           </div>
 
