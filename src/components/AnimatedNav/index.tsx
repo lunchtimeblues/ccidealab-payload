@@ -59,7 +59,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden sm:flex items-center space-x-8 mx-auto">
+        <div className="hidden md:flex items-center space-x-8 mx-auto">
           {navItems.slice(0, -1).map((item, index) => (
             <div
               key={item.href}
@@ -106,7 +106,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               appearance="inline"
               transitionType="logoWipe"
               transitionColor="#666666ff"
-              className="text-xl sm:text-fluid-xl"
+              className="text-fluid-xl"
             />
           </div>
 

@@ -1,58 +1,233 @@
+/* ============================================================================
+   GLOBAL STYLES - C&C IDEA LAB
+   ============================================================================ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Sora font base styles */
+/* ============================================================================
+   1. BASE STYLES & RESET
+   ============================================================================ */
+
 @layer base {
+  /* Font Family & Base Typography */
   html {
     font-family: var(--font-sora), system-ui, sans-serif;
-    /* Fluid typography system - only applies on tablet+ */
     font-size: 16px; /* Mobile: fixed 16px base */
+    opacity: 0; /* Prevent FOUC */
   }
 
   /* Tablet and Desktop: Fluid scaling */
-  @media (min-width: 650px) {
+  @media (min-width: 640px) {
     html {
       font-size: calc(10 * 100vw / var(--size));
     }
   }
+
+  /* Theme visibility control */
+  html[data-theme='dark'],
+  html[data-theme='light'] {
+    opacity: initial;
+  }
+
+  /* Reset heading styles */
+  h1, h2, h3, h4, h5, h6 {
+    font-size: unset;
+    font-weight: unset;
+  }
+
+  /* Global element styles */
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+  }
 }
 
+/* ============================================================================
+   2. CSS CUSTOM PROPERTIES (VARIABLES)
+   ============================================================================ */
+
+@layer base {
+  :root {
+    /* Design System Colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 240 5% 96%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 240 6% 80%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.2rem;
+
+    /* Status Colors */
+    --success: 196 52% 74%;
+    --warning: 34 89% 85%;
+    --error: 10 100% 86%;
+
+    /* Spacing System */
+    --spacing: 0.5rem; /* 8px base unit - gives us 32px mobile, 48px desktop */
+
+    /* Fluid Typography System */
+    --size: 390; /* Mobile baseline */
+  }
+
+  /* Desktop fluid typography baseline */
+  @media (min-width: 640px) {
+    :root {
+      --size: 1500; /* Desktop baseline for fluid scaling */
+    }
+  }
+}
+
+
+/* ============================================================================
+   3. VIEW TRANSITIONS
+   ============================================================================ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+::view-transition-group(root) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: transform, opacity, clip-path;
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 10000;
+  animation: none !important;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+  animation: none !important;
+}
+
+/* ============================================================================
+   4. ANIMATIONS & KEYFRAMES
+   ============================================================================ */
+
 @layer utilities {
-  /* Hide scrollbars for infinite scroll menu */
+  /* MouseFollower Animations */
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0.3) rotate(-12deg);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.05) rotate(-3deg);
+      opacity: 0.8;
+    }
+    70% {
+      transform: scale(0.95) rotate(1deg);
+      opacity: 0.9;
+    }
+    100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-gentle {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Animation Classes */
+  .animate-bounce-in {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-pulse-gentle {
+    animation: pulse-gentle 2s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 10s linear infinite;
+  }
+}
+
+  /* Cursor Utilities */
+  .cursor-none {
+    cursor: none !important;
+  }
+
+  .cursor-none * {
+    cursor: none !important;
+  }
+
+  /* Scrollbar Utilities */
   .scrollbar-hide {
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
   }
 
-  /* Vertical text for scroll instruction */
+  /* Text Utilities */
   .writing-mode-vertical-rl {
     writing-mode: vertical-rl;
   }
+
   .text-orientation-mixed {
     text-orientation: mixed;
   }
 
-  /* Almost full height - ensures content below remains visible above the fold */
+  /* Layout Utilities */
   .almost-full-height {
-    min-height: calc(100vh - 56px); /* Desktop: leaves 120px for next section preview */
+    min-height: calc(100vh - 56px);
   }
 
-  /* Responsive variants for different screen sizes */
   @media (max-width: 768px) {
     .almost-full-height {
-      min-height: calc(100vh - 40px); /* Mobile: leaves 80px for next section preview */
+      min-height: calc(100vh - 40px);
     }
   }
 
   @media (min-width: 1440px) {
     .almost-full-height {
-      min-height: calc(100vh - 80px); /* Large screens: leaves 150px for better proportion */
+      min-height: calc(100vh - 80px);
     }
   }
+
+  /* Page Wrapper System */
   .page-wrapper {
     padding-inline: calc(var(--spacing) * 4);
     position: relative;
@@ -64,7 +239,6 @@
     }
   }
 
-  /* Page wrapper variants using the same spacing system */
   .page-wrapper-narrow {
     max-width: 1200px;
     margin-left: auto;
@@ -108,314 +282,74 @@
   }
 }
 
-@layer base {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-size: unset;
-    font-weight: unset;
-  }
+/* ============================================================================
+   5. FLUID TYPOGRAPHY SYSTEM
+   ============================================================================ */
 
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 240 6% 80%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.2rem;
-
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
-
-    /* Spacing system from soulidealab.com */
-    --spacing: 0.5rem; /* 8px base unit - gives us 32px mobile, 48px desktop */
-
-    /* Fluid Typography System - Mobile uses fixed sizes to prevent too-small text */
-    --size: 390; /* Mobile baseline - but we'll override with fixed sizes */
-  }
-
-  /* Tablet and Desktop: Fluid scaling system */
-  @media (min-width: 650px) {
-    :root {
-      --size: 1500; /* Desktop baseline for fluid scaling */
-    }
-  }
-
-  [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 0, 0%, 15%, 0.8;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-
-    --success: 196 100% 14%;
-    --warning: 34 51% 25%;
-    --error: 10 39% 43%;
-  }
+/* Mobile: Fixed pixel sizes (< 640px) */
+@media (max-width: 639px) {
+  .text-fluid-xs { font-size: 12px; }
+  .text-fluid-sm { font-size: 14px; }
+  .text-fluid-base { font-size: 16px; }
+  .text-fluid-lg { font-size: 18px; }
+  .text-fluid-xl { font-size: 20px; }
+  .text-fluid-2xl { font-size: 28px; }
+  .text-fluid-3xl { font-size: 36px; }
+  .text-fluid-4xl { font-size: 44px; }
+  .text-fluid-5xl { font-size: 56px; }
+  .text-fluid-6xl { font-size: 68px; }
+  .text-fluid-7xl { font-size: 88px; }
+  .text-fluid-8xl { font-size: 104px; }
+  .text-fluid-9xl { font-size: 128px; }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
-  }
+/* Desktop: Fluid rem-based scaling (≥ 640px) */
+@media (min-width: 640px) {
+  .text-fluid-xs { font-size: 1.2rem; } /* ~12px at 1500px viewport */
+  .text-fluid-sm { font-size: 1.4rem; } /* ~14px */
+  .text-fluid-base { font-size: 1.6rem; } /* ~16px */
+  .text-fluid-lg { font-size: 1.8rem; } /* ~18px */
+  .text-fluid-xl { font-size: 2.2rem; } /* ~22px */
+  .text-fluid-2xl { font-size: 2.8rem; } /* ~28px */
+  .text-fluid-3xl { font-size: 3.6rem; } /* ~36px */
+  .text-fluid-4xl { font-size: 4.4rem; } /* ~44px */
+  .text-fluid-5xl { font-size: 5.6rem; } /* ~56px */
+  .text-fluid-6xl { font-size: 6.8rem; } /* ~68px */
+  .text-fluid-7xl { font-size: 10rem; } /* ~100px */
+  .text-fluid-8xl { font-size: 12rem; } /* ~120px */
+  .text-fluid-9xl { font-size: 14rem; } /* ~140px */
 }
 
-html {
-  opacity: 0;
+/* ============================================================================
+   6. COMPONENT-SPECIFIC STYLES
+   ============================================================================ */
+
+/* Hero Logo Component */
+.hero-ideas-text::before {
+  content: '';
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.2em;
+  background-image: url('/images/cc-logo-black-minimal.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: baseline;
+  transform: translateY(-0.1em);
 }
 
-html[data-theme='dark'],
-html[data-theme='light'] {
-  opacity: initial;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none !important;
-}
-
-::view-transition-group(root) {
-  z-index: auto !important;
-}
-
-::view-transition-image-pair(root) {
-  isolation: isolate;
-  will-change: transform, opacity, clip-path;
-  z-index: 1;
-}
-
-::view-transition-new(root) {
-  z-index: 10000;
-  animation: none !important;
-}
-
-::view-transition-old(root) {
-  z-index: 1;
-  animation: none !important;
-}
-
-/* MouseFollower Animations */
-@layer utilities {
-  @keyframes bounce-in {
-    0% {
-      transform: scale(0.3) rotate(-12deg);
-      opacity: 0;
-    }
-    50% {
-      transform: scale(1.05) rotate(-3deg);
-      opacity: 0.8;
-    }
-    70% {
-      transform: scale(0.95) rotate(1deg);
-      opacity: 0.9;
-    }
-    100% {
-      transform: scale(1) rotate(0deg);
-      opacity: 1;
-    }
-  }
-
-  @keyframes pulse-gentle {
-    0%,
-    100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-  }
-
-  .animate-bounce-in {
-    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
-  .animate-pulse-gentle {
-    animation: pulse-gentle 2s ease-in-out infinite;
-  }
-
-  /* MouseFollower Animations */
-  @keyframes spin-slow {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .animate-spin-slow {
-    animation: spin-slow 10s linear infinite;
-  }
-
-  /* Ensure cursor hiding works properly */
-  .cursor-none {
-    cursor: none !important;
-  }
-
-  .cursor-none * {
-    cursor: none !important;
-  }
-
-  /* Fluid Typography Classes - Wearemotto.com inspired sizing */
-  /* Mobile: Fixed sizes optimized for readability */
-  .text-fluid-xs {
-    font-size: 12px;
-  }
-  .text-fluid-sm {
-    font-size: 14px;
-  }
-  .text-fluid-base {
-    font-size: 16px;
-  }
-  .text-fluid-lg {
-    font-size: 18px;
-  }
-  .text-fluid-xl {
-    font-size: 20px;
-  }
-  .text-fluid-2xl {
-    font-size: 28px;
-  }
-  .text-fluid-3xl {
-    font-size: 36px;
-  }
-  .text-fluid-4xl {
-    font-size: 44px;
-  }
-  .text-fluid-5xl {
-    font-size: 56px;
-  }
-  .text-fluid-6xl {
-    font-size: 68px;
-  }
-  .text-fluid-7xl {
-    font-size: 88px;
-  }
-  .text-fluid-8xl {
-    font-size: 104px;
-  }
-  .text-fluid-9xl {
-    font-size: 128px;
-  }
-
-  /* Tablet and Desktop: Fluid scaling with wearemotto.com proportions */
-  @media (min-width: 640px) {
-    .text-fluid-xs {
-      font-size: 1.2rem;
-    } /* ~12px at 1500px viewport */
-    .text-fluid-sm {
-      font-size: 1.4rem;
-    } /* ~14px */
-    .text-fluid-base {
-      font-size: 1.6rem;
-    } /* ~16px */
-    .text-fluid-lg {
-      font-size: 1.8rem;
-    } /* ~18px */
-    .text-fluid-xl {
-      font-size: 2.2rem;
-    } /* ~22px */
-    .text-fluid-2xl {
-      font-size: 2.8rem;
-    } /* ~28px */
-    .text-fluid-3xl {
-      font-size: 3.6rem;
-    } /* ~36px */
-    .text-fluid-4xl {
-      font-size: 4.4rem;
-    } /* ~44px */
-    .text-fluid-5xl {
-      font-size: 5.6rem;
-    } /* ~56px */
-    .text-fluid-6xl {
-      font-size: 6.8rem;
-    } /* ~68px */
-    .text-fluid-7xl {
-      font-size: 10rem;
-    } /* ~100px */
-    .text-fluid-8xl {
-      font-size: 13rem;
-    } /* ~120px */
-    .text-fluid-9xl {
-      font-size: 16rem;
-    } /* ~140px */
-  }
-
-  /* Hero logo before "Ideas" text */
-  .logo-before::before {
-    content: '';
-    display: inline-block;
-    width: 1.25em; /* Scales with font size */
-    height: 1.25em;
-    background-image: url('/images/cc-logo-black-minimal.svg');
-    transform: translateY(0.25em);
-  }
-}
-
-/* Optimized blur effects for fullscreen menu - Windows/PC performance focused */
+/* FullScreen Menu Blur Effects */
 .fullscreen-menu-blur {
   backdrop-filter: blur(12px) saturate(140%);
   -webkit-backdrop-filter: blur(12px) saturate(140%);
   transform: translateZ(0);
   will-change: backdrop-filter;
-  /* Windows-specific optimizations */
   backface-visibility: hidden;
   perspective: 1000px;
 }
 
-/* Fallback for browsers that don't support backdrop-filter */
+/* Fallback for browsers without backdrop-filter support */
 @supports not (backdrop-filter: blur(1px)) {
   .fullscreen-menu-blur {
     background: rgba(0, 0, 0, 0.75) !important;
