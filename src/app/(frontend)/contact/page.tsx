@@ -1,28 +1,54 @@
 import { Container } from '@/components/Container'
+import { ScrollMarquee } from '@/components/ScrollMarquee'
+import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function ContactPage() {
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gray-100">
-        <Container size="xxl" className="relative z-10">
-          <div className="relative flex items-center justify-center min-h-screen">
-            <div className="relative w-full text-center">
-              <ScrollRevealText>
-                <h1 className="text-fluid-8xl leading-none font-medium uppercase tracking-tight mb-8">
-                  Let&apos;s Create Together
-                </h1>
-              </ScrollRevealText>
-              <ScrollRevealText delay={200}>
-                <p className="text-fluid-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                  Ready to rally around your next big idea?
-                  <span className="font-medium text-black"> We&apos;d love to hear from you.</span>
-                </p>
-              </ScrollRevealText>
-            </div>
+      <section className="relative min-h-screen bg-gray-100">
+        <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
+          <div>
+            {/* Marquee */}
+            <ScrollMarquee
+              baseSpeed={0.8}
+              maxSpeedMultiplier={2}
+              starSpinSpeed={4}
+              lines="single"
+              direction="left"
+              lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
+            >
+              <span className="mx-8">CONTACT</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+            </ScrollMarquee>
+
+            {/* Content */}
+            <Container size="xxl">
+              <div className="max-w-3xl mt-12 md:mt-18">
+                <ScrollRevealText>
+                  <p className="text-fluid-2xl leading-snug text-black">
+                    Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
+                    mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
+                    mottos for clients to serve as their Idea Worth Rallying Around®.
+                  </p>
+                </ScrollRevealText>
+              </div>
+            </Container>
           </div>
-        </Container>
+
+          {/* Hero Footer */}
+          <Container size="xl">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
+              <a href="#about" className="border-b border-black hover:opacity-70 transition">
+                Learn more about our company <span className="inline-block ml-1">↓</span>
+              </a>
+              <span className="text-black/60">(SCROLL)</span>
+            </div>
+          </Container>
+        </div>
       </section>
 
       {/* Contact Form Section */}
@@ -32,12 +58,10 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="col-span-12 sm:col-span-5">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
-                  Get in Touch
-                </p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Get in Touch</p>
               </ScrollRevealText>
               <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-medium text-black mb-8 leading-tight">
                   Start a conversation that matters.
                 </h3>
               </ScrollRevealText>
@@ -110,7 +134,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="lastName"
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
                       >
                         Last Name *
                       </label>
@@ -126,7 +150,7 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-fluid-sm font-medium text-gray-700 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -142,7 +166,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="company"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
                     >
                       Company
                     </label>
@@ -158,7 +182,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="projectType"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
                     >
                       Project Type
                     </label>
@@ -180,7 +204,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="budget"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
                     >
                       Project Budget
                     </label>
@@ -201,7 +225,7 @@ export default function ContactPage() {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium text-gray-700 mb-2"
+                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
                     >
                       Tell us about your project *
                     </label>
@@ -222,7 +246,7 @@ export default function ContactPage() {
                       name="newsletter"
                       className="mt-1 mr-3 h-4 w-4 text-black focus:ring-black border-gray-300 rounded-none"
                     />
-                    <label htmlFor="newsletter" className="text-sm text-gray-600">
+                    <label htmlFor="newsletter" className="text-fluid-sm text-gray-600">
                       I&apos;d like to receive updates about C/C IDEA LAB&apos;s work and insights.
                     </label>
                   </div>
@@ -242,20 +266,64 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-32 lg:py-48 bg-gray-100">
-        <Container size="lg" className="text-center">
+      <section className="py-32 sm:py-48">
+        <Container size="xxl">
           <ScrollRevealText>
-            <h2 className="text-5xl md:text-6xl font-bold mb-8 text-black">
-              Your Next Big Idea Starts Here
-            </h2>
+            <h2 className="text-fluid-7xl font-medium leading-none text-black">OFFICES</h2>
           </ScrollRevealText>
-          <ScrollRevealText delay={200}>
-            <p className="text-xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto">
-              Don&apos;t let great ideas remain just ideas. Take the first step toward creating
-              something extraordinary that people will rally around.
-            </p>
-          </ScrollRevealText>
+
+          {/* Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mt-16">
+            {/* USA */}
+            <ScrollRevealText delay={200}>
+              <div>
+                <h3 className="font-medium text-fluid-lg mb-6">USA</h3>
+                <div className="space-y-8 text-gray-500">
+                  <div>
+                    <p className="font-medium">Motto® NYC</p>
+                    <p>199 Water Street</p>
+                    <p>New York, NYC 10038</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Motto® DAL</p>
+                    <p>2919 Commerce Street</p>
+                    <p>Dallas, TX 75226</p>
+                  </div>
+                </div>
+                <a
+                  href="mailto:hello@motto.com"
+                  className="inline-block mt-6 border-b border-black hover:text-gray-500 hover:border-gray-500 transition-colors"
+                >
+                  Email us
+                </a>
+              </div>
+            </ScrollRevealText>
+
+            {/* Europe */}
+            <ScrollRevealText delay={400}>
+              <div>
+                <h3 className="font-medium text-fluid-lg mb-6">Europe</h3>
+                <div className="space-y-8 text-gray-500">
+                  <div>
+                    <p className="font-medium">Motto® LND</p>
+                    <p>High Bridge Works</p>
+                    <p>Newcastle upon Tyne, UK</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">Motto® BER</p>
+                    <p>Kurfürstendamm 11</p>
+                    <p>Berlin, BE 10719</p>
+                  </div>
+                </div>
+                <a
+                  href="mailto:hello@motto.com"
+                  className="inline-block mt-6 border-b border-black hover:text-gray-500 hover:border-gray-500 transition-colors"
+                >
+                  Email us
+                </a>
+              </div>
+            </ScrollRevealText>
+          </div>
         </Container>
       </section>
     </div>

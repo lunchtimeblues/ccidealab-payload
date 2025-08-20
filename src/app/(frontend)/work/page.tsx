@@ -11,7 +11,7 @@ export default function WorkPage() {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-64 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
           <div>
             {/* Marquee */}
             <ScrollMarquee
@@ -22,14 +22,6 @@ export default function WorkPage() {
               direction="left"
               lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
             >
-              <span className="mx-8">WORK</span>
-              <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
-              </span>
-              <span className="mx-8">WORK</span>
-              <span className="mx-8 flex items-center">
-                <SpinningStar size={64} className="text-current" />
-              </span>
               <span className="mx-8">WORK</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
