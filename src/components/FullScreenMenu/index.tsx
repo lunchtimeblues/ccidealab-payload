@@ -241,7 +241,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         {/* Menu item */}
                         <button
                           onClick={() => handleLinkClick(item.href)}
-                          className="text-4xl md:text-8xl lg:text-9xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                          className="text-5xl md:text-8xl lg:text-9xl xl:text-[10rem] 2xl:text-[12rem] font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
                           style={{
                             // Optimize text rendering
                             textRendering: 'optimizeSpeed',
