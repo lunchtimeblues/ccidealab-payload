@@ -24,7 +24,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     text: 'text-black',
     border: 'border border-gray-200/30',
     size: 'w-64 h-64',
-    offset: 128, // Half of 256px (w-64 h-64)
+    offset: 128, // Half of 256px (w-64 h-64) - centers circle on cursor
   }
 
   const updateFollowerPosition = useCallback(() => {
@@ -94,7 +94,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
         ref={followerRef}
         className="absolute top-0 left-0 pointer-events-none z-50"
         style={{
-          transform: `translate(-${config.offset}px, -${config.offset}px)`, // Initial position off-screen
+          transform: `translate(-9999px, -9999px)`, // Initial position off-screen
         }}
       >
         <div
