@@ -28,7 +28,7 @@ export default function HomePage(): React.JSX.Element {
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
-                  <div className="hero-ideas-text">Ideas Worth</div>
+                  <div className="logo-before">Ideas Worth</div>
                 </ScrollRevealText>
                 <ScrollRevealText delay={200}>
                   <div className="sm:text-right -mr-1">Rallying</div>
@@ -59,7 +59,7 @@ export default function HomePage(): React.JSX.Element {
               </h1>
 
               <div className="relative md:absolute md:left-0 md:top-1/2 md:-translate-y-1/2 md:right-0 mt-12 md:mt-0 md:w-1/3 pr-4">
-                <p className="text-fluid-xl leading-relaxed tracking-wide text-right">
+                <p className="text-fluid-xl leading-normal tracking-wide text-right">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
                     reinventing companies in the tech and innovation space.
