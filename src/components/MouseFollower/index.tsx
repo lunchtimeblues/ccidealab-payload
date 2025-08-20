@@ -87,7 +87,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   }, [config.offset, updateFollowerPosition])
 
   return (
-    <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
+    <div ref={containerRef} className={`relative ${className} ${isVisible ? 'md:cursor-none' : ''}`}>
       {children}
       <div
         ref={followerRef}
