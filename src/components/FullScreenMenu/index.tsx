@@ -186,7 +186,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         >
           {/* Header with Logo and Close Button - Absolutely positioned */}
           <div className="absolute top-0 left-0 right-0 z-30">
-            <div className="page-wrapper py-16 flex justify-between items-center">
+            <div className="page-wrapper sm:py-16 flex justify-between items-center">
               {/* Logo section */}
               <div className="flex items-center justify-start">
                 <Image
@@ -201,7 +201,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="text-white hover:text-gray-300 transition-colors text-fluid-xl font-medium bg-transparent border-none cursor-pointer"
+                className="text-white hover:text-gray-300 transition-colors text-xl sm:text-fluid-xl font-medium bg-transparent border-none cursor-pointer"
                 aria-label="Close menu"
               >
                 Close
@@ -228,7 +228,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         key={`${item.href}-${copyIndex}-${index}`}
                         className="text-left w-full flex items-center group cursor-pointer"
                         style={{
-                          height: `${itemHeight}px`,
+                          height: `h-[50px] sm:h-[${itemHeight}px]`,
                           // Use transform3d for hardware acceleration
                           transform: 'translate3d(0, 0, 0)',
                         }}
@@ -241,7 +241,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         {/* Menu item */}
                         <button
                           onClick={() => handleLinkClick(item.href)}
-                          className="text-7xl sm:text-[15rem] font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                          className="text-6xl sm:text-[15rem] font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
                           style={{
                             // Optimize text rendering
                             textRendering: 'optimizeSpeed',
@@ -269,7 +269,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
             transitionDelay: isOpen ? '900ms' : '0ms',
           }}
         >
-          <div className="text-fluid-xl writing-mode-vertical-rl text-orientation-mixed">
+          <div className="hidden sm:block text-base sm:text-fluid-xl writing-mode-vertical-rl text-orientation-mixed">
             Press ESC to close
           </div>
         </div>

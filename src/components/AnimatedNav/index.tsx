@@ -39,8 +39,8 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
   }, [isMenuOpen])
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-16">
-      <div className="page-wrapper flex items-center">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 sm:py-16">
+      <div className="page-wrapper flex items-center justify-between">
         {/* Logo */}
         <div
           className={`z-10 transition-all duration-300 ${
@@ -58,8 +58,8 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
           </TransitionLink>
         </div>
 
-        {/* Desktop Nav - Hidden on mobile */}
-        <div className="hidden md:flex items-center space-x-8 mx-auto">
+        {/* Desktop Nav */}
+        <div className="hidden sm:flex items-center space-x-8 mx-auto">
           {navItems.slice(0, -1).map((item, index) => (
             <div
               key={item.href}
@@ -78,7 +78,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 appearance="inline"
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
-                className="text-base md:text-fluid-xl "
+                className="text-fluid-xl "
               />
             </div>
           ))}
@@ -86,9 +86,9 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
 
         {/* Right Side */}
         <div className="relative flex items-center min-w-[160px]">
-          {/* Contact - Hidden on mobile */}
+          {/* Contact */}
           <div
-            className={`hidden md:block absolute right-0 transition-all text-black font-medium ${
+            className={`absolute right-0 transition-all text-black font-medium ${
               isScrolled
                 ? 'transform -translate-x-[80px] opacity-100 duration-300'
                 : 'transform translate-x-0 opacity-100 duration-700'
@@ -106,15 +106,14 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               appearance="inline"
               transitionType="logoWipe"
               transitionColor="#666666ff"
-              className="text-base md:text-fluid-xl"
+              className="text-xl sm:text-fluid-xl"
             />
           </div>
 
-          {/* Hamburger - Always visible on mobile, appears on scroll on desktop */}
           <div
-            className={`absolute right-0 transition-opacity md:${
+            className={`absolute right-0 transition-opacity ${
               isScrolled ? 'opacity-100 duration-200' : 'opacity-0 pointer-events-none duration-300'
-            } opacity-100`}
+            }`}
             style={{
               transitionDelay: isScrolled ? '100ms' : '0ms',
             }}

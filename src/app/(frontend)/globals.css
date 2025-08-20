@@ -285,7 +285,7 @@ html[data-theme='light'] {
     animation: pulse-gentle 2s ease-in-out infinite;
   }
 
-  /* Simplified MouseFollower Animations */
+  /* MouseFollower Animations */
   @keyframes spin-slow {
     from {
       transform: rotate(0deg);
@@ -323,7 +323,7 @@ html[data-theme='light'] {
     font-size: 18px;
   }
   .text-fluid-xl {
-    font-size: 22px;
+    font-size: 20px;
   }
   .text-fluid-2xl {
     font-size: 28px;
@@ -351,7 +351,7 @@ html[data-theme='light'] {
   }
 
   /* Tablet and Desktop: Fluid scaling with wearemotto.com proportions */
-  @media (min-width: 650px) {
+  @media (min-width: 640px) {
     .text-fluid-xs {
       font-size: 1.2rem;
     } /* ~12px at 1500px viewport */
