@@ -14,16 +14,18 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   text = 'VIEW PROJECT',
 }) => {
   const [isVisible, setIsVisible] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const positionRef = useRef({ x: 0, y: 0 })
   const followerRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Responsive configuration - smaller on mobile
+  // Single configuration - white/transparent look
   const config = {
     bg: 'bg-white/90 backdrop-blur-md rounded-full',
     text: 'text-black',
     border: 'border border-gray-200/30',
-    size: 'w-48 h-48 md:w-64 md:h-64', // 192px mobile, 256px desktop
+    size: 'w-64 h-64',
+    offset: 140, // Your working offset value
   }
 
   const updateFollowerPosition = useCallback(() => {
@@ -31,14 +33,28 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     if (!follower) return
 
     const { x, y } = positionRef.current
-    // Responsive offset: 96px for mobile (w-48), 140px for desktop (w-64)
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-    const offset = isMobile ? 96 : 140
+    const offset = config.offset
     follower.style.left = `${x - offset}px`
     follower.style.top = `${y - offset}px`
+  }, [config.offset])
+
+  // Detect mobile devices and disable MouseFollower
+  useEffect(() => {
+    const checkMobile = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+      const isSmallScreen = window.innerWidth < 768
+      setIsMobile(isTouchDevice || isSmallScreen)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   useEffect(() => {
+    // Don't initialize MouseFollower on mobile devices
+    if (isMobile) return
+
     const container = containerRef.current
     const follower = followerRef.current
     if (!container || !follower) return
@@ -51,9 +67,8 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
         y: e.clientY - rect.top,
       }
 
-      // Set position immediately without transition - responsive offset
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-      const offset = isMobile ? 96 : 140
+      // Set position immediately without transition
+      const offset = config.offset
       follower.style.left = `${positionRef.current.x - offset}px`
       follower.style.top = `${positionRef.current.y - offset}px`
 
@@ -89,19 +104,20 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       container.removeEventListener('mouseleave', handleMouseLeave)
       container.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [updateFollowerPosition])
+  }, [isMobile, updateFollowerPosition])
 
   return (
-    <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
+    <div ref={containerRef} className={`relative ${className} ${isVisible && !isMobile ? 'cursor-none' : ''}`}>
       {children}
-      <div
-        ref={followerRef}
-        className="fixed pointer-events-none z-50"
-        style={{
-          left: '-9999px',
-          top: '-9999px', // Initial position off-screen
-        }}
-      >
+      {!isMobile && (
+        <div
+          ref={followerRef}
+          className="fixed pointer-events-none z-50"
+          style={{
+            left: '-9999px',
+            top: '-9999px', // Initial position off-screen
+          }}
+        >
         <div
           className={`
             ${config.size} ${config.bg} ${config.text} ${config.border} flex items-center justify-center
@@ -110,16 +126,15 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
             ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
           `}
         >
-          {/* Split text around the circle using SVG - responsive sizing */}
+          {/* Split text around the circle using SVG - distributed evenly on opposite sides */}
           <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 256 256">
             <defs>
-              {/* Responsive circle path - scales with container */}
-              <path id="circle-path" d="M 128,128 m -90,0 a 90,90 0 1,1 180,0 a 90,90 0 1,1 -180,0" />
+              <path id="circle-path" d="M 128,128 m -100,0 a 100,100 0 1,1 200,0 a 100,100 0 1,1 -200,0" />
             </defs>
             {/* First half of text starting at top */}
             <text
               className="font-medium fill-current"
-              fontSize="14"
+              fontSize="16"
               letterSpacing="0.1em"
             >
               <textPath href="#circle-path" startOffset="0%">
@@ -129,7 +144,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
             {/* Second half of text starting at bottom (50% around the circle) */}
             <text
               className="font-medium fill-current"
-              fontSize="14"
+              fontSize="16"
               letterSpacing="0.1em"
             >
               <textPath href="#circle-path" startOffset="50%">
@@ -141,9 +156,11 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
           {/* Central arrow */}
           <div className="relative z-10 flex items-center justify-center">
             <svg
-              className="w-6 h-6 md:w-8 md:h-8 transition-all duration-400 ease-out"
+              width="40"
+              height="40"
               viewBox="0 0 24 24"
               fill="none"
+              className="transition-all duration-400 ease-out"
             >
               <path
                 d="M7 17L17 7M17 7H7M17 7V17"
@@ -155,7 +172,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
             </svg>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
