@@ -32,8 +32,8 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     if (!follower) return
 
     const { x, y } = positionRef.current
-    // For w-64 h-64 (256px), we need to offset by half: 128px
-    const offset = 128
+    // Increased offset to fix top-left misalignment
+    const offset = 140
     follower.style.left = `${x - offset}px`
     follower.style.top = `${y - offset}px`
   }, [])
@@ -50,8 +50,8 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
         y: e.clientY,
       }
 
-      // Set position immediately without transition - hardcode offset for w-64 h-64
-      const offset = 128
+      // Set position immediately without transition - increased offset to fix alignment
+      const offset = 140
       follower.style.left = `${positionRef.current.x - offset}px`
       follower.style.top = `${positionRef.current.y - offset}px`
 
