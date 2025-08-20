@@ -251,7 +251,7 @@ export default function ServicesPage() {
       {/* Client Logos Marquee Section */}
       <section className="py-12 bg-grey-100">
         <ClientLogosMarquee
-          speed={80}
+          speed={20}
           direction="left"
           className="py-4"
           logoClassName="min-w-[140px]"

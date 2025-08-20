@@ -39,7 +39,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
   }, [isMenuOpen])
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 sm:py-16">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-8 sm:py-16">
       <div className="page-wrapper flex items-center justify-between">
         {/* Logo */}
         <div
@@ -53,7 +53,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               alt="C&C IDEA LAB Logo"
               width={160}
               height={64}
-              className="h-32"
+              className="!h-16 sm:!h-36 w-auto max-w-[165px]"
             />
           </TransitionLink>
         </div>
@@ -63,7 +63,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
           {navItems.slice(0, -1).map((item, index) => (
             <div
               key={item.href}
-              className={`text-black font-medium transform transition-all duration-700 ease-out ${
+              className={`text-black font-base transform transition-all duration-700 ease-out ${
                 isScrolled || isMenuOpen
                   ? 'translate-y-[-100px] opacity-0 pointer-events-none'
                   : 'translate-y-0 opacity-100'
@@ -78,7 +78,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 appearance="inline"
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
-                className="text-fluid-xl "
+                className="text-fluid-xl"
               />
             </div>
           ))}
@@ -88,7 +88,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
         <div className="relative flex items-center min-w-[160px]">
           {/* Contact */}
           <div
-            className={`absolute right-0 transition-all text-black font-medium ${
+            className={`absolute right-0 transition-all text-black font-base ${
               isScrolled
                 ? 'transform -translate-x-[80px] opacity-100 duration-300'
                 : 'transform translate-x-0 opacity-100 duration-700'

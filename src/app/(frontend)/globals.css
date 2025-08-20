@@ -14,15 +14,8 @@
   /* Font Family & Base Typography */
   html {
     font-family: var(--font-sora), system-ui, sans-serif;
-    font-size: 16px; /* Mobile: fixed 16px base */
+    font-size: calc(10 * 100vw / var(--size));
     opacity: 0; /* Prevent FOUC */
-  }
-
-  /* Tablet and Desktop: Fluid scaling */
-  @media (min-width: 640px) {
-    html {
-      font-size: calc(10 * 100vw / var(--size));
-    }
   }
 
   /* Theme visibility control */
@@ -89,13 +82,13 @@
     --spacing: 0.5rem; /* 8px base unit - gives us 32px mobile, 48px desktop */
 
     /* Fluid Typography System */
-    --size: 390; /* Mobile baseline */
+    --size: 400; /* Mobile baseline */
   }
 
   /* Desktop fluid typography baseline */
   @media (min-width: 640px) {
     :root {
-      --size: 1500; /* Desktop baseline for fluid scaling */
+      --size: 1450; /* Desktop baseline for fluid scaling */
     }
   }
 }
@@ -293,43 +286,43 @@
 /* Mobile: Fixed pixel sizes (< 640px) */
 @media (max-width: 639px) {
   .text-fluid-xs {
-    font-size: 12px;
+    font-size: 2rem;
   }
   .text-fluid-sm {
-    font-size: 14px;
+    font-size: 2.25;
   }
   .text-fluid-base {
-    font-size: 16px;
+    font-size: 2.5rem;
   }
   .text-fluid-lg {
-    font-size: 18px;
+    font-size: 1rem;
   }
   .text-fluid-xl {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   .text-fluid-2xl {
-    font-size: 28px;
+    font-size: 3.25rem;
   }
   .text-fluid-3xl {
-    font-size: 36px;
+    font-size: 3.5rem;
   }
   .text-fluid-4xl {
-    font-size: 44px;
+    font-size: 3.75rem;
   }
   .text-fluid-5xl {
-    font-size: 56px;
+    font-size: 2.25rem;
   }
   .text-fluid-6xl {
-    font-size: 68px;
+    font-size: 4.25rem;
   }
   .text-fluid-7xl {
-    font-size: 88px;
+    font-size: 4.5rem;
   }
   .text-fluid-8xl {
-    font-size: 104px;
+    font-size: 4.75rem;
   }
   .text-fluid-9xl {
-    font-size: 128px;
+    font-size: 5rem;
   }
 }
 
@@ -380,22 +373,6 @@
    6. COMPONENT-SPECIFIC STYLES
    ============================================================================ */
 
-/* Hero Logo Component */
-.hero-ideas-text::before {
-  content: '';
-  display: inline-block;
-  width: 0.8em;
-  height: 0.8em;
-  margin-right: 0.2em;
-  background-image: url('/images/cc-logo-black-minimal.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  vertical-align: baseline;
-  transform: translateY(-0.1em);
-}
-
-/* Legacy Hero Logo (if still used elsewhere) */
 .logo-before::before {
   content: '';
   display: inline-block;

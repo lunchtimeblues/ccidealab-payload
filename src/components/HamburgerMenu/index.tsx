@@ -14,10 +14,10 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`relative flex items-center justify-center text-black font-medium group ${className}`}
+      className={`relative flex items-center justify-center text-black font-base group ${className}`}
       aria-label={isOpen ? 'Close menu' : 'Open menu'}
     >
-      <span className="text-xl sm:text-fluid-xl">{isOpen ? 'Close' : 'Menu'}</span>
+      <span className="text-fluid-xl">{isOpen ? 'Close' : 'Menu'}</span>
     </button>
   )
 }

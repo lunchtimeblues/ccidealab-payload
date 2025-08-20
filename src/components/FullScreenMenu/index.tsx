@@ -186,7 +186,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         >
           {/* Header with Logo and Close Button - Absolutely positioned */}
           <div className="absolute top-0 left-0 right-0 z-30">
-            <div className="page-wrapper sm:py-16 flex justify-between items-center">
+            <div className="page-wrapper py-8 sm:py-16 flex justify-between items-center">
               {/* Logo section */}
               <div className="flex items-center justify-start">
                 <Image
@@ -194,14 +194,14 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                   alt="C&C IDEA LAB Logo"
                   width={160}
                   height={64}
-                  className="h-36 w-auto"
+                  className="!h-16 sm:!h-36 w-auto"
                 />
               </div>
 
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="text-white hover:text-gray-300 transition-colors text-xl sm:text-fluid-xl font-medium bg-transparent border-none cursor-pointer"
+                className="text-white hover:text-gray-300 transition-colors text-fluid-xl font-medium bg-transparent border-none cursor-pointer"
                 aria-label="Close menu"
               >
                 Close
@@ -269,7 +269,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
             transitionDelay: isOpen ? '900ms' : '0ms',
           }}
         >
-          <div className="hidden sm:block text-base sm:text-fluid-xl writing-mode-vertical-rl text-orientation-mixed">
+          <div className="hidden sm:block text-fluid-xl writing-mode-vertical-rl text-orientation-mixed">
             Press ESC to close
           </div>
         </div>

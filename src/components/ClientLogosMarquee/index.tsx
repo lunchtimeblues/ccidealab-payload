@@ -11,7 +11,7 @@ interface ClientLogosMarqueeProps {
 }
 
 export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
-  speed = 60,
+  speed = 150,
   direction = 'left',
   className = '',
   logoClassName = '',
@@ -92,7 +92,7 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
             alt={logo.alt}
             width={logo.width}
             height={logo.height}
-            className="max-h-24 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+            className="!h-16 sm:!h-36 w-auto max-w-[165px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
             style={{
               filter: 'brightness(0.8) contrast(1.2)',
             }}
