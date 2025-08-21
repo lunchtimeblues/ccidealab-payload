@@ -84,16 +84,10 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
 
       // Simple entrance - just show
       setIsVisible(true)
-
-      // Hide cursor
-      container.style.cursor = 'none'
     }
 
     const handleMouseLeave = () => {
       setIsVisible(false)
-
-      // Restore cursor
-      container.style.cursor = 'auto'
     }
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -117,7 +111,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   }, [offset, updateFollowerPosition])
 
   return (
-    <div ref={containerRef} className={`relative ${className} ${isVisible ? 'md:cursor-none' : ''}`}>
+    <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
       {children}
       <div
         ref={followerRef}
