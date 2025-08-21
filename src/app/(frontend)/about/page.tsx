@@ -38,7 +38,7 @@ export default function AboutPage() {
             </ScrollMarquee>
 
             {/* Content */}
-            <Container size="xxl">
+            <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-2xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
@@ -50,7 +50,7 @@ export default function AboutPage() {
           </div>
 
           {/* Hero Footer */}
-          <Container size="xl">
+          <Container size="full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
@@ -107,7 +107,7 @@ export default function AboutPage() {
 
       {/* Story Section */}
       <section className="py-32 sm:py-48 bg-grey-100">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
             <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
@@ -178,7 +178,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-gray-100 py-32 sm:py-48">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-12">
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">01.</span>
@@ -261,7 +261,7 @@ export default function AboutPage() {
 
       {/* Join Us Section */}
       <section className="relative bg-gray-100 overflow-hidden">
-        <Container size="xxl" className="relative z-10 py-24 sm:py-40">
+        <Container size="full" className="relative z-10 py-24 sm:py-40">
           <div className="grid sm:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollRevealText>

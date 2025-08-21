@@ -33,7 +33,7 @@ export default function WorkPage() {
             </ScrollMarquee>
 
             {/* Content */}
-            <Container size="xxl">
+            <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-2xl leading-snug text-black">
                   See how we partner with visionary teams to build brands that stand out and push
@@ -44,7 +44,7 @@ export default function WorkPage() {
           </div>
 
           {/* Hero Footer */}
-          <Container size="xl">
+          <Container size="full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
@@ -57,7 +57,7 @@ export default function WorkPage() {
 
       {/* Featured Work Section with Mouse Follower */}
       <section className="py-32 sm:py-48 bg-gray-100">
-        <Container size="xxl">
+        <Container size="full">
           <ScrollRevealText>
             <h2 className="text-fluid-7xl font-bold mb-16 text-center text-black">Selected Work</h2>
           </ScrollRevealText>

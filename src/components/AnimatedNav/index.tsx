@@ -49,7 +49,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
         >
           <TransitionLink url="/" appearance="inline" transitionType="logoWipe">
             <Image
-              src="/images/cc-logo-black-full.svg"
+              src="/images/cc-logo-black-medium.svg"
               alt="C&C IDEA LAB Logo"
               width={160}
               height={64}

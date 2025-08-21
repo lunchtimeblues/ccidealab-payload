@@ -26,13 +26,13 @@ export default function ContactPage() {
             </ScrollMarquee>
 
             {/* Content */}
-            <Container size="xxl">
+            <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <ScrollRevealText>
                   <p className="text-fluid-2xl leading-snug text-black">
                     Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
-                    mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
-                    mottos for clients to serve as their Idea Worth Rallying Around®.
+                    mottos were war cries of sentiment, hope, and purpose. Today, we create bold
+                    brand mottos for clients to serve as their Idea Worth Rallying Around®.
                   </p>
                 </ScrollRevealText>
               </div>
@@ -40,7 +40,7 @@ export default function ContactPage() {
           </div>
 
           {/* Hero Footer */}
-          <Container size="xl">
+          <Container size="full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
@@ -53,7 +53,7 @@ export default function ContactPage() {
 
       {/* Contact Form Section */}
       <section className="py-32 sm:py-48 bg-grey-100">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
             {/* Contact Information */}
             <div className="col-span-12 sm:col-span-5">
@@ -150,7 +150,10 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-fluid-sm font-medium text-gray-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                    >
                       Email Address *
                     </label>
                     <input
@@ -267,7 +270,7 @@ export default function ContactPage() {
       </section>
 
       <section className="py-32 sm:py-48">
-        <Container size="xxl">
+        <Container size="full">
           <ScrollRevealText>
             <h2 className="text-fluid-7xl font-medium leading-none text-black">OFFICES</h2>
           </ScrollRevealText>

@@ -142,7 +142,7 @@ export default function ServicesPage() {
             </ScrollMarquee>
 
             {/* Content */}
-            <Container size="xxl">
+            <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-2xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
@@ -154,7 +154,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Hero Footer */}
-          <Container size="xl">
+          <Container size="full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
@@ -176,7 +176,7 @@ export default function ServicesPage() {
 
       {/* Services Section */}
       <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
             <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
@@ -230,7 +230,7 @@ export default function ServicesPage() {
             />
 
             {/* Container moved inside to constrain content, not the fade effect */}
-            <Container size="xxl" className="w-full">
+            <Container size="full" className="w-full">
               <div className="min-h-screen md:h-screen">
                 <div className="h-full flex flex-col justify-center relative z-20">
                   <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 md:pt-56 sm:pb-20 mb-auto max-w-none">
