@@ -103,7 +103,7 @@ export default function WorkPage() {
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
-                    src="https://player.vimeo.com/progressive_redirect/playbook/1111163809/rendition/1080p/file.mp4?loc=external&signature=9c62d16e134344639b26289eae9f721f646692945979ed5a8f4f2647aaeec55c"
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163809/rendition/1080p/file.mp4?loc=external&signature=9c62d16e134344639b26289eae9f721f646692945979ed5a8f4f2647aaeec55c"
                     autoPlay={true}
                     muted={true}
                     loop={true}

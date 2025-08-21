@@ -85,10 +85,51 @@
     --size: 400; /* Mobile baseline */
   }
 
-  /* Desktop fluid typography baseline */
   @media (min-width: 640px) {
     :root {
-      --size: 1450; /* Desktop baseline for fluid scaling */
+      --size: 700;
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --size: 900;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --size: 1100;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --size: 1350;
+    }
+  }
+
+  @media (min-width: 1532px) {
+    :root {
+      --size: 1550;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    :root {
+      --size: 2200;
+    }
+  }
+
+  @media (min-width: 2560px) {
+    :root {
+      --size: 2400;
+    }
+  }
+
+  @media (min-width: 3840px) {
+    :root {
+      --size: 2400;
     }
   }
 }
@@ -283,7 +324,7 @@
    5. FLUID TYPOGRAPHY SYSTEM
    ============================================================================ */
 
-/* Mobile: Fixed pixel sizes (< 640px) */
+/* Mobile */
 @media (max-width: 639px) {
   .text-fluid-xs {
     font-size: 2rem;
@@ -326,7 +367,7 @@
   }
 }
 
-/* Desktop: Fluid rem-based scaling (≥ 640px) */
+/* Desktop (≥ 640px) */
 @media (min-width: 640px) {
   .text-fluid-xs {
     font-size: 1.2rem;
@@ -365,7 +406,7 @@
     font-size: 12rem;
   } /* ~120px */
   .text-fluid-9xl {
-    font-size: 14rem;
+    font-size: 30rem;
   } /* ~140px */
 }
 

@@ -28,8 +28,12 @@ export default function Comm100Page() {
                 starSpinSpeed={4}
                 lines="single"
                 direction="left"
-                lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
+                lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none text-white"
               >
+                <span className="mx-8">COMM100</span>
+                <span className="mx-8 flex items-center">
+                  <SpinningStar size={64} className="text-current" />
+                </span>
                 <span className="mx-8">COMM100</span>
                 <span className="mx-8 flex items-center">
                   <SpinningStar size={64} className="text-current" />
@@ -56,7 +60,10 @@ export default function Comm100Page() {
             {/* Hero Footer */}
             <Container size="xl">
               <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
-                <a href="#comm100-overview" className="border-b border-white hover:opacity-70 transition text-white">
+                <a
+                  href="#comm100-overview"
+                  className="border-b border-white hover:opacity-70 transition text-white"
+                >
                   Learn more about this project <span className="inline-block ml-1">↓</span>
                 </a>
                 <span className="text-white/60">(SCROLL)</span>
@@ -67,7 +74,10 @@ export default function Comm100Page() {
       </section>
 
       {/* Project Overview */}
-      <section id="comm100-overview" className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
+      <section
+        id="comm100-overview"
+        className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
+      >
         <Container size="xxl" className="grid sm:grid-cols-12 gap-8">
           <div className="col-span-12 sm:col-span-4">
             <h3 className="text-fluid-xl font-medium mb-6">Project Overview</h3>
@@ -241,7 +251,7 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="xxl">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
@@ -262,7 +272,7 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="xxl">
           <Image
             src="/images/work/comm100/comm100-conference.png"

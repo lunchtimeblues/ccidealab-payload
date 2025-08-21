@@ -134,13 +134,13 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
               <path id="circle-path" d="M 72,72 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" />
             </defs>
             {/* First half of text starting at top */}
-            <text className="text-xl md:text-4xl lg:text-2xl font-medium tracking-[0.2em] fill-current">
+            <text className="text-xl lg:text-xl font-medium tracking-[0.2em] fill-current">
               <textPath href="#circle-path" startOffset="0%">
                 {text}
               </textPath>
             </text>
             {/* Second half of text starting at bottom (50% around the circle) */}
-            <text className="text-xl md:text-4xl lg:text-2xl font-medium tracking-[0.2em] fill-current">
+            <text className="text-xl lg:text-xl font-medium tracking-[0.2em] fill-current">
               <textPath href="#circle-path" startOffset="50%">
                 {text}
               </textPath>

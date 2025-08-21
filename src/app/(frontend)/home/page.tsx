@@ -24,14 +24,14 @@ export default function HomePage(): React.JSX.Element {
           <div className="relative flex items-center justify-center almost-full-height px-4 sm:px-6 lg:px-8">
             <div className="relative w-full max-w-none pt-24 sm:pt-0">
               <h1
-                className="text-fluid-9xl leading-snug sm:leading-none font-normal uppercase tracking-tight"
+                className="text-fluid-9xl leading-snug sm:leading-none font-normal uppercase tracking-tighter"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
-                  <div className="logo-before">Ideas Worth</div>
+                  <div className="logo-before">Ideas</div>
                 </ScrollRevealText>
                 <ScrollRevealText delay={200}>
-                  <div className="sm:text-right -mr-1">Rallying</div>
+                  <div className="sm:text-right -mr-1">People</div>
                 </ScrollRevealText>
                 <div className="flex justify-between items-center">
                   <ScrollRevealText delay={400}>
@@ -52,14 +52,14 @@ export default function HomePage(): React.JSX.Element {
                     </div>
                   </ScrollRevealText>
                   <ScrollRevealText delay={600}>
-                    <div className="sm:text-center flex-1 px-4">Around</div>
+                    <div className="sm:text-center flex-1 px-4">Champion</div>
                   </ScrollRevealText>
                   <div className="hidden sm:block w-16 sm:w-20"></div>
                 </div>
               </h1>
 
               <div className="relative sm:absolute left-0 sm:left-12 sm:top-1/2 sm:-translate-y-1/2 sm:w-2/5 mt-12 pr-4">
-                <p className="text-fluid-lg font-medium leading-normal tracking-wide text-right">
+                <p className="text-fluid-lg font-base leading-normal tracking-wide text-right">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
                     reinventing companies in the tech and innovation space.
