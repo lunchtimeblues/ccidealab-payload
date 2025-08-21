@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
 import { cn } from '@/utilities/ui'
-import { Sora } from 'next/font/google'
+import { Inter } from 'next/font/google'
+// import { Sora } from 'next/font/google'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
@@ -21,19 +22,26 @@ import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { MainContent } from '@/components/MainContent'
 import { SmoothScroll } from '@/components/SmoothScroll'
 
-// Configure Sora font
-const sora = Sora({
+// Configure Inter font
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-sora',
+  variable: '--font-inter',
 })
+
+// Configure Sora font (commented out)
+// const sora = Sora({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-sora',
+// })
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
 
   return (
     <ViewTransitions>
-      <html className={cn(sora.variable)} lang="en" suppressHydrationWarning>
+      <html className={cn(inter.variable)} lang="en" suppressHydrationWarning>
         <head>
           <InitTheme />
           <link href="/favicon.ico" rel="icon" sizes="32x32" />

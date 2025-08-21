@@ -94,7 +94,8 @@ const config = {
         warning: 'hsl(var(--warning))',
       },
       fontFamily: {
-        sans: ['var(--font-sora)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        // sans: ['var(--font-sora)', 'system-ui', 'sans-serif'], // Sora commented out
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
       },
       keyframes: {
