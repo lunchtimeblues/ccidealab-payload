@@ -91,67 +91,58 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-[#151515] text-white px-6 md:px-12 pt-24 pb-10 text-sm relative flex flex-col justify-center"
+      className="bg-[#151515] text-white px-6 md:px-12 pt-32 sm:pt-48 pb-16 sm:pb-24 text-fluid-base relative flex flex-col justify-center"
       style={{
-        // Wearemotto-style footer animation: starts at -35% and moves to 0%
-        transform: `translate3d(0px, ${-35 + scrollY * 35}%, 0px)`,
+        // Wearemotto-style footer animation: starts at -25% and moves to 0% (reduced to prevent cut-off)
+        transform: `translate3d(0px, ${-25 + scrollY * 25}%, 0px)`,
       }}
     >
       {/* Logo & Newsletter */}
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-16">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-16 sm:mb-24">
         {/* Logo + Name */}
-        <div className="flex items-center gap-4 mb-8 md:mb-0">
-          <Image
-            src="/images/cc-logo-white-minimal.svg"
-            alt="C/C IDEA LAB Logo"
-            width={125}
-            height={40}
-            className="h-32 w-auto"
-          />
-        </div>
-
-        {/* Email Signup */}
-        <div className="max-w-md w-full">
-          <ScrollRevealText delay={0}>
-            <p className="text-gray-400 mb-3">
-              Get valuable strategy, culture, and brand insights straight to your inbox.
-            </p>
-          </ScrollRevealText>
-
-          <form className="flex items-center border-b border-gray-600">
-            <input
-              type="email"
-              placeholder="Your email here"
-              className="bg-transparent flex-1 py-2 placeholder-gray-500 text-white outline-none"
+        <ScrollRevealText>
+          <div className="flex items-center gap-4 mb-8 md:mb-0">
+            <Image
+              src="/images/cc-logo-white-minimal.svg"
+              alt="C/C IDEA LAB Logo"
+              width={100}
+              height={30}
+              className="!h-16 sm:!h-36 w-auto max-w-[165px]"
             />
-            <button type="submit" className="text-white text-xl px-2">
-              →
-            </button>
-          </form>
+          </div>
+        </ScrollRevealText>
 
-          <p className="text-gray-500 text-xs mt-2">
-            By signing up to receive emails from Motto, you agree to our{' '}
-            <a href="#" className="underline">
-              Privacy Policy
-            </a>
-            . We treat your info responsibly.
-          </p>
-        </div>
+        {/* Newsletter Signup */}
+        <ScrollRevealText delay={200}>
+          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <p className="text-fluid-lg text-gray-300">Stay updated with our latest work</p>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="px-4 py-2 bg-gray-800 border border-gray-600 rounded-none text-fluid-sm text-white placeholder-gray-400 focus:border-white focus:outline-none"
+              />
+              <button className="px-6 py-2 bg-white text-black text-fluid-sm font-medium hover:bg-gray-200 transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </ScrollRevealText>
       </div>
 
-      <hr className="border-gray-700 mb-16" />
+      <hr className="border-gray-700 mb-16 sm:mb-24" />
 
       {/* Footer Links Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-10 sm:gap-16 mb-16 sm:mb-24">
         <div>
           <ScrollRevealText>
-            <h4 className="font-semibold text-white mb-4">Company</h4>
+            <h4 className="text-fluid-xl font-medium text-white mb-6">Company</h4>
           </ScrollRevealText>
-          <ul className="space-y-1 text-gray-400">
-            {['Home', 'What We Do', 'About', 'Method', 'Work', 'Contact'].map((item, idx) => (
+          <ul className="space-y-3 text-fluid-lg text-gray-400">
+            {['Home', 'Work', 'About', 'Services', 'Contact'].map((item, idx) => (
               <li key={item}>
                 <ScrollRevealText delay={100 + idx * 50}>
-                  <a href="#" className="hover:text-white transition">
+                  <a href="#" className="hover:text-white transition-colors">
                     {item}
                   </a>
                 </ScrollRevealText>
@@ -161,67 +152,76 @@ export const Footer = () => {
         </div>
 
         <div>
-          <ScrollRevealText>
-            <h4 className="font-semibold text-white mb-4">Discover</h4>
+          <ScrollRevealText delay={200}>
+            <h4 className="text-fluid-xl font-medium text-white mb-6">Services</h4>
           </ScrollRevealText>
-          <ul className="space-y-1 text-gray-400">
-            {['Engagements', 'Speaking', 'VisionCamp®', 'Our Book', 'Shop', 'Shows'].map(
-              (item, idx) => (
-                <li key={item}>
-                  <ScrollRevealText delay={100 + idx * 50}>
-                    <a href="#" className="hover:text-white transition">
-                      {item}
-                    </a>
-                  </ScrollRevealText>
-                </li>
-              ),
-            )}
+          <ul className="space-y-3 text-fluid-lg text-gray-400">
+            {['Brand Strategy', 'Brand Culture', 'Brand Identity', 'Brand Experience'].map((item, idx) => (
+              <li key={item}>
+                <ScrollRevealText delay={300 + idx * 50}>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {item}
+                  </a>
+                </ScrollRevealText>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <ScrollRevealText>
-            <h4 className="font-semibold text-white mb-4">Learn</h4>
+          <ScrollRevealText delay={400}>
+            <h4 className="text-fluid-xl font-medium text-white mb-6">Connect</h4>
           </ScrollRevealText>
-          <ul className="space-y-1 text-gray-400">
-            {['Blog', 'Press & Media', 'Clients', 'Testimonials', 'FAQs', 'Careers'].map(
-              (item, idx) => (
-                <li key={item}>
-                  <ScrollRevealText delay={100 + idx * 50}>
-                    <a href="#" className="hover:text-white transition">
-                      {item}
-                    </a>
-                  </ScrollRevealText>
-                </li>
-              ),
-            )}
+          <ul className="space-y-3 text-fluid-lg text-gray-400">
+            {['LinkedIn', 'Instagram', 'YouTube', 'Email'].map((item, idx) => (
+              <li key={item}>
+                <ScrollRevealText delay={500 + idx * 50}>
+                  <a href="#" className="hover:text-white transition-colors">
+                    {item}
+                  </a>
+                </ScrollRevealText>
+              </li>
+            ))}
           </ul>
+        </div>
+
+        <div>
+          <ScrollRevealText delay={600}>
+            <h4 className="text-fluid-xl font-medium text-white mb-6">Location</h4>
+          </ScrollRevealText>
+          <div className="space-y-3 text-fluid-lg text-gray-400">
+            <ScrollRevealText delay={700}>
+              <p>Vancouver, BC</p>
+            </ScrollRevealText>
+            <ScrollRevealText delay={750}>
+              <p>hello@ccidealab.com</p>
+            </ScrollRevealText>
+            <ScrollRevealText delay={800}>
+              <p>+1 (555) 123-4567</p>
+            </ScrollRevealText>
+          </div>
         </div>
       </div>
 
       {/* Bottom Row */}
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 text-xs">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 text-fluid-sm pt-8 border-t border-gray-700">
         <ScrollRevealText delay={0}>
           <p>© 2012—{year} CCIDEALAB®</p>
         </ScrollRevealText>
 
         <ScrollRevealText delay={200}>
-          <div className="flex items-center gap-4 mt-4 md:mt-0">
-            {/* Replace with real icons */}
-            <a href="#" className="hover:text-white">
-              in
+          <div className="flex items-center gap-6 mt-4 md:mt-0">
+            <a href="#" className="hover:text-white transition-colors">
+              Privacy Policy
             </a>
-            <a href="#" className="hover:text-white">
-              ig
-            </a>
-            <a href="#" className="hover:text-white">
-              yt
+            <a href="#" className="hover:text-white transition-colors">
+              Terms of Service
             </a>
           </div>
         </ScrollRevealText>
 
         <ScrollRevealText delay={400}>
-          <a href="#" className="mt-4 md:mt-0 hover:text-white">
+          <a href="#" className="mt-4 md:mt-0 hover:text-white transition-colors text-fluid-sm">
             Back to top ↑
           </a>
         </ScrollRevealText>

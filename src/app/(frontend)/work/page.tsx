@@ -26,6 +26,10 @@ export default function WorkPage() {
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
+              <span className="mx-8">WORK</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
             </ScrollMarquee>
 
             {/* Content */}
@@ -59,7 +63,7 @@ export default function WorkPage() {
           </ScrollRevealText>
 
           <div className="grid sm:grid-cols-2 gap-8">
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -77,7 +81,7 @@ export default function WorkPage() {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -95,7 +99,7 @@ export default function WorkPage() {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -113,7 +117,7 @@ export default function WorkPage() {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -149,7 +153,7 @@ export default function WorkPage() {
               </TransitionLink>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
