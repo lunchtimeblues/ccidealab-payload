@@ -111,23 +111,6 @@ export const Footer = () => {
             />
           </div>
         </ScrollRevealText>
-
-        {/* Newsletter Signup */}
-        <ScrollRevealText delay={200}>
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-            <p className="text-fluid-lg text-gray-300">Stay updated with our latest work</p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="px-4 py-2 bg-gray-800 border border-gray-600 rounded-none text-fluid-sm text-white placeholder-gray-400 focus:border-white focus:outline-none"
-              />
-              <button className="px-6 py-2 bg-white text-black text-fluid-sm font-medium hover:bg-gray-200 transition-colors">
-                Subscribe
-              </button>
-            </div>
-          </div>
-        </ScrollRevealText>
       </div>
 
       <hr className="border-gray-700 mb-16 sm:mb-24" />
@@ -156,15 +139,17 @@ export const Footer = () => {
             <h4 className="text-fluid-xl font-medium text-white mb-6">Services</h4>
           </ScrollRevealText>
           <ul className="space-y-3 text-fluid-lg text-gray-400">
-            {['Brand Strategy', 'Brand Culture', 'Brand Identity', 'Brand Experience'].map((item, idx) => (
-              <li key={item}>
-                <ScrollRevealText delay={300 + idx * 50}>
-                  <a href="#" className="hover:text-white transition-colors">
-                    {item}
-                  </a>
-                </ScrollRevealText>
-              </li>
-            ))}
+            {['Brand Strategy', 'Brand Culture', 'Brand Identity', 'Brand Experience'].map(
+              (item, idx) => (
+                <li key={item}>
+                  <ScrollRevealText delay={300 + idx * 50}>
+                    <a href="#" className="hover:text-white transition-colors">
+                      {item}
+                    </a>
+                  </ScrollRevealText>
+                </li>
+              ),
+            )}
           </ul>
         </div>
 
@@ -204,7 +189,7 @@ export const Footer = () => {
       </div>
 
       {/* Bottom Row */}
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 text-fluid-sm pt-8 border-t border-gray-700">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 text-fluid-sm pt-8">
         <ScrollRevealText delay={0}>
           <p>© 2012—{year} CCIDEALAB®</p>
         </ScrollRevealText>

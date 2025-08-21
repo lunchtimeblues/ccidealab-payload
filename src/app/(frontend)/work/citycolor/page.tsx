@@ -1,6 +1,4 @@
 import { Container } from '@/components/Container'
-import { ScrollMarquee } from '@/components/ScrollMarquee'
-import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
@@ -10,64 +8,29 @@ export default function Comm100Page() {
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-gray-100">
-        <ParallaxImage
-          src="/images/work/comm100/comm100_hero_bg.jpg"
-          alt="Comm100 Customer Service Platform"
-          size="full"
-          overlay={true}
-          overlayOpacity={0.15}
-          parallaxSpeed={0.5}
-        >
-          <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
-            <div>
-              {/* Marquee */}
-              <ScrollMarquee
-                baseSpeed={0.8}
-                maxSpeedMultiplier={2}
-                starSpinSpeed={4}
-                lines="single"
-                direction="left"
-                lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
-              >
-                <span className="mx-8">COMM100</span>
-                <span className="mx-8 flex items-center">
-                  <SpinningStar size={64} className="text-current" />
-                </span>
-                <span className="mx-8">COMM100</span>
-                <span className="mx-8 flex items-center">
-                  <SpinningStar size={64} className="text-current" />
-                </span>
-              </ScrollMarquee>
-
-              {/* Content */}
-              <Container size="xxl">
-                <div className="max-w-3xl mt-12 md:mt-18">
-                  <ScrollRevealText>
-                    <p className="text-fluid-2xl leading-snug text-white">
-                      Comm100 is an award-winning global provider of omnichannel customer engagement
-                      solutions powered by automation and AI.
-                    </p>
-                  </ScrollRevealText>
-                </div>
-              </Container>
-            </div>
-
-            {/* Hero Footer */}
-            <Container size="xl">
-              <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
-                <a href="#comm100-overview" className="border-b border-white hover:opacity-70 transition text-white">
-                  Learn more about this project <span className="inline-block ml-1">↓</span>
-                </a>
-                <span className="text-white/60">(SCROLL)</span>
-              </div>
-            </Container>
-          </div>
-        </ParallaxImage>
-      </section>
+      <ParallaxImage
+        src="/images/comm100/comm100_hero_bg.jpg"
+        alt="Comm100 Customer Service Platform"
+        size="full"
+        overlay={true}
+        overlayOpacity={0.15}
+        parallaxSpeed={0.5}
+      >
+        <Container size="xxl" className="h-full flex flex-col justify-center">
+          <ScrollRevealText>
+            <h1 className="text-fluid-7xl font-medium mb-4 text-white">Comm100</h1>
+          </ScrollRevealText>
+          <ScrollRevealText delay={200}>
+            <p className="max-w-xl text-lg md:text-xl leading-relaxed text-white">
+              Comm100 is a leading customer service platform that helps businesses deliver
+              exceptional customer experiences through omnichannel communication solutions.
+            </p>
+          </ScrollRevealText>
+        </Container>
+      </ParallaxImage>
 
       {/* Project Overview */}
-      <section id="comm100-overview" className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
         <Container size="xxl" className="grid sm:grid-cols-12 gap-8">
           <div className="col-span-12 sm:col-span-4">
             <h3 className="text-fluid-xl font-medium mb-6">Project Overview</h3>
@@ -213,9 +176,7 @@ export default function Comm100Page() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
-                  Brand Application
-                </p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Brand Application</p>
               </ScrollRevealText>
             </div>
             <div className="md:col-span-8">
@@ -241,6 +202,7 @@ export default function Comm100Page() {
         </Container>
       </section>
 
+      {/* Section: Clean Confident Cohesive */}
       <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
         <Container size="xxl">
           <div className="grid sm:grid-cols-2 gap-8">
@@ -252,7 +214,7 @@ export default function Comm100Page() {
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/work/comm100/comm100-waterbottle.png"
+              src="/images/work/comm100/comm100-waterbottle.jpg"
               alt="Platform Interface Design"
               width={800}
               height={800}
@@ -262,10 +224,11 @@ export default function Comm100Page() {
         </Container>
       </section>
 
+      {/* Billboard Section */}
       <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
         <Container size="xxl">
           <Image
-            src="/images/work/comm100/comm100-conference.png"
+            src="/images/work/comm100/comm100-conference.jpg"
             alt="Billboard Design"
             width={1600}
             height={900}
