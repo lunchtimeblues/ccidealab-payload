@@ -39,7 +39,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
   }, [isMenuOpen])
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-8 sm:py-16">
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-8">
       <div className="page-wrapper flex items-center justify-between">
         {/* Logo */}
         <div

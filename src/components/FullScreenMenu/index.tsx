@@ -186,7 +186,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         >
           {/* Header with Logo and Close Button - Absolutely positioned */}
           <div className="absolute top-0 left-0 right-0 z-30">
-            <div className="page-wrapper py-8 sm:py-16 flex justify-between items-center">
+            <div className="page-wrapper py-8 flex justify-between items-center">
               {/* Logo section */}
               <div className="flex items-center justify-start">
                 <Image

@@ -18,12 +18,30 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   const followerRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  // Calculate responsive offset based on viewport width to match fluid typography scaling
+  const getResponsiveOffset = useCallback(() => {
+    if (typeof window === 'undefined') return 72
+
+    const vw = window.innerWidth
+
+    // Match the fluid typography scaling logic from globals.css
+    if (vw < 640) {
+      // Mobile: --size: 400, smaller offset
+      return Math.max(48, vw * 0.08) // Scales from ~30px to ~48px
+    } else {
+      // Desktop: --size: 1450, larger offset that scales with viewport
+      return Math.max(64, Math.min(128, vw * 0.055)) // Scales from ~64px to ~128px
+    }
+  }, [])
+
+  const [offset, setOffset] = useState(72)
+
   const config = {
     bg: 'bg-white/90 backdrop-blur-md rounded-full',
     text: 'text-black',
     border: 'border border-gray-200/30',
     size: 'w-64 h-64',
-    offset: 72,
+    offset,
   }
 
   const updateFollowerPosition = useCallback(() => {
@@ -31,9 +49,22 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     if (!follower) return
 
     const { x, y } = positionRef.current
-    const offset = config.offset
     follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
-  }, [config.offset])
+  }, [offset])
+
+  // Update offset on mount and resize to match fluid typography scaling
+  useEffect(() => {
+    const updateOffset = () => {
+      setOffset(getResponsiveOffset())
+    }
+
+    // Set initial offset
+    updateOffset()
+
+    // Update offset on resize
+    window.addEventListener('resize', updateOffset)
+    return () => window.removeEventListener('resize', updateOffset)
+  }, [getResponsiveOffset])
 
   useEffect(() => {
     const container = containerRef.current
@@ -49,7 +80,6 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       }
 
       // Set position immediately without transition
-      const offset = config.offset
       follower.style.transform = `translate(${positionRef.current.x - offset}px, ${positionRef.current.y - offset}px)`
 
       // Simple entrance - just show
@@ -84,7 +114,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       container.removeEventListener('mouseleave', handleMouseLeave)
       container.removeEventListener('mousemove', handleMouseMove)
     }
-  }, [config.offset, updateFollowerPosition])
+  }, [offset, updateFollowerPosition])
 
   return (
     <div ref={containerRef} className={`relative ${className} ${isVisible ? 'md:cursor-none' : ''}`}>
@@ -93,7 +123,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
         ref={followerRef}
         className="hidden md:block absolute top-0 left-0 pointer-events-none z-50"
         style={{
-          transform: `translate(-${config.offset}px, -${config.offset}px)`, // Initial position off-screen
+          transform: `translate(-${offset}px, -${offset}px)`, // Initial position off-screen
         }}
       >
         <div
