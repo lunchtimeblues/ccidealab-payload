@@ -16,7 +16,7 @@ export default function Comm100Page() {
         overlayOpacity={0.15}
         parallaxSpeed={0.5}
       >
-        <Container size="xxl" className="h-full flex flex-col justify-center">
+        <Container size="full" className="h-full flex flex-col justify-center">
           <ScrollRevealText>
             <h1 className="text-fluid-7xl font-medium mb-4 text-white">Comm100</h1>
           </ScrollRevealText>
@@ -31,7 +31,7 @@ export default function Comm100Page() {
 
       {/* Project Overview */}
       <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
-        <Container size="xxl" className="grid sm:grid-cols-12 gap-8">
+        <Container size="full" className="grid sm:grid-cols-12 gap-8">
           <div className="col-span-12 sm:col-span-4">
             <h3 className="text-fluid-xl font-medium mb-6">Project Overview</h3>
             <ul className="space-y-6 text-gray-500 text-fluid-base">
@@ -63,7 +63,7 @@ export default function Comm100Page() {
 
       {/* Video Section */}
       <section className="relative bg-gray-100  overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163690/rendition/1080p/file.mp4?loc=external&signature=736322fd08c3faf0a0d4de2dea4f8c54673d794cc788f604f3e5962448d66a4e"
             autoPlay={true}
@@ -75,7 +75,7 @@ export default function Comm100Page() {
       </section>
 
       <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
@@ -105,7 +105,7 @@ export default function Comm100Page() {
 
       {/* Video Section */}
       <section className="relative bg-gray-100  overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163686/rendition/1080p/file.mp4?loc=external&signature=ad283143480862bde9fff9c4473e1a9954b752cd681dafdea132d8f0aa047963"
             autoPlay={true}
@@ -118,7 +118,7 @@ export default function Comm100Page() {
 
       {/* Video Section */}
       <section className="relative bg-gray-100  overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163698/rendition/1080p/file.mp4?loc=external&signature=031f296266782662c99115de6712ed04ac7412837404da4120da4a1a88c20383"
             autoPlay={true}
@@ -130,7 +130,7 @@ export default function Comm100Page() {
       </section>
 
       <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
@@ -160,7 +160,7 @@ export default function Comm100Page() {
 
       {/* Video Section */}
       <section className="relative bg-gray-100  overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163703/rendition/1080p/file.mp4?loc=external&signature=c7f06db38c1fa306d454ba1eec4d93da627c217a2fff4947db6b455ae34eb14e"
             autoPlay={true}
@@ -172,7 +172,7 @@ export default function Comm100Page() {
       </section>
 
       <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
@@ -204,7 +204,7 @@ export default function Comm100Page() {
 
       {/* Section: Clean Confident Cohesive */}
       <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
               src="/images/work/comm100/comm100-id-card.jpg"
@@ -226,7 +226,7 @@ export default function Comm100Page() {
 
       {/* Billboard Section */}
       <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
-        <Container size="xxl">
+        <Container size="full">
           <Image
             src="/images/work/comm100/comm100-conference.jpg"
             alt="Billboard Design"

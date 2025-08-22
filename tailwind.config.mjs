@@ -95,8 +95,9 @@ const config = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        // sans: ['var(--font-sora)', 'system-ui', 'sans-serif'], // Sora commented out
         mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', 'monospace'],
+        // Sora font family (commented out for future reference):
+        // sans: ['var(--font-sora)', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         'accordion-down': {
