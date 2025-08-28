@@ -83,6 +83,7 @@
     --spacing: 0.5rem; /* 8px base unit - gives us 32px mobile, 48px desktop */
 
     /* No more --size variables needed - clamp() handles all scaling */
+  }
 }
 
 /* ============================================================================
