@@ -15,7 +15,7 @@
   html {
     font-family: var(--font-inter), system-ui, sans-serif;
     /* font-family: var(--font-sora), system-ui, sans-serif; */ /* Sora commented out */
-    font-size: calc(10 * 100vw / var(--size));
+    font-size: 16px; /* Standard base font-size - clamp() handles all scaling */
     opacity: 0; /* Prevent FOUC */
   }
 
@@ -82,57 +82,7 @@
     /* Spacing System */
     --spacing: 0.5rem; /* 8px base unit - gives us 32px mobile, 48px desktop */
 
-    /* Fluid Typography System - More dramatic scaling for visibility */
-    --size: 320; /* Mobile baseline - smaller for larger text */
-  }
-
-  @media (min-width: 640px) {
-    :root {
-      --size: 640; /* Small tablets - 1:1 ratio for clear scaling */
-    }
-  }
-
-  @media (min-width: 768px) {
-    :root {
-      --size: 768; /* Tablets - 1:1 ratio */
-    }
-  }
-
-  @media (min-width: 1024px) {
-    :root {
-      --size: 1024; /* Small desktops - 1:1 ratio */
-    }
-  }
-
-  @media (min-width: 1280px) {
-    :root {
-      --size: 1280; /* Standard desktops - 1:1 ratio */
-    }
-  }
-
-  @media (min-width: 1536px) {
-    :root {
-      --size: 1536; /* Large desktops - 1:1 ratio */
-    }
-  }
-
-  @media (min-width: 1920px) {
-    :root {
-      --size: 1920; /* Full HD - 1:1 ratio */
-    }
-  }
-
-  @media (min-width: 2560px) {
-    :root {
-      --size: 2560; /* 2K displays - 1:1 ratio */
-    }
-  }
-
-  @media (min-width: 3840px) {
-    :root {
-      --size: 3840; /* 4K displays - 1:1 ratio */
-    }
-  }
+    /* No more --size variables needed - clamp() handles all scaling */
 }
 
 /* ============================================================================
@@ -322,63 +272,73 @@
 }
 
 /* ============================================================================
-   5. FLUID TYPOGRAPHY SYSTEM - TRUE FLUID SCALING
+   5. FLUID TYPOGRAPHY SYSTEM - MODERN CLAMP() APPROACH
    ============================================================================ */
 
-/* All text sizes use rem units that scale with the fluid base font-size
-   Base formula: html { font-size: calc(10 * 100vw / var(--size)); }
-   This means 1rem scales automatically across all breakpoints */
+/* Using CSS clamp() for true fluid typography
+   Syntax: clamp(minimum, preferred, maximum)
+   - minimum: smallest size (mobile)
+   - preferred: viewport-based scaling (vw units)
+   - maximum: largest size (desktop)
+
+   Benefits:
+   - Smooth scaling at every pixel
+   - No media queries needed
+   - Controlled min/max ranges
+   - Better performance
+   - More predictable behavior
+*/
 
 .text-fluid-xs {
-  font-size: 1.2rem; /* ~12px mobile, ~12px desktop */
+  font-size: clamp(0.75rem, 0.7rem + 0.3vw, 1.2rem); /* 12px → 19px */
 }
 
 .text-fluid-sm {
-  font-size: 1.4rem; /* ~14px mobile, ~14px desktop */
+  font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.4rem); /* 14px → 22px */
 }
 
 .text-fluid-base {
-  font-size: 1.6rem; /* ~16px mobile, ~16px desktop */
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.6rem); /* 16px → 26px */
 }
 
 .text-fluid-lg {
-  font-size: 1.8rem; /* ~18px mobile, ~18px desktop */
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.8rem); /* 18px → 29px */
 }
 
 .text-fluid-xl {
-  font-size: 2.2rem; /* ~22px mobile, ~22px desktop */
+  font-size: clamp(1.25rem, 1.1rem + 0.9vw, 2.2rem); /* 20px → 35px */
 }
 
 .text-fluid-2xl {
-  font-size: 2.8rem; /* ~28px mobile, ~28px desktop */
+  font-size: clamp(1.5rem, 1.3rem + 1.2vw, 2.8rem); /* 24px → 45px */
 }
 
 .text-fluid-3xl {
-  font-size: 3.6rem; /* ~36px mobile, ~36px desktop */
+  font-size: clamp(2rem, 1.5rem + 2vw, 3.6rem); /* 32px → 58px */
 }
 
 .text-fluid-4xl {
-  font-size: 4.4rem; /* ~44px mobile, ~44px desktop */
+  font-size: clamp(2.5rem, 2rem + 2.5vw, 4.4rem); /* 40px → 70px */
 }
 
 .text-fluid-5xl {
-  font-size: 5.6rem; /* ~56px mobile, ~56px desktop */
+  font-size: clamp(3rem, 2.5rem + 3vw, 5.6rem); /* 48px → 90px */
 }
 
 .text-fluid-6xl {
-  font-size: 6.8rem; /* ~68px mobile, ~68px desktop */
+  font-size: clamp(3.5rem, 3rem + 3.5vw, 6.8rem); /* 56px → 109px */
 }
 
 .text-fluid-7xl {
-  font-size: 10rem; /* ~100px mobile, ~100px desktop */
+  font-size: clamp(4.5rem, 3rem + 5vw, 10rem); /* 72px → 160px */
 }
 
 .text-fluid-8xl {
-  font-size: 12rem; /* ~120px mobile, ~120px desktop */
+  font-size: clamp(6rem, 4rem + 6vw, 12rem); /* 96px → 192px */
 }
 
 .text-fluid-9xl {
-  font-size: 14rem; /* ~140px mobile, ~140px desktop - reduced for better scaling */
+  font-size: clamp(7rem, 5rem + 7vw, 14rem); /* 112px → 224px */
 }
 
 /* ============================================================================
