@@ -308,7 +308,7 @@
 }
 
 .page-wrapper-full {
-  max-width: none;
+  max-width: 150rem;
   margin-left: auto;
   margin-right: auto;
   padding-inline: calc(var(--spacing) * 4);
@@ -322,93 +322,63 @@
 }
 
 /* ============================================================================
-   5. FLUID TYPOGRAPHY SYSTEM
+   5. FLUID TYPOGRAPHY SYSTEM - TRUE FLUID SCALING
    ============================================================================ */
 
-/* Mobile - Fixed hierarchy and proper scaling */
-@media (max-width: 639px) {
-  .text-fluid-xs {
-    font-size: 1.2rem; /* 12px equivalent */
-  }
-  .text-fluid-sm {
-    font-size: 1.4rem; /* 14px equivalent */
-  }
-  .text-fluid-base {
-    font-size: 1.6rem; /* 16px equivalent */
-  }
-  .text-fluid-lg {
-    font-size: 1.8rem; /* 18px equivalent */
-  }
-  .text-fluid-xl {
-    font-size: 2.2rem; /* 22px equivalent */
-  }
-  .text-fluid-2xl {
-    font-size: 2.8rem; /* 28px equivalent */
-  }
-  .text-fluid-3xl {
-    font-size: 3.6rem; /* 36px equivalent */
-  }
-  .text-fluid-4xl {
-    font-size: 4.4rem; /* 44px equivalent */
-  }
-  .text-fluid-5xl {
-    font-size: 5.6rem; /* 56px equivalent */
-  }
-  .text-fluid-6xl {
-    font-size: 6.8rem; /* 68px equivalent */
-  }
-  .text-fluid-7xl {
-    font-size: 8rem; /* 80px equivalent - reduced from 4.5rem */
-  }
-  .text-fluid-8xl {
-    font-size: 10rem; /* 100px equivalent - reduced from 4.75rem */
-  }
-  .text-fluid-9xl {
-    font-size: 12rem; /* 120px equivalent - reduced from 5rem */
-  }
+/* All text sizes use rem units that scale with the fluid base font-size
+   Base formula: html { font-size: calc(10 * 100vw / var(--size)); }
+   This means 1rem scales automatically across all breakpoints */
+
+.text-fluid-xs {
+  font-size: 1.2rem; /* Scales fluidly with viewport */
 }
 
-/* Desktop (≥ 640px) - Improved scaling ratios */
-@media (min-width: 640px) {
-  .text-fluid-xs {
-    font-size: 1.2rem; /* ~12px at 1500px viewport */
-  }
-  .text-fluid-sm {
-    font-size: 1.4rem; /* ~14px */
-  }
-  .text-fluid-base {
-    font-size: 1.6rem; /* ~16px */
-  }
-  .text-fluid-lg {
-    font-size: 1.8rem; /* ~18px */
-  }
-  .text-fluid-xl {
-    font-size: 2.2rem; /* ~22px */
-  }
-  .text-fluid-2xl {
-    font-size: 2.8rem; /* ~28px */
-  }
-  .text-fluid-3xl {
-    font-size: 3.6rem; /* ~36px */
-  }
-  .text-fluid-4xl {
-    font-size: 4.4rem; /* ~44px */
-  }
-  .text-fluid-5xl {
-    font-size: 5.6rem; /* ~56px */
-  }
-  .text-fluid-6xl {
-    font-size: 6.8rem; /* ~68px */
-  }
-  .text-fluid-7xl {
-    font-size: 10rem; /* ~100px */
-  }
-  .text-fluid-8xl {
-    font-size: 12rem; /* ~120px */
-  }
-  .text-fluid-9xl {
-    font-size: 16rem; /* ~160px - reduced from 22rem for better proportion */
-  }
+.text-fluid-sm {
+  font-size: 1.4rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-base {
+  font-size: 1.6rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-lg {
+  font-size: 1.8rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-xl {
+  font-size: 2.2rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-2xl {
+  font-size: 2.8rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-3xl {
+  font-size: 3.6rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-4xl {
+  font-size: 4.4rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-5xl {
+  font-size: 5.6rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-6xl {
+  font-size: 6.8rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-7xl {
+  font-size: 10rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-8xl {
+  font-size: 12rem; /* Scales fluidly with viewport */
+}
+
+.text-fluid-9xl {
+  font-size: 16rem; /* Scales fluidly with viewport */
 }
 
 /* ============================================================================

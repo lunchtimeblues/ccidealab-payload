@@ -58,7 +58,7 @@ export default function HomePage(): React.JSX.Element {
                 </div>
               </h1>
 
-              <div className="relative sm:absolute left-0 sm:left-12 sm:top-1/2 sm:-translate-y-1/2 sm:w-2/5 mt-12 pr-4">
+              <div className="relative sm:absolute left-0 sm:left-12 sm:top-1/2 sm:-translate-y-1/2 sm:w-2/5 pr-4">
                 <p className="text-fluid-lg font-base leading-normal tracking-wide text-right">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
