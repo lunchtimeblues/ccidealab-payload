@@ -30,11 +30,11 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
 
   // Size configurations for carousel height
   const sizeConfig = {
-    sm: 'h-64', // 256px
-    md: 'h-80', // 320px
-    lg: 'h-96', // 384px
-    xl: 'h-[32rem]', // 512px
-    xxl: 'h-[64rem]',
+    sm: 'h-80', // 256px
+    md: 'h-96', // 320px
+    lg: 'h-104', // 384px
+    xl: 'h-[32rem]', // 512pxb
+    xxl: 'h-[69rem]',
   }
 
   const _gap = 32 // Gap between slides (used in CSS classes)

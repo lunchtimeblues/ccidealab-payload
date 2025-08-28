@@ -50,7 +50,7 @@ export default function AboutPage() {
           </div>
 
           {/* Hero Footer */}
-          <Container size="full">
+          <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
@@ -94,11 +94,11 @@ export default function AboutPage() {
           starSpinSpeed={4}
           lineClassName="text-[10vw] font-semi-bold uppercase tracking-tight leading-none"
         >
-          <span className="mx-8">MEET THE TEAM</span>
+          <span className="mx-8">OUR TEAM</span>
           <span className="mx-8 flex items-center">
             <SpinningStar size={64} className="text-current" />
           </span>
-          <span className="mx-8">MEET THE TEAM</span>
+          <span className="mx-8">OUR TEAM</span>
           <span className="mx-8 flex items-center">
             <SpinningStar size={64} className="text-current" />
           </span>

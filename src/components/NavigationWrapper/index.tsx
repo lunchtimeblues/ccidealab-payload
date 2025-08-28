@@ -14,6 +14,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
+  { label: 'Home', href: '/home', transitionType: 'logoWipe', transitionColor: '#ccce36ff' },
   { label: 'Work', href: '/work', transitionType: 'logoWipe', transitionColor: '#059669' },
   { label: 'About', href: '/about', transitionType: 'logoWipe', transitionColor: '#7c3aed' },
   { label: 'Services', href: '/services', transitionType: 'logoWipe', transitionColor: '#dc2626' },
@@ -21,7 +22,6 @@ const navItems: NavItem[] = [
 ]
 
 export const NavigationWrapper = () => {
-
   const pathname = usePathname()
   const { navigateWithTransition } = usePageTransition()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -100,7 +100,7 @@ export const NavigationWrapper = () => {
     }
 
     // Find the nav item to get its transition color
-    const navItem = navItems.find(item => item.href === url)
+    const navItem = navItems.find((item) => item.href === url)
     const transitionColor = navItem?.transitionColor || '#000'
 
     // Trigger exit animation
@@ -132,11 +132,7 @@ export const NavigationWrapper = () => {
 
   return (
     <>
-      <AnimatedNav
-        isMenuOpen={isMenuOpen}
-        onToggleMenu={toggleMenu}
-        navItems={navItems}
-      />
+      <AnimatedNav isMenuOpen={isMenuOpen} onToggleMenu={toggleMenu} navItems={navItems} />
 
       <FullScreenMenu
         isOpen={isMenuOpen}

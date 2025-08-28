@@ -82,55 +82,55 @@
     /* Spacing System */
     --spacing: 0.5rem; /* 8px base unit - gives us 32px mobile, 48px desktop */
 
-    /* Fluid Typography System */
-    --size: 400; /* Mobile baseline */
+    /* Fluid Typography System - Optimized scaling */
+    --size: 400; /* Mobile baseline (320px-639px) */
   }
 
   @media (min-width: 640px) {
     :root {
-      --size: 700;
+      --size: 800; /* Small tablets - improved scaling */
     }
   }
 
   @media (min-width: 768px) {
     :root {
-      --size: 900;
+      --size: 1000; /* Tablets - smoother progression */
     }
   }
 
   @media (min-width: 1024px) {
     :root {
-      --size: 1100;
+      --size: 1200; /* Small desktops - better proportion */
     }
   }
 
   @media (min-width: 1280px) {
     :root {
-      --size: 1350;
+      --size: 1400; /* Standard desktops - refined scaling */
     }
   }
 
-  @media (min-width: 1532px) {
+  @media (min-width: 1536px) {
     :root {
-      --size: 1550;
+      --size: 1600; /* Large desktops - consistent progression */
     }
   }
 
   @media (min-width: 1920px) {
     :root {
-      --size: 2200;
+      --size: 2000; /* Full HD - reduced for better readability */
     }
   }
 
   @media (min-width: 2560px) {
     :root {
-      --size: 2400;
+      --size: 2400; /* 2K displays */
     }
   }
 
   @media (min-width: 3840px) {
     :root {
-      --size: 2400;
+      --size: 3000; /* 4K displays - increased for proper scaling */
     }
   }
 }
@@ -325,90 +325,90 @@
    5. FLUID TYPOGRAPHY SYSTEM
    ============================================================================ */
 
-/* Mobile */
+/* Mobile - Fixed hierarchy and proper scaling */
 @media (max-width: 639px) {
   .text-fluid-xs {
-    font-size: 2rem;
+    font-size: 1.2rem; /* 12px equivalent */
   }
   .text-fluid-sm {
-    font-size: 2.25;
+    font-size: 1.4rem; /* 14px equivalent */
   }
   .text-fluid-base {
-    font-size: 2.5rem;
+    font-size: 1.6rem; /* 16px equivalent */
   }
   .text-fluid-lg {
-    font-size: 1rem;
+    font-size: 1.8rem; /* 18px equivalent */
   }
   .text-fluid-xl {
-    font-size: 1.25rem;
+    font-size: 2.2rem; /* 22px equivalent */
   }
   .text-fluid-2xl {
-    font-size: 1.5rem;
+    font-size: 2.8rem; /* 28px equivalent */
   }
   .text-fluid-3xl {
-    font-size: 3.5rem;
+    font-size: 3.6rem; /* 36px equivalent */
   }
   .text-fluid-4xl {
-    font-size: 3.75rem;
+    font-size: 4.4rem; /* 44px equivalent */
   }
   .text-fluid-5xl {
-    font-size: 2.25rem;
+    font-size: 5.6rem; /* 56px equivalent */
   }
   .text-fluid-6xl {
-    font-size: 4.25rem;
+    font-size: 6.8rem; /* 68px equivalent */
   }
   .text-fluid-7xl {
-    font-size: 4.5rem;
+    font-size: 8rem; /* 80px equivalent - reduced from 4.5rem */
   }
   .text-fluid-8xl {
-    font-size: 4.75rem;
+    font-size: 10rem; /* 100px equivalent - reduced from 4.75rem */
   }
   .text-fluid-9xl {
-    font-size: 5rem;
+    font-size: 12rem; /* 120px equivalent - reduced from 5rem */
   }
 }
 
-/* Desktop (≥ 640px) */
+/* Desktop (≥ 640px) - Improved scaling ratios */
 @media (min-width: 640px) {
   .text-fluid-xs {
-    font-size: 1.2rem;
-  } /* ~12px at 1500px viewport */
+    font-size: 1.2rem; /* ~12px at 1500px viewport */
+  }
   .text-fluid-sm {
-    font-size: 1.4rem;
-  } /* ~14px */
+    font-size: 1.4rem; /* ~14px */
+  }
   .text-fluid-base {
-    font-size: 1.6rem;
-  } /* ~16px */
+    font-size: 1.6rem; /* ~16px */
+  }
   .text-fluid-lg {
-    font-size: 1.8rem;
-  } /* ~18px */
+    font-size: 1.8rem; /* ~18px */
+  }
   .text-fluid-xl {
-    font-size: 2.2rem;
-  } /* ~22px */
+    font-size: 2.2rem; /* ~22px */
+  }
   .text-fluid-2xl {
-    font-size: 2.8rem;
-  } /* ~28px */
+    font-size: 2.8rem; /* ~28px */
+  }
   .text-fluid-3xl {
-    font-size: 3.6rem;
-  } /* ~36px */
+    font-size: 3.6rem; /* ~36px */
+  }
   .text-fluid-4xl {
-    font-size: 4.4rem;
-  } /* ~44px */
+    font-size: 4.4rem; /* ~44px */
+  }
   .text-fluid-5xl {
-    font-size: 5.6rem;
-  } /* ~56px */
+    font-size: 5.6rem; /* ~56px */
+  }
   .text-fluid-6xl {
-    font-size: 6.8rem;
-  } /* ~68px */
+    font-size: 6.8rem; /* ~68px */
+  }
   .text-fluid-7xl {
-    font-size: 10rem;
-  } /* ~100px */
+    font-size: 10rem; /* ~100px */
+  }
   .text-fluid-8xl {
-    font-size: 12rem;
-  } /* ~120px */
+    font-size: 12rem; /* ~120px */
+  }
   .text-fluid-9xl {
-    font-size: 22rem;
-  } /* ~140px */
+    font-size: 16rem; /* ~160px - reduced from 22rem for better proportion */
+  }
 }
 
 /* ============================================================================
