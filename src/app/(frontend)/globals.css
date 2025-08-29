@@ -338,9 +338,29 @@
   font-size: clamp(6rem, 4rem + 6vw, 12rem); /* 96px → 192px */
 }
 
+/* OPTION A: Larger big-end, mobile-optimized */
 .text-fluid-9xl {
-  font-size: clamp(2rem, 2rem + 9vw, 18rem); /* 32px → 144px */
+  font-size: clamp(4.5rem, 2rem + 8vw, 18rem); /* 72px → 288px */
+  /* Viewport sizes: 320px=98px, 768px=93px, 1024px=114px, 1440px=147px, 1920px=186px, 2560px=237px */
 }
+
+/* OPTION B: More conservative big-end */
+/* .text-fluid-9xl {
+  font-size: clamp(4.5rem, 3rem + 7vw, 16rem);
+  /* Viewport sizes: 320px=70px, 768px=102px, 1024px=119px, 1440px=149px, 1920px=182px, max=256px */
+/* } */
+
+/* OPTION C: Aggressive scaling for dramatic effect */
+/* .text-fluid-9xl {
+  font-size: clamp(5rem, 1rem + 9vw, 20rem);
+  /* Viewport sizes: 320px=45px, 768px=85px, 1024px=108px, 1440px=146px, 1920px=189px, max=320px */
+/* } */
+
+/* OPTION D: Your original (very gradual) */
+/* .text-fluid-9xl {
+  font-size: clamp(2rem, 2rem + 9vw, 18rem);
+  /* Viewport sizes: 320px=61px, 768px=101px, 1024px=124px, 1440px=162px, 1920px=205px */
+/* } */
 
 /* ============================================================================
    6. COMPONENT-SPECIFIC STYLES
