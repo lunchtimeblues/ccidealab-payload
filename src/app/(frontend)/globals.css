@@ -339,7 +339,7 @@
 }
 
 .text-fluid-9xl {
-  font-size: clamp(7rem, 5rem + 7vw, 14rem); /* 112px → 224px */
+  font-size: clamp(2rem, 2rem + 9vw, 18rem); /* 32px → 144px */
 }
 
 /* ============================================================================

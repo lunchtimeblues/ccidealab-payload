@@ -159,13 +159,13 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
       >
         {/* Single optimized blur layer for better Windows/PC performance */}
         <div
-          className="absolute inset-0 bg-black/40"
-          style={{
-            backdropFilter: 'blur(16px) saturate(150%)',
-            WebkitBackdropFilter: 'blur(16px) saturate(150%)',
-            transform: 'translateZ(0)', // Force hardware acceleration
-            willChange: 'backdrop-filter',
-          }}
+          className="absolute inset-0 bg-black"
+          // style={{
+          //   backdropFilter: 'blur(16px) saturate(150%)',
+          //   WebkitBackdropFilter: 'blur(16px) saturate(150%)',
+          //   transform: 'translateZ(0)',
+          //   willChange: 'backdrop-filter',
+          // }}
         />
       </div>
 
@@ -201,7 +201,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="text-white hover:text-gray-300 transition-colors text-fluid-xl font-medium bg-transparent border-none cursor-pointer"
+                className="text-white hover:text-gray-300 transition-colors text-fluid-base font-medium bg-transparent border-none cursor-pointer"
                 aria-label="Close menu"
               >
                 Close
@@ -228,7 +228,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         key={`${item.href}-${copyIndex}-${index}`}
                         className="text-left w-full flex items-center group cursor-pointer"
                         style={{
-                          height: `h-[50px] sm:h-[${itemHeight}px]`,
+                          height: `h-[50px] md:h-[${itemHeight}px]`,
                           // Use transform3d for hardware acceleration
                           transform: 'translate3d(0, 0, 0)',
                         }}
@@ -269,7 +269,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
             transitionDelay: isOpen ? '900ms' : '0ms',
           }}
         >
-          <div className="hidden sm:block text-fluid-xl writing-mode-vertical-rl text-orientation-mixed">
+          <div className="hidden md:block text-fluid-base writing-mode-vertical-rl text-orientation-mixed">
             Press ESC to close
           </div>
         </div>

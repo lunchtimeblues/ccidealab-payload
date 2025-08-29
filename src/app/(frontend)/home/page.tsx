@@ -21,21 +21,21 @@ export default function HomePage(): React.JSX.Element {
       {/* Hero Section */}
       <section className="relative almost-full-height">
         <Container size="full" className="relative z-10">
-          <div className="relative flex items-center justify-center almost-full-height px-4 sm:px-6 lg:px-8">
-            <div className="relative w-full max-w-none pt-24 sm:pt-0">
+          <div className="relative flex items-center justify-center almost-full-height px-4 md:px-6 lg:px-8">
+            <div className="relative w-full max-w-none pt-24 md:pt-0">
               <h1
-                className="text-fluid-9xl leading-snug sm:leading-none font-normal uppercase tracking-tighter"
+                className="text-fluid-9xl leading-snug md:leading-none font-normal uppercase tracking-tighter"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
-                  <div className="logo-before">Ideas</div>
+                  <div className="logo-before flex justify-center align-center">Ideas</div>
                 </ScrollRevealText>
                 <ScrollRevealText delay={200}>
-                  <div className="sm:text-right -mr-1">People</div>
+                  <div className="md:text-right -mr-1">People</div>
                 </ScrollRevealText>
                 <div className="flex justify-between items-center">
                   <ScrollRevealText delay={400}>
-                    <div className="w-40 sm:w-40 hidden sm:block">
+                    <div className="w-40 md:w-20 hidden md:block">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -52,14 +52,14 @@ export default function HomePage(): React.JSX.Element {
                     </div>
                   </ScrollRevealText>
                   <ScrollRevealText delay={600}>
-                    <div className="sm:text-center flex-1 px-4">Champion</div>
+                    <div className="md:text-center flex-1 px-4">Champion</div>
                   </ScrollRevealText>
-                  <div className="hidden sm:block w-16 sm:w-20"></div>
+                  <div className="hidden md:block w-16 md:w-20"></div>
                 </div>
               </h1>
 
-              <div className="relative sm:absolute left-0 sm:left-12 sm:top-1/2 sm:-translate-y-1/2 sm:w-2/5 pr-4">
-                <p className="text-fluid-lg font-base leading-normal tracking-wide text-right">
+              <div className="relative lg:absolute left-0 lg:left-12 lg:top-1/2 lg:-translate-y-1/2 lg:w-2/5 pr-4">
+                <p className="text-fluid-base font-base leading-normal tracking-wide text-right">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
                     reinventing companies in the tech and innovation space.
@@ -81,17 +81,17 @@ export default function HomePage(): React.JSX.Element {
       />
 
       {/* Services Section */}
-      <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
         <Container size="full">
-          <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
-            <div className="col-span-12 sm:col-span-4">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+            <div className="col-span-12 md:col-span-4">
               <ScrollRevealText>
                 <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
                   Think big with us.
                 </p>
               </ScrollRevealText>
             </div>
-            <div className="col-span-12 sm:col-span-8">
+            <div className="col-span-12 md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-5xl font-base text-black mb-8  tracking-tight leading-tight">
                   Great brands are more than famous names, they&apos;re Ideas Worth Rallying
@@ -99,7 +99,7 @@ export default function HomePage(): React.JSX.Element {
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-xl text-black leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
                     C/C IDEA LAB is a brand strategy and design firm that partners with tech and
                     innovation companies to create impactful, future-ready brands. We collaborate
@@ -117,7 +117,7 @@ export default function HomePage(): React.JSX.Element {
                       appearance="inline"
                       transitionType="logoWipe"
                       transitionColor="#059669"
-                      className="text-fluid-sm font-medium text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                      className="pb-1 text-fluid-lg font-medium text-black border-b-2 border-black hover:underline"
                     />
                   </div>
                 </ScrollRevealText>
@@ -128,18 +128,7 @@ export default function HomePage(): React.JSX.Element {
                       label="See our case studies →"
                       appearance="inline"
                       transitionType="logoWipe"
-                      className="text-fluid-sm font-medium text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
-                    />
-                  </div>
-                </ScrollRevealText>
-                <ScrollRevealText delay={1000}>
-                  <div>
-                    <TransitionLink
-                      url="/methodology"
-                      label="Discover our methodology →"
-                      appearance="inline"
-                      transitionType="logoWipe"
-                      className="text-fluid-sm font-medium text-black hover:text-gray-600 border-b-2 border-black hover:border-gray-600 transition-colors pb-1"
+                      className="pb-1 text-fluid-lg font-medium text-black border-b-2 border-black hover:underline"
                     />
                   </div>
                 </ScrollRevealText>
@@ -278,7 +267,7 @@ export default function HomePage(): React.JSX.Element {
 
       {/* Method Section */}
       <section className="relative bg-gray-100 overflow-hidden">
-        <div className="relative sm:absolute inset-0 z-0">
+        <div className="relative md:absolute inset-0 z-0">
           <ScrollMarquee
             baseSpeed={0.8}
             maxSpeedMultiplier={2}
@@ -301,8 +290,8 @@ export default function HomePage(): React.JSX.Element {
           </ScrollMarquee>
         </div>
 
-        <Container size="full" className="relative z-10 py-24 sm:py-40">
-          <div className="grid sm:grid-cols-2 gap-16 items-center">
+        <Container size="full" className="relative z-10 py-24 md:py-40">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollRevealText>
                 <h2 className="text-fluid-5xl font-bold mb-8">
