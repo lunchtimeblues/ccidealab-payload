@@ -154,7 +154,7 @@ export default function HomePage(): React.JSX.Element {
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -172,7 +172,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -190,7 +190,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -208,7 +208,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -244,7 +244,7 @@ export default function HomePage(): React.JSX.Element {
               </TransitionLink>
             </MouseFollower>
 
-            <MouseFollower text="COMING SOON">
+            <MouseFollower text="VIEW PROJECT">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo

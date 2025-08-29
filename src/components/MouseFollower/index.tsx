@@ -149,11 +149,11 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
             </text>
           </svg>
 
-          {/* Central arrow */}
+          {/* Central arrow - larger to better fill the 192px space */}
           <div className="relative z-10 flex items-center justify-center">
             <svg
-              width="20"
-              height="20"
+              width="32"
+              height="32"
               viewBox="0 0 24 24"
               fill="none"
               className="transition-all duration-400 ease-out"
