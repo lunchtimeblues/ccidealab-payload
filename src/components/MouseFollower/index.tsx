@@ -25,14 +25,14 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     const vw = window.innerWidth
 
     // Simple scaling that works with our clamp() system
-    // MouseFollower size is 192px (w-48 h-48), so offset should be half = 96px
+    // MouseFollower size is 176px (w-44 h-44), so offset should be half = 88px
     // Scale slightly with viewport for better proportions
     if (vw < 768) {
-      return 80  // Slightly smaller offset for mobile/tablet
+      return 72 // Slightly smaller offset for mobile/tablet
     } else if (vw < 1440) {
-      return 88  // Medium offset for small desktop
+      return 80 // Medium offset for small desktop
     } else {
-      return 96  // Perfect center offset for large desktop
+      return 88 // Perfect center offset for large desktop
     }
   }, [])
 
@@ -42,7 +42,7 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     bg: 'bg-white/90 backdrop-blur-md rounded-full',
     text: 'text-black',
     border: 'border border-gray-200/30',
-    size: 'w-48 h-48',
+    size: 'w-44 h-44',
     offset,
   }
 

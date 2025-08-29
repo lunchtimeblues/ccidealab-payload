@@ -68,6 +68,12 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </div>
           </div>
+          <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
+            <a href="#about" className="border-b border-black hover:opacity-70 transition">
+              Learn more about our company <span className="inline-block ml-1">↓</span>
+            </a>
+            <span className="text-black/60">(SCROLL)</span>
+          </div>
         </Container>
       </section>
 
