@@ -18,23 +18,25 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   const followerRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Calculate responsive offset based on viewport width to match fluid typography scaling
+  // Calculate responsive offset to match our new clamp() typography system
   const getResponsiveOffset = useCallback(() => {
-    if (typeof window === 'undefined') return 72
+    if (typeof window === 'undefined') return 128
 
     const vw = window.innerWidth
 
-    // Match the fluid typography scaling logic from globals.css
-    if (vw < 640) {
-      // Mobile: --size: 400, smaller offset
-      return Math.max(48, vw * 0.08) // Scales from ~30px to ~48px
+    // Simple scaling that works with our clamp() system
+    // MouseFollower size is 256px (w-64 h-64), so offset should be half = 128px
+    // Scale slightly with viewport for better proportions
+    if (vw < 768) {
+      return 96  // Smaller offset for mobile/tablet
+    } else if (vw < 1440) {
+      return 112 // Medium offset for small desktop
     } else {
-      // Desktop: --size: 1450, larger offset that scales with viewport
-      return Math.max(64, Math.min(128, vw * 0.055)) // Scales from ~64px to ~128px
+      return 128 // Full offset for large desktop
     }
   }, [])
 
-  const [offset, setOffset] = useState(72)
+  const [offset, setOffset] = useState(128)
 
   const config = {
     bg: 'bg-white/90 backdrop-blur-md rounded-full',
