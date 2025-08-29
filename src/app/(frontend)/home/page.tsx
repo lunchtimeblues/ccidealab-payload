@@ -35,7 +35,7 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
                 <div className="flex items-center">
                   <ScrollRevealText delay={400}>
-                    <div className="w-20 hidden md:block flex-shrink-0">
+                    <div className="w-20 hidden md:block flex-shrink-0 -ml-8 mr-4">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -52,7 +52,7 @@ export default function HomePage(): React.JSX.Element {
                     </div>
                   </ScrollRevealText>
                   <ScrollRevealText delay={600}>
-                    <div className="flex-1 text-center md:text-left md:ml-8">Champion</div>
+                    <div className="flex-1 text-center md:text-left">Champion</div>
                   </ScrollRevealText>
                 </div>
               </h1>
