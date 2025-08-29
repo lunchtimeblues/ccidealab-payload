@@ -20,11 +20,11 @@ export default function HomePage(): React.JSX.Element {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative almost-full-height">
-        <Container size="full" className="relative z-10">
+        <Container size="xxl" className="relative z-10">
           <div className="relative flex items-center justify-center almost-full-height px-4 md:px-6 lg:px-8">
             <div className="relative w-full max-w-none pt-24 md:pt-0">
               <h1
-                className="text-fluid-9xl leading-snug md:leading-none font-normal uppercase tracking-tighter"
+                className="text-fluid-9xl leading-snug md:leading-none font-medium md:font-normal uppercase tracking-tighter"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
@@ -33,9 +33,9 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={200}>
                   <div className="md:text-right -mr-1">People</div>
                 </ScrollRevealText>
-                <div className="flex justify-between items-center">
+                <div className="flex items-center">
                   <ScrollRevealText delay={400}>
-                    <div className="w-40 md:w-20 hidden md:block">
+                    <div className="w-20 hidden md:block flex-shrink-0">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -52,9 +52,8 @@ export default function HomePage(): React.JSX.Element {
                     </div>
                   </ScrollRevealText>
                   <ScrollRevealText delay={600}>
-                    <div className="md:text-center flex-1 px-4">Champion</div>
+                    <div className="flex-1 text-center md:text-left md:ml-8">Champion</div>
                   </ScrollRevealText>
-                  <div className="hidden md:block w-16 md:w-20"></div>
                 </div>
               </h1>
 
@@ -67,12 +66,6 @@ export default function HomePage(): React.JSX.Element {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
-            <a href="#about" className="border-b border-black hover:opacity-70 transition">
-              Learn more about our company <span className="inline-block ml-1">↓</span>
-            </a>
-            <span className="text-black/60">(SCROLL)</span>
           </div>
         </Container>
       </section>

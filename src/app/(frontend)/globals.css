@@ -339,14 +339,14 @@
 
 .text-fluid-9xl {
   /* Desktop scaling: More aggressive growth */
-  font-size: clamp(4.5rem, 5rem + 8vw, 18rem); /* 72px → 288px */
+  font-size: clamp(4.5rem, 5rem + 6vw, 14rem); /* 72px → 288px */
   /* Desktop viewport sizes: 768px=141px, 1024px=162px, 1440px=195px, 1920px=234px, 2560px=285px */
 }
 
 /* Mobile-specific scaling: More conservative */
 @media (max-width: 767px) {
   .text-fluid-9xl {
-    font-size: clamp(3.5rem, 2rem + 5vw, 18rem); /* 56px → 288px */
+    font-size: clamp(3.5rem, 2rem + 5vw, 14rem); /* 56px → 288px */
     /* Mobile viewport sizes: 320px=72px, 414px=73px, 768px=70px */
   }
 }
