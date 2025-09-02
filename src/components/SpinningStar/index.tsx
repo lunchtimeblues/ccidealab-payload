@@ -68,13 +68,13 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     // Always match the marquee scroll direction for all lines
     // Right scroll = clockwise (positive), Left scroll = counter-clockwise (negative)
     const direction = marqueeDirection === 'right' ? 360 : -360
-    console.log(
-      '🌟 SpinningStar direction detected:',
-      marqueeDirection,
-      '→',
-      marqueeDirection === 'right' ? 'clockwise ↻' : 'counter-clockwise ↺',
-      `(${direction}°)`
-    )
+    // console.log(
+    //   '🌟 SpinningStar direction detected:',
+    //   marqueeDirection,
+    //   '→',
+    //   marqueeDirection === 'right' ? 'clockwise ↻' : 'counter-clockwise ↺',
+    //   `(${direction}°)`
+    // )
     return direction
   }, [])
 
@@ -112,7 +112,12 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     if (animationRef.current) {
       animationRef.current.timeScale(1)
       currentTimeScaleRef.current = 1
-      console.log('✅ SpinningStar animation created:', targetRotation, 'duration:', actualSpeed + 's')
+      console.log(
+        '✅ SpinningStar animation created:',
+        targetRotation,
+        'duration:',
+        actualSpeed + 's',
+      )
     } else {
       console.log('❌ SpinningStar animation failed to create')
     }
