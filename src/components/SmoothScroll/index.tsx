@@ -41,7 +41,21 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     // Listen for force scroll to top events
     const handleForceScrollToTop = () => {
       console.log('Force scroll to top event received')
+
+      // Try multiple Lenis methods
       lenis.scrollTo(0, { immediate: true })
+      lenis.scrollTo(0, { duration: 0 })
+      lenis.scrollTo(0, { immediate: true, force: true })
+
+      // Also try stopping and restarting
+      lenis.stop()
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' })
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+        lenis.start()
+        lenis.scrollTo(0, { immediate: true })
+      }, 50)
     }
 
     window.addEventListener('force-scroll-to-top', handleForceScrollToTop)
@@ -64,8 +78,26 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
   // Scroll to top on route change using Lenis API
   useEffect(() => {
     if (lenisRef.current) {
-      // Use Lenis API to scroll to top immediately
-      lenisRef.current.scrollTo(0, { immediate: true })
+      console.log('Pathname changed, forcing scroll to top via useEffect')
+
+      // Try multiple approaches
+      const lenis = lenisRef.current
+
+      // Method 1: Stop Lenis, scroll natively, restart
+      lenis.stop()
+      window.scrollTo({ top: 0, behavior: 'instant' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+
+      // Method 2: Use Lenis API
+      lenis.scrollTo(0, { immediate: true })
+      lenis.scrollTo(0, { duration: 0 })
+
+      // Method 3: Restart Lenis
+      setTimeout(() => {
+        lenis.start()
+        lenis.scrollTo(0, { immediate: true })
+      }, 100)
     }
   }, [pathname])
 
