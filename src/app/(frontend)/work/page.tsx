@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
@@ -10,22 +11,33 @@ import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
 
 export default function WorkPage() {
-  // Simple scroll to top on page load
+  const pathname = usePathname()
+
+  // Scroll to top whenever this page is navigated to
   useEffect(() => {
-    console.log('🏠 Work page mounted, scrolling to top')
-    window.scrollTo(0, 0)
+    console.log('🏠 Work page pathname changed, scrolling to top')
 
-    // Also try with a small delay to see if something is overriding it
-    setTimeout(() => {
-      console.log('🔄 Work page delayed scroll to top')
-      window.scrollTo(0, 0)
-    }, 100)
+    // Aggressive scroll reset with multiple methods and delays
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'instant' })
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
 
-    setTimeout(() => {
-      console.log('🔄 Work page final scroll to top')
-      window.scrollTo(0, 0)
-    }, 500)
-  }, [])
+      // Also try to override Lenis if it exists
+      const lenis = (window as any).lenis
+      if (lenis && typeof lenis.scrollTo === 'function') {
+        lenis.scrollTo(0, { immediate: true })
+      }
+    }
+
+    // Multiple attempts with different delays
+    scrollToTop() // Immediate
+    setTimeout(scrollToTop, 50)
+    setTimeout(scrollToTop, 200)
+    setTimeout(scrollToTop, 500)
+    setTimeout(scrollToTop, 1000)
+    setTimeout(scrollToTop, 1500)
+  }, [pathname])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
