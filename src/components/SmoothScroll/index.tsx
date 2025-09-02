@@ -38,6 +38,14 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       )
     })
 
+    // Listen for force scroll to top events
+    const handleForceScrollToTop = () => {
+      console.log('Force scroll to top event received')
+      lenis.scrollTo(0, { immediate: true })
+    }
+
+    window.addEventListener('force-scroll-to-top', handleForceScrollToTop)
+
     function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -46,6 +54,7 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     requestAnimationFrame(raf)
 
     return () => {
+      window.removeEventListener('force-scroll-to-top', handleForceScrollToTop)
       // Clean up global reference
       ;(window as any).lenis = null
       lenis.destroy()
