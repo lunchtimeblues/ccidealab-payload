@@ -225,75 +225,34 @@ export const usePageTransition = () => {
           history.scrollRestoration = 'manual'
         }
 
-        // Navigate first
+        // Disable Lenis completely before navigation
+        const lenis = (window as any).lenis
+        if (lenis && typeof lenis.destroy === 'function') {
+          console.log('🚫 Destroying Lenis before navigation...')
+          lenis.destroy()
+          ;(window as any).lenis = null
+        }
+
+        // Force scroll to top with native methods
+        window.scrollTo({ top: 0, behavior: 'instant' })
+        document.documentElement.scrollTop = 0
+        document.body.scrollTop = 0
+
+        // Navigate
         router.push(href)
 
-        // Reset scroll using multiple approaches after navigation
-        const resetScroll = () => {
-          console.log('Attempting scroll reset...')
+        // Re-initialize Lenis after navigation completes
+        setTimeout(() => {
+          console.log('🔄 Re-initializing Lenis after navigation...')
+          window.dispatchEvent(new CustomEvent('reinit-lenis'))
 
-          const lenis = (window as any).lenis
-          if (lenis) {
-            console.log('Lenis found, trying different methods...')
-
-            // Method 1: Try to stop Lenis temporarily
-            if (typeof lenis.stop === 'function') {
-              console.log('Stopping Lenis...')
-              lenis.stop()
-            }
-
-            // Method 2: Force native scroll while Lenis is stopped
+          // Also force scroll again after re-init
+          setTimeout(() => {
             window.scrollTo({ top: 0, behavior: 'instant' })
             document.documentElement.scrollTop = 0
             document.body.scrollTop = 0
-
-            // Method 3: Try Lenis scrollTo with different options
-            if (typeof lenis.scrollTo === 'function') {
-              console.log('Using Lenis scrollTo with force...')
-              lenis.scrollTo(0, { immediate: true, force: true })
-              lenis.scrollTo(0, { duration: 0 })
-              lenis.scrollTo(0)
-            }
-
-            // Method 4: Restart Lenis
-            setTimeout(() => {
-              if (typeof lenis.start === 'function') {
-                console.log('Restarting Lenis...')
-                lenis.start()
-              }
-            }, 100)
-
-          } else {
-            console.log('Lenis not available, using fallback methods')
-          }
-
-          // Method 5: Dispatch custom event for Lenis
-          window.dispatchEvent(new CustomEvent('force-scroll-to-top'))
-
-          // Method 6: Aggressive native scroll
-          window.scrollTo({ top: 0, behavior: 'instant' })
-          document.documentElement.scrollTop = 0
-          document.body.scrollTop = 0
-
-          // Method 7: Try document.documentElement.scrollTo
-          if (document.documentElement.scrollTo) {
-            document.documentElement.scrollTo({ top: 0, behavior: 'instant' })
-          }
-
-          // Method 8: Force scroll on body
-          if (document.body.scrollTo) {
-            document.body.scrollTo({ top: 0, behavior: 'instant' })
-          }
-        }
-
-        // Use longer delays to ensure page has loaded
-        setTimeout(resetScroll, 100)
-        setTimeout(resetScroll, 300)
-        setTimeout(resetScroll, 500)
-        setTimeout(resetScroll, 800)
-        setTimeout(resetScroll, 1000)
-        setTimeout(resetScroll, 1500)
-        setTimeout(resetScroll, 2000)
+          }, 100)
+        }, 1000)
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],
