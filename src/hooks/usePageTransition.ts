@@ -225,20 +225,30 @@ export const usePageTransition = () => {
           history.scrollRestoration = 'manual'
         }
 
-        router.push(href)
-
-        // Multiple scroll-to-top attempts after navigation
+        // Enhanced scroll to top function that works with Lenis
         const scrollToTop = () => {
+          // Try Lenis first if available
+          const lenisScrollEvent = new CustomEvent('lenis-scroll-to-top')
+          window.dispatchEvent(lenisScrollEvent)
+
+          // Fallback to native scroll
           window.scrollTo({ top: 0, behavior: 'instant' })
           document.documentElement.scrollTop = 0
           document.body.scrollTop = 0
         }
 
-        // Immediate and delayed scroll attempts
-        setTimeout(scrollToTop, 50)
+        // Immediate scroll before navigation
+        scrollToTop()
+
+        router.push(href)
+
+        // Additional scroll attempts after navigation with longer delays
         setTimeout(scrollToTop, 100)
         setTimeout(scrollToTop, 200)
-        setTimeout(scrollToTop, 300)
+        setTimeout(scrollToTop, 400)
+        setTimeout(scrollToTop, 600)
+        setTimeout(scrollToTop, 800)
+        setTimeout(scrollToTop, 1000)
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],

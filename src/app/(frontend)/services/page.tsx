@@ -237,31 +237,32 @@ export default function ServicesPage() {
 
             {/* Container moved inside to constrain content, not the fade effect */}
             <Container size="full" className="w-full">
-              <div className="min-h-screen md:h-screen">
-                <div className="h-full flex flex-col justify-center relative z-20">
-                  <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 md:pt-56 sm:pb-20 mb-auto max-w-none">
-                    <div className="col-span-12 pb-10 flex justify-between items-start">
-                      <h2 className="uppercase text-fluid-7xl font-medium">{service.title}</h2>
-                      <span className="uppercase hidden sm:block text-fluid-7xl font-medium">
-                        {service.number}
-                      </span>
-                    </div>
+              <div className="h-screen flex flex-col justify-center py-8 md:py-12">
+                <div className="relative z-20">
+                  {/* Header Section */}
+                  <div className="flex justify-between items-start mb-8 md:mb-12">
+                    <h2 className="uppercase text-fluid-5xl font-medium">{service.title}</h2>
+                    <span className="uppercase hidden sm:block text-fluid-5xl font-medium">
+                      {service.number}
+                    </span>
                   </div>
 
-                  <div className="border-t border-[#CFD5D7] mt-auto sm:mb-32">
-                    <div className="grid grid-cols-12 gap-x-6 px-6 sm:px-16 pt-20 sm:pt-20">
-                      <div className="flex flex-col justify-between col-span-12 sm:col-span-9">
-                        <p className="text-fluid-lg leading-relaxed max-w-6xl mb-10 sm:mb-12">
+                  {/* Content Section */}
+                  <div className="border-t border-[#CFD5D7] pt-8 md:pt-12">
+                    <div className="grid grid-cols-12 gap-6 md:gap-8">
+                      {/* Text Content */}
+                      <div className="col-span-12 lg:col-span-8">
+                        <p className="text-fluid-lg leading-relaxed mb-8 md:mb-10">
                           {service.description}
                         </p>
 
-                        <div className="flex flex-col sm:flex-row justify-between max-w-5xl pb-16 sm:pb-18">
-                          <ul className="mt-auto space-y-2 text-fluid-xl">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                          <ul className="space-y-2 text-fluid-base">
                             {service.features1.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
                           </ul>
-                          <ul className="mt-auto space-y-2 text-fluid-xl">
+                          <ul className="space-y-2 text-fluid-base">
                             {service.features2.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
@@ -269,10 +270,11 @@ export default function ServicesPage() {
                         </div>
                       </div>
 
-                      <div className="col-span-12 sm:col-span-3 mb-10 sm:mb-0">
-                        <div className="relative w-full pt-[122%]">
+                      {/* Video Section */}
+                      <div className="col-span-12 lg:col-span-4">
+                        <div className="relative w-full aspect-[3/4] max-w-xs mx-auto lg:mx-0">
                           <video
-                            className="absolute top-0 left-0 w-full h-full object-cover"
+                            className="absolute inset-0 w-full h-full object-cover rounded-lg"
                             src={service.videoSrc}
                             autoPlay
                             muted
