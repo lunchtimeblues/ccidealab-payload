@@ -225,6 +225,9 @@ export const usePageTransition = () => {
           history.scrollRestoration = 'manual'
         }
 
+        // Add transitioning class to force scroll behavior
+        document.documentElement.classList.add('transitioning')
+
         // Disable Lenis completely before navigation
         const lenis = (window as any).lenis
         if (lenis && typeof lenis.destroy === 'function') {
@@ -233,7 +236,7 @@ export const usePageTransition = () => {
           ;(window as any).lenis = null
         }
 
-        // Force scroll to top with native methods
+        // Force scroll to top with native methods BEFORE navigation
         window.scrollTo({ top: 0, behavior: 'instant' })
         document.documentElement.scrollTop = 0
         document.body.scrollTop = 0
@@ -241,18 +244,52 @@ export const usePageTransition = () => {
         // Navigate
         router.push(href)
 
+        // Aggressive scroll reset after navigation with multiple attempts
+        const forceScrollReset = () => {
+          console.log('🔄 Force scroll reset attempt...')
+          window.scrollTo({ top: 0, behavior: 'instant' })
+          document.documentElement.scrollTop = 0
+          document.body.scrollTop = 0
+
+          // Also try scrolling the html element directly
+          const html = document.documentElement
+          if (html) {
+            html.scrollTop = 0
+            if (html.scrollTo) {
+              html.scrollTo({ top: 0, behavior: 'instant' })
+            }
+          }
+
+          // And the body
+          const body = document.body
+          if (body) {
+            body.scrollTop = 0
+            if (body.scrollTo) {
+              body.scrollTo({ top: 0, behavior: 'instant' })
+            }
+          }
+        }
+
+        // Multiple scroll reset attempts
+        setTimeout(forceScrollReset, 100)
+        setTimeout(forceScrollReset, 300)
+        setTimeout(forceScrollReset, 500)
+        setTimeout(forceScrollReset, 800)
+
         // Re-initialize Lenis after navigation completes
         setTimeout(() => {
           console.log('🔄 Re-initializing Lenis after navigation...')
+          forceScrollReset() // One more scroll reset before Lenis
           window.dispatchEvent(new CustomEvent('reinit-lenis'))
 
-          // Also force scroll again after re-init
+          // Final scroll reset after Lenis reinit
           setTimeout(() => {
-            window.scrollTo({ top: 0, behavior: 'instant' })
-            document.documentElement.scrollTop = 0
-            document.body.scrollTop = 0
-          }, 100)
-        }, 1000)
+            forceScrollReset()
+            // Remove transitioning class
+            document.documentElement.classList.remove('transitioning')
+            console.log('✅ Transition complete, scroll should be at top')
+          }, 200)
+        }, 1200)
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],

@@ -19,6 +19,16 @@
     opacity: 0; /* Prevent FOUC */
   }
 
+  /* Force scroll position reset during transitions */
+  html.transitioning {
+    scroll-behavior: auto !important;
+  }
+
+  html.transitioning,
+  html.transitioning body {
+    scroll-top: 0 !important;
+  }
+
   /* Theme visibility control */
   html[data-theme='dark'],
   html[data-theme='light'] {
