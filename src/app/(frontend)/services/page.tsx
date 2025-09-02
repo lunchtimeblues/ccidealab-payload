@@ -131,10 +131,16 @@ export default function ServicesPage() {
               direction="left"
               lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
             >
-              <span className="mx-8">OUR</span>
+              <span className="mx-8">SERVICES</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
+
+              <span className="mx-8">SERVICES</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+
               <span className="mx-8">SERVICES</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
@@ -144,7 +150,7 @@ export default function ServicesPage() {
             {/* Content */}
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
-                <p className="text-fluid-2xl leading-snug text-black">
+                <p className="text-fluid-xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
                   mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
                   mottos for clients to serve as their Idea Worth Rallying Around®.
@@ -155,7 +161,7 @@ export default function ServicesPage() {
 
           {/* Hero Footer */}
           <Container size="full" className="w-full">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -185,7 +191,7 @@ export default function ServicesPage() {
             </div>
             <div className="col-span-12 sm:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-5xl font-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-4xl font-bold text-black mb-8 leading-tight">
                   Brand strategy and brand systems built to unlock what&#39;s next for your
                   organization.
                 </h3>

@@ -34,8 +34,8 @@ export default function WorkPage() {
 
             {/* Content */}
             <Container size="full">
-              <div className="max-w-3xl mt-12 md:mt-18">
-                <p className="text-fluid-2xl leading-snug text-black">
+              <div className="max-w-3lg mt-12 md:mt-18">
+                <p className="text-fluid-2lg leading-snug text-black">
                   See how we partner with visionary teams to build brands that stand out and push
                   the boundaries of innovation.
                 </p>
@@ -45,7 +45,7 @@ export default function WorkPage() {
 
           {/* Hero Footer */}
           <Container size="full" className="w-full">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -56,14 +56,17 @@ export default function WorkPage() {
       </section>
 
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 sm:py-48 bg-gray-100">
+      <section className="py-20 sm:py-24 bg-gray-100">
         <Container size="full">
           <ScrollRevealText>
-            <h2 className="text-fluid-7xl font-bold mb-16 text-center text-black">Selected Work</h2>
+            <h2 className="text-fluid-7xl font-medium leading-none text-black">SELECTED</h2>
+          </ScrollRevealText>
+          <ScrollRevealText>
+            <h2 className="text-fluid-7xl font-medium leading-none mb-16 text-black">WORKS</h2>
           </ScrollRevealText>
 
           <div className="grid sm:grid-cols-2 gap-8">
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -75,13 +78,18 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={100}>
-                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Affinity Group</h3>
-                  <p className="text-gray-500 text-fluid-lg">Brand Identity & Web Development</p>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-lg font-medium text-black">Affinity Group</h3>
+                    <span className="text-fluid-xs text-gray-500 uppercase tracking-wide">
+                      Technology
+                    </span>
+                  </div>
+                  <p className="text-gray-500 text-fluid-base">Brand Identity & Web Development</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -93,13 +101,18 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={200}>
-                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Pokebar</h3>
-                  <p className="text-gray-500 text-fluid-lg">Digital Strategy & UX Design</p>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-lg font-medium text-black">Pokebar</h3>
+                    <span className="text-fluid-xs text-gray-500 uppercase tracking-wide">
+                      Food & Beverage
+                    </span>
+                  </div>
+                  <p className="text-gray-500 text-fluid-base">Digital Strategy & UX Design</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -111,13 +124,18 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={300}>
-                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Marco Polo</h3>
-                  <p className="text-gray-500 text-fluid-lg">Creative Direction & Branding</p>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-lg font-medium text-black">Marco Polo</h3>
+                    <span className="text-fluid-xs text-gray-500 uppercase tracking-wide">
+                      Communication
+                    </span>
+                  </div>
+                  <p className="text-gray-500 text-fluid-base">Creative Direction & Branding</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -129,13 +147,18 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={400}>
-                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Metrotown Notary</h3>
-                  <p className="text-gray-500 text-fluid-lg">Investment Platform & Identity</p>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-lg font-medium text-black">Metrotown Notary</h3>
+                    <span className="text-fluid-xs text-gray-500 uppercase tracking-wide">
+                      Legal Services
+                    </span>
+                  </div>
+                  <p className="text-gray-500 text-fluid-base">Investment Platform & Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <TransitionLink url="/work/comm100" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -147,13 +170,18 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={500}>
-                  <h3 className="text-fluid-xl font-medium mb-2 text-black">Comm100</h3>
-                  <p className="text-gray-500 text-fluid-lg">Product Design & Development</p>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-lg font-medium text-black">Comm100</h3>
+                    <span className="text-fluid-xs text-gray-500 uppercase tracking-wide">
+                      SaaS
+                    </span>
+                  </div>
+                  <p className="text-gray-500 text-fluid-base">Product Design & Development</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -165,8 +193,13 @@ export default function WorkPage() {
                   />
                 </div>
                 <ScrollRevealText delay={600}>
-                  <h3 className="text-fluid-xl font-medium mb-2 text-black">CityColor</h3>
-                  <p className="text-gray-500 text-fluid-lg">Brand Strategy & Visual Identity</p>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-lg font-medium text-black">CityColor</h3>
+                    <span className="text-fluid-xs text-gray-500 uppercase tracking-wide">
+                      Real Estate
+                    </span>
+                  </div>
+                  <p className="text-gray-500 text-fluid-base">Brand Strategy & Visual Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>

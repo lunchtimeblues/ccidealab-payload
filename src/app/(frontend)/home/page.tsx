@@ -35,7 +35,7 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
                 <div className="flex items-center">
                   <ScrollRevealText delay={400}>
-                    <div className="w-20 hidden md:block flex-shrink-0 -ml-8 mr-4">
+                    <div className="w-20 hidden md:block flex-shrink-0 mr-4">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -80,7 +80,7 @@ export default function HomePage(): React.JSX.Element {
       />
 
       {/* Services Section */}
-      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
+      <section id="services" className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
         <Container size="full">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="col-span-12 md:col-span-4">
@@ -153,7 +153,7 @@ export default function HomePage(): React.JSX.Element {
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -171,7 +171,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -189,7 +189,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -207,7 +207,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -225,7 +225,7 @@ export default function HomePage(): React.JSX.Element {
               </div>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <TransitionLink url="/work/comm100" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -243,7 +243,7 @@ export default function HomePage(): React.JSX.Element {
               </TransitionLink>
             </MouseFollower>
 
-            <MouseFollower text="VIEW PROJECT">
+            <MouseFollower text="CASE STUDIES">
               <div className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
@@ -293,14 +293,14 @@ export default function HomePage(): React.JSX.Element {
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
               <ScrollRevealText>
-                <h2 className="text-fluid-5xl font-bold mb-8">
+                <h2 className="text-fluid-4xl font-bold mb-8">
                   Turning bold vision
                   <br />
                   into brand impact.
                 </h2>
               </ScrollRevealText>
               <ScrollRevealText delay={200} className="flex align-center justify-center">
-                <p className="text-fluid-lg text-black leading-relaxed mb-8 max-w-2xl">
+                <p className="text-fluid-base text-black leading-relaxed mb-8 max-w-2xl">
                   Brand transformations fall short because they stop at the surface— logos,
                   taglines, campaigns. We go deeper, aligning your business around an Idea Worth
                   Rallying Around®. The result? A brand your people will champion and your audience
@@ -326,10 +326,10 @@ export default function HomePage(): React.JSX.Element {
 
       {/* About Section with Carousel */}
       <section className="bg-gray-100">
-        <div className="py-24 md:py-40">
+        <div className="py-24">
           {/* Carousel - aligned to page-wrapper constraints with overflow */}
           <div className="mb-16">
-            <Carousel size="xxl">
+            <Carousel size="xl">
               <Image
                 src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
                 alt="Creative Vision - C/C IDEA LAB Studio"
@@ -370,14 +370,14 @@ export default function HomePage(): React.JSX.Element {
               {/* Paragraph column: full width on small, right half on large */}
               <div className="col-span-12 md:col-start-5 md:col-span-8">
                 <ScrollRevealText>
-                  <p className="text-fluid-4xl font-medium leading-tight md:leading-snug">
+                  <p className="text-fluid-3xl font-medium leading-tight md:leading-snug">
                     CCIDEALAB® brings together a richly multicultural team with balanced
                     perspectives and shared creativity.
                   </p>
                 </ScrollRevealText>
 
                 <ScrollRevealText delay={200}>
-                  <div className="text-fluid-lg mt-16">
+                  <div className="text-fluid-base mt-16">
                     <TransitionLink
                       url="/about"
                       label="Learn more about C/C IDEA LAB"

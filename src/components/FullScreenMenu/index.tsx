@@ -28,7 +28,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
 
-  const itemHeight = 120 // Height per menu item
+  const itemHeight = 140 // Height per menu item
   const totalHeight = navItems.length * itemHeight
 
   // Prevent body scroll when menu is open
@@ -194,7 +194,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                   alt="C&C IDEA LAB Logo"
                   width={160}
                   height={64}
-                  className="!h-16 sm:!h-36 w-auto"
+                  className="!h-12 sm:!h-24 w-auto max-w-[165px]"
                 />
               </div>
 
@@ -228,7 +228,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         key={`${item.href}-${copyIndex}-${index}`}
                         className="text-left w-full flex items-center group cursor-pointer"
                         style={{
-                          height: `h-[50px] md:h-[${itemHeight}px]`,
+                          height: `h-[60px] md:h-[${itemHeight}px]`,
                           // Use transform3d for hardware acceleration
                           transform: 'translate3d(0, 0, 0)',
                         }}
@@ -241,7 +241,7 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
                         {/* Menu item */}
                         <button
                           onClick={() => handleLinkClick(item.href)}
-                          className="text-6xl sm:text-[15rem] font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+                          className="text-fluid-5xl font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
                           style={{
                             // Optimize text rendering
                             textRendering: 'optimizeSpeed',

@@ -41,7 +41,7 @@ export default function ContactPage() {
 
           {/* Hero Footer */}
           <Container size="full" className="w-full">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>

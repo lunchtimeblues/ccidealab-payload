@@ -27,11 +27,11 @@ export default function AboutPage() {
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">C&C</span>
+              <span className="mx-8">ABOUT</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">IDEA LAB</span>
+              <span className="mx-8">ABOUT</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
@@ -40,7 +40,7 @@ export default function AboutPage() {
             {/* Content */}
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
-                <p className="text-fluid-2xl leading-snug text-black">
+                <p className="text-fluid-xl leading-snug text-black">
                   Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
                   mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
                   mottos for clients to serve as their Idea Worth Rallying Around®.
@@ -51,7 +51,7 @@ export default function AboutPage() {
 
           {/* Hero Footer */}
           <Container size="full" className="w-full">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>

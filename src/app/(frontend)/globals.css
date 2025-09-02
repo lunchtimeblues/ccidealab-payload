@@ -290,11 +290,11 @@
 */
 
 .text-fluid-xs {
-  font-size: clamp(0.75rem, 0.7rem + 0.3vw, 1.2rem); /* 12px → 19px */
+  font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.4rem); /* 14px → 22px */
 }
 
 .text-fluid-sm {
-  font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.4rem); /* 14px → 22px */
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.8rem); /* 18px → 29px */
 }
 
 .text-fluid-base {
@@ -302,7 +302,7 @@
 }
 
 .text-fluid-lg {
-  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.8rem); /* 18px → 29px */
+  font-size: clamp(1.1875rem, 1.05rem + 0.75vw, 2rem); /* 19px → 32px */
 }
 
 .text-fluid-xl {
@@ -338,9 +338,7 @@
 }
 
 .text-fluid-9xl {
-  /* Desktop scaling: More aggressive growth */
   font-size: clamp(4.5rem, 5rem + 6vw, 14rem); /* 72px → 288px */
-  /* Desktop viewport sizes: 768px=141px, 1024px=162px, 1440px=195px, 1920px=234px, 2560px=285px */
 }
 
 /* Mobile-specific scaling: More conservative */
@@ -354,6 +352,47 @@
 /* ============================================================================
    6. COMPONENT-SPECIFIC STYLES
    ============================================================================ */
+
+/* Animated Underline Effect */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.animated-underline:hover::after {
+  animation: underline-shrink-grow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes underline-shrink-grow {
+  0% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  50% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  51% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
 
 /* .logo-before::before {
   content: '';
