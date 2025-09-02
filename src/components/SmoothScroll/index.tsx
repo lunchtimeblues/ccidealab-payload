@@ -27,6 +27,9 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
     lenisRef.current = lenis
 
+    // Expose Lenis instance globally for page transitions
+    ;(window as any).lenis = lenis
+
     lenis.on('scroll', (e: { scroll: number; velocity: number }) => {
       window.dispatchEvent(
         new CustomEvent('lenis-scroll', {
@@ -34,13 +37,6 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
         }),
       )
     })
-
-    // Listen for custom scroll-to-top events from page transitions
-    const handleScrollToTop = () => {
-      lenis.scrollTo(0, { immediate: true })
-    }
-
-    window.addEventListener('lenis-scroll-to-top', handleScrollToTop)
 
     function raf(time: number) {
       lenis.raf(time)
@@ -50,33 +46,17 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     requestAnimationFrame(raf)
 
     return () => {
-      window.removeEventListener('lenis-scroll-to-top', handleScrollToTop)
+      // Clean up global reference
+      ;(window as any).lenis = null
       lenis.destroy()
     }
   }, [])
 
-  // Scroll to top on route change using Lenis with multiple attempts
+  // Scroll to top on route change using Lenis API
   useEffect(() => {
     if (lenisRef.current) {
-      // Multiple immediate scroll attempts for reliability
-      const scrollToTop = () => {
-        if (lenisRef.current) {
-          lenisRef.current.scrollTo(0, { immediate: true })
-        }
-        // Also use native scroll as backup
-        window.scrollTo({ top: 0, behavior: 'instant' })
-        document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
-      }
-
-      // Immediate scroll
-      scrollToTop()
-
-      // Additional attempts with delays
-      setTimeout(scrollToTop, 0)
-      setTimeout(scrollToTop, 50)
-      setTimeout(scrollToTop, 100)
-      setTimeout(scrollToTop, 200)
+      // Use Lenis API to scroll to top immediately
+      lenisRef.current.scrollTo(0, { immediate: true })
     }
   }, [pathname])
 

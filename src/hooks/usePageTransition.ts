@@ -225,30 +225,27 @@ export const usePageTransition = () => {
           history.scrollRestoration = 'manual'
         }
 
-        // Enhanced scroll to top function that works with Lenis
-        const scrollToTop = () => {
-          // Try Lenis first if available
-          const lenisScrollEvent = new CustomEvent('lenis-scroll-to-top')
-          window.dispatchEvent(lenisScrollEvent)
-
-          // Fallback to native scroll
-          window.scrollTo({ top: 0, behavior: 'instant' })
-          document.documentElement.scrollTop = 0
-          document.body.scrollTop = 0
-        }
-
-        // Immediate scroll before navigation
-        scrollToTop()
-
         router.push(href)
 
-        // Additional scroll attempts after navigation with longer delays
-        setTimeout(scrollToTop, 100)
-        setTimeout(scrollToTop, 200)
-        setTimeout(scrollToTop, 400)
-        setTimeout(scrollToTop, 600)
-        setTimeout(scrollToTop, 800)
-        setTimeout(scrollToTop, 1000)
+        // Reset scroll using Lenis API after navigation
+        const resetScroll = () => {
+          // Access Lenis instance from window (set by SmoothScroll component)
+          const lenis = (window as any).lenis
+          if (lenis) {
+            lenis.scrollTo(0, { immediate: true })
+          } else {
+            // Fallback to native scroll if Lenis not available
+            window.scrollTo({ top: 0, behavior: 'instant' })
+            document.documentElement.scrollTop = 0
+            document.body.scrollTop = 0
+          }
+        }
+
+        // Reset scroll after navigation with multiple attempts
+        setTimeout(resetScroll, 100)
+        setTimeout(resetScroll, 200)
+        setTimeout(resetScroll, 400)
+        setTimeout(resetScroll, 600)
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],
