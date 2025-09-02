@@ -1,3 +1,6 @@
+'use client'
+
+import { useEffect } from 'react'
 import { Container } from '@/components/Container'
 import { TransitionLink } from '@/components'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
@@ -8,6 +11,10 @@ import { Carousel } from '@/components/Carousel'
 import Image from 'next/image'
 
 export default function AboutPage() {
+  // Simple scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}

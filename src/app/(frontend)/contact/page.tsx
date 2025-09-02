@@ -1,9 +1,16 @@
+'use client'
+
+import { useEffect } from 'react'
 import { Container } from '@/components/Container'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function ContactPage() {
+  // Simple scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}

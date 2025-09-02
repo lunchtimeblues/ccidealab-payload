@@ -10,6 +10,11 @@ import { TransitionLink } from '@/components/TransitionLink'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ServicesPage() {
+  // Simple scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   // Use Intersection Observer for fade effects instead of scroll listeners
   // This won't interfere with ScrollMarquee's scroll handling
   const [sectionVisibility, setSectionVisibility] = useState<{ [key: number]: number }>({})

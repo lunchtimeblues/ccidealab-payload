@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 
 import { TransitionLink } from '@/components/TransitionLink'
@@ -16,6 +16,10 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { Carousel } from '@/components/Carousel'
 
 export default function HomePage(): React.JSX.Element {
+  // Simple scroll to top on page load
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
