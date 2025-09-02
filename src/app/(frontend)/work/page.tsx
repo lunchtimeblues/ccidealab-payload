@@ -12,7 +12,19 @@ import { TransitionLink } from '@/components/TransitionLink'
 export default function WorkPage() {
   // Simple scroll to top on page load
   useEffect(() => {
+    console.log('🏠 Work page mounted, scrolling to top')
     window.scrollTo(0, 0)
+
+    // Also try with a small delay to see if something is overriding it
+    setTimeout(() => {
+      console.log('🔄 Work page delayed scroll to top')
+      window.scrollTo(0, 0)
+    }, 100)
+
+    setTimeout(() => {
+      console.log('🔄 Work page final scroll to top')
+      window.scrollTo(0, 0)
+    }, 500)
   }, [])
   return (
     <div className="bg-gray-100 text-black">

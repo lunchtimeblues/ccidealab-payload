@@ -70,10 +70,17 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       }
       requestAnimationFrame(raf)
 
-      // Force scroll to top
+      // Force scroll to top - but this might be overriding page useEffect
       setTimeout(() => {
+        console.log('🎯 Lenis reinit: forcing scroll to top')
         newLenis.scrollTo(0, { immediate: true })
       }, 50)
+
+      // Try again after page components have mounted
+      setTimeout(() => {
+        console.log('🎯 Lenis reinit: final scroll to top attempt')
+        newLenis.scrollTo(0, { immediate: true })
+      }, 1000)
     }
 
     window.addEventListener('reinit-lenis', handleReinitLenis)
