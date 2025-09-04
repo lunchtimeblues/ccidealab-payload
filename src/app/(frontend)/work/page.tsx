@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
@@ -11,32 +9,6 @@ import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
 
 export default function WorkPage() {
-  const pathname = usePathname()
-
-  // FORCE-CACHE-BREAK-v3: Scroll to top on pathname change
-  useEffect(() => {
-    console.log('🚨 FORCE-CACHE-BREAK-v3: Work page pathname changed to', pathname)
-    console.log('🚨 FORCE-CACHE-BREAK-v3: Scrolling to top NOW')
-    window.scrollTo(0, 0)
-    document.documentElement.scrollTop = 0
-    document.body.scrollTop = 0
-
-    // Multiple aggressive attempts
-    setTimeout(() => {
-      console.log('🚨 FORCE-CACHE-BREAK-v3: Work delayed scroll (100ms)')
-      window.scrollTo(0, 0)
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-    }, 100)
-
-    setTimeout(() => {
-      console.log('🚨 FORCE-CACHE-BREAK-v3: Work final scroll (500ms)')
-      window.scrollTo(0, 0)
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-    }, 500)
-  }, [pathname])
-
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}

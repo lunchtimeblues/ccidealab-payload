@@ -231,20 +231,9 @@ export const usePageTransition = () => {
         // Navigate immediately
         router.push(href)
 
-        // CACHE BREAK v2: Simple scroll reset after navigation
+        // Remove transitioning class after navigation
         setTimeout(() => {
-          const lenis = (window as any).lenis
-          if (lenis && typeof lenis.scrollTo === 'function') {
-            console.log('🎯 CACHE-BREAK-v2: Using Lenis to scroll to top')
-            lenis.scrollTo(0, { immediate: true })
-          } else {
-            console.log('🔄 CACHE-BREAK-v2: Using window.scrollTo')
-            window.scrollTo({ top: 0, behavior: 'instant' })
-          }
-
-          // Remove transitioning class
           document.documentElement.classList.remove('transitioning')
-          console.log('✅ CACHE-BREAK-v2: Scroll reset done')
         }, 1000) // Wait for transition to complete
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },

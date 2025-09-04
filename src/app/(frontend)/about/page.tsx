@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
@@ -11,19 +9,6 @@ import { Carousel } from '@/components/Carousel'
 import Image from 'next/image'
 
 export default function AboutPage() {
-  const pathname = usePathname()
-
-  // Scroll to top on pathname change (works for all navigation methods)
-  useEffect(() => {
-    console.log('🏠 About page: pathname changed to', pathname, '- scrolling to top')
-    window.scrollTo(0, 0)
-
-    // Also try with a small delay in case something overrides it
-    setTimeout(() => {
-      console.log('🔄 About page: delayed scroll to top')
-      window.scrollTo(0, 0)
-    }, 100)
-  }, [pathname])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}

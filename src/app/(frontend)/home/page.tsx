@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import React from 'react'
 import Image from 'next/image'
 
 import { TransitionLink } from '@/components/TransitionLink'
@@ -15,19 +14,6 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { Carousel } from '@/components/Carousel'
 
 export default function HomePage(): React.JSX.Element {
-  const pathname = usePathname()
-
-  // Scroll to top on pathname change (works for all navigation methods)
-  useEffect(() => {
-    console.log('🏠 Home page: pathname changed to', pathname, '- scrolling to top')
-    window.scrollTo(0, 0)
-
-    // Also try with a small delay in case something overrides it
-    setTimeout(() => {
-      console.log('🔄 Home page: delayed scroll to top')
-      window.scrollTo(0, 0)
-    }, 100)
-  }, [pathname])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
@@ -45,9 +31,9 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={200}>
                   <div className="md:text-right -mr-1">People</div>
                 </ScrollRevealText>
-                <div className="flex items-center">
+                <div className="flex items-center justify-between">
                   <ScrollRevealText delay={400}>
-                    <div className="w-20 hidden md:block flex-shrink-0 mr-4">
+                    <div className="w-20 md:w-32 hidden md:block flex-shrink-0 mr-4">
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -66,6 +52,7 @@ export default function HomePage(): React.JSX.Element {
                   <ScrollRevealText delay={600}>
                     <div className="flex-1 text-center md:text-left">Champion</div>
                   </ScrollRevealText>
+                  <div className="hidden md:block w-20"></div>
                 </div>
               </h1>
 

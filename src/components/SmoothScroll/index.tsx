@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { usePathname } from 'next/navigation'
 import Lenis from '@studio-freight/lenis' // You're still using the old package
 
 interface SmoothScrollProps {
@@ -10,7 +9,6 @@ interface SmoothScrollProps {
 
 export const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const lenisRef = useRef<Lenis | null>(null)
-  const pathname = usePathname()
 
   useEffect(() => {
     // Disable browser scroll restoration
@@ -38,17 +36,6 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       )
     })
 
-    // Listen for pathname changes and reset scroll
-    const handlePathnameChange = () => {
-      console.log('🔄 Pathname changed, resetting Lenis scroll')
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(0, { immediate: true })
-      }
-    }
-
-    // Reset scroll on pathname change
-    handlePathnameChange()
-
     function raf(time: number) {
       lenis.raf(time)
       requestAnimationFrame(raf)
@@ -64,16 +51,6 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       }
     }
   }, [])
-
-  // CACHE BREAK v2: Simple scroll to top on route change
-  useEffect(() => {
-    console.log('📍 CACHE-BREAK-v2: Pathname changed, scrolling to top')
-
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true })
-      console.log('🎯 CACHE-BREAK-v2: SmoothScroll used Lenis')
-    }
-  }, [pathname])
 
   return <>{children}</>
 }

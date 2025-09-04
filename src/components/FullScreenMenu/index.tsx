@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, memo } from 'react'
+import { useEffect, useRef, memo } from 'react'
 import Image from 'next/image'
 import { TransitionLink } from '@/components/TransitionLink'
 
@@ -48,7 +48,7 @@ const MenuGroup = memo(
             <TransitionLink
               url={item.href}
               onClick={onClose}
-              className="font-semi-bold text-white/50 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
+              className="font-semi-bold text-white/20 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full text-left w-full bg-transparent border-none cursor-pointer"
               transitionType={item.transitionType || 'logoWipe'}
               transitionColor={item.transitionColor}
             >
@@ -69,10 +69,10 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
   navItems,
 }) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [scrollY, setScrollY] = useState(0)
-
-  const itemHeight = 140
-  const totalHeight = navItems.length * itemHeight
+  // Commented out for single menu group display
+  // const [scrollY, setScrollY] = useState(0)
+  // const itemHeight = 140
+  // const totalHeight = navItems.length * itemHeight
 
   // Prevent body scroll
   useEffect(() => {
@@ -96,54 +96,68 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
     }
   }, [isOpen])
 
-  // Scroll & keyboard handling
+  // Scroll & keyboard handling - COMMENTED OUT FOR SINGLE MENU GROUP
+  // useEffect(() => {
+  //   if (!isOpen || !scrollContainerRef.current) return
+  //   const container = scrollContainerRef.current
+  //   let rafId: number
+
+  //   const updateScroll = (delta: number) => {
+  //     setScrollY((prev) => {
+  //       let newScrollY = prev + delta
+  //       while (newScrollY >= totalHeight) newScrollY -= totalHeight
+  //       while (newScrollY < 0) newScrollY += totalHeight
+  //       return newScrollY
+  //     })
+  //   }
+
+  //   const handleWheel = (e: WheelEvent) => {
+  //     e.preventDefault()
+  //     if (rafId) cancelAnimationFrame(rafId)
+  //     rafId = requestAnimationFrame(() => updateScroll(e.deltaY * 0.6))
+  //   }
+
+  //   const handleKeyDown = (e: KeyboardEvent) => {
+  //     if (!isOpen) return
+  //     switch (e.key) {
+  //       case 'Escape':
+  //         e.preventDefault()
+  //         onClose()
+  //         break
+  //       case 'ArrowUp':
+  //         e.preventDefault()
+  //         updateScroll(-40)
+  //         break
+  //       case 'ArrowDown':
+  //         e.preventDefault()
+  //         updateScroll(40)
+  //         break
+  //     }
+  //   }
+
+  //   container.addEventListener('wheel', handleWheel, { passive: false })
+  //   document.addEventListener('keydown', handleKeyDown)
+
+  //   return () => {
+  //     if (rafId) cancelAnimationFrame(rafId)
+  //     container.removeEventListener('wheel', handleWheel)
+  //     document.removeEventListener('keydown', handleKeyDown)
+  //   }
+  // }, [isOpen, totalHeight, onClose])
+
+  // Simple keyboard handling for ESC key only
   useEffect(() => {
-    if (!isOpen || !scrollContainerRef.current) return
-    const container = scrollContainerRef.current
-    let rafId: number
-
-    const updateScroll = (delta: number) => {
-      setScrollY((prev) => {
-        let newScrollY = prev + delta
-        while (newScrollY >= totalHeight) newScrollY -= totalHeight
-        while (newScrollY < 0) newScrollY += totalHeight
-        return newScrollY
-      })
-    }
-
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault()
-      if (rafId) cancelAnimationFrame(rafId)
-      rafId = requestAnimationFrame(() => updateScroll(e.deltaY * 0.6))
-    }
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return
-      switch (e.key) {
-        case 'Escape':
-          e.preventDefault()
-          onClose()
-          break
-        case 'ArrowUp':
-          e.preventDefault()
-          updateScroll(-40)
-          break
-        case 'ArrowDown':
-          e.preventDefault()
-          updateScroll(40)
-          break
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
       }
     }
 
-    container.addEventListener('wheel', handleWheel, { passive: false })
     document.addEventListener('keydown', handleKeyDown)
-
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId)
-      container.removeEventListener('wheel', handleWheel)
-      document.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [isOpen, totalHeight, onClose])
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
 
   return (
     <div
@@ -197,11 +211,8 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
           {/* Items */}
           <div className="absolute inset-0 flex items-center justify-center z-20">
             <div className="page-wrapper w-full">
-              <div
-                className="flex flex-col justify-center"
-                style={{ transform: `translateY(-${scrollY}px)`, willChange: 'transform' }}
-              >
-                {Array.from({ length: 4 }, (_, copyIndex) => (
+              <div className="flex flex-col justify-center">
+                {Array.from({ length: 1 }, (_, copyIndex) => (
                   <MenuGroup
                     key={copyIndex}
                     navItems={navItems}
