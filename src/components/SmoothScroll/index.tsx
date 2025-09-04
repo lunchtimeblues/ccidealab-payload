@@ -65,13 +65,13 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     }
   }, [])
 
-  // Simple scroll to top on route change
+  // CACHE BREAK v2: Simple scroll to top on route change
   useEffect(() => {
-    console.log('📍 SIMPLE: Pathname changed, scrolling to top')
+    console.log('📍 CACHE-BREAK-v2: Pathname changed, scrolling to top')
 
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true })
-      console.log('🎯 SIMPLE: SmoothScroll used Lenis')
+      console.log('🎯 CACHE-BREAK-v2: SmoothScroll used Lenis')
     }
   }, [pathname])
 
