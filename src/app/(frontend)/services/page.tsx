@@ -13,31 +13,10 @@ import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 export default function ServicesPage() {
   const pathname = usePathname()
 
-  // Scroll to top whenever this page is navigated to
+  // Simple scroll to top on page load - reliable solution
   useEffect(() => {
-    console.log('🏠 Services page pathname changed, scrolling to top')
-
-    // Aggressive scroll reset with multiple methods and delays
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: 'instant' })
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-
-      // Also try to override Lenis if it exists
-      const lenis = (window as any).lenis
-      if (lenis && typeof lenis.scrollTo === 'function') {
-        lenis.scrollTo(0, { immediate: true })
-      }
-    }
-
-    // Multiple attempts with different delays
-    scrollToTop() // Immediate
-    setTimeout(scrollToTop, 50)
-    setTimeout(scrollToTop, 200)
-    setTimeout(scrollToTop, 500)
-    setTimeout(scrollToTop, 1000)
-    setTimeout(scrollToTop, 1500)
-  }, [pathname])
+    window.scrollTo(0, 0)
+  }, [])
 
   // Use Intersection Observer for fade effects instead of scroll listeners
   // This won't interfere with ScrollMarquee's scroll handling

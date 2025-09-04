@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
@@ -9,6 +10,11 @@ import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
 
 export default function WorkPage() {
+  // Simple scroll to top on page load - reliable solution
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}

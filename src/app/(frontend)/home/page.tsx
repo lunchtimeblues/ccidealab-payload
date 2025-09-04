@@ -19,24 +19,10 @@ import { Carousel } from '@/components/Carousel'
 export default function HomePage(): React.JSX.Element {
   const pathname = usePathname()
 
-  // Scroll to top whenever this page is navigated to
+  // Simple scroll to top on page load - reliable solution
   useEffect(() => {
-    const scrollToTop = () => {
-      window.scrollTo({ top: 0, behavior: 'instant' })
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-      const lenis = (window as any).lenis
-      if (lenis && typeof lenis.scrollTo === 'function') {
-        lenis.scrollTo(0, { immediate: true })
-      }
-    }
-    scrollToTop()
-    setTimeout(scrollToTop, 50)
-    setTimeout(scrollToTop, 200)
-    setTimeout(scrollToTop, 500)
-    setTimeout(scrollToTop, 1000)
-    setTimeout(scrollToTop, 1500)
-  }, [pathname])
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
