@@ -57,7 +57,6 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     requestAnimationFrame(raf)
 
     return () => {
-      window.removeEventListener('reinit-lenis', handleReinitLenis)
       // Clean up global reference
       ;(window as any).lenis = null
       if (lenisRef.current) {
