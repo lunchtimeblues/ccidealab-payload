@@ -52,13 +52,11 @@ export default function ContactPage() {
             {/* Content */}
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
-                <ScrollRevealText>
-                  <p className="text-fluid-2xl leading-snug text-black">
-                    Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
-                    mottos were war cries of sentiment, hope, and purpose. Today, we create bold
-                    brand mottos for clients to serve as their Idea Worth Rallying Around®.
-                  </p>
-                </ScrollRevealText>
+                <p className="text-fluid-xl leading-snug text-black">
+                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
+                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold
+                  brand mottos for clients to serve as their Idea Worth Rallying Around®.
+                </p>
               </div>
             </Container>
           </div>

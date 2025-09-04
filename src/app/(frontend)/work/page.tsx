@@ -65,8 +65,8 @@ export default function WorkPage() {
 
             {/* Content */}
             <Container size="full">
-              <div className="max-w-3lg mt-12 md:mt-18">
-                <p className="text-fluid-2lg leading-snug text-black">
+              <div className="max-w-3xl mt-12 md:mt-18">
+                <p className="text-fluid-xl leading-snug text-black">
                   See how we partner with visionary teams to build brands that stand out and push
                   the boundaries of innovation.
                 </p>
