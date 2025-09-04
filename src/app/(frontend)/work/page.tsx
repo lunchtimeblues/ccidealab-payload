@@ -89,10 +89,10 @@ export default function WorkPage() {
       <section className="py-32 bg-gray-100">
         <Container size="full">
           <ScrollRevealText>
-            <h2 className="text-fluid-7xl font-medium leading-none text-black">SELECTED</h2>
+            <h2 className="text-fluid-6xl font-medium leading-none text-black">SELECTED</h2>
           </ScrollRevealText>
           <ScrollRevealText>
-            <h2 className="text-fluid-7xl font-medium leading-none mb-16 text-black">WORKS</h2>
+            <h2 className="text-fluid-6xl font-medium leading-none mb-16 text-black">WORKS</h2>
           </ScrollRevealText>
 
           <div className="grid md:grid-cols-2 gap-8">
