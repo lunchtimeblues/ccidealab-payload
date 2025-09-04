@@ -38,46 +38,16 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       )
     })
 
-    // Listen for Lenis re-initialization events
-    const handleReinitLenis = () => {
-      console.log('🔄 Reinit Lenis event received, creating new instance...')
-
-      // Create new Lenis instance
-      const newLenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        touchMultiplier: 2,
-        infinite: false,
-      })
-
-      // Update refs and global reference
-      lenisRef.current = newLenis
-      ;(window as any).lenis = newLenis
-
-      // Set up scroll event
-      newLenis.on('scroll', (e: { scroll: number; velocity: number }) => {
-        window.dispatchEvent(
-          new CustomEvent('lenis-scroll', {
-            detail: { scroll: e.scroll, velocity: e.velocity },
-          }),
-        )
-      })
-
-      // Start the animation loop
-      function raf(time: number) {
-        newLenis.raf(time)
-        requestAnimationFrame(raf)
+    // Listen for pathname changes and reset scroll
+    const handlePathnameChange = () => {
+      console.log('🔄 Pathname changed, resetting Lenis scroll')
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true })
       }
-      requestAnimationFrame(raf)
-
-      // Force scroll to top after Lenis is fully set up
-      setTimeout(() => {
-        console.log('🎯 Lenis reinit: forcing scroll to top via Lenis API')
-        newLenis.scrollTo(0, { immediate: true })
-      }, 100)
     }
 
-    window.addEventListener('reinit-lenis', handleReinitLenis)
+    // Reset scroll on pathname change
+    handlePathnameChange()
 
     function raf(time: number) {
       lenis.raf(time)

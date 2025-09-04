@@ -1,7 +1,5 @@
 'use client'
 
-import { useEffect } from 'react'
-import { usePathname } from 'next/navigation'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
@@ -11,34 +9,6 @@ import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
 
 export default function WorkPage() {
-  const pathname = usePathname()
-
-  // Scroll to top whenever this page is navigated to
-  useEffect(() => {
-    console.log('🏠 Work page pathname changed, scrolling to top')
-
-    // Focus on Lenis API for scroll reset since it hijacks scroll behavior
-    const scrollToTop = () => {
-      const lenis = (window as any).lenis
-      if (lenis && typeof lenis.scrollTo === 'function') {
-        console.log('🎯 Work page: Using Lenis API to scroll to top')
-        lenis.scrollTo(0, { immediate: true })
-      } else {
-        console.log('🔄 Work page: Lenis not available, using window.scrollTo')
-        window.scrollTo({ top: 0, behavior: 'instant' })
-      }
-    }
-
-    // Wait for Lenis to be available, then reset scroll
-    const checkAndScroll = () => {
-      scrollToTop()
-      // Check again after a delay in case Lenis is still initializing
-      setTimeout(scrollToTop, 200)
-      setTimeout(scrollToTop, 500)
-    }
-
-    checkAndScroll()
-  }, [pathname])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}

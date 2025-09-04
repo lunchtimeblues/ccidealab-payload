@@ -242,61 +242,26 @@ export const usePageTransition = () => {
         document.body.scrollTop = 0
 
         // Navigate
-        router.push(href)
+        router.push(href).then(() => {
+          console.log('🔄 Navigation completed, starting scroll reset process')
 
-        // Aggressive scroll reset after navigation with multiple attempts
-        const forceScrollReset = () => {
-          console.log('🔄 Force scroll reset attempt...')
-          window.scrollTo({ top: 0, behavior: 'instant' })
-          document.documentElement.scrollTop = 0
-          document.body.scrollTop = 0
-
-          // Also try scrolling the html element directly
-          const html = document.documentElement
-          if (html) {
-            html.scrollTop = 0
-            if (html.scrollTo) {
-              html.scrollTo({ top: 0, behavior: 'instant' })
-            }
-          }
-
-          // And the body
-          const body = document.body
-          if (body) {
-            body.scrollTop = 0
-            if (body.scrollTo) {
-              body.scrollTo({ top: 0, behavior: 'instant' })
-            }
-          }
-        }
-
-        // Multiple scroll reset attempts
-        setTimeout(forceScrollReset, 100)
-        setTimeout(forceScrollReset, 300)
-        setTimeout(forceScrollReset, 500)
-        setTimeout(forceScrollReset, 800)
-
-        // Re-initialize Lenis after navigation completes
-        setTimeout(() => {
-          console.log('🔄 Re-initializing Lenis after navigation...')
-          window.dispatchEvent(new CustomEvent('reinit-lenis'))
-
-          // Wait for Lenis to be fully reinitialized, then reset scroll
+          // Wait a moment for the new page to render, then reset scroll
           setTimeout(() => {
+            // Try Lenis first
             const lenis = (window as any).lenis
             if (lenis && typeof lenis.scrollTo === 'function') {
-              console.log('🎯 Lenis fully reinitialized, resetting scroll to top')
+              console.log('🎯 Using Lenis API to reset scroll')
               lenis.scrollTo(0, { immediate: true })
             } else {
-              console.log('⚠️ Lenis not available, falling back to window.scrollTo')
+              console.log('🔄 Lenis not available, using window.scrollTo')
               window.scrollTo({ top: 0, behavior: 'instant' })
             }
 
             // Remove transitioning class
             document.documentElement.classList.remove('transitioning')
-            console.log('✅ Transition complete, scroll reset via Lenis')
-          }, 300) // Give Lenis time to fully initialize
-        }, 1200)
+            console.log('✅ Scroll reset complete')
+          }, 100)
+        })
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],
