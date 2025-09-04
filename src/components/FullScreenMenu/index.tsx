@@ -92,6 +92,9 @@ export const FullScreenMenu: React.FC<FullScreenMenuProps> = ({
         document.body.style.top = ''
         document.body.style.width = ''
         document.removeEventListener('touchmove', preventTouchMove)
+
+        // Restore the original scroll position
+        window.scrollTo(0, originalScrollY)
       }
     }
   }, [isOpen])
