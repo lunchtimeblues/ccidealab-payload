@@ -300,15 +300,15 @@
 */
 
 .text-fluid-xs {
-  font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.4rem); /* 14px → 22px */
+  font-size: clamp(0.75rem, 0.7rem + 0.3vw, 1.2rem); /* 12px → 19px */
 }
 
 .text-fluid-sm {
-  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.8rem); /* 18px → 29px */
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.6rem); /* 16px → 26px */
 }
 
 .text-fluid-base {
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.6rem); /* 16px → 26px */
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.8rem); /* 18px → 29px */
 }
 
 .text-fluid-lg {

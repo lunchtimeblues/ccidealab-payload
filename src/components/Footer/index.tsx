@@ -91,10 +91,10 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-[#151515] text-white px-6 md:px-12 pt-32 sm:pt-32 pb-16 sm:pb-16 md:pb-20 text-fluid-xs relative flex flex-col justify-center"
+      className="bg-[#151515] text-white px-6 md:px-12 pt-32 sm:pt-32 pb-16 sm:pb-20 md:pb-24 text-fluid-xs relative flex flex-col justify-center"
       style={{
-        // Reduced transform to prevent bottom cut-off on medium screens
-        transform: `translate3d(0px, ${-15 + scrollY * 15}%, 0px)`,
+        // Further reduced transform to prevent bottom cut-off on medium screens
+        transform: `translate3d(0px, ${-8 + scrollY * 8}%, 0px)`,
       }}
     >
       {/* Logo & Newsletter */}
