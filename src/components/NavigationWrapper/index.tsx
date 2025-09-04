@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import { usePageTransition } from '@/hooks/usePageTransition'
+
 import { AnimatedNav } from '@/components/AnimatedNav'
 import { FullScreenMenu } from '@/components/FullScreenMenu'
 
@@ -23,13 +23,10 @@ const navItems: NavItem[] = [
 
 export const NavigationWrapper = () => {
   const pathname = usePathname()
-  const { navigateWithTransition } = usePageTransition()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isNavigating, setIsNavigating] = useState(false)
   const navigationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const previousPathnameRef = useRef(pathname)
-
-  const exitAnimationTime = 700 // ms — match your CSS transition
 
   // Listen for pathname changes to detect when navigation is complete
   useEffect(() => {
@@ -62,39 +59,6 @@ export const NavigationWrapper = () => {
     }
   }, [])
 
-  const navigateWithMenuTransition = (url: string) => {
-    console.log('🔗 Navigating to:', url)
-
-    // Don't navigate if we're already on this page
-    if (pathname === url) {
-      console.log('🚫 Already on this page, just closing menu')
-      setIsMenuOpen(false)
-      return
-    }
-
-    // Find the nav item to get its transition color
-    const navItem = navItems.find((item) => item.href === url)
-    const transitionColor = navItem?.transitionColor || '#000'
-
-    // Trigger exit animation
-    setIsNavigating(true)
-
-    // Wait for animation to complete, then start logo wipe transition
-    setTimeout(() => {
-      console.log('⏰ Animation complete, starting logo wipe navigation')
-
-      // Use the premium transition with the item's color
-      navigateWithTransition(url, 'logoWipe', transitionColor)
-
-      // Set a fallback timeout in case pathname change detection fails
-      navigationTimeoutRef.current = setTimeout(() => {
-        console.log('⚠️ Fallback timeout reached, closing menu')
-        setIsMenuOpen(false)
-        setIsNavigating(false)
-      }, 3000) // 3 second fallback
-    }, exitAnimationTime)
-  }
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
   }
@@ -111,7 +75,6 @@ export const NavigationWrapper = () => {
         isOpen={isMenuOpen}
         isNavigating={isNavigating}
         onClose={closeMenu}
-        onNavigate={navigateWithMenuTransition}
         navItems={navItems}
       />
     </>
