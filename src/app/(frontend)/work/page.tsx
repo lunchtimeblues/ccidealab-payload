@@ -19,6 +19,7 @@ export default function WorkPage() {
 
     // Aggressive scroll reset with multiple methods and delays
     const scrollToTop = () => {
+      console.log('🔄 Work page scroll reset attempt')
       window.scrollTo({ top: 0, behavior: 'instant' })
       document.documentElement.scrollTop = 0
       document.body.scrollTop = 0
@@ -26,17 +27,20 @@ export default function WorkPage() {
       // Also try to override Lenis if it exists
       const lenis = (window as any).lenis
       if (lenis && typeof lenis.scrollTo === 'function') {
+        console.log('🎯 Work page: Lenis scroll to top')
         lenis.scrollTo(0, { immediate: true })
       }
     }
 
-    // Multiple attempts with different delays
+    // Multiple attempts with different delays - extended timing to override Lenis
     scrollToTop() // Immediate
     setTimeout(scrollToTop, 50)
     setTimeout(scrollToTop, 200)
     setTimeout(scrollToTop, 500)
     setTimeout(scrollToTop, 1000)
     setTimeout(scrollToTop, 1500)
+    setTimeout(scrollToTop, 2000) // After Lenis reinit
+    setTimeout(scrollToTop, 2500) // Final attempt
   }, [pathname])
   return (
     <div className="bg-gray-100 text-black">

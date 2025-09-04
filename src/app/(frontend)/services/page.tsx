@@ -269,29 +269,29 @@ export default function ServicesPage() {
               <div className="h-screen flex flex-col justify-center py-8 md:py-12">
                 <div className="relative z-20">
                   {/* Header Section */}
-                  <div className="flex justify-between items-start mb-8 md:mb-12">
-                    <h2 className="uppercase text-fluid-5xl font-medium">{service.title}</h2>
-                    <span className="uppercase hidden sm:block text-fluid-5xl font-medium">
+                  <div className="flex justify-between items-start mb-8 md:mb-10">
+                    <h2 className="uppercase text-fluid-lg font-medium">{service.title}</h2>
+                    <span className="uppercase hidden sm:block text-fluid-lg font-medium">
                       {service.number}
                     </span>
                   </div>
 
                   {/* Content Section */}
-                  <div className="border-t border-[#CFD5D7] pt-8 md:pt-12">
+                  <div className="border-t border-[#CFD5D7] pt-8 md:pt-10">
                     <div className="grid grid-cols-12 gap-6 md:gap-8">
                       {/* Text Content */}
                       <div className="col-span-12 lg:col-span-8">
-                        <p className="text-fluid-lg leading-relaxed mb-8 md:mb-10">
+                        <p className="text-fluid-sm leading-relaxed mb-6 md:mb-8">
                           {service.description}
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                          <ul className="space-y-2 text-fluid-base">
+                          <ul className="space-y-2 text-fluid-xs">
                             {service.features1.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
                           </ul>
-                          <ul className="space-y-2 text-fluid-base">
+                          <ul className="space-y-2 text-fluid-xs">
                             {service.features2.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
