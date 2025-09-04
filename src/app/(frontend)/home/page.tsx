@@ -9,8 +9,6 @@ import { QuickVideo } from '@/components/QuickVideo'
 // import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 import { Container } from '@/components/Container'
-import { ScrollMarquee } from '@/components/ScrollMarquee'
-import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollVideo } from '@/components/ScrollVideo'
 import { MouseFollower } from '@/components/MouseFollower'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
@@ -80,6 +78,16 @@ export default function HomePage(): React.JSX.Element {
                 </p>
               </div>
             </div>
+          </div>
+        </Container>
+
+        {/* Hero Footer */}
+        <Container size="full" className="w-full">
+          <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
+            <a href="#about" className="border-b border-black hover:opacity-70 transition">
+              Learn more about our company <span className="inline-block ml-1">↓</span>
+            </a>
+            <span className="text-black/60">(SCROLL)</span>
           </div>
         </Container>
       </section>
@@ -274,66 +282,6 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
               </div>
             </MouseFollower>
-          </div>
-        </Container>
-      </section>
-
-      {/* Method Section */}
-      <section className="relative bg-gray-100 overflow-hidden">
-        <div className="relative md:absolute inset-0 z-0">
-          <ScrollMarquee
-            baseSpeed={0.8}
-            maxSpeedMultiplier={2}
-            starSpinSpeed={4}
-            lines="dual"
-            lineClassName="text-[8vw] font-light uppercase tracking-tight leading-none"
-          >
-            <span className="mx-8">METHOD</span>
-            <span className="mx-8 flex items-center">
-              <SpinningStar size={64} className="text-current" />
-            </span>
-            <span className="mx-8">METHOD</span>
-            <span className="mx-8 flex items-center">
-              <SpinningStar size={64} className="text-current" />
-            </span>
-            <span className="mx-8">METHOD</span>
-            <span className="mx-8 flex items-center">
-              <SpinningStar size={64} className="text-current" />
-            </span>
-          </ScrollMarquee>
-        </div>
-
-        <Container size="full" className="relative z-10 py-24 md:py-40">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <ScrollRevealText>
-                <h2 className="text-fluid-4xl font-bold mb-8">
-                  Turning bold vision
-                  <br />
-                  into brand impact.
-                </h2>
-              </ScrollRevealText>
-              <ScrollRevealText delay={200} className="flex align-center justify-center">
-                <p className="text-fluid-base text-black leading-relaxed mb-8 max-w-2xl">
-                  Brand transformations fall short because they stop at the surface— logos,
-                  taglines, campaigns. We go deeper, aligning your business around an Idea Worth
-                  Rallying Around®. The result? A brand your people will champion and your audience
-                  will love.
-                </p>
-              </ScrollRevealText>
-            </div>
-
-            <ScrollRevealText delay={300}>
-              <div className="relative overflow-hidden rounded-lg aspect-[4/5]">
-                <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center hover:from-gray-300 hover:to-gray-400 transition-all duration-700 ease-out">
-                  <div className="text-center">
-                    <p className="text-fluid-sm text-gray-500">Placeholder</p>
-                  </div>
-                </div>
-                {/* Optional subtle overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
-              </div>
-            </ScrollRevealText>
           </div>
         </Container>
       </section>

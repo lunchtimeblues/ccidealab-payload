@@ -78,7 +78,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
                 appearance="inline"
                 transitionType={item.transitionType}
                 transitionColor={item.transitionColor}
-                className="text-fluid-base"
+                className="text-fluid-sm"
               />
             </div>
           ))}
@@ -106,7 +106,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               appearance="inline"
               transitionType="logoWipe"
               transitionColor="#666666ff"
-              className="text-fluid-base animated-underline"
+              className="text-fluid-sm animated-underline"
             />
           </div>
 

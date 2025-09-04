@@ -7,34 +7,35 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollVideo } from '@/components/ScrollVideo'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
-import { TransitionLink } from '@/components/TransitionLink'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 
 export default function ServicesPage() {
   const pathname = usePathname()
 
-  // FORCE-CACHE-BREAK-v3: Scroll to top on pathname change
+  // Scroll to top whenever this page is navigated to
   useEffect(() => {
-    console.log('🚨 FORCE-CACHE-BREAK-v3: Services page pathname changed to', pathname)
-    console.log('🚨 FORCE-CACHE-BREAK-v3: Scrolling to top NOW')
-    window.scrollTo(0, 0)
-    document.documentElement.scrollTop = 0
-    document.body.scrollTop = 0
+    console.log('🏠 Services page pathname changed, scrolling to top')
 
-    // Multiple aggressive attempts
-    setTimeout(() => {
-      console.log('🚨 FORCE-CACHE-BREAK-v3: Services delayed scroll (100ms)')
-      window.scrollTo(0, 0)
+    // Aggressive scroll reset with multiple methods and delays
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'instant' })
       document.documentElement.scrollTop = 0
       document.body.scrollTop = 0
-    }, 100)
 
-    setTimeout(() => {
-      console.log('🚨 FORCE-CACHE-BREAK-v3: Services final scroll (500ms)')
-      window.scrollTo(0, 0)
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-    }, 500)
+      // Also try to override Lenis if it exists
+      const lenis = (window as any).lenis
+      if (lenis && typeof lenis.scrollTo === 'function') {
+        lenis.scrollTo(0, { immediate: true })
+      }
+    }
+
+    // Multiple attempts with different delays
+    scrollToTop() // Immediate
+    setTimeout(scrollToTop, 50)
+    setTimeout(scrollToTop, 200)
+    setTimeout(scrollToTop, 500)
+    setTimeout(scrollToTop, 1000)
+    setTimeout(scrollToTop, 1500)
   }, [pathname])
 
   // Use Intersection Observer for fade effects instead of scroll listeners
@@ -267,29 +268,29 @@ export default function ServicesPage() {
               <div className="h-screen flex flex-col justify-center py-8 md:py-12">
                 <div className="relative z-20">
                   {/* Header Section */}
-                  <div className="flex justify-between items-start mb-8 md:mb-10">
-                    <h2 className="uppercase text-fluid-lg font-medium">{service.title}</h2>
-                    <span className="uppercase hidden sm:block text-fluid-lg font-medium">
+                  <div className="flex justify-between items-start mb-8 md:mb-12">
+                    <h2 className="uppercase text-fluid-5xl font-medium">{service.title}</h2>
+                    <span className="uppercase hidden sm:block text-fluid-5xl font-medium">
                       {service.number}
                     </span>
                   </div>
 
                   {/* Content Section */}
-                  <div className="border-t border-[#CFD5D7] pt-8 md:pt-10">
+                  <div className="border-t border-[#CFD5D7] pt-8 md:pt-12">
                     <div className="grid grid-cols-12 gap-6 md:gap-8">
                       {/* Text Content */}
                       <div className="col-span-12 lg:col-span-8">
-                        <p className="text-fluid-sm leading-relaxed mb-6 md:mb-8">
+                        <p className="text-fluid-lg leading-relaxed mb-8 md:mb-10">
                           {service.description}
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-                          <ul className="space-y-2 text-fluid-xs">
+                          <ul className="space-y-2 text-fluid-base">
                             {service.features1.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
                           </ul>
-                          <ul className="space-y-2 text-fluid-xs">
+                          <ul className="space-y-2 text-fluid-base">
                             {service.features2.map((item, i) => (
                               <li key={i}>{item}</li>
                             ))}
