@@ -10,10 +10,17 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 export default function ContactPage() {
   const pathname = usePathname()
 
-  // Simple scroll to top on page load - reliable solution
+  // Scroll to top on pathname change (works for all navigation methods)
   useEffect(() => {
+    console.log('🏠 Contact page: pathname changed to', pathname, '- scrolling to top')
     window.scrollTo(0, 0)
-  }, [])
+
+    // Also try with a small delay in case something overrides it
+    setTimeout(() => {
+      console.log('🔄 Contact page: delayed scroll to top')
+      window.scrollTo(0, 0)
+    }, 100)
+  }, [pathname])
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}

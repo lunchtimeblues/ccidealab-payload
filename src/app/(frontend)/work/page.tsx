@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import { Container } from '@/components/Container'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
@@ -10,10 +11,19 @@ import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
 
 export default function WorkPage() {
-  // Simple scroll to top on page load - reliable solution
+  const pathname = usePathname()
+
+  // Scroll to top on pathname change (works for all navigation methods)
   useEffect(() => {
+    console.log('🏠 Work page: pathname changed to', pathname, '- scrolling to top')
     window.scrollTo(0, 0)
-  }, [])
+
+    // Also try with a small delay in case something overrides it
+    setTimeout(() => {
+      console.log('🔄 Work page: delayed scroll to top')
+      window.scrollTo(0, 0)
+    }, 100)
+  }, [pathname])
 
   return (
     <div className="bg-gray-100 text-black">
