@@ -65,30 +65,14 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     }
   }, [])
 
-  // Aggressive scroll to top on route change
+  // Simple scroll to top on route change
   useEffect(() => {
-    console.log('📍 Pathname changed, aggressively resetting scroll')
+    console.log('📍 SIMPLE: Pathname changed, scrolling to top')
 
-    const resetScroll = () => {
-      // Try Lenis first
-      if (lenisRef.current) {
-        lenisRef.current.scrollTo(0, { immediate: true })
-        console.log('🎯 SmoothScroll: Lenis scroll reset')
-      }
-
-      // Also force native scroll reset
-      window.scrollTo({ top: 0, behavior: 'instant' })
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-      console.log('🔄 SmoothScroll: Native scroll reset')
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true })
+      console.log('🎯 SIMPLE: SmoothScroll used Lenis')
     }
-
-    // Multiple attempts to ensure it works
-    resetScroll()
-    setTimeout(resetScroll, 10)
-    setTimeout(resetScroll, 50)
-    setTimeout(resetScroll, 100)
-    setTimeout(resetScroll, 200)
   }, [pathname])
 
   return <>{children}</>

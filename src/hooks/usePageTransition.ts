@@ -228,47 +228,24 @@ export const usePageTransition = () => {
         // Add transitioning class to force scroll behavior
         document.documentElement.classList.add('transitioning')
 
-        // Don't destroy Lenis - just reset scroll position
-        const lenis = (window as any).lenis
-        if (lenis && typeof lenis.scrollTo === 'function') {
-          console.log('🎯 Resetting Lenis scroll before navigation')
-          lenis.scrollTo(0, { immediate: true })
-        }
+        // Navigate immediately
+        router.push(href)
 
-        // Also force native scroll reset as backup
-        window.scrollTo({ top: 0, behavior: 'instant' })
-        document.documentElement.scrollTop = 0
-        document.body.scrollTop = 0
-
-        // Navigate
-        router.push(href).then(() => {
-          console.log('🔄 Navigation completed, starting scroll reset process')
-
-          // Multiple attempts to ensure scroll reset works
-          const resetScroll = () => {
-            const lenis = (window as any).lenis
-            if (lenis && typeof lenis.scrollTo === 'function') {
-              console.log('🎯 Post-navigation: Using Lenis API to reset scroll')
-              lenis.scrollTo(0, { immediate: true })
-            }
+        // Simple scroll reset after navigation
+        setTimeout(() => {
+          const lenis = (window as any).lenis
+          if (lenis && typeof lenis.scrollTo === 'function') {
+            console.log('🎯 SIMPLE: Using Lenis to scroll to top')
+            lenis.scrollTo(0, { immediate: true })
+          } else {
+            console.log('🔄 SIMPLE: Using window.scrollTo')
             window.scrollTo({ top: 0, behavior: 'instant' })
-            document.documentElement.scrollTop = 0
-            document.body.scrollTop = 0
           }
 
-          // Immediate reset
-          resetScroll()
-
-          // Delayed resets to ensure it sticks
-          setTimeout(resetScroll, 50)
-          setTimeout(resetScroll, 200)
-          setTimeout(() => {
-            resetScroll()
-            // Remove transitioning class
-            document.documentElement.classList.remove('transitioning')
-            console.log('✅ Final scroll reset complete')
-          }, 500)
-        })
+          // Remove transitioning class
+          document.documentElement.classList.remove('transitioning')
+          console.log('✅ SIMPLE: Scroll reset done')
+        }, 1000) // Wait for transition to complete
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },
     [router],
