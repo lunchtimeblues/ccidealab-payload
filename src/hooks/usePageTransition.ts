@@ -279,26 +279,23 @@ export const usePageTransition = () => {
         // Re-initialize Lenis after navigation completes
         setTimeout(() => {
           console.log('🔄 Re-initializing Lenis after navigation...')
-          forceScrollReset() // One more scroll reset before Lenis
           window.dispatchEvent(new CustomEvent('reinit-lenis'))
 
-          // Multiple final scroll reset attempts after Lenis reinit
+          // Wait for Lenis to be fully reinitialized, then reset scroll
           setTimeout(() => {
-            forceScrollReset()
-            console.log('🎯 First post-Lenis scroll reset')
-          }, 100)
+            const lenis = (window as any).lenis
+            if (lenis && typeof lenis.scrollTo === 'function') {
+              console.log('🎯 Lenis fully reinitialized, resetting scroll to top')
+              lenis.scrollTo(0, { immediate: true })
+            } else {
+              console.log('⚠️ Lenis not available, falling back to window.scrollTo')
+              window.scrollTo({ top: 0, behavior: 'instant' })
+            }
 
-          setTimeout(() => {
-            forceScrollReset()
-            console.log('🎯 Second post-Lenis scroll reset')
-          }, 300)
-
-          setTimeout(() => {
-            forceScrollReset()
             // Remove transitioning class
             document.documentElement.classList.remove('transitioning')
-            console.log('✅ Transition complete, final scroll reset')
-          }, 500)
+            console.log('✅ Transition complete, scroll reset via Lenis')
+          }, 300) // Give Lenis time to fully initialize
         }, 1200)
       }, 500) // Navigate when overlay is covering the screen (adjusted for faster timing)
     },

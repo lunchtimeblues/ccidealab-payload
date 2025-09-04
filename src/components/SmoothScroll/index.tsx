@@ -70,27 +70,11 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       }
       requestAnimationFrame(raf)
 
-      // Force scroll to top immediately after Lenis creation
-      newLenis.scrollTo(0, { immediate: true })
-
-      // Multiple aggressive scroll reset attempts
+      // Force scroll to top after Lenis is fully set up
       setTimeout(() => {
-        console.log('🎯 Lenis reinit: forcing scroll to top (50ms)')
+        console.log('🎯 Lenis reinit: forcing scroll to top via Lenis API')
         newLenis.scrollTo(0, { immediate: true })
-        window.scrollTo({ top: 0, behavior: 'instant' })
-      }, 50)
-
-      setTimeout(() => {
-        console.log('🎯 Lenis reinit: forcing scroll to top (200ms)')
-        newLenis.scrollTo(0, { immediate: true })
-        window.scrollTo({ top: 0, behavior: 'instant' })
-      }, 200)
-
-      setTimeout(() => {
-        console.log('🎯 Lenis reinit: final scroll to top attempt (500ms)')
-        newLenis.scrollTo(0, { immediate: true })
-        window.scrollTo({ top: 0, behavior: 'instant' })
-      }, 500)
+      }, 100)
     }
 
     window.addEventListener('reinit-lenis', handleReinitLenis)

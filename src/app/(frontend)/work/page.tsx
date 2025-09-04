@@ -17,30 +17,27 @@ export default function WorkPage() {
   useEffect(() => {
     console.log('🏠 Work page pathname changed, scrolling to top')
 
-    // Aggressive scroll reset with multiple methods and delays
+    // Focus on Lenis API for scroll reset since it hijacks scroll behavior
     const scrollToTop = () => {
-      console.log('🔄 Work page scroll reset attempt')
-      window.scrollTo({ top: 0, behavior: 'instant' })
-      document.documentElement.scrollTop = 0
-      document.body.scrollTop = 0
-
-      // Also try to override Lenis if it exists
       const lenis = (window as any).lenis
       if (lenis && typeof lenis.scrollTo === 'function') {
-        console.log('🎯 Work page: Lenis scroll to top')
+        console.log('🎯 Work page: Using Lenis API to scroll to top')
         lenis.scrollTo(0, { immediate: true })
+      } else {
+        console.log('🔄 Work page: Lenis not available, using window.scrollTo')
+        window.scrollTo({ top: 0, behavior: 'instant' })
       }
     }
 
-    // Multiple attempts with different delays - extended timing to override Lenis
-    scrollToTop() // Immediate
-    setTimeout(scrollToTop, 50)
-    setTimeout(scrollToTop, 200)
-    setTimeout(scrollToTop, 500)
-    setTimeout(scrollToTop, 1000)
-    setTimeout(scrollToTop, 1500)
-    setTimeout(scrollToTop, 2000) // After Lenis reinit
-    setTimeout(scrollToTop, 2500) // Final attempt
+    // Wait for Lenis to be available, then reset scroll
+    const checkAndScroll = () => {
+      scrollToTop()
+      // Check again after a delay in case Lenis is still initializing
+      setTimeout(scrollToTop, 200)
+      setTimeout(scrollToTop, 500)
+    }
+
+    checkAndScroll()
   }, [pathname])
   return (
     <div className="bg-gray-100 text-black">
