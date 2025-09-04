@@ -13,16 +13,28 @@ import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
 export default function ServicesPage() {
   const pathname = usePathname()
 
-  // Scroll to top on pathname change (works for all navigation methods)
+  // FORCE-CACHE-BREAK-v3: Scroll to top on pathname change
   useEffect(() => {
-    console.log('🏠 Services page: pathname changed to', pathname, '- scrolling to top')
+    console.log('🚨 FORCE-CACHE-BREAK-v3: Services page pathname changed to', pathname)
+    console.log('🚨 FORCE-CACHE-BREAK-v3: Scrolling to top NOW')
     window.scrollTo(0, 0)
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
 
-    // Also try with a small delay in case something overrides it
+    // Multiple aggressive attempts
     setTimeout(() => {
-      console.log('🔄 Services page: delayed scroll to top')
+      console.log('🚨 FORCE-CACHE-BREAK-v3: Services delayed scroll (100ms)')
       window.scrollTo(0, 0)
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
     }, 100)
+
+    setTimeout(() => {
+      console.log('🚨 FORCE-CACHE-BREAK-v3: Services final scroll (500ms)')
+      window.scrollTo(0, 0)
+      document.documentElement.scrollTop = 0
+      document.body.scrollTop = 0
+    }, 500)
   }, [pathname])
 
   // Use Intersection Observer for fade effects instead of scroll listeners
