@@ -14,7 +14,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/home', transitionType: 'logoWipe', transitionColor: '#ccce36ff' },
+  { label: 'Home', href: '/', transitionType: 'logoWipe', transitionColor: '#ccce36ff' },
   { label: 'Work', href: '/work', transitionType: 'logoWipe', transitionColor: '#059669' },
   { label: 'About', href: '/about', transitionType: 'logoWipe', transitionColor: '#7c3aed' },
   { label: 'Services', href: '/services', transitionType: 'logoWipe', transitionColor: '#dc2626' },

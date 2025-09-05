@@ -1,7 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { AnimatedMarquee } from '@/components/AnimatedMarquee'
 
 interface ClientLogosMarqueeProps {
   speed?: number
@@ -11,94 +10,153 @@ interface ClientLogosMarqueeProps {
 }
 
 export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
-  speed = 150,
+  speed = 60, // Much slower speed for smoother animation
   direction = 'left',
   className = '',
   logoClassName = '',
 }) => {
-  // Client logos data
+  // Client logos data - only using the SVG series from the folder
   const clientLogos = [
     {
-      src: '/images/clients/210903 _Affinity-logo-layout1-grey.svg',
-      alt: 'Affinity',
+      src: '/images/clients/250822 C&C SVG Grey-13.svg',
+      alt: 'Client Logo 13',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/CityColorLogo_Full_400x@2x (1).png',
-      alt: 'City Color',
+      src: '/images/clients/250822 C&C SVG Grey-14.svg',
+      alt: 'Client Logo 14',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/Comm100_Full-Logo_Rev.svg',
-      alt: 'Comm100',
+      src: '/images/clients/250822 C&C SVG Grey-15.svg',
+      alt: 'Client Logo 15',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/MarcoPolo_Proposed Logo.svg',
-      alt: 'Marco Polo',
+      src: '/images/clients/250822 C&C SVG Grey-16.svg',
+      alt: 'Client Logo 16',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/MetrotownNotary_black.svg',
-      alt: 'Metrotown Notary',
+      src: '/images/clients/250822 C&C SVG Grey-17.svg',
+      alt: 'Client Logo 17',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/fanta-logo-full.svg',
-      alt: 'Fanta',
+      src: '/images/clients/250822 C&C SVG Grey-18.svg',
+      alt: 'Client Logo 18',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/nice-logo.svg',
-      alt: 'Nice',
+      src: '/images/clients/250822 C&C SVG Grey-19.svg',
+      alt: 'Client Logo 19',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/pokebar.png',
-      alt: 'Pokebar',
+      src: '/images/clients/250822 C&C SVG Grey-20.svg',
+      alt: 'Client Logo 20',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/uber-eats-logo.svg',
-      alt: 'Uber Eats',
+      src: '/images/clients/250822 C&C SVG Grey-21.svg',
+      alt: 'Client Logo 21',
       width: 120,
       height: 60,
     },
     {
-      src: '/images/clients/wi_logo_L.png',
-      alt: 'WI Logo',
+      src: '/images/clients/250822 C&C SVG Grey-22.svg',
+      alt: 'Client Logo 22',
+      width: 120,
+      height: 60,
+    },
+    {
+      src: '/images/clients/250822 C&C SVG Grey-23.svg',
+      alt: 'Client Logo 23',
+      width: 120,
+      height: 60,
+    },
+    {
+      src: '/images/clients/250822 C&C SVG Grey-24.svg',
+      alt: 'Client Logo 24',
       width: 120,
       height: 60,
     },
   ]
 
   return (
-    <AnimatedMarquee speed={speed} direction={direction} className={className}>
-      {clientLogos.map((logo, index) => (
-        <div
-          key={`${logo.alt}-${index}`}
-          className={`flex items-center justify-center mx-8 ${logoClassName}`}
-        >
-          <Image
-            src={logo.src}
-            alt={logo.alt}
-            width={logo.width}
-            height={logo.height}
-            className="!h-16 sm:!h-36 w-auto max-w-[165px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
-            style={{
-              filter: 'brightness(0.8) contrast(1.2)',
-            }}
-          />
-        </div>
-      ))}
-    </AnimatedMarquee>
+    <div className={`overflow-hidden ${className}`}>
+      <div
+        className="flex animate-marquee"
+        style={{
+          animationDuration: `${speed}s`,
+          animationDirection: direction === 'right' ? 'reverse' : 'normal',
+        }}
+      >
+        {/* First set of logos */}
+        {clientLogos.map((logo, index) => (
+          <div
+            key={`${logo.alt}-${index}`}
+            className={`flex items-center justify-center mx-16 flex-shrink-0 ${logoClassName}`}
+          >
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.width}
+              height={logo.height}
+              className="!h-16 sm:!h-36 w-auto max-w-[165px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+              style={{
+                filter: 'brightness(0.8) contrast(1.2)',
+              }}
+            />
+          </div>
+        ))}
+        {/* Duplicate set for seamless loop */}
+        {clientLogos.map((logo, index) => (
+          <div
+            key={`${logo.alt}-duplicate-${index}`}
+            className={`flex items-center justify-center mx-16 flex-shrink-0 ${logoClassName}`}
+          >
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              width={logo.width}
+              height={logo.height}
+              className="!h-16 sm:!h-36 w-auto max-w-[165px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+              style={{
+                filter: 'brightness(0.8) contrast(1.2)',
+              }}
+            />
+          </div>
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-marquee {
+          animation: marquee linear infinite;
+          width: max-content;
+        }
+
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </div>
   )
 }

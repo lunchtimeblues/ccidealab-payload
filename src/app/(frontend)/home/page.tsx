@@ -17,10 +17,11 @@ export default function HomePage(): React.JSX.Element {
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
-      <section className="relative almost-full-height">
-        <Container size="xxl" className="relative z-10">
-          <div className="relative flex items-center justify-center almost-full-height px-4 md:px-6 lg:px-8">
-            <div className="relative w-full max-w-none pt-24 md:pt-0">
+      <section className="relative almost-full-height flex flex-col justify-between">
+        {/* Top/Center content - this will be centered in the available space */}
+        <div className="flex-1 flex items-center justify-center">
+          <Container size="xxl" className="relative z-10 w-full">
+            <div className="relative w-full max-w-none">
               <h1
                 className="text-fluid-9xl leading-snug md:leading-none font-medium md:font-normal uppercase tracking-tighter"
                 aria-label="Ideas worth rallying around"
@@ -57,7 +58,7 @@ export default function HomePage(): React.JSX.Element {
               </h1>
 
               <div className="relative lg:absolute left-0 lg:left-12 lg:top-1/2 lg:-translate-y-1/2 lg:w-2/5 pr-4">
-                <p className="text-fluid-base font-base leading-normal tracking-wide text-right">
+                <p className="text-fluid-sm font-base leading-normal tracking-wide text-right">
                   <span className="block">
                     C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
                     reinventing companies in the tech and innovation space.
@@ -65,10 +66,10 @@ export default function HomePage(): React.JSX.Element {
                 </p>
               </div>
             </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
 
-        {/* Hero Footer */}
+        {/* Bottom content - this will stick to the bottom */}
         <Container size="full" className="w-full">
           <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
             <a href="#about" className="border-b border-black hover:opacity-70 transition">
