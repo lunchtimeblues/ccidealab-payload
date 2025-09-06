@@ -52,7 +52,7 @@ export default function AboutPage() {
 
           {/* Hero Footer */}
           <Container size="full" className="w-full">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
                 Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
@@ -183,7 +183,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-12">
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">01.</span>
-              <h3 className="font-semibold text-fluid-lg text-black mb-2">Do Big Things®</h3>
+              <h3 className="font-semibold text-fluid-lg text-black mb-2">Do Big Things</h3>
               <p className="text-gray-500 text-fluid-base">
                 We dare to do big things, create big ideas, make big leaps, and take big risks.
               </p>

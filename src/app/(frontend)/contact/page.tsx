@@ -7,7 +7,18 @@ import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 
 export default function ContactPage() {
-  const [activeTab, setActiveTab] = useState<'press' | 'careers'>('press')
+  const [activeTab, setActiveTab] = useState<'contact' | 'careers'>('contact')
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  const handleTabChange = (newTab: 'contact' | 'careers') => {
+    if (newTab === activeTab) return
+
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setActiveTab(newTab)
+      setIsTransitioning(false)
+    }, 150) // Short delay for fade out
+  }
 
   return (
     <div className="bg-gray-100 text-black">
@@ -33,7 +44,7 @@ export default function ContactPage() {
 
           {/* Hero Footer */}
           <Container size="full" className="w-full">
-            <div className="flex justify-between items-end w-full py-6 text-fluid-xs">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
               <a href="#form" className="border-b border-black hover:opacity-70 transition">
                 Skip to form <span className="inline-block ml-1">↓</span>
               </a>
@@ -53,17 +64,17 @@ export default function ContactPage() {
             <div className="flex space-x-8 text-fluid-sm font-medium">
               <button
                 className={`transition-colors ${
-                  activeTab === 'press' ? 'text-black' : 'text-gray-500 hover:text-black'
+                  activeTab === 'contact' ? 'text-black' : 'text-gray-500 hover:text-black'
                 }`}
-                onClick={() => setActiveTab('press')}
+                onClick={() => handleTabChange('contact')}
               >
-                Press ↓
+                Contact ↓
               </button>
               <button
                 className={`transition-colors ${
                   activeTab === 'careers' ? 'text-black' : 'text-gray-500 hover:text-black'
                 }`}
-                onClick={() => setActiveTab('careers')}
+                onClick={() => handleTabChange('careers')}
               >
                 Careers ↓
               </button>
@@ -72,219 +83,231 @@ export default function ContactPage() {
 
           {/* Form Wrapper */}
           <div className="max-w-4xl">
-            {activeTab === 'press' && (
-              <ScrollRevealText>
-                <form className="space-y-8">
-                  <div className="grid md:grid-cols-2 gap-6">
+            {activeTab === 'contact' && (
+              <div
+                className={`transition-all duration-500 ease-out ${
+                  !isTransitioning ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <ScrollRevealText>
+                  <form className="space-y-8">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="firstName"
+                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                        >
+                          First Name:*
+                        </label>
+                        <input
+                          type="text"
+                          id="firstName"
+                          name="firstName"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
+                          placeholder="Your first name"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="lastName"
+                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                        >
+                          Last Name:*
+                        </label>
+                        <input
+                          type="text"
+                          id="lastName"
+                          name="lastName"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
+                          placeholder="Your last name"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                        >
+                          Company Email:*
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
+                          placeholder="example@domain.com"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="company"
+                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                        >
+                          Company Name:*
+                        </label>
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
+                          placeholder="Company name"
+                        />
+                      </div>
+                    </div>
+
                     <div>
                       <label
-                        htmlFor="firstName"
+                        htmlFor="website"
                         className="block text-fluid-sm font-medium text-gray-700 mb-2"
                       >
-                        First Name:*
+                        Company Website
                       </label>
                       <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        required
+                        type="url"
+                        id="website"
+                        name="website"
                         className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="Your first name"
+                        placeholder="https://www.website.com"
                       />
                     </div>
+
                     <div>
                       <label
-                        htmlFor="lastName"
+                        htmlFor="message"
                         className="block text-fluid-sm font-medium text-gray-700 mb-2"
                       >
-                        Last Name:*
+                        Tell Us About The Project (Scope, Timeline, Budget):*
                       </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows={6}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="Your last name"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent resize-vertical"
                       />
                     </div>
-                  </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                    <div className="pt-4">
+                      <button
+                        type="submit"
+                        className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-fluid-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
                       >
-                        Company Email:*
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="example@domain.com"
-                      />
+                        Send Message
+                      </button>
                     </div>
-                    <div>
-                      <label
-                        htmlFor="company"
-                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                      >
-                        Company Name:*
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="Company name"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="website"
-                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                    >
-                      Company Website
-                    </label>
-                    <input
-                      type="url"
-                      id="website"
-                      name="website"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                      placeholder="https://www.website.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                    >
-                      Tell Us About The Project (Scope, Timeline, Budget):*
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={6}
-                      required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent resize-vertical"
-                    />
-                  </div>
-
-                  <div className="pt-4">
-                    <button
-                      type="submit"
-                      className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-fluid-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
-                    >
-                      Send Message
-                    </button>
-                  </div>
-                </form>
-              </ScrollRevealText>
+                  </form>
+                </ScrollRevealText>
+              </div>
             )}
 
             {activeTab === 'careers' && (
-              <ScrollRevealText>
-                <form className="space-y-8">
-                  <div className="grid md:grid-cols-2 gap-6">
+              <div
+                className={`transition-all duration-500 ease-out ${
+                  !isTransitioning ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <ScrollRevealText>
+                  <form className="space-y-8">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                        >
+                          Full Name:*
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
+                          placeholder="Your name"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                        >
+                          Email:*
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
+                          placeholder="example@domain.com"
+                        />
+                      </div>
+                    </div>
+
                     <div>
                       <label
-                        htmlFor="name"
+                        htmlFor="linkedin"
                         className="block text-fluid-sm font-medium text-gray-700 mb-2"
                       >
-                        Full Name:*
+                        LinkedIn Profile
                       </label>
                       <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
+                        type="url"
+                        id="linkedin"
+                        name="linkedin"
                         className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="Your name"
+                        placeholder="https://linkedin.com/in/username"
                       />
                     </div>
+
                     <div>
                       <label
-                        htmlFor="email"
+                        htmlFor="resume"
                         className="block text-fluid-sm font-medium text-gray-700 mb-2"
                       >
-                        Email:*
+                        Resume (PDF)
                       </label>
                       <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="example@domain.com"
+                        type="file"
+                        id="resume"
+                        name="resume"
+                        accept="application/pdf"
+                        className="block w-full text-fluid-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-black file:text-white hover:file:bg-gray-800"
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label
-                      htmlFor="linkedin"
-                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                    >
-                      LinkedIn Profile
-                    </label>
-                    <input
-                      type="url"
-                      id="linkedin"
-                      name="linkedin"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                      placeholder="https://linkedin.com/in/username"
-                    />
-                  </div>
+                    <div>
+                      <label
+                        htmlFor="coverLetter"
+                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
+                      >
+                        Cover Letter
+                      </label>
+                      <textarea
+                        id="coverLetter"
+                        name="coverLetter"
+                        rows={6}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent resize-vertical"
+                        placeholder="Why do you want to work with us?"
+                      />
+                    </div>
 
-                  <div>
-                    <label
-                      htmlFor="resume"
-                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                    >
-                      Resume (PDF)
-                    </label>
-                    <input
-                      type="file"
-                      id="resume"
-                      name="resume"
-                      accept="application/pdf"
-                      className="block w-full text-fluid-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-black file:text-white hover:file:bg-gray-800"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="coverLetter"
-                      className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                    >
-                      Cover Letter
-                    </label>
-                    <textarea
-                      id="coverLetter"
-                      name="coverLetter"
-                      rows={6}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent resize-vertical"
-                      placeholder="Why do you want to work with us?"
-                    />
-                  </div>
-
-                  <div className="pt-4">
-                    <button
-                      type="submit"
-                      className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-fluid-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
-                    >
-                      Submit Application
-                    </button>
-                  </div>
-                </form>
-              </ScrollRevealText>
+                    <div className="pt-4">
+                      <button
+                        type="submit"
+                        className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-fluid-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
+                      >
+                        Submit Application
+                      </button>
+                    </div>
+                  </form>
+                </ScrollRevealText>
+              </div>
             )}
           </div>
         </Container>

@@ -16,6 +16,8 @@ interface ScrollVideoProps {
   autoPlay?: boolean
   muted?: boolean
   loop?: boolean
+  aspectRatio?: string // e.g., "16/9", "4/3", "21/9"
+  maintainAspectRatio?: boolean
 }
 
 export const ScrollVideo: React.FC<ScrollVideoProps> = ({
@@ -25,92 +27,96 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
   autoPlay = true,
   muted = true,
   loop = true,
+  aspectRatio = '16/9',
+  maintainAspectRatio = true,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const leftOverlayRef = useRef<HTMLDivElement>(null)
-  const rightOverlayRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const container = containerRef.current
     const video = videoRef.current
-    const leftOverlay = leftOverlayRef.current
-    const rightOverlay = rightOverlayRef.current
 
-    if (!container || !video || !leftOverlay || !rightOverlay) return
+    if (!container || !video) return
 
-    // Calculate page-wrapper constraints
+    // Calculate page-wrapper-xxl constraints (matches Container size="xxl")
     const getPageConstraints = () => {
       const viewportWidth = window.innerWidth
-      const isMobile = viewportWidth < 768 // 48rem breakpoint
-      const sideSpacing = isMobile ? 32 : 48 // Match page-wrapper spacing
-      return { viewportWidth, sideSpacing }
+      // Container xxl max-width is typically 1440px with some padding
+      const maxContainerWidth = 1440
+      const containerPadding = viewportWidth < 768 ? 32 : 48 // Mobile vs desktop padding
+      const effectiveContainerWidth = Math.min(
+        maxContainerWidth,
+        viewportWidth - containerPadding * 2,
+      )
+
+      return { viewportWidth, effectiveContainerWidth }
     }
 
-    const { viewportWidth, sideSpacing } = getPageConstraints()
+    const { effectiveContainerWidth } = getPageConstraints()
 
-    // Set initial state - video starts at page-wrapper width
+    // Set initial state - video starts at page-wrapper-xxl width
     gsap.set(video, {
-      scale: 1,
+      width: `${effectiveContainerWidth}px`,
       transformOrigin: 'center center',
-    })
-
-    // Set initial state for side overlays - start visible (page-wrapper width)
-    const initialOverlayWidth = sideSpacing
-    const initialScaleX = initialOverlayWidth / (viewportWidth / 2)
-
-    gsap.set(leftOverlay, {
-      scaleX: Math.min(initialScaleX, 1), // Start with overlays visible (page-wrapper width)
-      transformOrigin: 'left center',
-    })
-
-    gsap.set(rightOverlay, {
-      scaleX: Math.min(initialScaleX, 1), // Start with overlays visible (page-wrapper width)
-      transformOrigin: 'right center',
     })
 
     // Create scroll-triggered expansion animation
     ScrollTrigger.create({
       trigger: container,
-      start: 'top bottom', // Start when video enters viewport
-      end: 'center center', // End when video is centered in viewport
-      scrub: 1, // Smooth scrubbing tied to scroll position
+      start: 'top 80%', // Start when video enters viewport
+      end: 'center 50%', // End when video is centered in viewport
+      scrub: 1.5, // Smooth scrubbing tied to scroll position
       onUpdate: (self) => {
-        // Calculate progress (0 to 1) as user scrolls toward center
+        // Calculate progress (0 to 1) as user scrolls
         const progress = self.progress
 
         // Recalculate constraints in case of resize
-        const { viewportWidth: currentViewportWidth, sideSpacing: currentSideSpacing } =
-          getPageConstraints()
+        const {
+          viewportWidth: currentViewportWidth,
+          effectiveContainerWidth: currentContainerWidth,
+        } = getPageConstraints()
 
-        // Calculate overlay scaling for expansion effect
-        // At progress 0: overlays visible (page-wrapper width)
-        // At progress 1: overlays hidden (full width video)
-        const targetOverlayWidth = currentSideSpacing
-        const currentOverlayWidth = targetOverlayWidth * (1 - progress) // Reverse the progress
-        const scaleX = currentOverlayWidth / (currentViewportWidth / 2)
+        // Calculate video width for expansion effect
+        // At progress 0: video at page-wrapper-xxl width
+        // At progress 1: video at full viewport width
+        const currentWidth =
+          currentContainerWidth + (currentViewportWidth - currentContainerWidth) * progress
 
-        // Apply the scaling to both overlays
-        gsap.set([leftOverlay, rightOverlay], {
-          scaleX: Math.max(0, Math.min(scaleX, 1)), // Ensure scale stays between 0 and 1
+        // Apply the width animation to video
+        gsap.set(video, {
+          width: `${currentWidth}px`,
+          ease: 'power2.out',
         })
       },
     })
 
+    // Handle window resize to recalculate constraints
+    const handleResize = () => {
+      ScrollTrigger.refresh()
+    }
+
+    window.addEventListener('resize', handleResize)
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+      window.removeEventListener('resize', handleResize)
     }
   }, [])
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-full almost-full-height overflow-hidden ${className}`}
+      className={`relative w-full overflow-hidden ${className}`}
+      style={{
+        // Use aspect ratio if maintainAspectRatio is true, otherwise use almost-full-height
+        ...(maintainAspectRatio ? { aspectRatio: aspectRatio } : { height: '90vh' }),
+      }}
     >
-      {/* Video Element - starts at page-wrapper width, expands to full width */}
+      {/* Video Element - animates from page-wrapper-xxl width to full width */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
+        className="h-full mx-auto"
         src={src}
         poster={poster}
         autoPlay={autoPlay}
@@ -118,27 +124,11 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
         loop={loop}
         playsInline
         style={{
-          // Preserve aspect ratio while covering the container
-          objectFit: 'cover',
+          // Choose object-fit based on maintainAspectRatio setting
+          objectFit: maintainAspectRatio ? 'cover' : 'cover',
           objectPosition: 'center center',
-        }}
-      />
-
-      {/* Left side overlay - starts visible, shrinks to reveal full width */}
-      <div
-        ref={leftOverlayRef}
-        className="absolute top-0 left-0 w-1/2 h-full bg-grey-100 z-10"
-        style={{
-          transformOrigin: 'left center', // Shrinks from left edge inward
-        }}
-      />
-
-      {/* Right side overlay - starts visible, shrinks to reveal full width */}
-      <div
-        ref={rightOverlayRef}
-        className="absolute top-0 right-0 w-1/2 h-full bg-grey-100 z-10"
-        style={{
-          transformOrigin: 'right center', // Shrinks from right edge inward
+          height: '100%',
+          // Width will be animated by GSAP
         }}
       />
     </div>

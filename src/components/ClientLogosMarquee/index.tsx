@@ -1,21 +1,21 @@
 'use client'
 
 import Image from 'next/image'
+import React from 'react'
 
 interface ClientLogosMarqueeProps {
-  speed?: number
+  speed?: number // seconds for one full loop of one set
   direction?: 'left' | 'right'
   className?: string
   logoClassName?: string
 }
 
 export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
-  speed = 60, // Much slower speed for smoother animation
+  speed = 30,
   direction = 'left',
   className = '',
   logoClassName = '',
 }) => {
-  // Client logos data - only using the SVG series from the folder
   const clientLogos = [
     {
       src: '/images/clients/250822 C&C SVG Grey-13.svg',
@@ -91,70 +91,72 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
     },
   ]
 
+  // Build the track once and duplicate it for the seamless loop
+  const run = (
+    <>
+      {clientLogos.map((logo, index) => (
+        <div
+          key={`${logo.alt}-${index}`}
+          className={`flex items-center justify-center flex-shrink-0 ${logoClassName}`}
+        >
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            width={logo.width}
+            height={logo.height}
+            className="!h-20 sm:!h-24 w-auto max-w-[200px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+            style={{ filter: 'brightness(0.8) contrast(1.2)' }}
+          />
+        </div>
+      ))}
+    </>
+  )
+
   return (
     <div className={`overflow-hidden ${className}`}>
       <div
-        className="flex animate-marquee"
-        style={{
-          animationDuration: `${speed}s`,
-          animationDirection: direction === 'right' ? 'reverse' : 'normal',
-        }}
+        className="marquee-track flex items-center gap-12 h-24"
+        style={
+          {
+            // CSS custom properties so duration/direction can't be stomped by !important utilities
+            ['--marquee-duration' as any]: `${speed}s`,
+            ['--marquee-direction' as any]: direction === 'right' ? 'reverse' : 'normal',
+          } as React.CSSProperties
+        }
+        aria-label="Client logos marquee"
       >
-        {/* First set of logos */}
-        {clientLogos.map((logo, index) => (
-          <div
-            key={`${logo.alt}-${index}`}
-            className={`flex items-center justify-center mx-16 flex-shrink-0 ${logoClassName}`}
-          >
-            <Image
-              src={logo.src}
-              alt={logo.alt}
-              width={logo.width}
-              height={logo.height}
-              className="!h-16 sm:!h-36 w-auto max-w-[165px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
-              style={{
-                filter: 'brightness(0.8) contrast(1.2)',
-              }}
-            />
-          </div>
-        ))}
-        {/* Duplicate set for seamless loop */}
-        {clientLogos.map((logo, index) => (
-          <div
-            key={`${logo.alt}-duplicate-${index}`}
-            className={`flex items-center justify-center mx-16 flex-shrink-0 ${logoClassName}`}
-          >
-            <Image
-              src={logo.src}
-              alt={logo.alt}
-              width={logo.width}
-              height={logo.height}
-              className="!h-16 sm:!h-36 w-auto max-w-[165px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
-              style={{
-                filter: 'brightness(0.8) contrast(1.2)',
-              }}
-            />
-          </div>
-        ))}
+        {run}
+        <span aria-hidden="true">{run}</span>
       </div>
 
+      {/* Keyframes + animation styles local to the component */}
       <style jsx>{`
-        @keyframes marquee {
+        .marquee-track {
+          width: max-content;
+          will-change: transform;
+          animation-name: marquee-x;
+          animation-duration: var(--marquee-duration, 30s);
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: var(--marquee-direction, normal);
+        }
+
+        /* With two copies in the track, shifting by -50% equals exactly one full set width */
+        @keyframes marquee-x {
           0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate3d(-50%, 0, 0);
           }
         }
 
-        .animate-marquee {
-          animation: marquee linear infinite;
-          width: max-content;
-        }
-
-        .animate-marquee:hover {
-          animation-play-state: paused;
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-track {
+            animation: none;
+            transform: none;
+          }
         }
       `}</style>
     </div>

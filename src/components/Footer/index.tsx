@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
+import { FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa'
 
 export const Footer = () => {
   const [_currentTime, setCurrentTime] = useState('')
@@ -91,10 +92,10 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-[#151515] text-white px-6 md:px-12 pt-32 sm:pt-32 pb-24 sm:pb-32 md:pb-40 text-fluid-xs relative flex flex-col justify-center"
+      className="bg-[#151515] text-white px-6 md:px-12 pt-32 sm:pt-32 pb-12 sm:pb-16 md:pb-20 text-fluid-xs relative flex flex-col justify-center"
       style={{
         // Very minimal transform to ensure bottom content stays visible
-        transform: `translate3d(0px, ${-2 + scrollY * 2}%, 0px)`,
+        transform: `translate3d(0px, ${-25 + scrollY * 25}%, 0px)`,
       }}
     >
       {/* Logo & Newsletter */}
@@ -114,7 +115,7 @@ export const Footer = () => {
         <ScrollRevealText>
           <div className="flex items-center gap-4 mb-8 md:mb-0">
             <Image
-              src="/images/cc-logo-white-text.svg"
+              src="/images/cc-logo-black.svg"
               alt="C/C IDEA LAB Logo"
               width={100}
               height={30}
@@ -207,11 +208,29 @@ export const Footer = () => {
 
         <ScrollRevealText delay={200}>
           <div className="flex items-center gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy Policy
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors text-2xl"
+            >
+              <FaLinkedinIn />
             </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Terms of Service
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors text-2xl"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="https://www.youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white transition-colors text-2xl"
+            >
+              <FaYoutube />
             </a>
           </div>
         </ScrollRevealText>
