@@ -6,7 +6,6 @@ import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
-import { TransitionLink } from '@/components/TransitionLink'
 
 export default function CityColorPage() {
   return (
