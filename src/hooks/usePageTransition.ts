@@ -231,6 +231,15 @@ export const usePageTransition = () => {
         // Navigate immediately
         router.push(href)
 
+        // Scroll to top after navigation
+        setTimeout(() => {
+          window.scrollTo(0, 0)
+          // Also scroll Lenis if available
+          if ((window as any).lenis) {
+            ;(window as any).lenis.scrollTo(0, { immediate: true })
+          }
+        }, 100) // Small delay to ensure navigation is complete
+
         // Remove transitioning class after navigation
         setTimeout(() => {
           document.documentElement.classList.remove('transitioning')

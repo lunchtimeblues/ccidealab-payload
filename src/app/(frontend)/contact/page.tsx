@@ -1,30 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import { Container } from '@/components/Container'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
+import Image from 'next/image'
 
 export default function ContactPage() {
-  const [activeTab, setActiveTab] = useState<'contact' | 'careers'>('contact')
-  const [isTransitioning, setIsTransitioning] = useState(false)
-
-  const handleTabChange = (newTab: 'contact' | 'careers') => {
-    if (newTab === activeTab) return
-
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setActiveTab(newTab)
-      setIsTransitioning(false)
-    }, 150) // Short delay for fade out
-  }
-
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-44 pb-8 min-h-screen">
           <div>
             {/* Marquee */}
             <ScrollMarquee
@@ -33,20 +20,31 @@ export default function ContactPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[12vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">CONTACT</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
             </ScrollMarquee>
+
+            {/* Content */}
+            <Container size="full">
+              <div className="max-w-3xl mt-12 md:mt-18">
+                <p className="text-fluid-xl leading-snug text-black">
+                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
+                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
+                  mottos for clients to serve as their Idea Worth Rallying Around®.
+                </p>
+              </div>
+            </Container>
           </div>
 
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a href="#form" className="border-b border-black hover:opacity-70 transition">
-                Skip to form <span className="inline-block ml-1">↓</span>
+              <a href="#contact" className="border-b border-black hover:opacity-70 transition">
+                Learn more about our company <span className="inline-block ml-1">↓</span>
               </a>
               <span className="text-black/60">(SCROLL)</span>
             </div>
@@ -54,261 +52,59 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form Section with Tabs */}
-      <section id="form" className="py-32 sm:py-48 bg-gray-100">
+      {/* Contact Section */}
+      <section id="contact" className="py-32 sm:py-48">
         <Container size="full">
-          <div className="flex justify-between items-center border-b border-gray-300 pb-4 mb-12">
-            <h2 className="text-fluid-3xl font-medium">Project inquire form</h2>
+          <div className="grid lg:grid-cols-7 gap-12 lg:gap-16 items-center">
+            {/* Contact Information - 40% width */}
+            <div className="lg:col-span-4 space-y-8">
+              <ScrollRevealText delay={200}>
+                <h2 className="text-fluid-5xl font-medium leading-tight text-black mb-6">
+                  Interested in working together?
+                </h2>
+              </ScrollRevealText>
 
-            {/* Tabs */}
-            <div className="flex space-x-8 text-fluid-sm font-medium">
-              <button
-                className={`transition-colors ${
-                  activeTab === 'contact' ? 'text-black' : 'text-gray-500 hover:text-black'
-                }`}
-                onClick={() => handleTabChange('contact')}
-              >
-                Contact ↓
-              </button>
-              <button
-                className={`transition-colors ${
-                  activeTab === 'careers' ? 'text-black' : 'text-gray-500 hover:text-black'
-                }`}
-                onClick={() => handleTabChange('careers')}
-              >
-                Careers ↓
-              </button>
+              <ScrollRevealText delay={300}>
+                <p className="text-fluid-lg text-gray-700 mb-12">Contact us today.</p>
+              </ScrollRevealText>
+
+              <ScrollRevealText delay={400}>
+                <div className="space-y-1 text-fluid-base">
+                  <p className="font-medium text-black">C&C IDEA LAB</p>
+                  <p className="text-gray-600">6060 Silver Dr, 3rd Floor</p>
+                  <p className="text-gray-600">Burnaby, BC</p>
+                  <p className="text-gray-600">V5H 0H5</p>
+                </div>
+              </ScrollRevealText>
+
+              <ScrollRevealText delay={500}>
+                <div className="space-y-2 text-fluid-base">
+                  <p className="text-gray-600">(778) 742-5003</p>
+                  <a
+                    href="mailto:hello@ccidealab.com"
+                    className="text-gray-600 border-b border-gray-300 hover:text-black hover:border-black transition-all duration-300"
+                  >
+                    hello@ccidealab.com
+                  </a>
+                </div>
+              </ScrollRevealText>
             </div>
-          </div>
 
-          {/* Form Wrapper */}
-          <div className="max-w-4xl">
-            {activeTab === 'contact' && (
-              <div
-                className={`transition-all duration-500 ease-out ${
-                  !isTransitioning ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <ScrollRevealText>
-                  <form className="space-y-8">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label
-                          htmlFor="firstName"
-                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                        >
-                          First Name:*
-                        </label>
-                        <input
-                          type="text"
-                          id="firstName"
-                          name="firstName"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                          placeholder="Your first name"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="lastName"
-                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                        >
-                          Last Name:*
-                        </label>
-                        <input
-                          type="text"
-                          id="lastName"
-                          name="lastName"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                          placeholder="Your last name"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                        >
-                          Company Email:*
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                          placeholder="example@domain.com"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="company"
-                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                        >
-                          Company Name:*
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                          placeholder="Company name"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="website"
-                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                      >
-                        Company Website
-                      </label>
-                      <input
-                        type="url"
-                        id="website"
-                        name="website"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="https://www.website.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                      >
-                        Tell Us About The Project (Scope, Timeline, Budget):*
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={6}
-                        required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent resize-vertical"
-                      />
-                    </div>
-
-                    <div className="pt-4">
-                      <button
-                        type="submit"
-                        className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-fluid-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
-                      >
-                        Send Message
-                      </button>
-                    </div>
-                  </form>
-                </ScrollRevealText>
-              </div>
-            )}
-
-            {activeTab === 'careers' && (
-              <div
-                className={`transition-all duration-500 ease-out ${
-                  !isTransitioning ? 'opacity-100' : 'opacity-0'
-                }`}
-              >
-                <ScrollRevealText>
-                  <form className="space-y-8">
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div>
-                        <label
-                          htmlFor="name"
-                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                        >
-                          Full Name:*
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                          placeholder="Your name"
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                        >
-                          Email:*
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                          placeholder="example@domain.com"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="linkedin"
-                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                      >
-                        LinkedIn Profile
-                      </label>
-                      <input
-                        type="url"
-                        id="linkedin"
-                        name="linkedin"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent"
-                        placeholder="https://linkedin.com/in/username"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="resume"
-                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                      >
-                        Resume (PDF)
-                      </label>
-                      <input
-                        type="file"
-                        id="resume"
-                        name="resume"
-                        accept="application/pdf"
-                        className="block w-full text-fluid-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-black file:text-white hover:file:bg-gray-800"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="coverLetter"
-                        className="block text-fluid-sm font-medium text-gray-700 mb-2"
-                      >
-                        Cover Letter
-                      </label>
-                      <textarea
-                        id="coverLetter"
-                        name="coverLetter"
-                        rows={6}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-black focus:border-transparent resize-vertical"
-                        placeholder="Why do you want to work with us?"
-                      />
-                    </div>
-
-                    <div className="pt-4">
-                      <button
-                        type="submit"
-                        className="w-full md:w-auto px-12 py-4 bg-black text-white font-medium text-fluid-lg hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-black focus:ring-offset-2"
-                      >
-                        Submit Application
-                      </button>
-                    </div>
-                  </form>
-                </ScrollRevealText>
-              </div>
-            )}
+            {/* Office Image - 60% width */}
+            <div className="lg:col-span-3">
+              <ScrollRevealText delay={600}>
+                <div className="relative overflow-hidden rounded-2xl aspect-[4/5]">
+                  <Image
+                    src="/images/contact/cc-wework-burnaby.jpg"
+                    alt="C&C Idea Lab Office - WeWork Burnaby"
+                    width={600}
+                    height={750}
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                    priority
+                  />
+                </div>
+              </ScrollRevealText>
+            </div>
           </div>
         </Container>
       </section>

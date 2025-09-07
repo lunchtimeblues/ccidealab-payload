@@ -213,12 +213,12 @@
 
 /* Layout Utilities */
 .almost-full-height {
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 32px);
 }
 
 @media (max-width: 768px) {
   .almost-full-height {
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - 42px);
   }
 }
 
@@ -348,7 +348,7 @@
 }
 
 .text-fluid-9xl {
-  font-size: clamp(4.5rem, 5rem + 6vw, 14rem); /* 72px → 288px */
+  font-size: clamp(4.25rem, 4rem + 6vw, 14rem); /* 68px → 288px */
 }
 
 /* Mobile-specific scaling: More conservative */
@@ -357,6 +357,43 @@
     font-size: clamp(3.5rem, 2rem + 5vw, 14rem); /* 56px → 288px */
     /* Mobile viewport sizes: 320px=72px, 414px=73px, 768px=70px */
   }
+}
+
+/* ============================================================================
+   6. FLUID SIZING SYSTEM - FOR NON-TEXT ELEMENTS
+   ============================================================================ */
+
+/* Fluid sizing classes for icons, arrows, and other elements
+   Following the same clamp() pattern as text-fluid classes */
+
+.size-fluid-sm {
+  width: clamp(1.25rem, 1rem + 1.5vw, 2.5rem); /* 20px → 40px */
+  height: clamp(1.25rem, 1rem + 1.5vw, 2.5rem);
+}
+
+.size-fluid-base {
+  width: clamp(1.5rem, 1.2rem + 2vw, 3rem); /* 24px → 48px */
+  height: clamp(1.5rem, 1.2rem + 2vw, 3rem);
+}
+
+.size-fluid-lg {
+  width: clamp(2rem, 1.5rem + 2.5vw, 4rem); /* 32px → 64px */
+  height: clamp(2rem, 1.5rem + 2.5vw, 4rem);
+}
+
+.size-fluid-xl {
+  width: clamp(2.5rem, 2rem + 3vw, 5rem); /* 40px → 80px */
+  height: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+
+.size-fluid-2xl {
+  width: clamp(3rem, 2.5rem + 3.5vw, 6rem); /* 48px → 96px */
+  height: clamp(3rem, 2.5rem + 3.5vw, 6rem);
+}
+
+/* Hero arrow width - scales proportionally with text-fluid-9xl */
+.w-fluid-hero {
+  width: clamp(3rem, 2rem + 4vw, 7rem); /* 48px → 112px - matches hero text scaling */
 }
 
 /* ============================================================================

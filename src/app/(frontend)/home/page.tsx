@@ -34,7 +34,10 @@ export default function HomePage(): React.JSX.Element {
                 </ScrollRevealText>
                 <div className="flex items-center justify-between">
                   <ScrollRevealText delay={400}>
-                    <div className="w-20 md:w-32 hidden md:block flex-shrink-0 mr-4">
+                    <div
+                      className="hidden md:block flex-shrink-0 mr-4"
+                      style={{ width: 'clamp(5rem, 8vw, 8rem)' }}
+                    >
                       <svg className="w-full h-full" viewBox="0 0 90 112" version="1.1">
                         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                           <g
@@ -53,7 +56,7 @@ export default function HomePage(): React.JSX.Element {
                   <ScrollRevealText delay={600}>
                     <div className="flex-1 text-center md:text-left">Champion</div>
                   </ScrollRevealText>
-                  <div className="hidden md:block w-20"></div>
+                  <div className="hidden md:block w-10"></div>
                 </div>
               </h1>
 
@@ -102,9 +105,8 @@ export default function HomePage(): React.JSX.Element {
             </div>
             <div className="col-span-12 md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-5xl font-base text-black mb-8  tracking-tight leading-tight">
-                  Great brands are more than famous names, they&apos;re Ideas Worth Rallying
-                  Around®.
+                <h3 className="text-fluid-3xl font-base text-black mb-8  tracking-tight leading-tight">
+                  Great brands are more than famous names, they&apos;re Ideas Worth Rallying Around.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
@@ -177,11 +179,11 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={100}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Affinity Group</h3>
-                    <span className="text-fluid-sm text-gray-500 uppercase tracking-wide">
+                    <span className="text-fluid-sm text-black uppercase tracking-wide">
                       Technology
                     </span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Brand Identity & Web Development</p>
+                  <p className="text-black text-fluid-sm">Brand Identity & Web Development</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -200,11 +202,11 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={200}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Pokebar</h3>
-                    <span className="text-fluid-sm text-gray-500 uppercase tracking-wide">
+                    <span className="text-fluid-sm text-black uppercase tracking-wide">
                       Food & Beverage
                     </span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Digital Strategy & UX Design</p>
+                  <p className="text-black text-fluid-sm">Digital Strategy & UX Design</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -223,11 +225,11 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={300}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Marco Polo</h3>
-                    <span className="text-fluid-sm text-gray-500 uppercase tracking-wide">
+                    <span className="text-fluid-sm text-black uppercase tracking-wide">
                       Communication
                     </span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Creative Direction & Branding</p>
+                  <p className="text-black text-fluid-sm">Creative Direction & Branding</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -246,11 +248,11 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={400}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Metrotown Notary</h3>
-                    <span className="text-fluid-sm text-gray-500 uppercase tracking-wide">
+                    <span className="text-fluid-sm text-black uppercase tracking-wide">
                       Legal Services
                     </span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Investment Platform & Identity</p>
+                  <p className="text-black text-fluid-sm">Investment Platform & Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -269,11 +271,9 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={500}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Comm100</h3>
-                    <span className="text-fluid-sm text-gray-500 uppercase tracking-wide">
-                      SaaS
-                    </span>
+                    <span className="text-fluid-sm text-black uppercase tracking-wide">SaaS</span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Product Design & Development</p>
+                  <p className="text-black text-fluid-sm">Product Design & Development</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>
@@ -292,11 +292,11 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={600}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">CityColor</h3>
-                    <span className="text-fluid-sm text-gray-500 uppercase tracking-wide">
+                    <span className="text-fluid-sm text-black uppercase tracking-wide">
                       Real Estate
                     </span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Brand Strategy & Visual Identity</p>
+                  <p className="text-black text-fluid-sm">Brand Strategy & Visual Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>

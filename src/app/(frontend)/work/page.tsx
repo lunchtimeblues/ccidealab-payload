@@ -13,7 +13,7 @@ export default function WorkPage() {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-44 pb-8 min-h-screen">
           <div>
             {/* Marquee */}
             <ScrollMarquee
@@ -22,7 +22,7 @@ export default function WorkPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[10vw] font-normal tracking-tight leading-none"
+              lineClassName="text-[12vw] font-normal tracking-tight leading-none"
             >
               <span className="mx-8">WORK</span>
               <span className="mx-8 flex items-center">
@@ -82,9 +82,9 @@ export default function WorkPage() {
                 <ScrollRevealText delay={100}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Affinity Group</h3>
-                    <span className="text-fluid-sm text-gray-500 tracking-wide">Technology</span>
+                    <span className="text-fluid-sm text-black tracking-wide">Technology</span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Brand Identity & Web Development</p>
+                  <p className="text-black text-fluid-sm mb-4">Brand Identity & Web Development</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -103,11 +103,9 @@ export default function WorkPage() {
                 <ScrollRevealText delay={200}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Pokebar</h3>
-                    <span className="text-fluid-sm text-gray-500 tracking-wide">
-                      Food & Beverage
-                    </span>
+                    <span className="text-fluid-sm text-black tracking-wide">Food & Beverage</span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Digital Strategy & UX Design</p>
+                  <p className="text-black text-fluid-sm mb-4">Digital Strategy & UX Design</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -126,9 +124,9 @@ export default function WorkPage() {
                 <ScrollRevealText delay={300}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Marco Polo</h3>
-                    <span className="text-fluid-sm text-gray-500 tracking-wide">Communication</span>
+                    <span className="text-fluid-sm text-black tracking-wide">Communication</span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Creative Direction & Branding</p>
+                  <p className="text-black text-fluid-sm mb-4">Creative Direction & Branding</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -147,11 +145,9 @@ export default function WorkPage() {
                 <ScrollRevealText delay={400}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Metrotown Notary</h3>
-                    <span className="text-fluid-sm text-gray-500 tracking-wide">
-                      Legal Services
-                    </span>
+                    <span className="text-fluid-sm text-black tracking-wide">Legal Services</span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Investment Platform & Identity</p>
+                  <p className="text-black text-fluid-sm mb-4">Investment Platform & Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>
@@ -170,9 +166,9 @@ export default function WorkPage() {
                 <ScrollRevealText delay={500}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Comm100</h3>
-                    <span className="text-fluid-sm text-gray-500 tracking-wide">SaaS</span>
+                    <span className="text-fluid-sm text-black tracking-wide">SaaS</span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Product Design & Development</p>
+                  <p className="text-black text-fluid-sm">Product Design & Development</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>
@@ -191,9 +187,9 @@ export default function WorkPage() {
                 <ScrollRevealText delay={600}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">CityColor</h3>
-                    <span className="text-fluid-sm text-gray-500 tracking-wide">Real Estate</span>
+                    <span className="text-fluid-sm text-black tracking-wide">Real Estate</span>
                   </div>
-                  <p className="text-gray-500 text-fluid-sm">Brand Strategy & Visual Identity</p>
+                  <p className="text-black text-fluid-sm">Brand Strategy & Visual Identity</p>
                 </ScrollRevealText>
               </div>
             </MouseFollower>

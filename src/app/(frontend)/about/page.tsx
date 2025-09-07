@@ -13,7 +13,7 @@ export default function AboutPage() {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-44 pb-8 min-h-screen">
           <div>
             {/* Marquee */}
             <ScrollMarquee
@@ -22,7 +22,7 @@ export default function AboutPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[12vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">ABOUT</span>
               <span className="mx-8 flex items-center">
@@ -86,14 +86,14 @@ export default function AboutPage() {
           </ScrollRevealText>
         </Container> */}
       </ParallaxImage>
-
+      {/*
       <section className="pt-12 pb-2 md:pt-24 md:pb-4 bg-grey-100">
         <ScrollMarquee
           baseSpeed={0.8}
           maxSpeedMultiplier={2}
           lines="dual"
           starSpinSpeed={4}
-          lineClassName="text-[10vw] font-semi-bold uppercase tracking-tight leading-none"
+          lineClassName="text-[12vw] font-semi-bold uppercase tracking-tight leading-none"
         >
           <span className="mx-8">OUR TEAM</span>
           <span className="mx-8 flex items-center">
@@ -104,7 +104,7 @@ export default function AboutPage() {
             <SpinningStar size={64} className="text-current" />
           </span>
         </ScrollMarquee>
-      </section>
+      </section> */}
 
       {/* Story Section */}
       <section className="py-32 sm:py-48 bg-grey-100">
@@ -117,7 +117,7 @@ export default function AboutPage() {
             </div>
             <div className="col-span-12 sm:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-5xl font-base text-black mb-8 leading-tight">
+                <h3 className="text-fluid-3xl font-base text-black mb-8 leading-tight">
                   Founded on the belief that great brands are more than logos—they&apos;re
                   movements.
                 </h3>
@@ -137,7 +137,7 @@ export default function AboutPage() {
         </Container>
 
         <div className="mt-16">
-          <Carousel size="xxl">
+          <Carousel size="xl">
             <Image
               src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
               alt="Creative Vision - C/C IDEA LAB Studio"
@@ -180,6 +180,9 @@ export default function AboutPage() {
 
       <section className="bg-gray-100 py-32 sm:py-48">
         <Container size="full">
+          <ScrollRevealText>
+            <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Our Story</p>
+          </ScrollRevealText>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-12">
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">01.</span>
@@ -236,15 +239,15 @@ export default function AboutPage() {
       </section>
 
       {/* Parallax Image Section */}
-      <ParallaxImage
+      {/* <ParallaxImage
         src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
         alt="Modern office workspace"
         size="80vh"
         overlay={true}
         overlayOpacity={0.3}
         parallaxSpeed={0.6}
-      >
-        {/* <Container className="text-center text-white">
+      > */}
+      {/* <Container className="text-center text-white">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-7xl font-bold mb-6">
               Ideas Worth
@@ -258,10 +261,10 @@ export default function AboutPage() {
             </p>
           </ScrollRevealText>
         </Container> */}
-      </ParallaxImage>
+      {/* </ParallaxImage> */}
 
       {/* Method Section */}
-      <section className="relative bg-gray-100 overflow-hidden">
+      {/* <section className="relative bg-gray-100 overflow-hidden">
         <div className="relative md:absolute inset-0 z-0">
           <ScrollMarquee
             baseSpeed={0.8}
@@ -312,13 +315,12 @@ export default function AboutPage() {
                     <p className="text-fluid-sm text-gray-500">Placeholder</p>
                   </div>
                 </div>
-                {/* Optional subtle overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
               </div>
             </ScrollRevealText>
           </div>
         </Container>
-      </section>
+      </section> */}
     </div>
   )
 }

@@ -119,7 +119,7 @@ export default function ServicesPage() {
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
       <section className="relative min-h-screen bg-gray-100">
-        <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
+        <div className="flex flex-col justify-between pt-44 pb-8 min-h-screen">
           <div>
             {/* Marquee */}
             <ScrollMarquee
@@ -128,7 +128,7 @@ export default function ServicesPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[12vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">SERVICES</span>
               <span className="mx-8 flex items-center">
@@ -180,29 +180,29 @@ export default function ServicesPage() {
       />
 
       {/* Services Section */}
-      <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
+      <section id="services" className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
         <Container size="full">
-          <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
-            <div className="col-span-12 sm:col-span-4">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+            <div className="col-span-12 md:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">(What we do)</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
+                  Think big with us.
+                </p>
               </ScrollRevealText>
             </div>
-            <div className="col-span-12 sm:col-span-8">
+            <div className="col-span-12 md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-4xl font-bold text-black mb-8 leading-tight">
-                  Brand strategy and brand systems built to unlock what&#39;s next for your
-                  organization.
+                <h3 className="text-fluid-3xl font-base text-black mb-8  tracking-tight leading-tight">
+                  Great brands are more than famous names, they&apos;re Ideas Worth Rallying Around.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-xl text-black leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    When you’re navigating pivotal moments of growth, evolution, or reinvention,
-                    what you do now will shape your future. Whether it’s scaling fast, entering new
-                    markets, preparing for your next funding round, or launching a new innovation,
-                    we define what makes your brand matter and develop the ideas and systems that
-                    carry your vision forward.
+                    C/C IDEA LAB is a brand strategy and design firm that partners with tech and
+                    innovation companies to create impactful, future-ready brands. We collaborate
+                    with visionary teams and design-led companies who need their brand to stand out,
+                    matter more, drive growth, and amplify brand impact within modern culture.
                   </p>
                 </div>
               </ScrollRevealText>

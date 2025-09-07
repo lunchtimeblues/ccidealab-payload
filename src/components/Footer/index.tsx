@@ -112,7 +112,7 @@ export const Footer = () => {
             />
           </div>
         </ScrollRevealText>
-        <ScrollRevealText>
+        {/* <ScrollRevealText>
           <div className="flex items-center gap-4 mb-8 md:mb-0">
             <Image
               src="/images/cc-logo-black.svg"
@@ -122,10 +122,10 @@ export const Footer = () => {
               className="!h-16 sm:!h-36 w-auto"
             />
           </div>
-        </ScrollRevealText>
+        </ScrollRevealText> */}
       </div>
 
-      <hr className="border-gray-700 mb-16 sm:mb-24" />
+      <hr className="border-gray-700 mb-8 sm:mb-12" />
 
       {/* Footer Links Grid */}
       {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-10 sm:gap-16 mb-16 sm:mb-24">

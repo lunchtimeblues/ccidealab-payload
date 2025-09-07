@@ -19,7 +19,7 @@ export default function Comm100Page() {
           overlayOpacity={0.15}
           parallaxSpeed={0.5}
         >
-          <div className="flex flex-col justify-between pt-44 sm:pt-64 pb-8 min-h-screen">
+          <div className="flex flex-col justify-between pt-44 pb-8 min-h-screen">
             <div>
               {/* Marquee */}
               <ScrollMarquee
@@ -28,17 +28,17 @@ export default function Comm100Page() {
                 starSpinSpeed={4}
                 lines="single"
                 direction="left"
-                lineClassName="text-[10vw] font-normal uppercase tracking-tight leading-none text-white"
+                lineClassName="text-[12vw] font-normal uppercase tracking-tight leading-none"
               >
-                <span className="mx-8">COMM100</span>
+                <span className="mx-8">ABOUT</span>
                 <span className="mx-8 flex items-center">
                   <SpinningStar size={64} className="text-current" />
                 </span>
-                <span className="mx-8">COMM100</span>
+                <span className="mx-8">ABOUT</span>
                 <span className="mx-8 flex items-center">
                   <SpinningStar size={64} className="text-current" />
                 </span>
-                <span className="mx-8">COMM100</span>
+                <span className="mx-8">ABOUT</span>
                 <span className="mx-8 flex items-center">
                   <SpinningStar size={64} className="text-current" />
                 </span>
@@ -47,26 +47,22 @@ export default function Comm100Page() {
               {/* Content */}
               <Container size="full">
                 <div className="max-w-3xl mt-12 md:mt-18">
-                  <ScrollRevealText>
-                    <p className="text-fluid-2xl leading-snug text-white">
-                      Comm100 is an award-winning global provider of omnichannel customer engagement
-                      solutions powered by automation and AI.
-                    </p>
-                  </ScrollRevealText>
+                  <p className="text-fluid-xl leading-snug text-black">
+                    Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
+                    mottos were war cries of sentiment, hope, and purpose. Today, we create bold
+                    brand mottos for clients to serve as their Idea Worth Rallying Around®.
+                  </p>
                 </div>
               </Container>
             </div>
 
             {/* Hero Footer */}
-            <Container size="full">
-              <div className="flex justify-between items-end w-full py-6 text-fluid-lg">
-                <a
-                  href="#comm100-overview"
-                  className="border-b border-white hover:opacity-70 transition text-white"
-                >
-                  Learn more about this project <span className="inline-block ml-1">↓</span>
+            <Container size="full" className="w-full">
+              <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
+                <a href="#about" className="border-b border-black hover:opacity-70 transition">
+                  Learn more about our company <span className="inline-block ml-1">↓</span>
                 </a>
-                <span className="text-white/60">(SCROLL)</span>
+                <span className="text-black/60">(SCROLL)</span>
               </div>
             </Container>
           </div>
@@ -80,30 +76,28 @@ export default function Comm100Page() {
       >
         <Container size="full" className="grid sm:grid-cols-12 gap-8">
           <div className="col-span-12 sm:col-span-4">
-            <h3 className="text-fluid-xl font-medium mb-6">Project Overview</h3>
-            <ul className="space-y-6 text-gray-500 text-fluid-base">
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Year</span>
-              </li>
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Scope</span>
-              </li>
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Industry</span>
-              </li>
-            </ul>
+            <ScrollRevealText>
+              <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Project Overview</p>
+            </ScrollRevealText>
           </div>
 
-          <div className="col-span-12 sm:col-span-6 sm:col-start-7">
-            <h2 className="text-fluid-4xl font-medium mb-4 leading-snug">
-              Every channel.
-              <br />
-              One platform.
-            </h2>
-            <p className="text-fluid-lg text-gray-500 leading-relaxed max-w-2xl">
-              Powered by AI and automation, Comm100 platform unifies communication across every
-              touchpoint, from live chat to social media, to deliver seamless, personalized support.
-            </p>
+          <div className="col-span-12 sm:col-span-8">
+            <ScrollRevealText delay={200}>
+              <h2 className="text-fluid-3xl font-base text-black mb-8 leading-tight">
+                Every channel.
+                <br />
+                One platform.
+              </h2>
+            </ScrollRevealText>
+            <ScrollRevealText delay={400}>
+              <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
+                <p>
+                  Powered by AI and automation, Comm100 platform unifies communication across every
+                  touchpoint, from live chat to social media, to deliver seamless, personalized
+                  support.
+                </p>
+              </div>
+            </ScrollRevealText>
           </div>
         </Container>
       </section>
@@ -131,12 +125,12 @@ export default function Comm100Page() {
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-base text-black mb-8 leading-tight">
                   Comprehensive Brand Refresh & Marketing transformation
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
                   <p>
                     Our goal was to reposition Comm100 as a future-ready tech company without losing
                     its human touch. This meant a full brand refresh, from visual identity and
@@ -184,14 +178,14 @@ export default function Comm100Page() {
                 <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Strategy</p>
               </ScrollRevealText>
             </div>
-            <div className="lg:col-span-8">
+            <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-base text-black mb-8 leading-tight">
                   AI-powered, yet human-centered.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
                   <p>
                     We built a brand system that balances cutting-edge technology with empathy and
                     clarity. The design emphasizes accessibility and confidence, while messaging
@@ -230,14 +224,14 @@ export default function Comm100Page() {
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-5xl font-base text-black mb-8 leading-tight">
                   Supporting
                   <br />
                   Higher Education Engagement
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
                   <p>
                     To help Comm100 stand out at major higher-ed conferences, we developed engaging
                     graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
@@ -283,6 +277,8 @@ export default function Comm100Page() {
           />
         </Container>
       </section>
+
+      {/* back to work link */}
     </div>
   )
 }
