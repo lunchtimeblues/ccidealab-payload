@@ -44,7 +44,7 @@ export default function ContactPage() {
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
               <a href="#contact" className="border-b border-black hover:opacity-70 transition">
-                Learn more about our company <span className="inline-block ml-1">↓</span>
+                We won&apos;t bite <span className="inline-block ml-1">↓</span>
               </a>
               <span className="text-black/60">(SCROLL)</span>
             </div>
@@ -59,13 +59,13 @@ export default function ContactPage() {
             {/* Contact Information - 40% width */}
             <div className="lg:col-span-4 space-y-8">
               <ScrollRevealText delay={200}>
-                <h2 className="text-fluid-5xl font-medium leading-tight text-black mb-6">
+                <h2 className="text-fluid-3xl font-medium leading-tight text-black mb-6">
                   Interested in working together?
                 </h2>
               </ScrollRevealText>
 
               <ScrollRevealText delay={300}>
-                <p className="text-fluid-lg text-gray-700 mb-12">Contact us today.</p>
+                <p className="text-fluid-lg text-gray-700 mb-4">Contact us today.</p>
               </ScrollRevealText>
 
               <ScrollRevealText delay={400}>

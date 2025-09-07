@@ -18,31 +18,43 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   const followerRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Calculate responsive offset to match our new clamp() typography system
-  const getResponsiveOffset = useCallback(() => {
-    if (typeof window === 'undefined') return 96
+  // Calculate fluid size based on text length and viewport
+  const getFluidSize = useCallback(() => {
+    if (typeof window === 'undefined') return { width: 176, height: 176 }
 
     const vw = window.innerWidth
+    const textLength = text.length
 
-    // Simple scaling that works with our clamp() system
-    // MouseFollower size is 176px (w-44 h-44), so offset should be half = 88px
-    // Scale slightly with viewport for better proportions
+    // Base size calculation
+    const baseSize = Math.max(120, Math.min(200, 120 + textLength * 4))
+
+    // Viewport scaling
+    let scaleFactor = 1
     if (vw < 768) {
-      return 72 // Slightly smaller offset for mobile/tablet
+      scaleFactor = 0.8 // Smaller on mobile
     } else if (vw < 1440) {
-      return 80 // Medium offset for small desktop
+      scaleFactor = 0.9 // Medium on tablet/small desktop
     } else {
-      return 88 // Perfect center offset for large desktop
+      scaleFactor = 1 // Full size on large desktop
     }
+
+    const finalSize = Math.round(baseSize * scaleFactor)
+    return { width: finalSize, height: finalSize }
+  }, [text])
+
+  // Calculate responsive offset based on current size
+  const getResponsiveOffset = useCallback((size: { width: number; height: number }) => {
+    return size.width / 2
   }, [])
 
-  const [offset, setOffset] = useState(96)
+  const [size, setSize] = useState({ width: 176, height: 176 })
+  const [offset, setOffset] = useState(88)
 
   const config = {
     bg: 'bg-white/90 backdrop-blur-md rounded-full',
     text: 'text-black',
     border: 'border border-gray-200/30',
-    size: 'w-44 h-44',
+    size,
     offset,
   }
 
@@ -54,19 +66,22 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
   }, [offset])
 
-  // Update offset on mount and resize to match fluid typography scaling
+  // Update size and offset on mount and resize
   useEffect(() => {
-    const updateOffset = () => {
-      setOffset(getResponsiveOffset())
+    const updateSizeAndOffset = () => {
+      const newSize = getFluidSize()
+      const newOffset = getResponsiveOffset(newSize)
+      setSize(newSize)
+      setOffset(newOffset)
     }
 
-    // Set initial offset
-    updateOffset()
+    // Set initial size and offset
+    updateSizeAndOffset()
 
-    // Update offset on resize
-    window.addEventListener('resize', updateOffset)
-    return () => window.removeEventListener('resize', updateOffset)
-  }, [getResponsiveOffset])
+    // Update on resize
+    window.addEventListener('resize', updateSizeAndOffset)
+    return () => window.removeEventListener('resize', updateSizeAndOffset)
+  }, [getFluidSize, getResponsiveOffset])
 
   useEffect(() => {
     const container = containerRef.current
@@ -124,16 +139,26 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       >
         <div
           className={`
-            ${config.size} ${config.bg} ${config.text} ${config.border} flex items-center justify-center
-            shadow-lg relative overflow-hidden
+            ${config.bg} ${config.text} ${config.border} flex items-center justify-center
+            shadow-lg relative overflow-hidden rounded-full
             transition-all duration-400 ease-out
             ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
           `}
+          style={{
+            width: `${config.size.width}px`,
+            height: `${config.size.height}px`,
+          }}
         >
           {/* Split text around the circle using SVG - distributed evenly on opposite sides */}
-          <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 144 144">
+          <svg
+            className="absolute inset-0 w-full h-full animate-spin-slow"
+            viewBox={`0 0 ${config.size.width} ${config.size.height}`}
+          >
             <defs>
-              <path id="circle-path" d="M 72,72 m -50,0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" />
+              <path
+                id="circle-path"
+                d={`M ${config.size.width / 2},${config.size.height / 2} m -${config.size.width / 2 - 20},0 a ${config.size.width / 2 - 20},${config.size.height / 2 - 20} 0 1,1 ${config.size.width - 40},0 a ${config.size.width / 2 - 20},${config.size.height / 2 - 20} 0 1,1 -${config.size.width - 40},0`}
+              />
             </defs>
             {/* First half of text starting at top */}
             <text className="text-sm font-medium tracking-[0.2em] fill-current">

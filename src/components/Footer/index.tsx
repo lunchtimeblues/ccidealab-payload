@@ -98,7 +98,7 @@ export const Footer = () => {
         transform: `translate3d(0px, ${-25 + scrollY * 25}%, 0px)`,
       }}
     >
-      {/* Logo & Newsletter */}
+      {/* Logo & Contact Information */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-16 sm:mb-24">
         {/* Logo + Name */}
         <ScrollRevealText>
@@ -112,17 +112,26 @@ export const Footer = () => {
             />
           </div>
         </ScrollRevealText>
-        {/* <ScrollRevealText>
-          <div className="flex items-center gap-4 mb-8 md:mb-0">
-            <Image
-              src="/images/cc-logo-black.svg"
-              alt="C/C IDEA LAB Logo"
-              width={100}
-              height={30}
-              className="!h-16 sm:!h-36 w-auto"
-            />
+
+        {/* Contact Information */}
+        <ScrollRevealText delay={200}>
+          <div className="text-white space-y-2 text-right">
+            <div className="space-y-1">
+              <p className="text-sm font-medium">C&C IDEA LAB</p>
+              <p className="text-sm text-gray-300">6060 Silver Dr, 3rd Floor</p>
+              <p className="text-sm text-gray-300">Burnaby, BC V5H 0H5</p>
+            </div>
+            <div className="space-y-1 pt-2">
+              <p className="text-sm text-gray-300">(778) 742-5003</p>
+              <a
+                href="mailto:hello@ccidealab.com"
+                className="text-sm text-gray-300 hover:text-white transition-colors"
+              >
+                hello@ccidealab.com
+              </a>
+            </div>
           </div>
-        </ScrollRevealText> */}
+        </ScrollRevealText>
       </div>
 
       <hr className="border-gray-700 mb-8 sm:mb-12" />

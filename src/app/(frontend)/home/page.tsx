@@ -23,14 +23,16 @@ export default function HomePage(): React.JSX.Element {
           <Container size="xxl" className="relative z-10 w-full">
             <div className="relative w-full max-w-none">
               <h1
-                className="text-fluid-9xl leading-snug md:leading-none font-medium md:font-normal uppercase tracking-tighter"
+                className="text-fluid-9xl leading-snug md:leading-none font-semibold md:font-normal uppercase tracking-tighter text-left md:text-center"
                 aria-label="Ideas worth rallying around"
               >
                 <ScrollRevealText>
-                  <div className="logo-before flex justify-center align-center">Ideas</div>
+                  <div className="logo-before flex justify-start md:justify-center align-center">
+                    Ideas
+                  </div>
                 </ScrollRevealText>
                 <ScrollRevealText delay={200}>
-                  <div className="md:text-right -mr-1">People</div>
+                  <div className="text-left md:text-right -mr-1">People</div>
                 </ScrollRevealText>
                 <div className="flex items-center justify-between">
                   <ScrollRevealText delay={400}>
@@ -54,17 +56,17 @@ export default function HomePage(): React.JSX.Element {
                     </div>
                   </ScrollRevealText>
                   <ScrollRevealText delay={600}>
-                    <div className="flex-1 text-center md:text-left">Champion</div>
+                    <div className="flex-1 text-left md:text-left">Champion</div>
                   </ScrollRevealText>
                   <div className="hidden md:block w-10"></div>
                 </div>
               </h1>
 
               <div className="relative lg:absolute left-0 lg:left-12 lg:top-1/2 lg:-translate-y-1/2 lg:w-2/5 pr-4">
-                <p className="text-fluid-sm font-base leading-normal tracking-wide text-right">
+                <p className="text-fluid-sm font-medium lg:font-base leading-normal tracking-wide text-left lg:text-right">
                   <span className="block">
-                    C/C IDEA LAB is a global strategy and design firm for positioning, scaling, and
-                    reinventing companies in the tech and innovation space.
+                    C&C IDEA LAB partners with companies worldwide to drive growth, grounded in one
+                    belief: creating ideas people champion.
                   </span>
                 </p>
               </div>
@@ -106,16 +108,17 @@ export default function HomePage(): React.JSX.Element {
             <div className="col-span-12 md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8  tracking-tight leading-tight">
-                  Great brands are more than famous names, they&apos;re Ideas Worth Rallying Around.
+                  Great brands are distinguished by the ideas they inspire people to champion.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    C/C IDEA LAB is a brand strategy and design firm that partners with tech and
-                    innovation companies to create impactful, future-ready brands. We collaborate
-                    with visionary teams and design-led companies who need their brand to stand out,
-                    matter more, drive growth, and amplify brand impact within modern culture.
+                    For more than 13 years, C&C IDEA LAB has collaborated with some of the
+                    world&apos;s leading companies, driving measurable growth with brand strategy,
+                    content marketing, integrated campaigns, and ongoing CMO services. At every
+                    stage, our work is anchored in one guiding principle: creating ideas that people
+                    champion.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -351,8 +354,8 @@ export default function HomePage(): React.JSX.Element {
               <div className="col-span-12 md:col-start-5 md:col-span-8">
                 <ScrollRevealText>
                   <p className="text-fluid-3xl font-medium leading-tight md:leading-snug">
-                    CCIDEALAB® brings together a richly multicultural team with balanced
-                    perspectives and shared creativity.
+                    Our strength lies in our people. The C&C team is a collective of brand builders
+                    with expertise spanning design, technology, and strategy.
                   </p>
                 </ScrollRevealText>
 

@@ -38,8 +38,8 @@ export default function WorkPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-black">
-                  See how we partner with visionary teams to build brands that stand out and push
-                  the boundaries of innovation.
+                  Discover how we partner with companies to build brands that align with their
+                  vision.
                 </p>
               </div>
             </Container>
@@ -69,7 +69,49 @@ export default function WorkPage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             <MouseFollower text="CASE STUDIES">
-              <div className="group cursor-pointer">
+              <TransitionLink url="/work/westin" className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163848/rendition/1080p/file.mp4?loc=external&signature=a0e5bf28ccf769072dc576f6a47147ef197e8cfb7e75a930999920491fd8ff5f"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <ScrollRevealText delay={200}>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-sm font-medium text-black">Westin</h3>
+                    <span className="text-fluid-sm text-black tracking-wide">Hospitality</span>
+                  </div>
+                  <p className="text-black text-fluid-sm mb-4">Digital Strategy & UX Design</p>
+                </ScrollRevealText>
+              </TransitionLink>
+            </MouseFollower>
+
+            <MouseFollower text="CASE STUDIES">
+              <TransitionLink url="/work/ubereats" className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163843/rendition/1080p/file.mp4?loc=external&signature=1b1ffb8118fe986d40cddc013ef0f6f94d3bb1c59af635c0d285195e95d02d7d"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <ScrollRevealText delay={200}>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-sm font-medium text-black">UberEats</h3>
+                    <span className="text-fluid-sm text-black tracking-wide">Food & Beverage</span>
+                  </div>
+                  <p className="text-black text-fluid-sm mb-4">Digital Strategy & UX Design</p>
+                </ScrollRevealText>
+              </TransitionLink>
+            </MouseFollower>
+
+            <MouseFollower text="CASE STUDIES">
+              <TransitionLink url="/work/affinity" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
                     src="https://player.vimeo.com/progressive_redirect/playback/1111163775/rendition/1080p/file.mp4?loc=external&signature=a4f82a401110df04c78a21d68e0a53b92198a859b1a14b0eabaa60bdf69fa37c"
@@ -86,11 +128,11 @@ export default function WorkPage() {
                   </div>
                   <p className="text-black text-fluid-sm mb-4">Brand Identity & Web Development</p>
                 </ScrollRevealText>
-              </div>
+              </TransitionLink>
             </MouseFollower>
 
             <MouseFollower text="CASE STUDIES">
-              <div className="group cursor-pointer">
+              <TransitionLink url="/work/pokebar" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
                     src="https://player.vimeo.com/progressive_redirect/playback/1111163834/rendition/1080p/file.mp4?loc=external&signature=1d394a50f40749523873c42ec92b0b9177a3827d888000c24d688993f47ee793"
@@ -107,11 +149,11 @@ export default function WorkPage() {
                   </div>
                   <p className="text-black text-fluid-sm mb-4">Digital Strategy & UX Design</p>
                 </ScrollRevealText>
-              </div>
+              </TransitionLink>
             </MouseFollower>
 
             <MouseFollower text="CASE STUDIES">
-              <div className="group cursor-pointer">
+              <TransitionLink url="/work/marco-polo" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
                     src="https://player.vimeo.com/progressive_redirect/playback/1111163809/rendition/1080p/file.mp4?loc=external&signature=9c62d16e134344639b26289eae9f721f646692945979ed5a8f4f2647aaeec55c"
@@ -128,11 +170,11 @@ export default function WorkPage() {
                   </div>
                   <p className="text-black text-fluid-sm mb-4">Creative Direction & Branding</p>
                 </ScrollRevealText>
-              </div>
+              </TransitionLink>
             </MouseFollower>
 
             <MouseFollower text="CASE STUDIES">
-              <div className="group cursor-pointer">
+              <TransitionLink url="/work/metrotown-notary" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
                     src="https://player.vimeo.com/progressive_redirect/playback/1111163826/rendition/1080p/file.mp4?loc=external&signature=26aef7e436f91aa3408dded6efdb69542ea5e337ae73ca3c03f29454067755ba"
@@ -149,7 +191,7 @@ export default function WorkPage() {
                   </div>
                   <p className="text-black text-fluid-sm mb-4">Investment Platform & Identity</p>
                 </ScrollRevealText>
-              </div>
+              </TransitionLink>
             </MouseFollower>
 
             <MouseFollower text="CASE STUDIES">
@@ -174,7 +216,7 @@ export default function WorkPage() {
             </MouseFollower>
 
             <MouseFollower text="CASE STUDIES">
-              <div className="group cursor-pointer">
+              <TransitionLink url="/work/citycolor" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
                     src="https://player.vimeo.com/progressive_redirect/playback/1111163782/rendition/1080p/file.mp4?loc=external&signature=57e4abd75ba0a501a702c52df8c7be01d2dea6097c192f481de11f147aaa85f8"
@@ -191,7 +233,28 @@ export default function WorkPage() {
                   </div>
                   <p className="text-black text-fluid-sm">Brand Strategy & Visual Identity</p>
                 </ScrollRevealText>
-              </div>
+              </TransitionLink>
+            </MouseFollower>
+
+            <MouseFollower text="CASE STUDIES">
+              <TransitionLink url="/work/foodbyfanta" className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163799/rendition/1080p/file.mp4?loc=external&signature=fc35a26bfc529911c7dc6b03f4278954c69a52c4e8c75c059cf3d13ea73809df"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <ScrollRevealText delay={200}>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-sm font-medium text-black">Pokebar</h3>
+                    <span className="text-fluid-sm text-black tracking-wide">Food & Beverage</span>
+                  </div>
+                  <p className="text-black text-fluid-sm mb-4">Digital Strategy & UX Design</p>
+                </ScrollRevealText>
+              </TransitionLink>
             </MouseFollower>
           </div>
         </Container>

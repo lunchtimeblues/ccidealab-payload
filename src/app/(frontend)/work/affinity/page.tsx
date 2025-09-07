@@ -1,62 +1,133 @@
 import { Container } from '@/components/Container'
+import { ScrollMarquee } from '@/components/ScrollMarquee'
+import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 
-export default function Comm100Page() {
+export default function AffinityPage() {
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
-      <ParallaxImage
-        src="/images/comm100/comm100_hero_bg.jpg"
-        alt="Comm100 Customer Service Platform"
-        size="full"
-        overlay={true}
-        overlayOpacity={0.15}
-        parallaxSpeed={0.5}
-      >
-        <Container size="full" className="h-full flex flex-col justify-center">
-          <ScrollRevealText>
-            <h1 className="text-fluid-7xl font-medium mb-4 text-white">Comm100</h1>
-          </ScrollRevealText>
-          <ScrollRevealText delay={200}>
-            <p className="max-w-xl text-lg md:text-xl leading-relaxed text-white">
-              Comm100 is a leading customer service platform that helps businesses deliver
-              exceptional customer experiences through omnichannel communication solutions.
-            </p>
-          </ScrollRevealText>
-        </Container>
-      </ParallaxImage>
+      <section className="relative min-h-screen bg-gray-100 overflow-hidden">
+        {/* Parallax Background Image */}
+        <div className="absolute inset-0 z-0">
+          <ParallaxImage
+            src="/images/work/affinity/Affinity_Banner.png"
+            alt="Affinity Hero Background"
+            parallaxSpeed={0.5}
+            size="full"
+            overlay={true}
+            overlayOpacity={0.3}
+          />
+        </div>
 
-      {/* Project Overview */}
-      <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
-        <Container size="full" className="grid sm:grid-cols-12 gap-8">
-          <div className="col-span-12 sm:col-span-4">
-            <h3 className="text-fluid-xl font-medium mb-6">Project Overview</h3>
-            <ul className="space-y-6 text-gray-500 text-fluid-base">
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Year</span>
-              </li>
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Scope</span>
-              </li>
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Industry</span>
-              </li>
-            </ul>
+        <div className="relative z-20 flex flex-col justify-between pt-44 pb-8 min-h-screen">
+          <div>
+            {/* Marquee */}
+            <ScrollMarquee
+              baseSpeed={0.8}
+              maxSpeedMultiplier={2}
+              starSpinSpeed={4}
+              lines="single"
+              direction="left"
+              lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
+            >
+              <span className="mx-8">AFFINITY GROUP</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">AFFINITY GROUP</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">AFFINITY GROUP</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+            </ScrollMarquee>
+
+            {/* Content */}
+            <Container size="full">
+              <div className="max-w-3xl mt-12 md:mt-18">
+                <p className="text-fluid-xl leading-snug text-white">
+                  Affinity Group provides IT Consulting & Recruitment Service to successful
+                  customers in a professional environment with a friendly voice. It helps them feel
+                  confident, and achieve business objectives efficiently.
+                </p>
+              </div>
+            </Container>
           </div>
 
-          <div className="col-span-12 sm:col-span-6 sm:col-start-7">
-            <h2 className="text-fluid-4xl font-medium mb-4 leading-snug">
-              Every channel.
-              <br />
-              One platform.
-            </h2>
-            <p className="text-fluid-lg text-gray-500 leading-relaxed max-w-2xl">
-              Powered by AI and automation, Comm100 platform unifies communication across every
-              touchpoint, from live chat to social media, to deliver seamless, personalized support.
-            </p>
+          {/* Hero Footer */}
+          <Container size="full" className="w-full">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
+              <a
+                href="#about"
+                className="text-white border-b border-white hover:opacity-70 transition"
+              >
+                Learn more about our company <span className="inline-block ml-1">↓</span>
+              </a>
+              <span className="text-white">(SCROLL)</span>
+            </div>
+          </Container>
+        </div>
+      </section>
+
+      {/* Project Overview */}
+      <section
+        id="affinity-overview"
+        className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
+      >
+        <Container size="full" className="grid sm:grid-cols-12 gap-8">
+          <div className="col-span-12 sm:col-span-4">
+            <ScrollRevealText>
+              <div className="mb-12">
+                {/* Project Details */}
+                <div className="space-y-6">
+                  <div className="border-b border-gray-300 pb-4">
+                    <ScrollRevealText delay={100}>
+                      <p className="text-fluid-sm text-gray-600 mb-2">Year</p>
+                      <p className="text-fluid-sm text-black font-medium">2024</p>
+                    </ScrollRevealText>
+                  </div>
+
+                  <div className="border-b border-gray-300 pb-4">
+                    <ScrollRevealText delay={200}>
+                      <p className="text-fluid-sm text-gray-600 mb-2">Scope</p>
+                      <p className="text-fluid-sm text-black font-medium">
+                        Brand Strategy, Visual Identity
+                      </p>
+                    </ScrollRevealText>
+                  </div>
+
+                  <div className="border-b border-gray-300 pb-4">
+                    <ScrollRevealText delay={300}>
+                      <p className="text-fluid-sm text-gray-600 mb-2">Industry</p>
+                      <p className="text-fluid-sm text-black font-medium">Technology</p>
+                    </ScrollRevealText>
+                  </div>
+                </div>
+              </div>
+            </ScrollRevealText>
+          </div>
+
+          <div className="col-span-12 sm:col-span-7 sm:col-start-6">
+            <ScrollRevealText delay={200}>
+              <h2 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
+                Professional & Personable
+              </h2>
+            </ScrollRevealText>
+            <ScrollRevealText delay={400}>
+              <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
+                <p>
+                  Known for helping clients achieve their business goals with clarity and
+                  confidence, Affinity needed a brand refresh that reflected both their
+                  professionalism and their human-first approach.
+                </p>
+              </div>
+            </ScrollRevealText>
           </div>
         </Container>
       </section>
@@ -65,12 +136,28 @@ export default function Comm100Page() {
       <section className="relative bg-gray-100  overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163690/rendition/1080p/file.mp4?loc=external&signature=736322fd08c3faf0a0d4de2dea4f8c54673d794cc788f604f3e5962448d66a4e"
+            src="https://player.vimeo.com/progressive_redirect/playback/1111163620/rendition/1080p/file.mp4?loc=external&signature=89a1aa43a36b9f6cc7cda3883ceb3e1523a267205685cf03f13e9bd5f2f8b9a9"
             autoPlay={true}
             muted={true}
             loop={true}
             className="relative"
           />
+        </Container>
+      </section>
+
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <div className="grid sm:grid-cols-2 gap-8">
+            <div className="hidden md:block"></div>
+            <QuickVideo
+              src="https://player.vimeo.com/progressive_redirect/playback/1111163630/rendition/1080p/file.mp4?loc=external&signature=74c69811044b1aa5a6d5e5ab874a7323db9e2236313d2acd170be784b8807861"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              className="relative"
+            />
+          </div>
         </Container>
       </section>
 
@@ -84,17 +171,17 @@ export default function Comm100Page() {
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
-                  Comprehensive Brand Refresh & Marketing transformation
+                <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
+                  Energize the Brand, Elevate the Experience
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    Our goal was to reposition Comm100 as a future-ready tech company without losing
-                    its human touch. This meant a full brand refresh, from visual identity and
-                    messaging to marketing tools, that reflected their innovation, scale, and global
-                    reach.
+                    The goal was to shift Affinity&apos;s identity from conservative to
+                    contemporary, without losing trust or credibility. We set out to inject energy
+                    into the brand, attract new talent, and better reflect the dynamic nature of the
+                    tech and recruiting space.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -104,10 +191,10 @@ export default function Comm100Page() {
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8  overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163686/rendition/1080p/file.mp4?loc=external&signature=ad283143480862bde9fff9c4473e1a9954b752cd681dafdea132d8f0aa047963"
+            src="https://player.vimeo.com/progressive_redirect/playback/1111163613/rendition/1080p/file.mp4?loc=external&signature=6648a3aad66587315173770093d832893b049b92837b375839d77b78b7945b40"
             autoPlay={true}
             muted={true}
             loop={true}
@@ -117,10 +204,10 @@ export default function Comm100Page() {
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8  overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163698/rendition/1080p/file.mp4?loc=external&signature=031f296266782662c99115de6712ed04ac7412837404da4120da4a1a88c20383"
+            src="https://player.vimeo.com/progressive_redirect/playback/1111163605/rendition/1080p/file.mp4?loc=external&signature=aa216bbac51faab6a87abee6e5d35f7b8dd0738bfecfba5dc8baf6aa41176891"
             autoPlay={true}
             muted={true}
             loop={true}
@@ -137,19 +224,20 @@ export default function Comm100Page() {
                 <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Strategy</p>
               </ScrollRevealText>
             </div>
-            <div className="lg:col-span-8">
+            <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-semi-bold text-black mb-8 leading-tight">
-                  AI-powered, yet human-centered.
+                <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
+                  Amping Up the Vibrancy
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    We built a brand system that balances cutting-edge technology with empathy and
-                    clarity. The design emphasizes accessibility and confidence, while messaging
-                    highlights the real-world impact of AI-driven support, proving that smart tech
-                    can still feel personal.
+                    We revitalized Affinity’s identity through a bold, modern colour palette:
+                    pairing red-orange, teal, aqua, and yellow with deep navy neutrals. A refined
+                    logo and refreshed typography gave the brand a confident, polished look, while
+                    updated photography brought warmth, authenticity, and human connection to the
+                    forefront.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -158,63 +246,32 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
-          <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163703/rendition/1080p/file.mp4?loc=external&signature=c7f06db38c1fa306d454ba1eec4d93da627c217a2fff4947db6b455ae34eb14e"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            className="relative"
+          <Image
+            src="/images/work/affinity/Affinity_2.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
           />
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
-        <Container size="full">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
-            <div className="md:col-span-4">
-              <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Brand Application</p>
-              </ScrollRevealText>
-            </div>
-            <div className="md:col-span-8">
-              <ScrollRevealText delay={200}>
-                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
-                  Supporting
-                  <br />
-                  Higher Education Engagement
-                </h3>
-              </ScrollRevealText>
-              <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
-                  <p>
-                    To help Comm100 stand out at major higher-ed conferences, we developed engaging
-                    graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
-                    to the challenges and priorities of post-secondary institutions—clear,
-                    compelling, and conversion-focused.
-                  </p>
-                </div>
-              </ScrollRevealText>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Section: Clean Confident Cohesive */}
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/work/comm100/comm100-id-card.jpg"
+              src="/images/work/affinity/Affinity Tote Mockup-1.jpg"
               alt="Comm100 Branded Materials"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/work/comm100/comm100-waterbottle.jpg"
+              src="/images/work/affinity/Affinity  Posters Mockup-1.png"
               alt="Platform Interface Design"
               width={800}
               height={800}
@@ -224,11 +281,43 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      {/* Billboard Section */}
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
+        <Container size="full">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+            <div className="md:col-span-4">
+              <ScrollRevealText>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
+                  Brand Application
+                </p>
+              </ScrollRevealText>
+            </div>
+            <div className="md:col-span-8">
+              <ScrollRevealText delay={200}>
+                <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
+                  About the Real Moments.
+                </h3>
+              </ScrollRevealText>
+              <ScrollRevealText delay={400}>
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
+                  <p>
+                    From capturing live event footage to showcasing the real Affinity team, we built
+                    a visual narrative rooted in connection and credibility. Brand assets spanned
+                    digital presentations, social content, and photography direction, all
+                    reinforcing Affinity&apos;s voice: approachable, expert, and confidently
+                    current.
+                  </p>
+                </div>
+              </ScrollRevealText>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/comm100/comm100-conference.jpg"
+            src="/images/work/affinity/Affinity Laptop Mockup-1.png"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -236,6 +325,21 @@ export default function Comm100Page() {
           />
         </Container>
       </section>
+
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/affinity/Affinity Laptop Mockup-1.jpg"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
+          />
+        </Container>
+      </section>
+
+      {/* back to work link */}
     </div>
   )
 }

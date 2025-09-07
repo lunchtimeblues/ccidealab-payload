@@ -33,7 +33,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     sm: 'h-80', // 256px
     md: 'h-96', // 320px
     lg: 'h-104', // 384px
-    xl: 'h-[32rem]', // 512pxb
+    xl: 'h-[36rem]', // 576px - increased to accommodate text
     xxl: 'h-[69rem]',
   }
 
@@ -268,16 +268,33 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
           className="flex gap-8 transition-transform duration-500 ease-out h-full items-center"
         >
           {childrenArray.map((child, index) => (
-            <div key={index} className="flex-shrink-0 h-full flex items-center justify-center">
+            <div
+              key={index}
+              className="flex-shrink-0 flex items-start justify-center"
+              style={{ height: '100%' }}
+            >
               {React.isValidElement(child) ? (
-                cloneElement(child as ReactElementWithProps, {
-                  className: `h-full w-auto object-contain rounded-lg ${(child as ReactElementWithProps).props.className || ''}`,
-                  style: {
-                    maxHeight: '100%',
-                    width: 'auto',
-                    ...(child as ReactElementWithProps).props.style,
-                  },
-                })
+                // Check if child is a div (team member card) or an Image
+                child.type === 'div' ? (
+                  // Render team member card with proper spacing
+                  cloneElement(child as ReactElementWithProps, {
+                    className: `flex flex-col justify-start ${(child as ReactElementWithProps).props.className || ''}`,
+                    style: {
+                      height: 'auto',
+                      maxHeight: '100%',
+                    },
+                  })
+                ) : (
+                  // Render image with original styling
+                  cloneElement(child as ReactElementWithProps, {
+                    className: `h-full w-auto object-contain rounded-lg ${(child as ReactElementWithProps).props.className || ''}`,
+                    style: {
+                      maxHeight: '100%',
+                      width: 'auto',
+                      ...(child as ReactElementWithProps).props.style,
+                    },
+                  })
+                )
               ) : (
                 <div className="h-full aspect-square bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-lg">
                   <span className="text-gray-500">Invalid content</span>

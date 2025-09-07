@@ -42,9 +42,9 @@ export default function AboutPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-black">
-                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
-                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
-                  mottos for clients to serve as their Idea Worth Rallying Around®.
+                  In 2012, we began with a simple camera, a laptop, and a desire to create. From
+                  those early experiments grew a collective of strategists and creators devoted to
+                  help shaping brands.
                 </p>
               </div>
             </Container>
@@ -64,7 +64,7 @@ export default function AboutPage() {
 
       {/* Parallax Image Section */}
       <ParallaxImage
-        src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+        src="/images/about/lobby-large.jpg"
         alt="Modern office workspace"
         size="80vh"
         overlay={true}
@@ -118,17 +118,16 @@ export default function AboutPage() {
             <div className="col-span-12 sm:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 leading-tight">
-                  Founded on the belief that great brands are more than logos—they&apos;re
-                  movements.
+                  We blend global perspectives with local insight to create ideas that resonate
+                  across cultures and communities.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-lg text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    Here inside Motto®, diversity is critical to extracting insanely strategic and
-                    creative outcomes. Every person on our team comes together to amplify our
-                    individual and collective talents, so you can experience high-functioning
-                    diversity at work, delivering massive value for your company.
+                    We are a team shaped by many cultures and perspectives, each bringing a unique
+                    lens to how we see the world. This diversity is more than who we are — it is how
+                    we work. It pushes us to challenge assumptions and spark new ideas.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -138,100 +137,159 @@ export default function AboutPage() {
 
         <div className="mt-16">
           <Carousel size="xl">
-            <Image
-              src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
-              alt="Creative Vision - C/C IDEA LAB Studio"
-              width={400}
-              height={600}
-              className="object-cover"
-              priority
-            />
-            <Image
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center"
-              alt="Digital Innovation - C/C IDEA LAB Tech"
-              width={600}
-              height={400}
-              className="object-cover"
-            />
-            <Image
-              src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=500&fit=crop&crop=center"
-              alt="Brand Strategy - C/C IDEA LAB Strategy"
-              width={400}
-              height={500}
-              className="object-cover"
-            />
-            <Image
-              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=500&h=400&fit=crop&crop=center"
-              alt="Global Impact - C/C IDEA LAB Worldwide"
-              width={500}
-              height={400}
-              className="object-cover"
-            />
-            <Image
-              src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=400&h=700&fit=crop&crop=center"
-              alt="Future Forward - C/C IDEA LAB Tomorrow"
-              width={400}
-              height={700}
-              className="object-cover"
-            />
+            <div className="text-center">
+              <Image
+                src="/images/about/team/1-wayne.jpg"
+                alt=""
+                width={400}
+                height={500}
+                className="object-cover rounded-lg mb-4"
+                priority
+              />
+              <div className="text-black">
+                <h4 className="text-fluid-base font-medium">Wayne Kuo</h4>
+                <p className="text-fluid-sm text-gray-600">Principal</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/about/team/2-anna.jpg"
+                alt=""
+                width={400}
+                height={500}
+                className="object-cover rounded-lg mb-4"
+              />
+              <div className="text-black">
+                <h4 className="text-fluid-base font-medium">Anna Morozova</h4>
+                <p className="text-fluid-sm text-gray-600">Director, Brand Strategy</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/about/team/3-doug.jpg"
+                alt=""
+                width={400}
+                height={500}
+                className="object-cover rounded-lg mb-4"
+              />
+              <div className="text-black">
+                <h4 className="text-fluid-base font-medium">Douglas Hsieh</h4>
+                <p className="text-fluid-sm text-gray-600">Director, Technology</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/about/team/4-mara.jpg"
+                alt=""
+                width={400}
+                height={500}
+                className="object-cover rounded-lg mb-4"
+              />
+              <div className="text-black">
+                <h4 className="text-fluid-base font-medium">Mara Zillums</h4>
+                <p className="text-fluid-sm text-gray-600">Art Director, Photography</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/about/team/5-ugyen.jpg"
+                alt=""
+                width={400}
+                height={500}
+                className="object-cover rounded-lg mb-4"
+              />
+              <div className="text-black">
+                <h4 className="text-fluid-base font-medium">Ugyen Wangchuk</h4>
+                <p className="text-fluid-sm text-gray-600">Art Director, Videography</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/about/team/6-joyce.jpg"
+                alt=""
+                width={400}
+                height={500}
+                className="object-cover rounded-lg mb-4"
+              />
+              <div className="text-black">
+                <h4 className="text-fluid-base font-medium">Joyce Peng</h4>
+                <p className="text-fluid-sm text-gray-600">Art Director, Graphic Design</p>
+              </div>
+            </div>
+            <div className="text-center">
+              <Image
+                src="/images/about/team/7-yvonne.jpg"
+                alt=""
+                width={400}
+                height={500}
+                className="object-cover rounded-lg mb-4"
+              />
+              <div className="text-black">
+                <h4 className="text-fluid-base font-medium">Yvonne Zhao</h4>
+                <p className="text-fluid-sm text-gray-600">Art Director, Motion Graphics</p>
+              </div>
+            </div>
           </Carousel>
         </div>
       </section>
 
-      <section className="bg-gray-100 py-32 sm:py-48">
+      <section className="bg-gray-100 pt-16 sm:pt-24 pb-32 sm:pb-48">
         <Container size="full">
           <ScrollRevealText>
-            <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Our Story</p>
+            <p className="text-fluid-lg font-medium text-black mb-8 md:mb-16">Our Principles</p>
           </ScrollRevealText>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-16 gap-x-12">
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">01.</span>
-              <h3 className="font-semibold text-fluid-lg text-black mb-2">Do Big Things</h3>
+              <h3 className="font-semibold text-fluid-lg text-black mb-2">Think Big</h3>
               <p className="text-gray-500 text-fluid-base">
-                We dare to do big things, create big ideas, make big leaps, and take big risks.
+                We dare to dream boldly, build ambitious ideas, take transformative leaps, and
+                embrace meaningful risks.
               </p>
             </div>
 
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">02.</span>
-              <h3 className="font-semibold text-fluid-xl text-black mb-2">We Before Me</h3>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Together First</h3>
               <p className="text-gray-500 text-fluid-lg">
-                We work as a team to get the best from each other. No one can move a mountain alone.
+                We thrive as a team, drawing the best from one another—because no one moves
+                mountains alone.
               </p>
             </div>
 
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">03.</span>
-              <h3 className="font-semibold text-fluid-xl text-black mb-2">Great Not Good</h3>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Be Great</h3>
               <p className="text-gray-500 text-fluid-lg">
-                We are obsessed with excellence and refuse to accept mediocrity or good enough.
+                We pursue excellence relentlessly, rejecting mediocrity and never settling for “good
+                enough.”
               </p>
             </div>
 
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">04.</span>
-              <h3 className="font-semibold text-fluid-xl text-black mb-2">Radical Candor</h3>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Honest Voices</h3>
               <p className="text-gray-500 text-fluid-lg">
-                We recognize conflict as a healthy and valuable tool that makes us more innovative
-                and collaborative.
+                We see conflict as a healthy force—fueling innovation, strengthening collaboration,
+                and sharpening ideas.
               </p>
             </div>
 
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">05.</span>
-              <h3 className="font-semibold text-fluid-xl text-black mb-2">Play Offense</h3>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Act Boldly</h3>
               <p className="text-gray-500 text-fluid-lg">
-                We spend as much time as possible doing and as little time as possible talking about
-                doing.
+                We prioritize action over talk, focusing our energy on creating rather than just
+                discussing.
               </p>
             </div>
 
             <div>
               <span className="block text-fluid-6xl font-medium text-black mb-4">06.</span>
-              <h3 className="font-semibold text-fluid-xl text-black mb-2">Glass Half Full</h3>
+              <h3 className="font-semibold text-fluid-xl text-black mb-2">Choose Optimism</h3>
               <p className="text-gray-500 text-fluid-lg">
-                Positivity creates opportunity; pessimism kills it. We are optimistic about the
-                future, and in turn, promote creativity and new ideas.
+                We believe positivity opens doors while pessimism closes them. Optimism fuels
+                creativity, possibility, and new ideas.
               </p>
             </div>
           </div>

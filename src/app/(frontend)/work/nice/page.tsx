@@ -1,62 +1,137 @@
 import { Container } from '@/components/Container'
+import { ScrollMarquee } from '@/components/ScrollMarquee'
+import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 
-export default function Comm100Page() {
+export default function NicePage() {
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
-      <ParallaxImage
-        src="/images/comm100/comm100_hero_bg.jpg"
-        alt="Comm100 Customer Service Platform"
-        size="full"
-        overlay={true}
-        overlayOpacity={0.15}
-        parallaxSpeed={0.5}
-      >
-        <Container size="full" className="h-full flex flex-col justify-center">
-          <ScrollRevealText>
-            <h1 className="text-fluid-7xl font-medium mb-4 text-white">Comm100</h1>
-          </ScrollRevealText>
-          <ScrollRevealText delay={200}>
-            <p className="max-w-xl text-lg md:text-xl leading-relaxed text-white">
-              Comm100 is a leading customer service platform that helps businesses deliver
-              exceptional customer experiences through omnichannel communication solutions.
-            </p>
-          </ScrollRevealText>
-        </Container>
-      </ParallaxImage>
+      <section className="relative min-h-screen bg-gray-100 overflow-hidden">
+        {/* Parallax Background Image */}
+        <div className="absolute inset-0 z-0">
+          <ParallaxImage
+            src="/images/work/nice/nice_hero_bg.jpg"
+            alt="Nice Hero Background"
+            parallaxSpeed={0.5}
+            size="full"
+            overlay={true}
+            overlayOpacity={0.3}
+          />
+        </div>
 
-      {/* Project Overview */}
-      <section className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
-        <Container size="full" className="grid sm:grid-cols-12 gap-8">
-          <div className="col-span-12 sm:col-span-4">
-            <h3 className="text-fluid-xl font-medium mb-6">Project Overview</h3>
-            <ul className="space-y-6 text-gray-500 text-fluid-base">
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Year</span>
-              </li>
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Scope</span>
-              </li>
-              <li className="flex flex-col">
-                <span className="border-t border-gray-300 pt-2">Industry</span>
-              </li>
-            </ul>
+        <div className="relative z-20 flex flex-col justify-between pt-44 pb-8 min-h-screen">
+          <div>
+            {/* Marquee */}
+            <ScrollMarquee
+              baseSpeed={0.8}
+              maxSpeedMultiplier={2}
+              starSpinSpeed={4}
+              lines="single"
+              direction="left"
+              lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
+            >
+              <span className="mx-8">NICE</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">NICE</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+              <span className="mx-8">NICE</span>
+              <span className="mx-8 flex items-center">
+                <SpinningStar size={64} className="text-current" />
+              </span>
+            </ScrollMarquee>
+
+            {/* Content */}
+            <Container size="full">
+              <div className="max-w-3xl mt-12 md:mt-18">
+                <p className="text-fluid-xl leading-snug text-white">
+                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
+                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
+                  mottos for clients to serve as their Idea Worth Rallying Around®.
+                </p>
+              </div>
+            </Container>
           </div>
 
-          <div className="col-span-12 sm:col-span-6 sm:col-start-7">
-            <h2 className="text-fluid-4xl font-medium mb-4 leading-snug">
-              Every channel.
-              <br />
-              One platform.
-            </h2>
-            <p className="text-fluid-lg text-gray-500 leading-relaxed max-w-2xl">
-              Powered by AI and automation, Comm100 platform unifies communication across every
-              touchpoint, from live chat to social media, to deliver seamless, personalized support.
-            </p>
+          {/* Hero Footer */}
+          <Container size="full" className="w-full">
+            <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
+              <a
+                href="#about"
+                className="text-white border-b border-white hover:opacity-70 transition"
+              >
+                Learn more about our company <span className="inline-block ml-1">↓</span>
+              </a>
+              <span className="text-white">(SCROLL)</span>
+            </div>
+          </Container>
+        </div>
+      </section>
+
+      {/* Project Overview */}
+      <section
+        id="nice-overview"
+        className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
+      >
+        <Container size="full" className="grid sm:grid-cols-12 gap-8">
+          <div className="col-span-12 sm:col-span-4">
+            <ScrollRevealText>
+              <div className="mb-12">
+                {/* Project Details */}
+                <div className="space-y-6">
+                  <div className="border-b border-gray-300 pb-4">
+                    <ScrollRevealText delay={100}>
+                      <p className="text-fluid-sm text-gray-600 mb-2">Year</p>
+                      <p className="text-fluid-sm text-black font-medium">2024</p>
+                    </ScrollRevealText>
+                  </div>
+
+                  <div className="border-b border-gray-300 pb-4">
+                    <ScrollRevealText delay={200}>
+                      <p className="text-fluid-sm text-gray-600 mb-2">Scope</p>
+                      <p className="text-fluid-sm text-black font-medium">
+                        Brand Refresh, Marketing Transformation
+                      </p>
+                    </ScrollRevealText>
+                  </div>
+
+                  <div className="border-b border-gray-300 pb-4">
+                    <ScrollRevealText delay={300}>
+                      <p className="text-fluid-sm text-gray-600 mb-2">Industry</p>
+                      <p className="text-fluid-sm text-black font-medium">
+                        Customer Support Technology
+                      </p>
+                    </ScrollRevealText>
+                  </div>
+                </div>
+              </div>
+            </ScrollRevealText>
+          </div>
+
+          <div className="col-span-12 sm:col-span-7 sm:col-start-6">
+            <ScrollRevealText delay={200}>
+              <h2 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
+                Every channel.
+                <br />
+                One platform.
+              </h2>
+            </ScrollRevealText>
+            <ScrollRevealText delay={400}>
+              <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
+                <p>
+                  Powered by AI and automation, Nice platform unifies communication across every
+                  touchpoint, from live chat to social media, to deliver seamless, personalized
+                  support.
+                </p>
+              </div>
+            </ScrollRevealText>
           </div>
         </Container>
       </section>
@@ -84,14 +159,14 @@ export default function Comm100Page() {
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
                   Comprehensive Brand Refresh & Marketing transformation
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    Our goal was to reposition Comm100 as a future-ready tech company without losing
+                    Our goal was to reposition Nice as a future-ready tech company without losing
                     its human touch. This meant a full brand refresh, from visual identity and
                     messaging to marketing tools, that reflected their innovation, scale, and global
                     reach.
@@ -137,14 +212,14 @@ export default function Comm100Page() {
                 <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Strategy</p>
               </ScrollRevealText>
             </div>
-            <div className="lg:col-span-8">
+            <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl lg:text-5xl font-semi-bold text-black mb-8 leading-tight">
+                <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
                   AI-powered, yet human-centered.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 lg:pr-16">
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
                     We built a brand system that balances cutting-edge technology with empathy and
                     clarity. The design emphasizes accessibility and confidence, while messaging
@@ -176,22 +251,23 @@ export default function Comm100Page() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Brand Application</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
+                  Brand Application
+                </p>
               </ScrollRevealText>
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
-                <h3 className="text-4xl md:text-5xl font-semi-bold text-black mb-8 leading-tight">
-                  Supporting
-                  <br />
-                  Higher Education Engagement
+                <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
+                  Supporting Higher <br />
+                  Education Engagement
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
-                <div className="text-fluid-lg text-gray-500 leading-relaxed mb-8 md:pr-16">
+                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    To help Comm100 stand out at major higher-ed conferences, we developed engaging
-                    graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
+                    To help Nice stand out at major higher-ed conferences, we developed engaging
+                    graphics, and presentations, as well as Nice merch. Each asset spoke directly
                     to the challenges and priorities of post-secondary institutions—clear,
                     compelling, and conversion-focused.
                   </p>
@@ -202,19 +278,18 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      {/* Section: Clean Confident Cohesive */}
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/work/comm100/comm100-id-card.jpg"
-              alt="Comm100 Branded Materials"
+              src="/images/work/nice/nice-id-card.jpg"
+              alt="Nice Branded Materials"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/work/comm100/comm100-waterbottle.jpg"
+              src="/images/work/nice/nice-waterbottle.png"
               alt="Platform Interface Design"
               width={800}
               height={800}
@@ -224,11 +299,10 @@ export default function Comm100Page() {
         </Container>
       </section>
 
-      {/* Billboard Section */}
-      <section className="relative bg-gray-100 py-32 lg:py-48 overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/comm100/comm100-conference.jpg"
+            src="/images/work/nice/nice-conference.png"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -236,6 +310,8 @@ export default function Comm100Page() {
           />
         </Container>
       </section>
+
+      {/* back to work link */}
     </div>
   )
 }

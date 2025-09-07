@@ -20,74 +20,74 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
     {
       src: '/images/clients/250822 C&C SVG Grey-13.svg',
       alt: 'Client Logo 13',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-14.svg',
       alt: 'Client Logo 14',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-15.svg',
       alt: 'Client Logo 15',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-16.svg',
       alt: 'Client Logo 16',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-17.svg',
       alt: 'Client Logo 17',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-18.svg',
       alt: 'Client Logo 18',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-19.svg',
       alt: 'Client Logo 19',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-20.svg',
       alt: 'Client Logo 20',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-21.svg',
       alt: 'Client Logo 21',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-22.svg',
       alt: 'Client Logo 22',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-23.svg',
       alt: 'Client Logo 23',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
     {
       src: '/images/clients/250822 C&C SVG Grey-24.svg',
       alt: 'Client Logo 24',
-      width: 140,
-      height: 70,
+      width: 200,
+      height: 100,
     },
   ]
 
@@ -104,7 +104,7 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
             alt={logo.alt}
             width={logo.width}
             height={logo.height}
-            className="!h-20 sm:!h-24 w-auto max-w-[200px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
+            className="!h-28 sm:!h-32 w-auto max-w-[280px] object-contain opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
             style={{ filter: 'brightness(0.8) contrast(1.2)' }}
           />
         </div>
@@ -115,7 +115,7 @@ export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
   return (
     <div className={`overflow-hidden ${className}`}>
       <div
-        className="marquee-track flex items-center gap-12 h-24"
+        className="marquee-track flex items-center gap-16 h-32 sm:h-36"
         style={
           {
             // CSS custom properties so duration/direction can't be stomped by !important utilities

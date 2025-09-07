@@ -74,42 +74,46 @@ export default function ServicesPage() {
   }, [])
   const services = [
     {
-      title: 'Brand Strategy',
+      title: 'Branding & Strategy',
       number: '01',
       description:
-        "Define your edge and steer your company into the future with positioning that clearly defines who you are, what you do, why you matter, and how you'll win.",
-      features1: ['Research & Insights', 'Brand Positioning', 'Strategic Workshops'],
-      features2: ['Vision & Purpose', 'Strategic Narrative', 'Brand Architecture'],
+        'We align visions to build strong foundations through strategy and design across every touchpoint.',
+      features1: ['Brand Strategy', 'Identity Design ', 'Graphic Design'],
+      features2: ['Packaging Design', 'Environmental Design', 'Experiential Design'],
       videoSrc:
         'https://player.vimeo.com/progressive_redirect/playback/946746335/rendition/1080p/file.mp4?loc=external&log_user=0&signature=7e69eb1e218636d3cec013200df6f40427c61fad83474509d7091ecdcc3e65df',
     },
     {
-      title: 'Brand Culture',
+      title: 'Creative Production',
       number: '02',
       description:
-        'Operationalize your brand and rally your people with tools and culture strategies that embed your brand’s essence into the organization.',
-      features1: ['Culture Strategy', 'Core Values & Behaviors', 'Rituals & Rewards'],
-      features2: ['Employee Experience Design', 'Internal Launch Events', 'Brand Trainings'],
+        'With full production capability, we bring ideas to life with compelling video, photography, and content.',
+      features1: ['Campaign Asset Development', 'Video Production', 'Photography'],
+      features2: ['Motion Graphics', 'Drone & Aerial Videography', 'Event Coverage & Livestreams'],
       videoSrc:
         'https://player.vimeo.com/progressive_redirect/playback/946746316/rendition/1080p/file.mp4?loc=external&log_user=0&signature=9f40db7e8d62275fd15b0536b4e8c6b43d6585ed897816c490a099c85d717a45',
     },
     {
-      title: 'Brand Identity',
+      title: 'Digital Experience',
       number: '03',
       description:
-        'Bring your brand to life with adaptable, scalable design systems that connect strategy to visuals with clarity and impact.',
-      features1: ['Verbal Identity & Naming', 'Visual Identity', 'Design Systems'],
-      features2: ['Art Direction', 'Visual Assets', 'Brand Guidelines'],
+        'Create seamless digital platforms on the web or in-person that merge design, technology, and intelligence.',
+      features1: ['Touchscreen Design', 'Interactive Media', 'Web Design & Development'],
+      features2: ['E-Commerce ', 'Custom CRM Integrations', 'Website Optimization & Support'],
       videoSrc:
         'https://player.vimeo.com/progressive_redirect/playback/946746304/rendition/1080p/file.mp4?loc=external&log_user=0&signature=345cd0867222271407bdecc16186c41de703cef9e1c7a088c9f753b88b88fb11',
     },
     {
-      title: 'Brand Experience',
+      title: 'Marketing & Growth',
       number: '04',
       description:
-        'Cutting-edge brand and digital experiences to captivate modern audiences in a fast-paced world.',
-      features1: ['Comms & Collateral', 'UI/UX Design', 'Motion Design'],
-      features2: ['Product Design', 'Interaction Design', 'Campaign Design'],
+        'Amplify your brand through integrated strategies that drive measurable long-term growth.',
+      features1: ['Brand Activations', 'Content Marketing', 'Social Media Management'],
+      features2: [
+        'SEO & SEM Campaigns',
+        'Email Marketing & Automation',
+        'Analytics, Reporting & Optimization',
+      ],
       videoSrc:
         'https://player.vimeo.com/progressive_redirect/playback/1028621242/rendition/2160p/file.mp4?loc=external&log_user=0&signature=1366c22c5c6960f18502839850cc6e6e875dcee68f7eccb8031f54db6ec07089',
     },
@@ -150,9 +154,8 @@ export default function ServicesPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-black">
-                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
-                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
-                  mottos for clients to serve as their Idea Worth Rallying Around®.
+                  From brand foundations to growth campaigns, we deliver strategy, design, content,
+                  and digital experiences that move people and accelerate business.
                 </p>
               </div>
             </Container>
@@ -185,24 +188,23 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="col-span-12 md:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
-                  Think big with us.
-                </p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Grow with us.</p>
               </ScrollRevealText>
             </div>
             <div className="col-span-12 md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8  tracking-tight leading-tight">
-                  Great brands are more than famous names, they&apos;re Ideas Worth Rallying Around.
+                  Our role goes beyond project delivery — we are your strategic partner dedicated to
+                  growing your brand.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    C/C IDEA LAB is a brand strategy and design firm that partners with tech and
-                    innovation companies to create impactful, future-ready brands. We collaborate
-                    with visionary teams and design-led companies who need their brand to stand out,
-                    matter more, drive growth, and amplify brand impact within modern culture.
+                    We bring the creative and digital capabilities needed to thrive in a
+                    fast-changing landscape. From branding and content production to websites,
+                    digital experiences, and performance-driven campaigns, we provide consistency
+                    across every touchpoint and the technology to keep your brand moving forward.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -236,26 +238,28 @@ export default function ServicesPage() {
 
             {/* Container moved inside to constrain content, not the fade effect */}
             <Container size="full" className="w-full">
-              <div className="h-screen flex flex-col justify-center py-8 md:py-12">
+              <div className="min-h-screen md:h-screen flex flex-col justify-center py-16 md:py-12">
                 <div className="relative z-20">
                   {/* Header Section */}
-                  <div className="flex justify-between items-start mb-8 md:mb-12">
-                    <h2 className="uppercase text-fluid-5xl font-medium">{service.title}</h2>
-                    <span className="uppercase hidden sm:block text-fluid-5xl font-medium">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 md:mb-12">
+                    <h2 className="uppercase text-fluid-5xl font-medium mb-2 sm:mb-0">
+                      {service.title}
+                    </h2>
+                    <span className="uppercase text-fluid-3xl sm:text-fluid-5xl font-medium text-gray-600 sm:text-black">
                       {service.number}
                     </span>
                   </div>
 
                   {/* Content Section */}
-                  <div className="border-t border-[#CFD5D7] pt-8 md:pt-12">
-                    <div className="grid grid-cols-12 gap-6 md:gap-8">
+                  <div className="border-t border-[#CFD5D7] pt-6 md:pt-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8">
                       {/* Text Content */}
-                      <div className="col-span-12 lg:col-span-8">
-                        <p className="text-fluid-lg leading-relaxed mb-8 md:mb-10">
+                      <div className="lg:col-span-8">
+                        <p className="text-fluid-lg leading-relaxed mb-6 md:mb-10">
                           {service.description}
                         </p>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
                           <ul className="space-y-2 text-fluid-base">
                             {service.features1.map((item, i) => (
                               <li key={i}>{item}</li>
@@ -270,7 +274,7 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Video Section */}
-                      <div className="col-span-12 lg:col-span-4">
+                      <div className="lg:col-span-4 mt-6 lg:mt-0">
                         <div className="relative w-full aspect-[3/4] max-w-xs mx-auto lg:mx-0">
                           <video
                             className="absolute inset-0 w-full h-full object-cover rounded-lg"
