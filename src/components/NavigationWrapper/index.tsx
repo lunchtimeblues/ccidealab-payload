@@ -14,11 +14,11 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/', transitionType: 'logoWipe', transitionColor: '#ccce36ff' },
-  { label: 'Work', href: '/work', transitionType: 'logoWipe', transitionColor: '#059669' },
-  { label: 'About', href: '/about', transitionType: 'logoWipe', transitionColor: '#7c3aed' },
-  { label: 'Services', href: '/services', transitionType: 'logoWipe', transitionColor: '#dc2626' },
-  { label: 'Contact', href: '/contact', transitionType: 'logoWipe', transitionColor: '#666666ff' },
+  { label: 'Home', href: '/', transitionType: 'logoWipe', transitionColor: '#000000' },
+  { label: 'About', href: '/about', transitionType: 'logoWipe', transitionColor: '#edefa2' },
+  { label: 'Work', href: '/work', transitionType: 'logoWipe', transitionColor: '#c9cfd1' },
+  { label: 'Services', href: '/services', transitionType: 'logoWipe', transitionColor: '#CFC9BC' },
+  { label: 'Contact', href: '/contact', transitionType: 'logoWipe', transitionColor: '#000000' },
 ]
 
 export const NavigationWrapper = () => {

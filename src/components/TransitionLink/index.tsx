@@ -41,6 +41,26 @@ const isInternalLink = (href: string): boolean => {
   return href.startsWith('/') || href.startsWith('#') || !isExternalUrl(href)
 }
 
+// Page-specific color mapping
+const getPageTransitionColor = (href: string): string => {
+  // Normalize href to handle different formats
+  const normalizedHref = href.toLowerCase().replace(/\/$/, '') || '/'
+
+  switch (normalizedHref) {
+    case '/':
+    case '/home':
+      return '#000000' // Black
+    case '/about':
+      return '#edefa2' // Yellow
+    case '/work':
+      return '#c9cfd1' // Grey
+    case '/services':
+      return '#CFC9BC' // Brown
+    default:
+      return '#000000' // Default to black
+  }
+}
+
 export const TransitionLink: React.FC<TransitionLinkType> = (props) => {
   const {
     type,
@@ -76,11 +96,14 @@ export const TransitionLink: React.FC<TransitionLinkType> = (props) => {
   const shouldUseTransition =
     !disableTransition && !newTab && isInternalLink(href) && typeof window !== 'undefined'
 
+  // Get the appropriate transition color for the destination page
+  const finalTransitionColor = transitionColor || getPageTransitionColor(href)
+
   const handleClick = (e: React.MouseEvent) => {
     if (shouldUseTransition) {
       e.preventDefault()
       onClick?.() // Call the onClick handler first (to close menu, etc.)
-      navigateWithTransition(href, transitionType, transitionColor)
+      navigateWithTransition(href, transitionType, finalTransitionColor)
     } else {
       onClick?.() // Call onClick for external links too
     }

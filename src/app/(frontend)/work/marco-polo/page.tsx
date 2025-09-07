@@ -5,6 +5,7 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
+import { TransitionLink } from '@/components/TransitionLink'
 
 export default function MarcoPoloPage() {
   return (
@@ -14,7 +15,7 @@ export default function MarcoPoloPage() {
         {/* Parallax Background Image */}
         <div className="absolute inset-0 z-0">
           <ParallaxImage
-            src="/images/work/affinity/Affinity_Banner.png"
+            src="/images/work/marcopolo/MarcoPolo_Banner.png"
             alt="Affinity Hero Background"
             parallaxSpeed={0.5}
             size="full"
@@ -34,15 +35,15 @@ export default function MarcoPoloPage() {
               direction="left"
               lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
-              <span className="mx-8">AFFINITY GROUP</span>
+              <span className="mx-8">MARCO POLO</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">AFFINITY GROUP</span>
+              <span className="mx-8">MARCO POLO</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">AFFINITY GROUP</span>
+              <span className="mx-8">MARCO POLO</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
@@ -52,9 +53,8 @@ export default function MarcoPoloPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-white">
-                  Affinity Group provides IT Consulting & Recruitment Service to successful
-                  customers in a professional environment with a friendly voice. It helps them feel
-                  confident, and achieve business objectives efficiently.
+                  Perched at the pinnacle of the Cambie Corridor, Marco Polo redefines the way we
+                  work and live.
                 </p>
               </div>
             </Container>
@@ -116,15 +116,16 @@ export default function MarcoPoloPage() {
           <div className="col-span-12 sm:col-span-7 sm:col-start-6">
             <ScrollRevealText delay={200}>
               <h2 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                Professional & Personable
+                Redefining Work & Elevating Life
               </h2>
             </ScrollRevealText>
             <ScrollRevealText delay={400}>
               <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                 <p>
-                  Known for helping clients achieve their business goals with clarity and
-                  confidence, Affinity needed a brand refresh that reflected both their
-                  professionalism and their human-first approach.
+                  Located at the highest point of Vancouver’s Cambie Corridor, Marco Polo is a bold
+                  new vision for modern living and working. Set in the rapidly evolving Oakridge
+                  District, it offers forward-thinking spaces designed for entrepreneurs, creatives,
+                  and professionals seeking a smarter, more connected way of life.
                 </p>
               </div>
             </ScrollRevealText>
@@ -136,28 +137,12 @@ export default function MarcoPoloPage() {
       <section className="relative bg-gray-100  overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163620/rendition/1080p/file.mp4?loc=external&signature=89a1aa43a36b9f6cc7cda3883ceb3e1523a267205685cf03f13e9bd5f2f8b9a9"
+            src="https://player.vimeo.com/progressive_redirect/playback/1111163710/rendition/1080p/file.mp4?loc=external&signature=748efab8acefab5d2920e36729f96e6af3c3316d8ab4390a791e3c4794067ca8"
             autoPlay={true}
             muted={true}
             loop={true}
             className="relative"
           />
-        </Container>
-      </section>
-
-      {/* Double Image Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
-        <Container size="full">
-          <div className="grid sm:grid-cols-2 gap-8">
-            <div className="hidden md:block"></div>
-            <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1111163630/rendition/1080p/file.mp4?loc=external&signature=74c69811044b1aa5a6d5e5ab874a7323db9e2236313d2acd170be784b8807861"
-              autoPlay={true}
-              muted={true}
-              loop={true}
-              className="relative"
-            />
-          </div>
         </Container>
       </section>
 
@@ -172,16 +157,16 @@ export default function MarcoPoloPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Energize the Brand, Elevate the Experience
+                  Crafting a Landmark Identity for a Landmark Location
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    The goal was to shift Affinity&apos;s identity from conservative to
-                    contemporary, without losing trust or credibility. We set out to inject energy
-                    into the brand, attract new talent, and better reflect the dynamic nature of the
-                    tech and recruiting space.
+                    Our goal was to create a brand presence as ambitious and aspirational as Marco
+                    Polo itself, one that speaks to innovation and opportunity. The identity needed
+                    to resonate with both business owners and future residents in this dynamic,
+                    mixed-use community.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -190,28 +175,72 @@ export default function MarcoPoloPage() {
         </Container>
       </section>
 
-      {/* Video Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8  overflow-hidden">
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
-          <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163613/rendition/1080p/file.mp4?loc=external&signature=6648a3aad66587315173770093d832893b049b92837b375839d77b78b7945b40"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            className="relative"
+          <div className="grid sm:grid-cols-2 gap-8">
+            <Image
+              src="/images/work/marcopolo/MarcoPolo_1.png"
+              alt="Platform Interface Design"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+            <Image
+              src="/images/work/marcopolo/MarcoPolo_tote mockup 1.jpg"
+              alt="Platform Interface Design"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/marcopolo/MarcoPolo_2.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
           />
         </Container>
       </section>
 
-      {/* Video Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8  overflow-hidden">
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
-          <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163605/rendition/1080p/file.mp4?loc=external&signature=aa216bbac51faab6a87abee6e5d35f7b8dd0738bfecfba5dc8baf6aa41176891"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            className="relative"
+          <div className="grid sm:grid-cols-2 gap-8">
+            <Image
+              src="/images/work/marcopolo/MarcoPolo_brochure mockup 1.jpg"
+              alt="Platform Interface Design"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+            <Image
+              src="/images/work/marcopolo/MarcoPolo_box mockup 1.jpg"
+              alt="Platform Interface Design"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/marcopolo/marco-polo-8 1.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
           />
         </Container>
       </section>
@@ -227,17 +256,16 @@ export default function MarcoPoloPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Amping Up the Vibrancy
+                  Sophisticated and Scalable
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    We revitalized Affinity’s identity through a bold, modern colour palette:
-                    pairing red-orange, teal, aqua, and yellow with deep navy neutrals. A refined
-                    logo and refreshed typography gave the brand a confident, polished look, while
-                    updated photography brought warmth, authenticity, and human connection to the
-                    forefront.
+                    We developed a design system that balances elegance with impact - crafted to
+                    support everything from sales materials to experiential marketing. Through
+                    considered typography, refined layout, and elevated visual cues, the brand
+                    reflects the architectural ambition of the project.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -250,7 +278,7 @@ export default function MarcoPoloPage() {
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/affinity/Affinity_2.png"
+            src="/images/work/marcopolo/marco-polo-3 1.png"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -264,14 +292,14 @@ export default function MarcoPoloPage() {
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/work/affinity/Affinity Tote Mockup-1.jpg"
+              src="/images/work/marcopolo/marco-polo bus stop mockup 1.jpg"
               alt="Comm100 Branded Materials"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/work/affinity/Affinity  Posters Mockup-1.png"
+              src="/images/work/marcopolo/marco-polo signage mockup 1.jpg"
               alt="Platform Interface Design"
               width={800}
               height={800}
@@ -294,17 +322,15 @@ export default function MarcoPoloPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  About the Real Moments.
+                  From Street Presence to Takeaway Touchpoints
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    From capturing live event footage to showcasing the real Affinity team, we built
-                    a visual narrative rooted in connection and credibility. Brand assets spanned
-                    digital presentations, social content, and photography direction, all
-                    reinforcing Affinity&apos;s voice: approachable, expert, and confidently
-                    current.
+                    We created a diverse suite of brand assets including large-scale signage, custom
+                    merchandise, and print brochures. Every element was designed to maintain visual
+                    consistency while amplifying the presence of Marco Polo across touchpoints.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -317,7 +343,7 @@ export default function MarcoPoloPage() {
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/affinity/Affinity Laptop Mockup-1.png"
+            src="/images/work/marcopolo/marco-polo-7 1.png"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -326,20 +352,19 @@ export default function MarcoPoloPage() {
         </Container>
       </section>
 
-      {/* Image Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+      {/* Back to Work Link */}
+      <section className="bg-gray-100 py-16">
         <Container size="full">
-          <Image
-            src="/images/work/affinity/Affinity Laptop Mockup-1.jpg"
-            alt="Billboard Design"
-            width={1600}
-            height={900}
-            className="w-full h-auto"
-          />
+          <div className="flex justify-end">
+            <TransitionLink
+              url="/work"
+              className="text-black border-b border-black hover:opacity-70 transition text-fluid-sm"
+            >
+              Back to Work <span className="inline-block ml-1">↗</span>
+            </TransitionLink>
+          </div>
         </Container>
       </section>
-
-      {/* back to work link */}
     </div>
   )
 }

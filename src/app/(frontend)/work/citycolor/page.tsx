@@ -5,6 +5,8 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
+import { TransitionLink } from '@/components/TransitionLink'
+import { TransitionLink } from '@/components/TransitionLink'
 
 export default function CityColorPage() {
   return (
@@ -334,7 +336,19 @@ export default function CityColorPage() {
         </Container>
       </section>
 
-      {/* back to work link */}
+      {/* Back to Work Link */}
+      <section className="bg-gray-100 py-16">
+        <Container size="full">
+          <div className="flex justify-end">
+            <TransitionLink
+              url="/work"
+              className="text-black border-b border-black hover:opacity-70 transition text-fluid-sm"
+            >
+              Back to Work <span className="inline-block ml-1">↗</span>
+            </TransitionLink>
+          </div>
+        </Container>
+      </section>
     </div>
   )
 }

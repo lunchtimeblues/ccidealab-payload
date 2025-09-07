@@ -249,8 +249,29 @@ export default function WorkPage() {
                 </div>
                 <ScrollRevealText delay={200}>
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-fluid-sm font-medium text-black">Pokebar</h3>
+                    <h3 className="text-fluid-sm font-medium text-black">Food by Fanta</h3>
                     <span className="text-fluid-sm text-black tracking-wide">Food & Beverage</span>
+                  </div>
+                  <p className="text-black text-fluid-sm mb-4">Digital Strategy & UX Design</p>
+                </ScrollRevealText>
+              </TransitionLink>
+            </MouseFollower>
+
+            <MouseFollower text="CASE STUDIES">
+              <TransitionLink url="/work/nice" className="group cursor-pointer">
+                <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
+                  <QuickVideo
+                    src="https://player.vimeo.com/progressive_redirect/playback/1116619394/rendition/1080p/file.mp4?loc=external&signature=cf540f33053887fd40162800e7ba837e9ac785d30a376c6e405020a7dab1f05c"
+                    autoPlay={true}
+                    muted={true}
+                    loop={true}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <ScrollRevealText delay={200}>
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-fluid-sm font-medium text-black">Nice Cleaning</h3>
+                    <span className="text-fluid-sm text-black tracking-wide">Service</span>
                   </div>
                   <p className="text-black text-fluid-sm mb-4">Digital Strategy & UX Design</p>
                 </ScrollRevealText>

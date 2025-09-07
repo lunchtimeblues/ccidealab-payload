@@ -5,6 +5,7 @@ import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
+import { TransitionLink } from '@/components/TransitionLink'
 
 export default function NicePage() {
   return (
@@ -14,8 +15,8 @@ export default function NicePage() {
         {/* Parallax Background Image */}
         <div className="absolute inset-0 z-0">
           <ParallaxImage
-            src="/images/work/nice/nice_hero_bg.jpg"
-            alt="Nice Hero Background"
+            src="/images/work/nice/Nice_Banner.png"
+            alt="Affinity Hero Background"
             parallaxSpeed={0.5}
             size="full"
             overlay={true}
@@ -34,15 +35,15 @@ export default function NicePage() {
               direction="left"
               lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
-              <span className="mx-8">NICE</span>
+              <span className="mx-8">NICE CLEANING</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">NICE</span>
+              <span className="mx-8">NICE CLEANING</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">NICE</span>
+              <span className="mx-8">NICE CLEANING</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
@@ -52,9 +53,8 @@ export default function NicePage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-white">
-                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
-                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
-                  mottos for clients to serve as their Idea Worth Rallying Around®.
+                  Nice Home Cleaning + Maintenance is dedicated to helping homeowners maintain
+                  clean, comfortable, and well-kept living spaces.
                 </p>
               </div>
             </Container>
@@ -77,7 +77,7 @@ export default function NicePage() {
 
       {/* Project Overview */}
       <section
-        id="nice-overview"
+        id="affinity-overview"
         className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
       >
         <Container size="full" className="grid sm:grid-cols-12 gap-8">
@@ -97,7 +97,7 @@ export default function NicePage() {
                     <ScrollRevealText delay={200}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Scope</p>
                       <p className="text-fluid-sm text-black font-medium">
-                        Brand Refresh, Marketing Transformation
+                        Brand Strategy, Visual Identity
                       </p>
                     </ScrollRevealText>
                   </div>
@@ -105,9 +105,7 @@ export default function NicePage() {
                   <div className="border-b border-gray-300 pb-4">
                     <ScrollRevealText delay={300}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Industry</p>
-                      <p className="text-fluid-sm text-black font-medium">
-                        Customer Support Technology
-                      </p>
+                      <p className="text-fluid-sm text-black font-medium">Technology</p>
                     </ScrollRevealText>
                   </div>
                 </div>
@@ -118,17 +116,16 @@ export default function NicePage() {
           <div className="col-span-12 sm:col-span-7 sm:col-start-6">
             <ScrollRevealText delay={200}>
               <h2 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                Every channel.
-                <br />
-                One platform.
+                Make cleaning feel nice.
               </h2>
             </ScrollRevealText>
             <ScrollRevealText delay={400}>
               <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                 <p>
-                  Powered by AI and automation, Nice platform unifies communication across every
-                  touchpoint, from live chat to social media, to deliver seamless, personalized
-                  support.
+                  Nice is a home cleaning and maintenance brand built to take the stress out of
+                  everyday upkeep. With a clean, modern look and a touch of playfulness, the brand
+                  makes professional service feel approachable and easy—because cleaning should feel
+                  less like a chore, and more like a fresh start.
                 </p>
               </div>
             </ScrollRevealText>
@@ -140,7 +137,7 @@ export default function NicePage() {
       <section className="relative bg-gray-100  overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163690/rendition/1080p/file.mp4?loc=external&signature=736322fd08c3faf0a0d4de2dea4f8c54673d794cc788f604f3e5962448d66a4e"
+            src="https://player.vimeo.com/progressive_redirect/playback/1116619394/rendition/1080p/file.mp4?loc=external&signature=cf540f33053887fd40162800e7ba837e9ac785d30a376c6e405020a7dab1f05c"
             autoPlay={true}
             muted={true}
             loop={true}
@@ -160,16 +157,16 @@ export default function NicePage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Comprehensive Brand Refresh & Marketing transformation
+                  When home care is simple and stress-free.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    Our goal was to reposition Nice as a future-ready tech company without losing
-                    its human touch. This meant a full brand refresh, from visual identity and
-                    messaging to marketing tools, that reflected their innovation, scale, and global
-                    reach.
+                    Our goal was to build a brand that makes home care feel easy, approachable, and
+                    a little fun. Nice needed to stand out from the sea of generic cleaning services
+                    by blending trust and professionalism with a lighthearted personality that makes
+                    people smile.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -178,11 +175,46 @@ export default function NicePage() {
         </Container>
       </section>
 
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <div className="grid sm:grid-cols-2 gap-8">
+            <QuickVideo
+              src="https://player.vimeo.com/progressive_redirect/playback/1116619410/rendition/1080p/file.mp4?loc=external&signature=1e52f3d5f266d08870d53070cb62c4e752e08ad909a40b3f6a268668a8a86976"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              className="relative"
+            />
+            <QuickVideo
+              src="https://player.vimeo.com/progressive_redirect/playback/1116619401/rendition/1080p/file.mp4?loc=external&signature=f074a3eab6aeab91b73e459a926a223111996566529c62c1e491453434b32537"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              className="relative"
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/nice/Nice_Slides-img-1.jpg"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
+          />
+        </Container>
+      </section>
+
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163686/rendition/1080p/file.mp4?loc=external&signature=ad283143480862bde9fff9c4473e1a9954b752cd681dafdea132d8f0aa047963"
+            src="https://player.vimeo.com/progressive_redirect/playback/1116619405/rendition/1080p/file.mp4?loc=external&signature=0269a7c092965318040bb2baf4d2d62483ccc0c828028da66c416057fd89768a"
             autoPlay={true}
             muted={true}
             loop={true}
@@ -192,10 +224,10 @@ export default function NicePage() {
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163698/rendition/1080p/file.mp4?loc=external&signature=031f296266782662c99115de6712ed04ac7412837404da4120da4a1a88c20383"
+            src="https://player.vimeo.com/progressive_redirect/playback/1116619388/rendition/1080p/file.mp4?loc=external&signature=f5adfa6dd131ab11285f485534fe016efccd5ccb96970d9e903cd2157fe23b66"
             autoPlay={true}
             muted={true}
             loop={true}
@@ -215,16 +247,16 @@ export default function NicePage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  AI-powered, yet human-centered.
+                  Fresh, friendly & flexible.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    We built a brand system that balances cutting-edge technology with empathy and
-                    clarity. The design emphasizes accessibility and confidence, while messaging
-                    highlights the real-world impact of AI-driven support, proving that smart tech
-                    can still feel personal.
+                    We shaped the identity around clarity and warmth, supported by a playful edge.
+                    Clean typography and a vibrant colour palette balance with cheerful
+                    illustrations and sticker-like icons—bringing in moments of delight while
+                    keeping the overall look polished and professional.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -233,11 +265,24 @@ export default function NicePage() {
         </Container>
       </section>
 
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/nice/Nice_1.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
+          />
+        </Container>
+      </section>
+
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163703/rendition/1080p/file.mp4?loc=external&signature=c7f06db38c1fa306d454ba1eec4d93da627c217a2fff4947db6b455ae34eb14e"
+            src="https://player.vimeo.com/progressive_redirect/playback/1116619422/rendition/1080p/file.mp4?loc=external&signature=64fab8b4803b4f307e52466a61cb83742e3f3a891b6324f70ad3082b9ff01001"
             autoPlay={true}
             muted={true}
             loop={true}
@@ -259,17 +304,16 @@ export default function NicePage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Supporting Higher <br />
-                  Education Engagement
+                  Nice is serious about clean, yet playful in style.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    To help Nice stand out at major higher-ed conferences, we developed engaging
-                    graphics, and presentations, as well as Nice merch. Each asset spoke directly
-                    to the challenges and priorities of post-secondary institutions—clear,
-                    compelling, and conversion-focused.
+                    From the website and digital campaigns to client touchpoints and branded
+                    stickers, the Nice identity feels both modern and approachable. Friendly copy
+                    paired with expressive, emoji-inspired graphics adds charm to the brand
+                    experience, reminding clients that home care doesn’t have to feel like a chore.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -278,18 +322,32 @@ export default function NicePage() {
         </Container>
       </section>
 
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/nice/Nice_2.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
+          />
+        </Container>
+      </section>
+
+      {/* Double Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/work/nice/nice-id-card.jpg"
-              alt="Nice Branded Materials"
+              src="/images/work/nice/Nice_Stickers-1 1.jpg"
+              alt="Comm100 Branded Materials"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/work/nice/nice-waterbottle.png"
+              src="/images/work/nice/Nice_T-shirt-1.jpg"
               alt="Platform Interface Design"
               width={800}
               height={800}
@@ -299,10 +357,11 @@ export default function NicePage() {
         </Container>
       </section>
 
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/nice/nice-conference.png"
+            src="/images/work/nice/Nice_T-shirt-2.jpg"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -311,7 +370,19 @@ export default function NicePage() {
         </Container>
       </section>
 
-      {/* back to work link */}
+      {/* Back to Work Link */}
+      <section className="bg-gray-100 py-16">
+        <Container size="full">
+          <div className="flex justify-end">
+            <TransitionLink
+              url="/work"
+              className="text-black border-b border-black hover:opacity-70 transition text-fluid-sm"
+            >
+              Back to Work <span className="inline-block ml-1">↗</span>
+            </TransitionLink>
+          </div>
+        </Container>
+      </section>
     </div>
   )
 }

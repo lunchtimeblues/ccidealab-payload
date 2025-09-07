@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
 
-export default function FoodByFantaPage() {
+export default function MarcoPoloPage() {
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
@@ -15,8 +15,8 @@ export default function FoodByFantaPage() {
         {/* Parallax Background Image */}
         <div className="absolute inset-0 z-0">
           <ParallaxImage
-            src="/images/work/fanta/Fanta_Banner.png"
-            alt="Food By Fanta Hero Background"
+            src="/images/work/ubereats/UberEats_Banner.png"
+            alt="Affinity Hero Background"
             parallaxSpeed={0.5}
             size="full"
             overlay={true}
@@ -35,15 +35,15 @@ export default function FoodByFantaPage() {
               direction="left"
               lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
-              <span className="mx-8">FOOD BY FANTA</span>
+              <span className="mx-8">UBEREATS</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">FOOD BY FANTA</span>
+              <span className="mx-8">UBEREATS</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">FOOD BY FANTA</span>
+              <span className="mx-8">UBEREATS</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
@@ -53,9 +53,9 @@ export default function FoodByFantaPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-white">
-                  Food by Fanta is a culinary gem nestled in the heart of Langley, BC. This stylish
-                  restaurant offers a contemporary dining experience that transcends traditional
-                  boundaries.
+                  Uber Eats is the food delivery platform that brings your favorite meals from local
+                  restaurants straight to your door — fast, fresh, and just a tap away. It turns
+                  everyday moments into effortless dining experiences.
                 </p>
               </div>
             </Container>
@@ -78,7 +78,7 @@ export default function FoodByFantaPage() {
 
       {/* Project Overview */}
       <section
-        id="foodbyfanta-overview"
+        id="affinity-overview"
         className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
       >
         <Container size="full" className="grid sm:grid-cols-12 gap-8">
@@ -98,7 +98,7 @@ export default function FoodByFantaPage() {
                     <ScrollRevealText delay={200}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Scope</p>
                       <p className="text-fluid-sm text-black font-medium">
-                        Brand Refresh, Marketing Transformation
+                        Brand Strategy, Visual Identity
                       </p>
                     </ScrollRevealText>
                   </div>
@@ -106,9 +106,7 @@ export default function FoodByFantaPage() {
                   <div className="border-b border-gray-300 pb-4">
                     <ScrollRevealText delay={300}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Industry</p>
-                      <p className="text-fluid-sm text-black font-medium">
-                        Customer Support Technology
-                      </p>
+                      <p className="text-fluid-sm text-black font-medium">Technology</p>
                     </ScrollRevealText>
                   </div>
                 </div>
@@ -119,16 +117,16 @@ export default function FoodByFantaPage() {
           <div className="col-span-12 sm:col-span-7 sm:col-start-6">
             <ScrollRevealText delay={200}>
               <h2 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                Bold Flavours. <br />
-                Beautifully Branded.
+                300+ Dishes Captured for Delivery
               </h2>
             </ScrollRevealText>
             <ScrollRevealText delay={400}>
               <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                 <p>
-                  With a vibrant colour palette and a modern serif typeface, we crafted a visual
-                  identity that feels elegant yet full of personality, just like the dishes on the
-                  menu.
+                  We were tasked with producing over 300 high-quality food photographs to enhance
+                  restaurant listings across the platform. Our goal was to capture dishes in a way
+                  that not only reflected each restaurant&apos;s unique identity but also aligned
+                  with Uber Eats&apos; visual standards — clean, appetizing, and conversion-focused.
                 </p>
               </div>
             </ScrollRevealText>
@@ -136,14 +134,15 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+      {/* Video Section */}
+      <section className="relative bg-gray-100  overflow-hidden">
         <Container size="full">
-          <Image
-            src="/images/work/fanta/Fanta_img0.png"
-            alt="Billboard Design"
-            width={1600}
-            height={900}
-            className="w-full h-auto"
+          <QuickVideo
+            src="https://player.vimeo.com/progressive_redirect/playback/1111163710/rendition/1080p/file.mp4?loc=external&signature=748efab8acefab5d2920e36729f96e6af3c3316d8ab4390a791e3c4794067ca8"
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            className="relative"
           />
         </Container>
       </section>
@@ -159,16 +158,16 @@ export default function FoodByFantaPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  A Visual Feast to Match the Menu
+                  Campaigns
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    Our mission was to create a brand that captured the sensory experience of dining
-                    at Fanta. We wanted the identity to feel as fresh, exciting, and unforgettable
-                    as the food itself — standing out in a competitive dining scene while staying
-                    true to the restaurant&apos;s stylish roots.
+                    Each shot was crafted with campaign versatility in mind. The visual quality and
+                    consistency across all 300+ photos make them strong candidates for use in future
+                    Uber Eats marketing campaigns — including digital banners, in-app promotions,
+                    restaurant features, and print materials.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -177,10 +176,11 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/fanta/Fanta_img1.jpg"
+            src="/images/work/ubereats/UberEats_1.jpg"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -189,36 +189,16 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/fanta/Fanta_img2.jpg"
+            src="/images/work/ubereats/UberEats_2.png"
             alt="Billboard Design"
             width={1600}
             height={900}
             className="w-full h-auto"
           />
-        </Container>
-      </section>
-
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
-        <Container size="full">
-          <div className="grid sm:grid-cols-2 gap-8">
-            <Image
-              src="/images/work/fanta/Fanta_img3.jpg"
-              alt="Comm100 Branded Materials"
-              width={800}
-              height={800}
-              className="w-full h-auto object-cover"
-            />
-            <Image
-              src="/images/work/fanta/Fanta_img4.jpg"
-              alt="Platform Interface Design"
-              width={800}
-              height={800}
-              className="w-full h-auto object-cover"
-            />
-          </div>
         </Container>
       </section>
 
@@ -233,16 +213,20 @@ export default function FoodByFantaPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Elevated and Full of Flair
+                  Digital Platform
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    The brand design fuses sophistication with playful details. We used expressive
-                    typography, lush colour pairings, and curated print materials to create a
-                    polished yet welcoming identity. The visual language invites diners into a space
-                    that feels both refined and full of creative spark.
+                    All final images were delivered for use within the Uber Eats app to enhance
+                    restaurant listings. Our work helped improve the visual consistency of menus and
+                    gave restaurant partners a polished, professional edge in a highly competitive
+                    platform.
+                    <p></p>
+                    With tight cropping, strong color, and visual clarity, the images are optimized
+                    to grab attention and convert — making them ideal assets for future social media
+                    advertising efforts.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -251,50 +235,37 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
-      {/* Double Video Section */}
+      {/* Double Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
-            <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1111163476/rendition/1080p/file.mp4?loc=external&signature=2ebac6d6b95ba114863f4edbb384f2ae7322f5118921227f91b76bd3fb210b7e"
-              autoPlay={true}
-              muted={true}
-              loop={true}
-              className="relative"
+            <Image
+              src="/images/work/ubereats/UberEats_3.png"
+              alt="Comm100 Branded Materials"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
             />
-            <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1111163462/rendition/1080p/file.mp4?loc=external&signature=3a6a71c0fa1c8b831ceac548f1e7c80608a43ed1f29e0385600f2c280dd14237"
-              autoPlay={true}
-              muted={true}
-              loop={true}
-              className="relative"
+            <Image
+              src="/images/work/ubereats/UberEats_4.png"
+              alt="Platform Interface Design"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
             />
           </div>
         </Container>
       </section>
 
-      {/* Video Section */}
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
-          <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163480/rendition/1080p/file.mp4?loc=external&signature=007a8dba0319967f02d3450a70c908d2ac40f3ed2503c4b1765614c943ae8284"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            className="relative"
-          />
-        </Container>
-      </section>
-
-      {/* Video Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
-        <Container size="full">
-          <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163487/rendition/1080p/file.mp4?loc=external&signature=6830801b55b740b2ba9723670ac3b6e0cdb105c62f88689cc5863bc228da0795"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            className="relative"
+          <Image
+            src="/images/work/ubereats/UberEats_5.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
           />
         </Container>
       </section>
@@ -304,25 +275,26 @@ export default function FoodByFantaPage() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
-                  Brand Application
-                </p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Photography</p>
               </ScrollRevealText>
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Supporting Higher <br />
-                  Education Engagement
+                  Food Gallery
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    To help Comm100 stand out at major higher-ed conferences, we developed engaging
-                    graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
-                    to the challenges and priorities of post-secondary institutions—clear,
-                    compelling, and conversion-focused.
+                    Each shot was styled and composed to highlight the food’s best features while
+                    staying true to Uber Eats’ visual guidelines. Working on-location, we stylized
+                    and used clean angles to create consistent, in-app–ready imagery across a wide
+                    range of cuisines.
+                  </p>
+                  <p>
+                    The result: bold, appetizing photos that help restaurants stand out and drive
+                    orders.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -331,10 +303,33 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <div className="grid sm:grid-cols-2 gap-8">
+            <Image
+              src="/images/work/ubereats/UberEats_6.png"
+              alt="Comm100 Branded Materials"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+            <Image
+              src="/images/work/ubereats/UberEats_7.png"
+              alt="Platform Interface Design"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/fanta/Fanta_Email_mock1 1.png"
+            src="/images/work/ubereats/UberEats_8.png"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -343,10 +338,33 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <div className="grid sm:grid-cols-2 gap-8">
+            <Image
+              src="/images/work/ubereats/UberEats_9.png"
+              alt="Comm100 Branded Materials"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+            <Image
+              src="/images/work/ubereats/UberEats_10.png"
+              alt="Platform Interface Design"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/fanta/Fanta_menu mockup 1.jpg"
+            src="/images/work/ubereats/UberEats_11.png"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -354,7 +372,6 @@ export default function FoodByFantaPage() {
           />
         </Container>
       </section>
-
       {/* Back to Work Link */}
       <section className="bg-gray-100 py-16">
         <Container size="full">

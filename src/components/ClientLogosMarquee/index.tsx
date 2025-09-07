@@ -11,7 +11,7 @@ interface ClientLogosMarqueeProps {
 }
 
 export const ClientLogosMarquee: React.FC<ClientLogosMarqueeProps> = ({
-  speed = 30,
+  speed = 27, // Reduced from 30 to 27 (10% faster)
   direction = 'left',
   className = '',
   logoClassName = '',

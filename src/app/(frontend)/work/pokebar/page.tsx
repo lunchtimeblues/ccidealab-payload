@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
 
-export default function FoodByFantaPage() {
+export default function WestinPage() {
   return (
     <div className="bg-gray-100 text-black">
       {/* Hero Section */}
@@ -15,8 +15,8 @@ export default function FoodByFantaPage() {
         {/* Parallax Background Image */}
         <div className="absolute inset-0 z-0">
           <ParallaxImage
-            src="/images/work/fanta/Fanta_Banner.png"
-            alt="Food By Fanta Hero Background"
+            src="/images/work/pokebar/Pokebar_Banner.png"
+            alt="Westin Hero Background"
             parallaxSpeed={0.5}
             size="full"
             overlay={true}
@@ -35,15 +35,15 @@ export default function FoodByFantaPage() {
               direction="left"
               lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
-              <span className="mx-8">FOOD BY FANTA</span>
+              <span className="mx-8">POKEBAR</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">FOOD BY FANTA</span>
+              <span className="mx-8">POKEBAR</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">FOOD BY FANTA</span>
+              <span className="mx-8">POKEBAR</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
@@ -53,9 +53,9 @@ export default function FoodByFantaPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-white">
-                  Food by Fanta is a culinary gem nestled in the heart of Langley, BC. This stylish
-                  restaurant offers a contemporary dining experience that transcends traditional
-                  boundaries.
+                  PokéBar redefines fast food with a fresh and wholesome approach. Known for their
+                  premium ingredients and outstanding service, they make healthy eating both
+                  convenient and enjoyable.
                 </p>
               </div>
             </Container>
@@ -78,7 +78,7 @@ export default function FoodByFantaPage() {
 
       {/* Project Overview */}
       <section
-        id="foodbyfanta-overview"
+        id="affinity-overview"
         className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
       >
         <Container size="full" className="grid sm:grid-cols-12 gap-8">
@@ -98,7 +98,7 @@ export default function FoodByFantaPage() {
                     <ScrollRevealText delay={200}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Scope</p>
                       <p className="text-fluid-sm text-black font-medium">
-                        Brand Refresh, Marketing Transformation
+                        Brand Strategy, Visual Identity
                       </p>
                     </ScrollRevealText>
                   </div>
@@ -106,9 +106,7 @@ export default function FoodByFantaPage() {
                   <div className="border-b border-gray-300 pb-4">
                     <ScrollRevealText delay={300}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Industry</p>
-                      <p className="text-fluid-sm text-black font-medium">
-                        Customer Support Technology
-                      </p>
+                      <p className="text-fluid-sm text-black font-medium">Technology</p>
                     </ScrollRevealText>
                   </div>
                 </div>
@@ -119,16 +117,19 @@ export default function FoodByFantaPage() {
           <div className="col-span-12 sm:col-span-7 sm:col-start-6">
             <ScrollRevealText delay={200}>
               <h2 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                Bold Flavours. <br />
-                Beautifully Branded.
+                Fresh Flavours. Local Focus.
               </h2>
             </ScrollRevealText>
             <ScrollRevealText delay={400}>
               <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                 <p>
-                  With a vibrant colour palette and a modern serif typeface, we crafted a visual
-                  identity that feels elegant yet full of personality, just like the dishes on the
-                  menu.
+                  Rooted in simplicity, health, and bold taste, the brand delivers a refreshing take
+                  on everyday dining—designed to fuel, not weigh you down.
+                </p>
+                <p>
+                  We created a fresh, energetic identity that mirrors the quality and care behind
+                  every bowl. Clean design, a bright palette, and playful visual elements work
+                  together to convey the brand’s feel-good ethos and West Coast vibe.
                 </p>
               </div>
             </ScrollRevealText>
@@ -136,15 +137,38 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Video Section */}
+      <section className="relative bg-gray-100  overflow-hidden">
+        <Container size="full">
+          <QuickVideo
+            src="https://player.vimeo.com/progressive_redirect/playback/1111163755/rendition/1080p/file.mp4?loc=external&signature=4b14bb8ca94146c86dc2c0bff7c7c011f3e44fdd19419a7e4090c786e49f58b9"
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            className="relative"
+          />
+        </Container>
+      </section>
+
+      {/* Double Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
-          <Image
-            src="/images/work/fanta/Fanta_img0.png"
-            alt="Billboard Design"
-            width={1600}
-            height={900}
-            className="w-full h-auto"
-          />
+          <div className="grid sm:grid-cols-2 gap-8">
+            <QuickVideo
+              src="https://player.vimeo.com/progressive_redirect/playback/1116617099/rendition/1080p/file.mp4?loc=external&signature=719330f4e99e96f51eac9d093e844fe85a062e07215cd0345c6f3ecadb7579c6"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              className="relative"
+            />
+            <Image
+              src="/images/work/pokebar/Pokebar_phone.png"
+              alt="Comm100 Branded Materials"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </Container>
       </section>
 
@@ -159,16 +183,16 @@ export default function FoodByFantaPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  A Visual Feast to Match the Menu
+                  Serving Brand Freshness, Daily
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    Our mission was to create a brand that captured the sensory experience of dining
-                    at Fanta. We wanted the identity to feel as fresh, exciting, and unforgettable
-                    as the food itself — standing out in a competitive dining scene while staying
-                    true to the restaurant&apos;s stylish roots.
+                    Our goal was to develop a brand that felt as fresh and modern as the food
+                    itself, inviting health-conscious diners while standing out in a crowded
+                    quick-service market. The identity needed to be clear, craveable, and instantly
+                    recognizable.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -177,10 +201,11 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/fanta/Fanta_img1.jpg"
+            src="/images/work/pokebar/PokeBar_img-collage-1.jpg"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -189,30 +214,19 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
-        <Container size="full">
-          <Image
-            src="/images/work/fanta/Fanta_img2.jpg"
-            alt="Billboard Design"
-            width={1600}
-            height={900}
-            className="w-full h-auto"
-          />
-        </Container>
-      </section>
-
+      {/* Double Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/work/fanta/Fanta_img3.jpg"
+              src="/images/work/pokebar/PokeBar_img-collage-2.jpg"
               alt="Comm100 Branded Materials"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <Image
-              src="/images/work/fanta/Fanta_img4.jpg"
+              src="/images/work/pokebar/PokeBar_img-collage-3.jpg"
               alt="Platform Interface Design"
               width={800}
               height={800}
@@ -233,16 +247,16 @@ export default function FoodByFantaPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Elevated and Full of Flair
+                  Keep It Simple. Keep It Real.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    The brand design fuses sophistication with playful details. We used expressive
-                    typography, lush colour pairings, and curated print materials to create a
-                    polished yet welcoming identity. The visual language invites diners into a space
-                    that feels both refined and full of creative spark.
+                    We focused on a clean, modular brand system that could flex across in-store,
+                    digital, and packaging applications. The design puts ingredients front and
+                    center, with visual elements that reflect the brand’s values of freshness and
+                    sustainability.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -251,19 +265,32 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
-      {/* Double Video Section */}
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/pokebar/Pokebar_2.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
+          />
+        </Container>
+      </section>
+
+      {/* Double Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
-            <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1111163476/rendition/1080p/file.mp4?loc=external&signature=2ebac6d6b95ba114863f4edbb384f2ae7322f5118921227f91b76bd3fb210b7e"
-              autoPlay={true}
-              muted={true}
-              loop={true}
-              className="relative"
+            <Image
+              src="/images/work/pokebar/PokeBar_img1.jpg"
+              alt="Comm100 Branded Materials"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
             />
             <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1111163462/rendition/1080p/file.mp4?loc=external&signature=3a6a71c0fa1c8b831ceac548f1e7c80608a43ed1f29e0385600f2c280dd14237"
+              src="https://player.vimeo.com/progressive_redirect/playback/1116617099/rendition/1080p/file.mp4?loc=external&signature=719330f4e99e96f51eac9d093e844fe85a062e07215cd0345c6f3ecadb7579c6"
               autoPlay={true}
               muted={true}
               loop={true}
@@ -273,28 +300,15 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
-      {/* Video Section */}
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
-          <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163480/rendition/1080p/file.mp4?loc=external&signature=007a8dba0319967f02d3450a70c908d2ac40f3ed2503c4b1765614c943ae8284"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            className="relative"
-          />
-        </Container>
-      </section>
-
-      {/* Video Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
-        <Container size="full">
-          <QuickVideo
-            src="https://player.vimeo.com/progressive_redirect/playback/1111163487/rendition/1080p/file.mp4?loc=external&signature=6830801b55b740b2ba9723670ac3b6e0cdb105c62f88689cc5863bc228da0795"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            className="relative"
+          <Image
+            src="/images/work/pokebar/PokeBar packaging mock 1 1.jpg"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
           />
         </Container>
       </section>
@@ -312,17 +326,16 @@ export default function FoodByFantaPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Supporting Higher <br />
-                  Education Engagement
+                  From Bowl to Brand
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    To help Comm100 stand out at major higher-ed conferences, we developed engaging
-                    graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
-                    to the challenges and priorities of post-secondary institutions—clear,
-                    compelling, and conversion-focused.
+                    We brought the identity to life through menu boards, social assets, packaging,
+                    and promotional graphics. Each marketing material is designed for clarity and
+                    appetite appeal. Every detail reinforces the brand promise: healthy food, served
+                    fast, with flavour that delivers.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -331,10 +344,11 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/fanta/Fanta_Email_mock1 1.png"
+            src="/images/work/pokebar/Pokebar_3.png"
             alt="Billboard Design"
             width={1600}
             height={900}
@@ -343,10 +357,46 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Image Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
-            src="/images/work/fanta/Fanta_menu mockup 1.jpg"
+            src="/images/work/pokebar/Pokebar_4.png"
+            alt="Billboard Design"
+            width={1600}
+            height={900}
+            className="w-full h-auto"
+          />
+        </Container>
+      </section>
+
+      {/* Double Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <div className="grid sm:grid-cols-2 gap-8">
+            <Image
+              src="/images/work/pokebar/Pokebar_5.png"
+              alt="Comm100 Branded Materials"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+            <Image
+              src="/images/work/pokebar/Pokebar_6.png"
+              alt="Comm100 Branded Materials"
+              width={800}
+              height={800}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        </Container>
+      </section>
+
+      {/* Image Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <Image
+            src="/images/work/pokebar/Pokebar_7.png"
             alt="Billboard Design"
             width={1600}
             height={900}

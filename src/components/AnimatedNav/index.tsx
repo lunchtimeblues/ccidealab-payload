@@ -105,7 +105,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               label="Contact"
               appearance="inline"
               transitionType="logoWipe"
-              transitionColor="#666666ff"
+              transitionColor="#000000"
               className="text-fluid-sm animated-underline"
             />
           </div>
