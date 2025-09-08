@@ -87,7 +87,7 @@ export default function HomePage(): React.JSX.Element {
 
       {/* Scroll Video Section */}
       <ScrollVideo
-        src="https://player.vimeo.com/progressive_redirect/playback/1107658120/rendition/1080p/file.mp4?loc=external&signature=5b4262eb299d2487592038466508758b4185bf8685deda59a21f735585a91e29"
+        src="https://player.vimeo.com/progressive_redirect/playback/1116629203/rendition/1080p/file.mp4?loc=external&signature=ca3f834866b8ef1ee871d833917b134f97d01aae077be344bb76258054d00df4"
         autoPlay={true}
         muted={true}
         loop={true}
@@ -161,7 +161,7 @@ export default function HomePage(): React.JSX.Element {
       <section className="py-32 bg-gray-100">
         <Container size="full">
           <ScrollRevealText>
-            <h2 className="text-fluid-6xl font-medium leading-none text-black">SELECTED</h2>
+            <h2 className="text-fluid-6xl font-medium leading-none text-black">SELECT</h2>
           </ScrollRevealText>
           <ScrollRevealText>
             <h2 className="text-fluid-6xl font-medium leading-none mb-16 text-black">WORKS</h2>
@@ -172,7 +172,7 @@ export default function HomePage(): React.JSX.Element {
               <TransitionLink url="/work/ubereats" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
-                    src="https://player.vimeo.com/progressive_redirect/playback/1111163843/rendition/1080p/file.mp4?loc=external&signature=1b1ffb8118fe986d40cddc013ef0f6f94d3bb1c59af635c0d285195e95d02d7d"
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163843/rendition/720p/file.mp4?loc=external&signature=5736286ae852071f83522c8f1b56525f0b1ddbbec68f4c114f11d8f2f1973599"
                     autoPlay={true}
                     muted={true}
                     loop={true}
@@ -195,7 +195,7 @@ export default function HomePage(): React.JSX.Element {
               <TransitionLink url="/work/affinity" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
-                    src="https://player.vimeo.com/progressive_redirect/playback/1111163775/rendition/1080p/file.mp4?loc=external&signature=a4f82a401110df04c78a21d68e0a53b92198a859b1a14b0eabaa60bdf69fa37c"
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163775/rendition/720p/file.mp4?loc=external&signature=4344c4cfaa7fb678934fc61169a4ce4e52dbfe0c1155cfc09961d2d22253ac24"
                     autoPlay={true}
                     muted={true}
                     loop={true}
@@ -218,7 +218,7 @@ export default function HomePage(): React.JSX.Element {
               <TransitionLink url="/work/citycolor" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
-                    src="https://player.vimeo.com/progressive_redirect/playback/1111163782/rendition/1080p/file.mp4?loc=external&signature=57e4abd75ba0a501a702c52df8c7be01d2dea6097c192f481de11f147aaa85f8"
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163782/rendition/720p/file.mp4?loc=external&signature=61123620b6f46de8747f177286e18f7d4829001162050cc6c4bbaa4b3752372e"
                     autoPlay={true}
                     muted={true}
                     loop={true}
@@ -241,7 +241,7 @@ export default function HomePage(): React.JSX.Element {
               <TransitionLink url="/work/foodbyfanta" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
-                    src="https://player.vimeo.com/progressive_redirect/playback/1111163799/rendition/1080p/file.mp4?loc=external&signature=fc35a26bfc529911c7dc6b03f4278954c69a52c4e8c75c059cf3d13ea73809df"
+                    src="https://player.vimeo.com/progressive_redirect/playback/1111163799/rendition/720p/file.mp4?loc=external&signature=640b5c1a96021dbff9b8de4f12a9f01c1a67e601e39bd1bba7529c96a3de6361"
                     autoPlay={true}
                     muted={true}
                     loop={true}
@@ -250,7 +250,7 @@ export default function HomePage(): React.JSX.Element {
                 </div>
                 <ScrollRevealText delay={400}>
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-fluid-sm font-medium text-black">Fanta Restaurant</h3>
+                    <h3 className="text-fluid-sm font-medium text-black">Food by Fanta</h3>
                     <span className="text-fluid-sm text-black uppercase tracking-wide">
                       Food & Beverage
                     </span>
@@ -272,29 +272,36 @@ export default function HomePage(): React.JSX.Element {
           <div className="mb-16">
             <Carousel size="xl">
               <Image
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=600&fit=crop&crop=center"
-                alt="Creative Vision - C/C IDEA LAB Studio"
+                src="/images/home/1-Anna-Working.jpg"
+                alt="Creative Vision - C&C IDEA LAB Studio"
                 width={400}
                 height={600}
                 className="object-cover"
                 priority
               />
               <Image
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop&crop=center"
-                alt="Digital Innovation - C/C IDEA LAB Tech"
+                src="/images/home/2-library.webp"
+                alt="Digital Innovation - C&C IDEA LAB Tech"
                 width={600}
                 height={400}
                 className="object-cover"
               />
               <Image
-                src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400&h=600&fit=crop&crop=center"
+                src="/images/home/3-drawing-painting.jpg"
                 alt="Urban Aesthetics"
                 width={400}
                 height={600}
                 className="object-cover"
               />
               <Image
-                src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=600&h=400&fit=crop&crop=center"
+                src="/images/home/4-MaraWorking.jpg"
+                alt="Coastal Horizon"
+                width={600}
+                height={400}
+                className="object-cover"
+              />
+              <Image
+                src="/images/home/5-logobook.jpg"
                 alt="Coastal Horizon"
                 width={600}
                 height={400}
@@ -321,7 +328,7 @@ export default function HomePage(): React.JSX.Element {
                   <div className="text-fluid-base mt-16">
                     <TransitionLink
                       url="/about"
-                      label="Learn more about C/C IDEA LAB"
+                      label="Learn more about C&C IDEA LAB"
                       appearance="inline"
                       transitionType="logoWipe"
                       className="text-black border-b border-black hover:border-gray-600 hover:text-gray-600 transition-colors"

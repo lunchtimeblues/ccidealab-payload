@@ -128,14 +128,15 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
+      {/* Video Section */}
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
-          <Image
-            src="/images/work/fanta/Fanta_img0.png"
-            alt="Billboard Design"
-            width={1600}
-            height={900}
-            className="w-full h-auto"
+          <QuickVideo
+            src="https://player.vimeo.com/progressive_redirect/playback/1116650591/rendition/1080p/file.mp4?loc=external&signature=ff278549788aa8c2cf3866c9608790ac4473e54d148985a62518cd951a31611c"
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            className="relative"
           />
         </Container>
       </section>
@@ -178,6 +179,28 @@ export default function FoodByFantaPage() {
             height={900}
             className="w-full h-auto"
           />
+        </Container>
+      </section>
+
+      {/* Double Video Section */}
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+        <Container size="full">
+          <div className="grid sm:grid-cols-2 gap-8">
+            <QuickVideo
+              src="https://player.vimeo.com/progressive_redirect/playback/1116642819/rendition/720p/file.mp4?loc=external&signature=2af08955d5af7ead148b6203ccc2e755931fc47bbad82093879639844b42914a"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              className="relative"
+            />
+            <QuickVideo
+              src="https://player.vimeo.com/progressive_redirect/playback/1116642843/rendition/720p/file.mp4?loc=external&signature=cf066d629a840e259614ed5414f02b157b8bcb75a7c451ead7d17e01d1496a21"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              className="relative"
+            />
+          </div>
         </Container>
       </section>
 

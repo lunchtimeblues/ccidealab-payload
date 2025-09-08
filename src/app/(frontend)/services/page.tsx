@@ -81,7 +81,7 @@ export default function ServicesPage() {
       features1: ['Brand Strategy', 'Identity Design ', 'Graphic Design'],
       features2: ['Packaging Design', 'Environmental Design', 'Experiential Design'],
       videoSrc:
-        'https://player.vimeo.com/progressive_redirect/playback/946746335/rendition/1080p/file.mp4?loc=external&log_user=0&signature=7e69eb1e218636d3cec013200df6f40427c61fad83474509d7091ecdcc3e65df',
+        'https://player.vimeo.com/progressive_redirect/playback/1116630620/rendition/540p/file.mp4?loc=external&signature=fad4cdc9a306c3e8a1e6ccf99b4a949be8c2864316eaa8406344f778143d00fb',
     },
     {
       title: 'Creative Production',
@@ -91,7 +91,7 @@ export default function ServicesPage() {
       features1: ['Campaign Asset Development', 'Video Production', 'Photography'],
       features2: ['Motion Graphics', 'Drone & Aerial Videography', 'Event Coverage & Livestreams'],
       videoSrc:
-        'https://player.vimeo.com/progressive_redirect/playback/946746316/rendition/1080p/file.mp4?loc=external&log_user=0&signature=9f40db7e8d62275fd15b0536b4e8c6b43d6585ed897816c490a099c85d717a45',
+        'https://player.vimeo.com/progressive_redirect/playback/1116630632/rendition/540p/file.mp4?loc=external&signature=b638336fd00491255464db2277b90ebc32cfb84e7e5b08f4b25879d400df18e0',
     },
     {
       title: 'Digital Experience',
@@ -101,7 +101,7 @@ export default function ServicesPage() {
       features1: ['Touchscreen Design', 'Interactive Media', 'Web Design & Development'],
       features2: ['E-Commerce ', 'Custom CRM Integrations', 'Website Optimization & Support'],
       videoSrc:
-        'https://player.vimeo.com/progressive_redirect/playback/946746304/rendition/1080p/file.mp4?loc=external&log_user=0&signature=345cd0867222271407bdecc16186c41de703cef9e1c7a088c9f753b88b88fb11',
+        'https://player.vimeo.com/progressive_redirect/playback/1116630645/rendition/540p/file.mp4?loc=external&signature=635390f9f4568f6bf421bb659f85e75777395ef6cdbb1525d17b209a36ac761b',
     },
     {
       title: 'Marketing & Growth',
@@ -115,7 +115,7 @@ export default function ServicesPage() {
         'Analytics, Reporting & Optimization',
       ],
       videoSrc:
-        'https://player.vimeo.com/progressive_redirect/playback/1028621242/rendition/2160p/file.mp4?loc=external&log_user=0&signature=1366c22c5c6960f18502839850cc6e6e875dcee68f7eccb8031f54db6ec07089',
+        'https://player.vimeo.com/progressive_redirect/playback/1116630601/rendition/540p/file.mp4?loc=external&signature=b70f08c001140d8c66d3afefc5fbaf6baf0fab023ab5f7a3f18b32182407987e',
     },
   ]
 

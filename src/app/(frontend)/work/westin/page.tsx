@@ -124,15 +124,15 @@ export default function WestinPage() {
         </Container>
       </section>
 
-      {/* Image Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+      {/* Video Section */}
+      <section className="relative bg-gray-100  overflow-hidden">
         <Container size="full">
-          <Image
-            src="/images/work/westin/Westin_1.png"
-            alt="Billboard Design"
-            width={1600}
-            height={900}
-            className="w-full h-auto"
+          <QuickVideo
+            src="https://player.vimeo.com/progressive_redirect/playback/1116634463/rendition/1080p/file.mp4?loc=external&signature=37aae1ac8920d4e17c5640c93554abf713162124c60bdcb1225acc12180476ed"
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            className="relative"
           />
         </Container>
       </section>

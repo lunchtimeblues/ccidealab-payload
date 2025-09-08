@@ -277,14 +277,14 @@ export default function WestinPage() {
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <Image
-              src="/images/work/pokebar/PokeBar_img1.jpg"
+              src="/images/work/pokebar/PokeBar_eating.jpg"
               alt="Comm100 Branded Materials"
               width={800}
               height={800}
               className="w-full h-auto object-cover"
             />
             <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1116617099/rendition/1080p/file.mp4?loc=external&signature=719330f4e99e96f51eac9d093e844fe85a062e07215cd0345c6f3ecadb7579c6"
+              src="https://player.vimeo.com/progressive_redirect/playback/1116653490/rendition/720p/file.mp4?loc=external&signature=e250659aa231279253b055acd2e32e992212410c000d246833db056edb1731db"
               autoPlay={true}
               muted={true}
               loop={true}

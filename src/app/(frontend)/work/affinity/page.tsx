@@ -144,7 +144,13 @@ export default function AffinityPage() {
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
-            <div className="hidden md:block"></div>
+            <QuickVideo
+              src="https://player.vimeo.com/progressive_redirect/playback/1116634911/rendition/720p/file.mp4?loc=external&signature=f352655cddd9d4db9d7007bc82728be85e7c6b4fd0f16b6de28aa12b91f4ce28"
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              className="relative"
+            />
             <QuickVideo
               src="https://player.vimeo.com/progressive_redirect/playback/1111163630/rendition/1080p/file.mp4?loc=external&signature=74c69811044b1aa5a6d5e5ab874a7323db9e2236313d2acd170be784b8807861"
               autoPlay={true}

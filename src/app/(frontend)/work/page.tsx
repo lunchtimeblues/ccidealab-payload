@@ -198,7 +198,7 @@ export default function WorkPage() {
               <TransitionLink url="/work/comm100" className="group cursor-pointer">
                 <div className="aspect-[4/3] bg-gray-100 rounded-lg mb-6 overflow-hidden">
                   <QuickVideo
-                    src="https://player.vimeo.com/progressive_redirect/playback/1111163790/rendition/1080p/file.mp4?loc=external&signature=54c579983b73bdb221c6bb53c48f0df0b57d84265c3f0d2107c29cebb979337e"
+                    src="https://player.vimeo.com/progressive_redirect/playback/1116637264/rendition/1080p/file.mp4?loc=external&signature=a1b0b6bee2bc5bef2c1bde709ae061cac96d6ec0af0257c2d0126a5874e51b64"
                     autoPlay={true}
                     muted={true}
                     loop={true}

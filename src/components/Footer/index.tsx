@@ -105,7 +105,7 @@ export const Footer = () => {
           <div className="flex items-center gap-4 mb-8 md:mb-0">
             <Image
               src="/images/cc-logo-white-minimal.svg"
-              alt="C/C IDEA LAB Logo"
+              alt="C&C IDEA LAB Logo"
               width={100}
               height={30}
               className="!h-16 sm:!h-36 w-auto max-w-[165px]"
@@ -212,7 +212,7 @@ export const Footer = () => {
       {/* Bottom Row */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center text-gray-500 text-fluid-xs pt-8">
         <ScrollRevealText delay={0}>
-          <p>© 2012—{year} CCIDEALAB®</p>
+          <p>© 2012—{year} C&C IDEA LAB®</p>
         </ScrollRevealText>
 
         <ScrollRevealText delay={200}>

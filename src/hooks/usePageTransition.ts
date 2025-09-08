@@ -71,7 +71,7 @@ export const usePageTransition = () => {
       color === '#000' || color === '#000000' || color === 'black'
         ? '/images/cc-logo-white-minimal.svg'
         : '/images/cc-logo-black-minimal.svg'
-    logoImg.alt = 'C/C IDEA LAB Logo'
+    logoImg.alt = 'C&C IDEA LAB Logo'
     logoImg.style.cssText = `
       width: 80px;
       height: auto;
@@ -180,7 +180,7 @@ export const usePageTransition = () => {
         color === '#000' || color === '#000000' || color === 'black'
           ? '/images/cc-logo-white-minimal.svg'
           : '/images/cc-logo-black-minimal.svg'
-      logoImg.alt = 'C/C IDEA LAB Logo'
+      logoImg.alt = 'C&C IDEA LAB Logo'
       logoImg.style.cssText = `
         width: 80px;
         height: auto;

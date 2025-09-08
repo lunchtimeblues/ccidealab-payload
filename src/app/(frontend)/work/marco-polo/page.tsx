@@ -191,15 +191,15 @@ export default function MarcoPoloPage() {
         </Container>
       </section>
 
-      {/* Image Section */}
-      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
+      {/* Video Section */}
+      <section className="relative bg-gray-100  overflow-hidden">
         <Container size="full">
-          <Image
-            src="/images/work/marcopolo/MarcoPolo_2.png"
-            alt="Billboard Design"
-            width={1600}
-            height={900}
-            className="w-full h-auto"
+          <QuickVideo
+            src="https://player.vimeo.com/progressive_redirect/playback/1116635922/rendition/1080p/file.mp4?loc=external&signature=99760d23788fb7ec014a9580bc8db810c2f73c2a8a87fc02d7495cf310e6a6f8"
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            className="relative"
           />
         </Container>
       </section>
