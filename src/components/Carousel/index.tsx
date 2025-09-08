@@ -1,14 +1,6 @@
 'use client'
 
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  useMemo,
-  Children,
-  cloneElement,
-} from 'react'
+import React, { useEffect, useRef, useState, useCallback, useMemo, Children } from 'react'
 
 interface CarouselProps {
   children: React.ReactNode
@@ -16,73 +8,34 @@ interface CarouselProps {
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 }
 
-interface ImageProps {
-  className?: string
-  style?: React.CSSProperties
-  [key: string]: unknown
-}
-
-interface ReactElementWithProps extends React.ReactElement {
-  props: ImageProps
-}
-
 export const Carousel: React.FC<CarouselProps> = ({ children, className = '', size = 'md' }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right'>('right')
-  const [_isMounted, setIsMounted] = useState(false)
-  const positionRef = useRef({ x: 0, y: 0 })
+
+  const positionRef = useRef({ x: -100, y: -100 }) // Start off-screen
   const followerRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Size configurations for carousel height
   const sizeConfig = {
-    sm: 'h-80', // 256px
-    md: 'h-96', // 320px
-    lg: 'h-104', // 384px
-    xl: 'h-[36rem]', // 576px - increased to accommodate text
+    sm: 'h-80',
+    md: 'h-96',
+    lg: 'h-104',
+    xl: 'h-[36rem]',
     xxl: 'h-[69rem]',
   }
 
-  const _gap = 32 // Gap between slides (used in CSS classes)
-
-  // Convert children to array for easier handling
   const childrenArray = Children.toArray(children).filter((child) => React.isValidElement(child))
   const totalSlides = childrenArray.length
 
-  // For simplicity, we'll let CSS handle the sizing automatically
-  // Each image will be height-constrained and width will adjust naturally
-
-  // Set mounted state on client
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  // Simple navigation functions (keeping for potential future use)
-  const _nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides)
-  }
-
-  const _prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1))
-  }
-
-  // Calculate page-wrapper constraints
   const getPageWrapperConstraints = useCallback(() => {
     if (typeof window === 'undefined') {
-      // Return default values for SSR
-      return {
-        leftEdge: 48,
-        rightEdge: 1200,
-        contentWidth: 1104,
-      }
+      return { leftEdge: 48, rightEdge: 1200, contentWidth: 1104 }
     }
-
     const viewportWidth = window.innerWidth
-    const isMobile = viewportWidth < 768 // 48rem breakpoint from page-wrapper
-    const sideSpacing = isMobile ? 32 : 48 // Match page-wrapper spacing
-
+    const isMobile = viewportWidth < 768
+    const sideSpacing = isMobile ? 32 : 48
     return {
       leftEdge: sideSpacing,
       rightEdge: viewportWidth - sideSpacing,
@@ -90,155 +43,176 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     }
   }, [])
 
-  // Calculate positioning styles for page-wrapper alignment with overflow on both sides
   const getCarouselStyles = useCallback(() => {
-    return {
-      // Full width container to allow overflow on both sides
-      marginLeft: '0',
-      width: '100vw',
-      // No padding - we'll handle positioning with transforms
-    }
+    return { marginLeft: '0', width: '100vw' }
   }, [])
 
-  // Calculate maximum slides that can be shown
   const getMaxIndex = useCallback(() => {
-    if (!carouselRef.current || !containerRef.current || totalSlides <= 1) return 0
-
+    if (!carouselRef.current || totalSlides <= 1) {
+      return 0
+    }
     const constraints = getPageWrapperConstraints()
-    const carouselContainer = carouselRef.current
-    const totalWidth = carouselContainer.scrollWidth
-
-    // If all content fits within the visible area, don't allow scrolling
-    if (totalWidth <= constraints.contentWidth) return 0
-
-    // Calculate the maximum translation needed so the rightmost content
-    // aligns with the right edge of the page-wrapper content area
+    const totalWidth = carouselRef.current.scrollWidth
+    if (totalWidth <= constraints.contentWidth) {
+      return 0
+    }
     const maxTranslateX = totalWidth - constraints.contentWidth
 
-    // Convert this to slide index using average slide width
-    const averageSlideWidth = 300 // Same as used in positioning
-    const maxIndex = Math.floor(maxTranslateX / averageSlideWidth)
+    // Calculate actual slide width from first child
+    const firstChild = carouselRef.current.children[0] as HTMLElement
+    const slideWidth = firstChild ? firstChild.offsetWidth + 32 : 332 // 32px gap
+    const maxIndex = Math.floor(maxTranslateX / slideWidth)
+    const finalMaxIndex = Math.min(maxIndex, totalSlides - 1)
 
-    return Math.min(maxIndex, totalSlides - 1)
+    // Temporary fix: if we have multiple slides but maxIndex is 0, force it to allow scrolling
+    if (finalMaxIndex === 0 && totalSlides > 1) {
+      return totalSlides - 1
+    }
+
+    return finalMaxIndex
   }, [totalSlides, getPageWrapperConstraints])
 
-  // Memoize expensive calculations
   const constraints = useMemo(() => getPageWrapperConstraints(), [getPageWrapperConstraints])
-  const maxIndex = useMemo(() => getMaxIndex(), [getMaxIndex])
+  const [maxIndex, setMaxIndex] = useState(0)
 
-  // Optimized position update function
+  // Recalculate maxIndex when component mounts and when dependencies change
+  useEffect(() => {
+    const calculateMaxIndex = () => {
+      const result = getMaxIndex()
+      setMaxIndex(result)
+    }
+
+    // Calculate immediately
+    calculateMaxIndex()
+
+    // Also calculate after delays to ensure DOM is ready
+    const timeout1 = setTimeout(calculateMaxIndex, 100)
+    const timeout2 = setTimeout(calculateMaxIndex, 500)
+    const timeout3 = setTimeout(calculateMaxIndex, 1000)
+
+    return () => {
+      clearTimeout(timeout1)
+      clearTimeout(timeout2)
+      clearTimeout(timeout3)
+    }
+  }, [getMaxIndex, totalSlides])
+
+  // Also recalculate when carousel becomes available
+  useEffect(() => {
+    const checkAndRecalculate = () => {
+      if (carouselRef.current) {
+        const result = getMaxIndex()
+        setMaxIndex(result)
+      }
+    }
+
+    // Check periodically until carousel is ready
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        checkAndRecalculate()
+        clearInterval(interval)
+      }
+    }, 100)
+
+    // Clear interval after 5 seconds to prevent infinite checking
+    const timeout = setTimeout(() => clearInterval(interval), 5000)
+
+    return () => {
+      clearInterval(interval)
+      clearTimeout(timeout)
+    }
+  }, [getMaxIndex])
+
   const updateCarouselPosition = useCallback(
     (index: number, offset: number = 0, immediate: boolean = false) => {
-      if (!carouselRef.current) return
-
+      if (!carouselRef.current) {
+        return
+      }
       const clampedIndex = Math.min(index, maxIndex)
 
-      // For the last slide, calculate exact position to align with right edge
+      // Calculate actual slide width from first child
+      const firstChild = carouselRef.current.children[0] as HTMLElement
+      const slideWidth = firstChild ? firstChild.offsetWidth + 32 : 332 // 32px gap
+
       if (clampedIndex === maxIndex && maxIndex > 0) {
         const totalWidth = carouselRef.current.scrollWidth
         const exactTranslateX = totalWidth - constraints.contentWidth
         const finalTranslateX = constraints.leftEdge - exactTranslateX + offset
         carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
       } else {
-        // Simple slide-based positioning for other slides
-        const averageSlideWidth = 300
-        const slideTranslateX = clampedIndex * averageSlideWidth
+        const slideTranslateX = clampedIndex * slideWidth
         const finalTranslateX = constraints.leftEdge - slideTranslateX + offset
         carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
       }
-
-      // Update transition duration
       carouselRef.current.style.transitionDuration = immediate ? '0ms' : '500ms'
     },
     [maxIndex, constraints],
   )
 
-  // Update carousel position when currentIndex changes
   useEffect(() => {
     updateCarouselPosition(currentIndex)
   }, [currentIndex, updateCarouselPosition])
 
-  // Mouse follower functionality
-  const updateFollowerPosition = () => {
+  const updateFollowerPosition = useCallback(() => {
     const follower = followerRef.current
     if (!follower) return
-
     const { x, y } = positionRef.current
-    const offset = 48 // Half of 96px (w-24 h-24)
-    follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
-  }
-
-  const determineDirection = (e: MouseEvent, containerRect: DOMRect) => {
-    const centerX = containerRect.left + containerRect.width / 2
-    const mouseX = e.clientX
-    return mouseX < centerX ? 'left' : 'right'
-  }
-
-  // Mouse event handlers
-  const handleMouseEnter = useCallback((e: MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (!rect) return
-
-    const newDirection = determineDirection(e, rect)
-
-    positionRef.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    }
-
     const offset = 48
-    if (followerRef.current) {
-      followerRef.current.style.transform = `translate(${positionRef.current.x - offset}px, ${positionRef.current.y - offset}px)`
-    }
-
-    setDirection(newDirection)
-    setIsVisible(true)
-
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'none'
-    }
+    follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
   }, [])
 
-  const handleMouseLeave = useCallback(() => {
-    setIsVisible(false)
+  const determineDirection = (e: MouseEvent, rect: DOMRect) => {
+    const centerX = rect.left + rect.width / 2
+    return e.clientX < centerX ? 'left' : 'right'
+  }
 
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'auto'
-    }
-  }, [])
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect()
-    if (!rect) return
-
-    const newDirection = determineDirection(e, rect)
-
-    positionRef.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    }
-
-    setDirection(newDirection)
-    updateFollowerPosition()
-  }, [])
-
-  const handleClick = useCallback(
+  const handleMouseEnter = useCallback(
     (e: MouseEvent) => {
       const rect = containerRef.current?.getBoundingClientRect()
       if (!rect) return
-
-      const clickDirection = determineDirection(e, rect)
-
-      if (clickDirection === 'left') {
-        setCurrentIndex((prev) => Math.max(0, prev - 1))
-      } else {
-        setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
-      }
+      setDirection(determineDirection(e, rect))
+      positionRef.current = { x: e.clientX, y: e.clientY }
+      setIsVisible(true)
+      updateFollowerPosition()
+      if (containerRef.current) containerRef.current.style.cursor = 'none'
     },
-    [maxIndex],
+    [updateFollowerPosition],
   )
 
-  // Simple touch support without performance overhead
+  const handleMouseLeave = useCallback(() => {
+    setIsVisible(false)
+    if (containerRef.current) containerRef.current.style.cursor = 'auto'
+  }, [])
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!isVisible) return
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) return
+      setDirection(determineDirection(e, rect))
+      positionRef.current = { x: e.clientX, y: e.clientY }
+      updateFollowerPosition()
+    },
+    [updateFollowerPosition, isVisible],
+  )
+
+  const handleClick = useCallback(
+    (e: MouseEvent) => {
+      e.preventDefault()
+      const rect = containerRef.current?.getBoundingClientRect()
+      if (!rect) return
+      const clickDirection = determineDirection(e, rect)
+      if (clickDirection === 'left') {
+        const newIndex = Math.max(0, currentIndex - 1)
+        setCurrentIndex(newIndex)
+      } else {
+        const newIndex = Math.min(maxIndex, currentIndex + 1)
+        setCurrentIndex(newIndex)
+      }
+    },
+    [maxIndex, currentIndex],
+  )
+
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -256,66 +230,71 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
       const touchEndY = e.changedTouches[0].clientY
       const deltaX = touchEndX - touchStartX
       const deltaY = touchEndY - touchStartY
-
-      // Only handle horizontal swipes with minimum distance
       if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-        if (deltaX > 0) {
-          // Swiped right - previous slide
-          setCurrentIndex((prev) => Math.max(0, prev - 1))
-        } else {
-          // Swiped left - next slide
-          setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
-        }
+        if (deltaX > 0) setCurrentIndex((prev) => Math.max(0, prev - 1))
+        else setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
       }
     }
 
-    // Mouse events
-    container.addEventListener('mouseenter', handleMouseEnter)
-    container.addEventListener('mouseleave', handleMouseLeave)
-    container.addEventListener('mousemove', handleMouseMove)
-    container.addEventListener('click', handleClick)
+    // Use addEventListener with proper typing
+    const mouseEnterHandler = (e: Event) => handleMouseEnter(e as MouseEvent)
+    const mouseLeaveHandler = () => handleMouseLeave()
+    const mouseMoveHandler = (e: Event) => handleMouseMove(e as MouseEvent)
+    const clickHandler = (e: Event) => handleClick(e as MouseEvent)
 
-    // Simple touch events
+    container.addEventListener('mouseenter', mouseEnterHandler)
+    container.addEventListener('mouseleave', mouseLeaveHandler)
+    container.addEventListener('mousemove', mouseMoveHandler)
+    container.addEventListener('click', clickHandler)
     container.addEventListener('touchstart', handleTouchStart, { passive: true })
     container.addEventListener('touchend', handleTouchEnd, { passive: true })
 
     return () => {
-      container.removeEventListener('mouseenter', handleMouseEnter)
-      container.removeEventListener('mouseleave', handleMouseLeave)
-      container.removeEventListener('mousemove', handleMouseMove)
-      container.removeEventListener('click', handleClick)
+      container.removeEventListener('mouseenter', mouseEnterHandler)
+      container.removeEventListener('mouseleave', mouseLeaveHandler)
+      container.removeEventListener('mousemove', mouseMoveHandler)
+      container.removeEventListener('click', clickHandler)
       container.removeEventListener('touchstart', handleTouchStart)
       container.removeEventListener('touchend', handleTouchEnd)
     }
   }, [handleMouseEnter, handleMouseLeave, handleMouseMove, handleClick, maxIndex])
 
-  // Handle window resize to recalculate boundaries and positioning
   useEffect(() => {
     const handleResize = () => {
-      // Clamp current index to new boundaries
-      const maxIndex = getMaxIndex()
-      setCurrentIndex((prev) => Math.min(prev, maxIndex))
-
-      // Force re-render to update positioning styles
-      if (containerRef.current) {
-        const styles = getCarouselStyles()
-        const carouselContainer = containerRef.current.querySelector(
-          '.overflow-hidden',
-        ) as HTMLElement
-        if (carouselContainer) {
-          carouselContainer.style.marginLeft = styles.marginLeft
-          carouselContainer.style.width = styles.width
+      try {
+        const newMaxIndex = getMaxIndex()
+        setCurrentIndex((prev) => Math.min(prev, newMaxIndex))
+        if (containerRef.current) {
+          const styles = getCarouselStyles()
+          const carouselContainer = containerRef.current.querySelector(
+            '.overflow-hidden',
+          ) as HTMLElement
+          if (carouselContainer) {
+            carouselContainer.style.marginLeft = styles.marginLeft
+            carouselContainer.style.width = styles.width
+          }
         }
+      } catch (error) {
+        console.warn('Carousel resize error:', error)
       }
     }
 
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    // Debounce resize events
+    let resizeTimeout: NodeJS.Timeout
+    const debouncedResize = () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(handleResize, 100)
+    }
+
+    window.addEventListener('resize', debouncedResize)
+    return () => {
+      window.removeEventListener('resize', debouncedResize)
+      clearTimeout(resizeTimeout)
+    }
   }, [getMaxIndex, getCarouselStyles])
 
   return (
     <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
-      {/* Carousel Container - aligned to page-wrapper constraints */}
       <div className={`overflow-hidden ${sizeConfig[size]}`} style={getCarouselStyles()}>
         <div
           ref={carouselRef}
@@ -324,31 +303,13 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
           {childrenArray.map((child, index) => (
             <div
               key={index}
-              className="flex-shrink-0 flex items-start justify-center"
+              className="flex-shrink-0 flex items-center justify-center"
               style={{ height: '100%' }}
             >
               {React.isValidElement(child) ? (
-                // Check if child is a div (team member card) or an Image
-                child.type === 'div' ? (
-                  // Render team member card with proper spacing
-                  cloneElement(child as ReactElementWithProps, {
-                    className: `flex flex-col justify-start ${(child as ReactElementWithProps).props.className || ''}`,
-                    style: {
-                      height: 'auto',
-                      maxHeight: '100%',
-                    },
-                  })
-                ) : (
-                  // Render image with original styling
-                  cloneElement(child as ReactElementWithProps, {
-                    className: `h-full w-auto object-contain rounded-lg ${(child as ReactElementWithProps).props.className || ''}`,
-                    style: {
-                      maxHeight: '100%',
-                      width: 'auto',
-                      ...(child as ReactElementWithProps).props.style,
-                    },
-                  })
-                )
+                <div className="h-full w-auto flex items-center justify-center carousel-item-wrapper">
+                  {child}
+                </div>
               ) : (
                 <div className="h-full aspect-square bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-lg">
                   <span className="text-gray-500">Invalid content</span>
@@ -359,27 +320,28 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
         </div>
       </div>
 
-      {/* Integrated Mouse Follower */}
+      {/* Mouse Follower */}
       <div
         ref={followerRef}
-        className="absolute top-0 left-0 pointer-events-none z-50"
+        className="fixed top-0 left-0 pointer-events-none z-50"
         style={{
-          transform: `translate(-48px, -48px)`, // Initial position off-screen
+          transform: `translate(-48px, -48px)`,
+          willChange: 'transform',
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 0.2s ease',
         }}
       >
-        <div
-          className={`
-            w-24 h-24 bg-white/90 backdrop-blur-md border border-gray-200/30
-            rounded-full flex items-center justify-center
-            shadow-lg relative overflow-hidden
-            transition-all duration-300 ease-out
-            ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
-          `}
-        >
-          {/* Direction indicator */}
+        <div className="w-24 h-24 bg-white/90 backdrop-blur-md border border-gray-200/30 rounded-full flex items-center justify-center shadow-lg">
           <div className="flex items-center justify-center">
             {direction === 'left' ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-black">
+              <svg
+                key="left"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="text-black"
+              >
                 <path
                   d="M19 12H5M5 12L12 19M5 12L12 5"
                   stroke="currentColor"
@@ -389,9 +351,16 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
                 />
               </svg>
             ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-black">
+              <svg
+                key="right"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="text-black"
+              >
                 <path
-                  d="M5 12H19M19 12L12 5M19 12L12 19"
+                  d="M5 12H19M19 12L14 7M19 12L14 17"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
@@ -400,8 +369,6 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
               </svg>
             )}
           </div>
-
-          {/* Subtle inner glow effect */}
           <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
         </div>
       </div>

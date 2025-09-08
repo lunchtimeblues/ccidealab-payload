@@ -514,3 +514,59 @@
     transform: translateX(-50%);
   }
 }
+
+/* ============================================================================
+   CAROUSEL UTILITIES
+   ============================================================================ */
+
+/* Reset carousel wrapper to not interfere with existing layouts */
+.carousel-item-wrapper {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* For image-only carousel items */
+.carousel-item-wrapper img:only-child {
+  height: 100% !important;
+  width: auto !important;
+  object-fit: cover !important;
+  border-radius: 0.5rem;
+}
+
+/* For carousel items with text-center class (team members, etc.) */
+.carousel-item-wrapper .text-center {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1rem;
+}
+
+/* Images in text-center carousel items */
+.carousel-item-wrapper .text-center img {
+  flex-shrink: 0;
+  width: auto !important;
+  max-width: 100%;
+  height: auto !important;
+  max-height: 75% !important; /* Leave space for text below */
+  object-fit: cover !important;
+  margin-bottom: 0 !important; /* Override mb-4 */
+}
+
+/* Text content in text-center carousel items */
+.carousel-item-wrapper .text-center > div {
+  flex-shrink: 0;
+  text-align: center;
+  width: 100%;
+}
+
+/* For other carousel content that doesn't have text-center */
+.carousel-item-wrapper > *:not(.text-center) {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

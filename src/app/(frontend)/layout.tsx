@@ -72,9 +72,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 export const metadata: Metadata = {
   metadataBase: new URL(getServerSideURL()),
+  title: 'C&C IDEA LAB | Vancouver Branding & Web Design Agency',
+  description:
+    'C&C IDEA LAB is a global creative agency helping brands grow through strategy, design, content, and campaigns—creating ideas people champion.',
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',
-    creator: '@payloadcms',
+    creator: '@ccidealab',
   },
 }
