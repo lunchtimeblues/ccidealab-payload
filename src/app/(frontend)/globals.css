@@ -228,6 +228,32 @@
   }
 }
 
+/* ============================================================================
+   NAVIGATION BLEND MODE
+   ============================================================================ */
+
+/* Ensure proper background context for mix-blend-mode */
+.blend-context {
+  background-color: #f3f4f6; /* gray-100 fallback */
+  isolation: auto; /* Allow blending */
+}
+
+/* Navigation blend mode styles */
+.nav-blend {
+  mix-blend-mode: difference;
+  /* Use a stronger base color for better contrast */
+  color: #000000;
+  /* Fallback for browsers that don't support mix-blend-mode */
+  @supports not (mix-blend-mode: difference) {
+    color: #000000 !important;
+  }
+}
+
+/* Ensure text elements inherit the blend mode */
+.nav-blend * {
+  color: #000000 !important;
+}
+
 /* Page Wrapper System */
 .page-wrapper {
   padding-inline: calc(var(--spacing) * 4);

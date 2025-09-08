@@ -7,6 +7,7 @@ import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollVideo } from '@/components/ScrollVideo'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ClientLogosMarquee } from '@/components/ClientLogosMarquee'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 
 export default function ServicesPage() {
   // Use Intersection Observer for fade effects instead of scroll listeners
@@ -164,9 +165,12 @@ export default function ServicesPage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a href="#about" className="border-b border-black hover:opacity-70 transition">
+              <SmoothScrollButton
+                targetSectionId="services-content"
+                className="border-b border-black hover:opacity-70 transition"
+              >
                 Learn more <span className="inline-block ml-1">↓</span>
-              </a>
+              </SmoothScrollButton>
               <span className="text-black/60">(SCROLL)</span>
             </div>
           </Container>
@@ -175,7 +179,7 @@ export default function ServicesPage() {
 
       {/* Scroll Video Section */}
       <ScrollVideo
-        src="https://player.vimeo.com/progressive_redirect/playback/1107658120/rendition/1080p/file.mp4?loc=external&signature=5b4262eb299d2487592038466508758b4185bf8685deda59a21f735585a91e29"
+        src="https://player.vimeo.com/progressive_redirect/playback/1116629203/rendition/1080p/file.mp4?loc=external&signature=ca3f834866b8ef1ee871d833917b134f97d01aae077be344bb76258054d00df4"
         autoPlay={true}
         muted={true}
         loop={true}
@@ -183,7 +187,10 @@ export default function ServicesPage() {
       />
 
       {/* Services Section */}
-      <section id="services" className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
+      <section
+        id="services-content"
+        className="relative bg-gray-100 py-32 md:py-48 overflow-hidden"
+      >
         <Container size="full">
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="col-span-12 md:col-span-4">
@@ -228,38 +235,38 @@ export default function ServicesPage() {
             ref={(el) => {
               sectionRefs.current[index] = el
             }}
-            className={`md:sticky md:top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
+            className={`lg:sticky lg:top-0 flex flex-wrap justify-between bg-gray-100 z-[${index}] text-black relative`}
           >
             {/* Fade overlay covers ALL content including videos - highest z-index */}
             <div
-              className="hidden sm:block absolute inset-0 bg-black pointer-events-none z-50 transition-opacity duration-300 ease-out"
+              className="hidden lg:block absolute inset-0 bg-black pointer-events-none z-50 transition-opacity duration-300 ease-out"
               style={{ opacity: fadeOpacity }}
             />
 
             {/* Container moved inside to constrain content, not the fade effect */}
             <Container size="full" className="w-full">
-              <div className="min-h-screen md:h-screen flex flex-col justify-center py-16 md:py-12">
+              <div className="min-h-screen lg:h-screen flex flex-col justify-center py-16 lg:py-12">
                 <div className="relative z-20">
                   {/* Header Section */}
-                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 md:mb-12">
-                    <h2 className="uppercase text-fluid-5xl font-medium mb-2 sm:mb-0">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6 lg:mb-12">
+                    <h2 className="uppercase text-fluid-5xl font-medium mb-2 md:mb-0">
                       {service.title}
                     </h2>
-                    <span className="uppercase text-fluid-3xl sm:text-fluid-5xl font-medium text-gray-600 sm:text-black">
+                    <span className="uppercase text-fluid-3xl md:text-fluid-5xl font-medium text-gray-600 md:text-black">
                       {service.number}
                     </span>
                   </div>
 
                   {/* Content Section */}
-                  <div className="border-t border-[#CFD5D7] pt-6 md:pt-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8">
+                  <div className="border-t border-[#CFD5D7] pt-6 lg:pt-12">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8">
                       {/* Text Content */}
-                      <div className="lg:col-span-8">
-                        <p className="text-fluid-lg leading-relaxed mb-6 md:mb-10">
+                      <div className="md:col-span-8">
+                        <p className="text-fluid-lg leading-relaxed mb-6 lg:mb-10">
                           {service.description}
                         </p>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8">
                           <ul className="space-y-2 text-fluid-base">
                             {service.features1.map((item, i) => (
                               <li key={i}>{item}</li>
@@ -274,8 +281,8 @@ export default function ServicesPage() {
                       </div>
 
                       {/* Video Section */}
-                      <div className="lg:col-span-4 mt-6 lg:mt-0">
-                        <div className="relative w-full aspect-[3/4] max-w-xs mx-auto lg:mx-0">
+                      <div className="md:col-span-4 mt-6 md:mt-0">
+                        <div className="relative w-full aspect-[3/4] max-w-xs mx-auto md:mx-0">
                           <video
                             className="absolute inset-0 w-full h-full object-cover rounded-lg"
                             src={service.videoSrc}

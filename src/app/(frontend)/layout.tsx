@@ -47,18 +47,21 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <link href="/favicon.ico" rel="icon" sizes="32x32" />
           <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         </head>
-        <body>
+        <body suppressHydrationWarning={true}>
           <Providers>
             <SmoothScroll>
-              <AdminBar
-                adminBarProps={{
-                  preview: isEnabled,
-                }}
-              />
-              <NavigationWrapper />
-              {/* <Header /> */}
-              <MainContent>{children}</MainContent>
-              <Footer />
+              {/* Background context for mix-blend-mode */}
+              <div id="top" className="min-h-screen bg-gray-100 blend-context">
+                <AdminBar
+                  adminBarProps={{
+                    preview: isEnabled,
+                  }}
+                />
+                <NavigationWrapper />
+                {/* <Header /> */}
+                <MainContent>{children}</MainContent>
+                <Footer />
+              </div>
             </SmoothScroll>
           </Providers>
         </body>

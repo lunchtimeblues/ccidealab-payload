@@ -4,6 +4,7 @@ import { Container } from '@/components/Container'
 import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 import Image from 'next/image'
 
 export default function ContactPage() {
@@ -43,9 +44,13 @@ export default function ContactPage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a href="#contact" className="border-b border-black hover:opacity-70 transition">
+              <SmoothScrollButton
+                targetSectionId="contact"
+                offset={80}
+                className="border-b border-black hover:opacity-70 transition"
+              >
                 We won&apos;t bite <span className="inline-block ml-1">↓</span>
-              </a>
+              </SmoothScrollButton>
               <span className="text-black/60">(SCROLL)</span>
             </div>
           </Container>

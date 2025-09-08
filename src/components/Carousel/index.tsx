@@ -1,6 +1,14 @@
 'use client'
 
-import React, { useEffect, useRef, useState, useCallback, Children, cloneElement } from 'react'
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+  Children,
+  cloneElement,
+} from 'react'
 
 interface CarouselProps {
   children: React.ReactNode
@@ -114,28 +122,41 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     return Math.min(maxIndex, totalSlides - 1)
   }, [totalSlides, getPageWrapperConstraints])
 
-  // Update carousel position when currentIndex changes
-  useEffect(() => {
-    if (carouselRef.current) {
-      const constraints = getPageWrapperConstraints()
-      const maxIndex = getMaxIndex()
-      const clampedIndex = Math.min(currentIndex, maxIndex)
+  // Memoize expensive calculations
+  const constraints = useMemo(() => getPageWrapperConstraints(), [getPageWrapperConstraints])
+  const maxIndex = useMemo(() => getMaxIndex(), [getMaxIndex])
+
+  // Optimized position update function
+  const updateCarouselPosition = useCallback(
+    (index: number, offset: number = 0, immediate: boolean = false) => {
+      if (!carouselRef.current) return
+
+      const clampedIndex = Math.min(index, maxIndex)
 
       // For the last slide, calculate exact position to align with right edge
       if (clampedIndex === maxIndex && maxIndex > 0) {
         const totalWidth = carouselRef.current.scrollWidth
         const exactTranslateX = totalWidth - constraints.contentWidth
-        const finalTranslateX = constraints.leftEdge - exactTranslateX
+        const finalTranslateX = constraints.leftEdge - exactTranslateX + offset
         carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
       } else {
         // Simple slide-based positioning for other slides
         const averageSlideWidth = 300
         const slideTranslateX = clampedIndex * averageSlideWidth
-        const finalTranslateX = constraints.leftEdge - slideTranslateX
+        const finalTranslateX = constraints.leftEdge - slideTranslateX + offset
         carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
       }
-    }
-  }, [currentIndex, getMaxIndex, getPageWrapperConstraints])
+
+      // Update transition duration
+      carouselRef.current.style.transitionDuration = immediate ? '0ms' : '500ms'
+    },
+    [maxIndex, constraints],
+  )
+
+  // Update carousel position when currentIndex changes
+  useEffect(() => {
+    updateCarouselPosition(currentIndex)
+  }, [currentIndex, updateCarouselPosition])
 
   // Mouse follower functionality
   const updateFollowerPosition = () => {
@@ -207,7 +228,6 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
       if (!rect) return
 
       const clickDirection = determineDirection(e, rect)
-      const maxIndex = getMaxIndex()
 
       if (clickDirection === 'left') {
         setCurrentIndex((prev) => Math.max(0, prev - 1))
@@ -215,25 +235,59 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
         setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
       }
     },
-    [getMaxIndex],
+    [maxIndex],
   )
 
+  // Simple touch support without performance overhead
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
+    let touchStartX = 0
+    let touchStartY = 0
+
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX
+      touchStartY = e.touches[0].clientY
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const touchEndX = e.changedTouches[0].clientX
+      const touchEndY = e.changedTouches[0].clientY
+      const deltaX = touchEndX - touchStartX
+      const deltaY = touchEndY - touchStartY
+
+      // Only handle horizontal swipes with minimum distance
+      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+        if (deltaX > 0) {
+          // Swiped right - previous slide
+          setCurrentIndex((prev) => Math.max(0, prev - 1))
+        } else {
+          // Swiped left - next slide
+          setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
+        }
+      }
+    }
+
+    // Mouse events
     container.addEventListener('mouseenter', handleMouseEnter)
     container.addEventListener('mouseleave', handleMouseLeave)
     container.addEventListener('mousemove', handleMouseMove)
     container.addEventListener('click', handleClick)
+
+    // Simple touch events
+    container.addEventListener('touchstart', handleTouchStart, { passive: true })
+    container.addEventListener('touchend', handleTouchEnd, { passive: true })
 
     return () => {
       container.removeEventListener('mouseenter', handleMouseEnter)
       container.removeEventListener('mouseleave', handleMouseLeave)
       container.removeEventListener('mousemove', handleMouseMove)
       container.removeEventListener('click', handleClick)
+      container.removeEventListener('touchstart', handleTouchStart)
+      container.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [handleMouseEnter, handleMouseLeave, handleMouseMove, handleClick])
+  }, [handleMouseEnter, handleMouseLeave, handleMouseMove, handleClick, maxIndex])
 
   // Handle window resize to recalculate boundaries and positioning
   useEffect(() => {

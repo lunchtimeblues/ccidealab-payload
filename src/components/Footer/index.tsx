@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 import { FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa'
 
 export const Footer = () => {
@@ -237,9 +238,12 @@ export const Footer = () => {
         </ScrollRevealText>
 
         <ScrollRevealText delay={400}>
-          <a href="#" className="mt-4 md:mt-0 hover:text-white transition-colors text-fluid-xs">
+          <SmoothScrollButton
+            targetSectionId="top"
+            className="mt-4 md:mt-0 hover:text-white transition-colors text-fluid-xs"
+          >
             Back to top ↑
-          </a>
+          </SmoothScrollButton>
         </ScrollRevealText>
       </div>
     </footer>

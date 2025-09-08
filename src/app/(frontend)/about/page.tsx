@@ -6,6 +6,7 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ParallaxImage } from '@/components/ParallaxImage'
 import { Carousel } from '@/components/Carousel'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 import Image from 'next/image'
 
 export default function AboutPage() {
@@ -53,9 +54,12 @@ export default function AboutPage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a href="#about" className="border-b border-black hover:opacity-70 transition">
+              <SmoothScrollButton
+                targetSectionId="about-content"
+                className="border-b border-black hover:opacity-70 transition"
+              >
                 Learn more <span className="inline-block ml-1">↓</span>
-              </a>
+              </SmoothScrollButton>
               <span className="text-black/60">(SCROLL)</span>
             </div>
           </Container>
@@ -63,15 +67,16 @@ export default function AboutPage() {
       </section>
 
       {/* Parallax Image Section */}
-      <ParallaxImage
-        src="/images/about/lobby-large.jpg"
-        alt="Modern office workspace"
-        size="80vh"
-        overlay={true}
-        overlayOpacity={0.3}
-        parallaxSpeed={0.6}
-      >
-        {/* <Container className="text-center text-white">
+      <section id="about-content">
+        <ParallaxImage
+          src="/images/about/lobby-large.jpg"
+          alt="Modern office workspace"
+          size="80vh"
+          overlay={true}
+          overlayOpacity={0.3}
+          parallaxSpeed={0.6}
+        >
+          {/* <Container className="text-center text-white">
           <ScrollRevealText>
             <h2 className="text-5xl md:text-7xl font-bold mb-6">
               Ideas Worth
@@ -85,7 +90,8 @@ export default function AboutPage() {
             </p>
           </ScrollRevealText>
         </Container> */}
-      </ParallaxImage>
+        </ParallaxImage>
+      </section>
       {/*
       <section className="pt-12 pb-2 md:pt-24 md:pb-4 bg-grey-100">
         <ScrollMarquee

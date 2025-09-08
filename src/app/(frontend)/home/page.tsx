@@ -12,6 +12,7 @@ import { ScrollVideo } from '@/components/ScrollVideo'
 import { MouseFollower } from '@/components/MouseFollower'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { Carousel } from '@/components/Carousel'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 
 export default function HomePage(): React.JSX.Element {
   return (
@@ -19,7 +20,7 @@ export default function HomePage(): React.JSX.Element {
       {/* Hero Section */}
       <section className="relative almost-full-height flex flex-col justify-between">
         {/* Top/Center content - this will be centered in the available space */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center mt-24">
           <Container size="xxl" className="relative z-10 w-full">
             <div className="relative w-full max-w-none">
               <h1
@@ -77,22 +78,28 @@ export default function HomePage(): React.JSX.Element {
         {/* Bottom content - this will stick to the bottom */}
         <Container size="full" className="w-full">
           <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-            <a href="#about" className="border-b border-black hover:opacity-70 transition">
-              Learn more about our company <span className="inline-block ml-1">↓</span>
-            </a>
+            <SmoothScrollButton
+              targetSectionId="services"
+              offset={80}
+              className="border-b border-black hover:opacity-70 transition"
+            >
+              Learn more <span className="inline-block ml-1">↓</span>
+            </SmoothScrollButton>
             <span className="text-black/60">(SCROLL)</span>
           </div>
         </Container>
       </section>
 
       {/* Scroll Video Section */}
-      <ScrollVideo
-        src="https://player.vimeo.com/progressive_redirect/playback/1116629203/rendition/1080p/file.mp4?loc=external&signature=ca3f834866b8ef1ee871d833917b134f97d01aae077be344bb76258054d00df4"
-        autoPlay={true}
-        muted={true}
-        loop={true}
-        className="relative"
-      />
+      <section id="scroll-video">
+        <ScrollVideo
+          src="https://player.vimeo.com/progressive_redirect/playback/1116629203/rendition/1080p/file.mp4?loc=external&signature=ca3f834866b8ef1ee871d833917b134f97d01aae077be344bb76258054d00df4"
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          className="relative"
+        />
+      </section>
 
       {/* Services Section */}
       <section id="services" className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
@@ -158,7 +165,7 @@ export default function HomePage(): React.JSX.Element {
       </section>
 
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 bg-gray-100">
+      <section id="featured-work" className="py-32 bg-gray-100">
         <Container size="full">
           <ScrollRevealText>
             <h2 className="text-fluid-6xl font-medium leading-none text-black">SELECT</h2>

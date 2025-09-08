@@ -3,6 +3,7 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
@@ -53,9 +54,9 @@ export default function AffinityPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-white">
-                  Affinity Group provides IT Consulting & Recruitment Service to successful
-                  customers in a professional environment with a friendly voice. It helps them feel
-                  confident, and achieve business objectives efficiently.
+                  Affinity Group provides IT Consulting & Recruitment Service to successful clients
+                  in a professional environment with a friendly voice. It helps them feel confident,
+                  and achieve business objectives efficiently.
                 </p>
               </div>
             </Container>
@@ -64,12 +65,12 @@ export default function AffinityPage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a
-                href="#about"
+              <SmoothScrollButton
+                targetSectionId="affinity-overview"
                 className="text-white border-b border-white hover:opacity-70 transition"
               >
-                Learn more about our company <span className="inline-block ml-1">↓</span>
-              </a>
+                Learn more <span className="inline-block ml-1">↓</span>
+              </SmoothScrollButton>
               <span className="text-white">(SCROLL)</span>
             </div>
           </Container>

@@ -67,7 +67,7 @@ export default function MarcoPoloPage() {
                 href="#about"
                 className="text-white border-b border-white hover:opacity-70 transition"
               >
-                Learn more about our company <span className="inline-block ml-1">↓</span>
+                Learn more<span className="inline-block ml-1">↓</span>
               </a>
               <span className="text-white">(SCROLL)</span>
             </div>

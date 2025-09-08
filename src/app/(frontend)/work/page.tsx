@@ -7,6 +7,7 @@ import { SpinningStar } from '@/components/SpinningStar'
 import { MouseFollower } from '@/components/MouseFollower'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 
 export default function WorkPage() {
   return (
@@ -48,9 +49,12 @@ export default function WorkPage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a href="#about" className="border-b border-black hover:opacity-70 transition">
+              <SmoothScrollButton
+                targetSectionId="work-grid"
+                className="border-b border-black hover:opacity-70 transition"
+              >
                 Learn more <span className="inline-block ml-1">↓</span>
-              </a>
+              </SmoothScrollButton>
               <span className="text-black/60">(SCROLL)</span>
             </div>
           </Container>
@@ -58,7 +62,7 @@ export default function WorkPage() {
       </section>
 
       {/* Featured Work Section with Mouse Follower */}
-      <section className="py-32 bg-gray-100">
+      <section id="work-grid" className="py-32 bg-gray-100">
         <Container size="full">
           <ScrollRevealText>
             <h2 className="text-fluid-6xl font-medium leading-none text-black">SELECTED</h2>

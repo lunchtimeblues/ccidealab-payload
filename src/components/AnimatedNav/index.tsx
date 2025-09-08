@@ -39,7 +39,11 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
   }, [isMenuOpen])
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-2">
+    <nav
+      ref={navRef}
+      className="fixed top-0 left-0 right-0 z-50 py-2"
+      style={{ mixBlendMode: 'difference' }}
+    >
       <div className="page-wrapper flex items-center justify-between">
         {/* Logo */}
         <div
@@ -49,7 +53,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
         >
           <TransitionLink url="/" appearance="inline" transitionType="logoWipe">
             <Image
-              src="/images/cc-logo-black-medium.svg"
+              src="/images/cc-logo-white-medium.svg"
               alt="C&C IDEA LAB Logo"
               width={160}
               height={64}
@@ -63,7 +67,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
           {navItems.slice(0, -1).map((item, index) => (
             <div
               key={item.href}
-              className={`text-black font-base transform transition-all duration-700 ease-out ${
+              className={`text-white font-base transform transition-all duration-700 ease-out ${
                 isScrolled || isMenuOpen
                   ? 'translate-y-[-100px] opacity-0 pointer-events-none'
                   : 'translate-y-0 opacity-100'
@@ -88,7 +92,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
         <div className="relative flex items-center min-w-[160px]">
           {/* Contact */}
           <div
-            className={`absolute right-0 transition-all text-black font-base ${
+            className={`absolute right-0 transition-all text-white font-base ${
               isScrolled
                 ? 'transform -translate-x-[80px] opacity-100 duration-300'
                 : 'transform translate-x-0 opacity-100 duration-700'
@@ -105,7 +109,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
               label="Contact"
               appearance="inline"
               transitionType="logoWipe"
-              transitionColor="#000000"
+              transitionColor="#666666ff"
               className="text-fluid-sm animated-underline"
             />
           </div>
