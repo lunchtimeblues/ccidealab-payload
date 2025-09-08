@@ -64,14 +64,17 @@ export const usePageTransition = () => {
       opacity: 0;
     `
 
-    // Create SVG logo element
+    // Create logo element
     const logoImg = document.createElement('img')
-    logoImg.src = '/images/cc-logo-black-minimal.svg'
+    // Use white logo for black backgrounds, black logo for colored backgrounds
+    logoImg.src =
+      color === '#000' || color === '#000000' || color === 'black'
+        ? '/images/cc-logo-white-minimal.svg'
+        : '/images/cc-logo-black-minimal.svg'
     logoImg.alt = 'C/C IDEA LAB Logo'
     logoImg.style.cssText = `
       width: 80px;
       height: auto;
-      filter: ${color === '#000' || color === 'black' ? 'brightness(0) invert(1)' : 'brightness(0)'};
     `
 
     logoOverlay.appendChild(logoImg)
@@ -170,14 +173,17 @@ export const usePageTransition = () => {
       opacity: 0;
     `
 
-      // Create SVG logo element
+      // Create logo element
       const logoImg = document.createElement('img')
-      logoImg.src = '/images/cc-logo-black-minimal.svg'
+      // Use white logo for black backgrounds, black logo for colored backgrounds
+      logoImg.src =
+        color === '#000' || color === '#000000' || color === 'black'
+          ? '/images/cc-logo-white-minimal.svg'
+          : '/images/cc-logo-black-minimal.svg'
       logoImg.alt = 'C/C IDEA LAB Logo'
       logoImg.style.cssText = `
         width: 80px;
         height: auto;
-        filter: ${color === '#000' || color === 'black' ? 'brightness(0) invert(1)' : 'brightness(0)'};
       `
 
       logoOverlay.appendChild(logoImg)

@@ -88,18 +88,9 @@ export default function MarcoPoloPage() {
                 {/* Project Details */}
                 <div className="space-y-6">
                   <div className="border-b border-gray-300 pb-4">
-                    <ScrollRevealText delay={100}>
-                      <p className="text-fluid-sm text-gray-600 mb-2">Year</p>
-                      <p className="text-fluid-sm text-black font-medium">2024</p>
-                    </ScrollRevealText>
-                  </div>
-
-                  <div className="border-b border-gray-300 pb-4">
                     <ScrollRevealText delay={200}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Scope</p>
-                      <p className="text-fluid-sm text-black font-medium">
-                        Brand Strategy, Visual Identity
-                      </p>
+                      <p className="text-fluid-sm text-black font-medium">Creative Production</p>
                     </ScrollRevealText>
                   </div>
 

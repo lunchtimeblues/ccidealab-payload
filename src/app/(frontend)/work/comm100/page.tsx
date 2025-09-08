@@ -35,15 +35,15 @@ export default function Comm100Page() {
               direction="left"
               lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
-              <span className="mx-8">ABOUT</span>
+              <span className="mx-8">COMM100</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">ABOUT</span>
+              <span className="mx-8">COMM100</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
-              <span className="mx-8">ABOUT</span>
+              <span className="mx-8">COMM100</span>
               <span className="mx-8 flex items-center">
                 <SpinningStar size={64} className="text-current" />
               </span>
@@ -53,9 +53,8 @@ export default function Comm100Page() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-white">
-                  Motto® is more than our name, it&apos;s a symbol of who we are. Historically,
-                  mottos were war cries of sentiment, hope, and purpose. Today, we create bold brand
-                  mottos for clients to serve as their Idea Worth Rallying Around®.
+                  Comm100 is an award-winning global provider of omnichannel customer engagement
+                  solutions powered by automation and AI.
                 </p>
               </div>
             </Container>
@@ -88,17 +87,11 @@ export default function Comm100Page() {
                 {/* Project Details */}
                 <div className="space-y-6">
                   <div className="border-b border-gray-300 pb-4">
-                    <ScrollRevealText delay={100}>
-                      <p className="text-fluid-sm text-gray-600 mb-2">Year</p>
-                      <p className="text-fluid-sm text-black font-medium">2024</p>
-                    </ScrollRevealText>
-                  </div>
-
-                  <div className="border-b border-gray-300 pb-4">
                     <ScrollRevealText delay={200}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Scope</p>
                       <p className="text-fluid-sm text-black font-medium">
-                        Brand Refresh, Marketing Transformation
+                        Brand Strategy, Creative Production, Digital Experience Design, Marketing &
+                        Growth
                       </p>
                     </ScrollRevealText>
                   </div>
@@ -106,9 +99,7 @@ export default function Comm100Page() {
                   <div className="border-b border-gray-300 pb-4">
                     <ScrollRevealText delay={300}>
                       <p className="text-fluid-sm text-gray-600 mb-2">Industry</p>
-                      <p className="text-fluid-sm text-black font-medium">
-                        Customer Support Technology
-                      </p>
+                      <p className="text-fluid-sm text-black font-medium">Technology</p>
                     </ScrollRevealText>
                   </div>
                 </div>
@@ -138,7 +129,7 @@ export default function Comm100Page() {
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163690/rendition/1080p/file.mp4?loc=external&signature=736322fd08c3faf0a0d4de2dea4f8c54673d794cc788f604f3e5962448d66a4e"
@@ -180,7 +171,7 @@ export default function Comm100Page() {
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163686/rendition/1080p/file.mp4?loc=external&signature=ad283143480862bde9fff9c4473e1a9954b752cd681dafdea132d8f0aa047963"
@@ -193,7 +184,7 @@ export default function Comm100Page() {
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163698/rendition/1080p/file.mp4?loc=external&signature=031f296266782662c99115de6712ed04ac7412837404da4120da4a1a88c20383"
@@ -235,7 +226,7 @@ export default function Comm100Page() {
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gray-100  overflow-hidden">
+      <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <QuickVideo
             src="https://player.vimeo.com/progressive_redirect/playback/1111163703/rendition/1080p/file.mp4?loc=external&signature=c7f06db38c1fa306d454ba1eec4d93da627c217a2fff4947db6b455ae34eb14e"
