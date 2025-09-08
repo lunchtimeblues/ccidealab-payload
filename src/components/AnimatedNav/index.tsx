@@ -109,38 +109,58 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
 
         {/* Right Side */}
         <div className="relative flex items-center min-w-[160px]">
-          {/* Contact */}
-          <div
-            className={`absolute right-0 transition-all text-white font-base ${
-              isScrolled
-                ? 'transform -translate-x-[80px] opacity-100 duration-300'
-                : 'transform translate-x-0 opacity-100 duration-700'
-            } ${isMenuOpen ? 'opacity-0 pointer-events-none' : ''}`}
-            style={{
-              transitionTimingFunction: isScrolled
-                ? 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                : 'cubic-bezier(0.85, 0, 0.15, 0.8)',
-              transitionDelay: isScrolled ? '0ms' : '200ms',
-            }}
-          >
-            <TransitionLink
-              url="/contact"
-              label="Contact"
-              appearance="inline"
-              transitionType="logoWipe"
-              transitionColor="#666666ff"
-              className="text-fluid-sm animated-underline"
-            />
+          {/* Desktop: Animated Contact and Menu */}
+          <div className="hidden md:block">
+            {/* Contact */}
+            <div
+              className={`absolute right-0 transition-all text-white font-base ${
+                isScrolled
+                  ? 'transform -translate-x-[80px] opacity-100 duration-300'
+                  : 'transform translate-x-0 opacity-100 duration-700'
+              } ${isMenuOpen ? 'opacity-0 pointer-events-none' : ''}`}
+              style={{
+                transitionTimingFunction: isScrolled
+                  ? 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                  : 'cubic-bezier(0.85, 0, 0.15, 0.8)',
+                transitionDelay: isScrolled ? '0ms' : '200ms',
+              }}
+            >
+              <TransitionLink
+                url="/contact"
+                label="Contact"
+                appearance="inline"
+                transitionType="logoWipe"
+                transitionColor="#666666ff"
+                className="text-fluid-sm animated-underline"
+              />
+            </div>
+
+            <div
+              className={`absolute right-0 transition-opacity ${
+                isScrolled
+                  ? 'opacity-100 duration-200'
+                  : 'opacity-0 pointer-events-none duration-300'
+              }`}
+              style={{
+                transitionDelay: isScrolled ? '100ms' : '0ms',
+              }}
+            >
+              <HamburgerMenu isOpen={isMenuOpen} onClick={onToggleMenu} />
+            </div>
           </div>
 
-          <div
-            className={`absolute right-0 transition-opacity ${
-              isScrolled ? 'opacity-100 duration-200' : 'opacity-0 pointer-events-none duration-300'
-            }`}
-            style={{
-              transitionDelay: isScrolled ? '100ms' : '0ms',
-            }}
-          >
+          {/* Mobile: Both Contact and Menu always visible */}
+          <div className="flex md:hidden items-center space-x-6">
+            <div className={`text-white font-base ${isMenuOpen ? 'opacity-50' : ''}`}>
+              <TransitionLink
+                url="/contact"
+                label="Contact"
+                appearance="inline"
+                transitionType="logoWipe"
+                transitionColor="#666666ff"
+                className="text-fluid-sm animated-underline"
+              />
+            </div>
             <HamburgerMenu isOpen={isMenuOpen} onClick={onToggleMenu} />
           </div>
         </div>

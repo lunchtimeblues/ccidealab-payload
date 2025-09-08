@@ -22,59 +22,31 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
   const [direction, setDirection] = useState<'left' | 'right'>('right')
-  const [_isMounted, setIsMounted] = useState(false)
   const positionRef = useRef({ x: 0, y: 0 })
   const followerRef = useRef<HTMLDivElement>(null)
   const carouselRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const touchStartX = useRef<number | null>(null)
 
-  // Size configurations for carousel height
   const sizeConfig = {
-    sm: 'h-80', // 256px
-    md: 'h-96', // 320px
-    lg: 'h-104', // 384px
-    xl: 'h-[32rem]', // 512pxb
+    sm: 'h-80',
+    md: 'h-96',
+    lg: 'h-104',
+    xl: 'h-[32rem]',
     xxl: 'h-[69rem]',
   }
 
-  const _gap = 32 // Gap between slides (used in CSS classes)
-
-  // Convert children to array for easier handling
   const childrenArray = Children.toArray(children).filter((child) => React.isValidElement(child))
   const totalSlides = childrenArray.length
 
-  // For simplicity, we'll let CSS handle the sizing automatically
-  // Each image will be height-constrained and width will adjust naturally
-
-  // Set mounted state on client
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
-
-  // Simple navigation functions (keeping for potential future use)
-  const _nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides)
-  }
-
-  const _prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1))
-  }
-
-  // Calculate page-wrapper constraints
+  // Layout constraints
   const getPageWrapperConstraints = useCallback(() => {
     if (typeof window === 'undefined') {
-      // Return default values for SSR
-      return {
-        leftEdge: 48,
-        rightEdge: 1200,
-        contentWidth: 1104,
-      }
+      return { leftEdge: 48, rightEdge: 1200, contentWidth: 1104 }
     }
-
     const viewportWidth = window.innerWidth
-    const isMobile = viewportWidth < 768 // 48rem breakpoint from page-wrapper
-    const sideSpacing = isMobile ? 32 : 48 // Match page-wrapper spacing
-
+    const isMobile = viewportWidth < 768
+    const sideSpacing = isMobile ? 32 : 48
     return {
       leftEdge: sideSpacing,
       rightEdge: viewportWidth - sideSpacing,
@@ -82,36 +54,14 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     }
   }, [])
 
-  // Calculate positioning styles for page-wrapper alignment with overflow on both sides
-  const getCarouselStyles = useCallback(() => {
-    return {
-      // Full width container to allow overflow on both sides
-      marginLeft: '0',
-      width: '100vw',
-      // No padding - we'll handle positioning with transforms
-    }
-  }, [])
-
-  // Calculate maximum slides that can be shown
   const getMaxIndex = useCallback(() => {
-    if (!carouselRef.current || !containerRef.current || totalSlides <= 1) return 0
-
+    if (!carouselRef.current || totalSlides <= 1) return 0
     const constraints = getPageWrapperConstraints()
-    const carouselContainer = carouselRef.current
-    const totalWidth = carouselContainer.scrollWidth
-
-    // If all content fits within the visible area, don't allow scrolling
+    const totalWidth = carouselRef.current.scrollWidth
     if (totalWidth <= constraints.contentWidth) return 0
-
-    // Calculate the maximum translation needed so the rightmost content
-    // aligns with the right edge of the page-wrapper content area
+    const averageSlideWidth = 300
     const maxTranslateX = totalWidth - constraints.contentWidth
-
-    // Convert this to slide index using average slide width
-    const averageSlideWidth = 300 // Same as used in positioning
-    const maxIndex = Math.floor(maxTranslateX / averageSlideWidth)
-
-    return Math.min(maxIndex, totalSlides - 1)
+    return Math.min(Math.floor(maxTranslateX / averageSlideWidth), totalSlides - 1)
   }, [totalSlides, getPageWrapperConstraints])
 
   // Update carousel position when currentIndex changes
@@ -137,132 +87,106 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     }
   }, [currentIndex, getMaxIndex, getPageWrapperConstraints])
 
-  // Mouse follower functionality
-  const updateFollowerPosition = () => {
+  // Mouse follower
+  const updateFollower = useCallback(() => {
     const follower = followerRef.current
     if (!follower) return
-
     const { x, y } = positionRef.current
-    const offset = 48 // Half of 96px (w-24 h-24)
+    const offset = 48
     follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
-  }
+  }, [])
 
-  const determineDirection = (e: MouseEvent, containerRect: DOMRect) => {
-    const centerX = containerRect.left + containerRect.width / 2
-    const mouseX = e.clientX
-    return mouseX < centerX ? 'left' : 'right'
-  }
+  const determineDirection = (x: number, rect: DOMRect) =>
+    x < rect.left + rect.width / 2 ? 'left' : 'right'
 
-  // Mouse event handlers
-  const handleMouseEnter = useCallback((e: MouseEvent) => {
+  // Handlers
+  const handleMouseEnter = (e: React.MouseEvent) => {
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
-
-    const newDirection = determineDirection(e, rect)
-
-    positionRef.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    }
-
-    const offset = 48
-    if (followerRef.current) {
-      followerRef.current.style.transform = `translate(${positionRef.current.x - offset}px, ${positionRef.current.y - offset}px)`
-    }
-
-    setDirection(newDirection)
+    setDirection(determineDirection(e.clientX, rect))
+    positionRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+    updateFollower()
     setIsVisible(true)
-
     if (containerRef.current) {
       containerRef.current.style.cursor = 'none'
     }
-  }, [])
+  }
 
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = () => {
     setIsVisible(false)
-
     if (containerRef.current) {
       containerRef.current.style.cursor = 'auto'
     }
-  }, [])
+  }
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
+    setDirection(determineDirection(e.clientX, rect))
+    positionRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+    updateFollower()
+  }
 
-    const newDirection = determineDirection(e, rect)
-
-    positionRef.current = {
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+  const handleClick = (e: React.MouseEvent) => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect) return
+    const clickDirection = determineDirection(e.clientX, rect)
+    const maxIndex = getMaxIndex()
+    if (clickDirection === 'left') {
+      setCurrentIndex((prev) => Math.max(0, prev - 1))
+    } else {
+      setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
     }
+  }
 
-    setDirection(newDirection)
-    updateFollowerPosition()
-  }, [])
+  // Touch swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX
+  }
 
-  const handleClick = useCallback(
-    (e: MouseEvent) => {
-      const rect = containerRef.current?.getBoundingClientRect()
-      if (!rect) return
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current
+    const threshold = 50
+    const maxIndex = getMaxIndex()
 
-      const clickDirection = determineDirection(e, rect)
-      const maxIndex = getMaxIndex()
-
-      if (clickDirection === 'left') {
-        setCurrentIndex((prev) => Math.max(0, prev - 1))
-      } else {
-        setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
-      }
-    },
-    [getMaxIndex],
-  )
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    container.addEventListener('mouseenter', handleMouseEnter)
-    container.addEventListener('mouseleave', handleMouseLeave)
-    container.addEventListener('mousemove', handleMouseMove)
-    container.addEventListener('click', handleClick)
-
-    return () => {
-      container.removeEventListener('mouseenter', handleMouseEnter)
-      container.removeEventListener('mouseleave', handleMouseLeave)
-      container.removeEventListener('mousemove', handleMouseMove)
-      container.removeEventListener('click', handleClick)
+    if (deltaX > threshold) {
+      setCurrentIndex((prev) => Math.max(0, prev - 1))
+    } else if (deltaX < -threshold) {
+      setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
     }
-  }, [handleMouseEnter, handleMouseLeave, handleMouseMove, handleClick])
+    touchStartX.current = null
+  }
 
-  // Handle window resize to recalculate boundaries and positioning
-  useEffect(() => {
-    const handleResize = () => {
-      // Clamp current index to new boundaries
-      const maxIndex = getMaxIndex()
-      setCurrentIndex((prev) => Math.min(prev, maxIndex))
-
-      // Force re-render to update positioning styles
-      if (containerRef.current) {
-        const styles = getCarouselStyles()
-        const carouselContainer = containerRef.current.querySelector(
-          '.overflow-hidden',
-        ) as HTMLElement
-        if (carouselContainer) {
-          carouselContainer.style.marginLeft = styles.marginLeft
-          carouselContainer.style.width = styles.width
-        }
-      }
+  // Keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const maxIndex = getMaxIndex()
+    if (e.key === 'ArrowLeft') {
+      setCurrentIndex((prev) => Math.max(0, prev - 1))
     }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [getMaxIndex, getCarouselStyles])
+    if (e.key === 'ArrowRight') {
+      setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
+    }
+  }
 
   return (
-    <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
-      {/* Carousel Container - aligned to page-wrapper constraints */}
-      <div className={`overflow-hidden ${sizeConfig[size]}`} style={getCarouselStyles()}>
+    <div
+      ref={containerRef}
+      className={`relative ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onMouseMove={handleMouseMove}
+      onClick={handleClick}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onKeyDown={handleKeyDown}
+      tabIndex={0} // enables keyboard focus
+    >
+      {/* Carousel Container */}
+      <div
+        className={`overflow-hidden ${sizeConfig[size]}`}
+        style={{ marginLeft: 0, width: '100vw' }}
+      >
         <div
           ref={carouselRef}
           className="flex gap-8 transition-transform duration-500 ease-out h-full items-center"
@@ -288,22 +212,16 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
         </div>
       </div>
 
-      {/* Integrated Mouse Follower */}
+      {/* Mouse Follower */}
       <div
         ref={followerRef}
         className="absolute top-0 left-0 pointer-events-none z-50"
-        style={{
-          transform: `translate(-48px, -48px)`, // Initial position off-screen
-        }}
+        style={{ transform: `translate(-48px, -48px)` }}
       >
         <div
-          className={`
-            w-24 h-24 bg-white/90 backdrop-blur-md border border-gray-200/30
-            rounded-full flex items-center justify-center
-            shadow-lg relative overflow-hidden
-            transition-all duration-300 ease-out
-            ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
-          `}
+          className={`w-24 h-24 bg-white/90 backdrop-blur-md border border-gray-200/30 rounded-full flex items-center justify-center shadow-lg relative overflow-hidden transition-all duration-300 ease-out ${
+            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
+          }`}
         >
           {/* Direction indicator */}
           <div className="flex items-center justify-center">

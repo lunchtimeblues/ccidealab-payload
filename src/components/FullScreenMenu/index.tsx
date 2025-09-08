@@ -41,14 +41,14 @@ const MenuGroup = memo(
           key={`${item.href}-${copyIndex}-${index}`}
           className="flex items-center group cursor-pointer"
         >
-          <span className="text-white/50 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
+          <span className="text-white/40 text-lg font-light mr-6 min-w-[3rem] group-hover:text-white/70 transition-colors duration-300">
             ({String(index + 1).padStart(2, '0')})
           </span>
           <div className="text-fluid-5xl">
             <TransitionLink
               url={item.href}
               onClick={onClose}
-              className="font-semi-bold text-white/20 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full w-full bg-transparent border-none cursor-pointer"
+              className="font-semi-bold text-white/40 group-hover:text-white transition-colors duration-300 uppercase tracking-tight flex items-center h-full w-full bg-transparent border-none cursor-pointer"
               transitionType={item.transitionType || 'logoWipe'}
               transitionColor={item.transitionColor}
             >

@@ -23,7 +23,7 @@ export default function AboutPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[12vw] font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[23vw] md:text-[12vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">ABOUT</span>
               <span className="mx-8 flex items-center">

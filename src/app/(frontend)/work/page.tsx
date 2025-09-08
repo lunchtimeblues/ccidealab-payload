@@ -184,7 +184,7 @@ export default function WorkPage() {
                 <ScrollRevealText delay={300}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Marco Polo</h3>
-                    <span className="text-fluid-sm text-black tracking-wide">Communication</span>
+                    <span className="text-fluid-sm text-black tracking-wide">Real Estate</span>
                   </div>
                   <p className="text-black text-fluid-sm mb-4">
                     Brand Strategy, Creative Production

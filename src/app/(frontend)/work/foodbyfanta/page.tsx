@@ -315,38 +315,6 @@ export default function FoodByFantaPage() {
         </Container>
       </section>
 
-      <section className="relative bg-gray-100 py-32 md:py-48 overflow-hidden">
-        <Container size="full">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
-            <div className="md:col-span-4">
-              <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
-                  Brand Application
-                </p>
-              </ScrollRevealText>
-            </div>
-            <div className="md:col-span-8">
-              <ScrollRevealText delay={200}>
-                <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Supporting Higher <br />
-                  Education Engagement
-                </h3>
-              </ScrollRevealText>
-              <ScrollRevealText delay={400}>
-                <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
-                  <p>
-                    To help Comm100 stand out at major higher-ed conferences, we developed engaging
-                    graphics, and presentations, as well as Comm100 merch. Each asset spoke directly
-                    to the challenges and priorities of post-secondary institutions—clear,
-                    compelling, and conversion-focused.
-                  </p>
-                </div>
-              </ScrollRevealText>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       <section className="relative bg-gray-100 py-2 lg:py-8 overflow-hidden">
         <Container size="full">
           <Image
