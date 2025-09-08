@@ -1,14 +1,6 @@
 'use client'
 
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  useMemo,
-  Children,
-  cloneElement,
-} from 'react'
+import React, { useEffect, useRef, useState, useCallback, Children, cloneElement } from 'react'
 
 interface CarouselProps {
   children: React.ReactNode
@@ -41,7 +33,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     sm: 'h-80', // 256px
     md: 'h-96', // 320px
     lg: 'h-104', // 384px
-    xl: 'h-[36rem]', // 576px - increased to accommodate text
+    xl: 'h-[32rem]', // 512pxb
     xxl: 'h-[69rem]',
   }
 
@@ -122,41 +114,28 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     return Math.min(maxIndex, totalSlides - 1)
   }, [totalSlides, getPageWrapperConstraints])
 
-  // Memoize expensive calculations
-  const constraints = useMemo(() => getPageWrapperConstraints(), [getPageWrapperConstraints])
-  const maxIndex = useMemo(() => getMaxIndex(), [getMaxIndex])
-
-  // Optimized position update function
-  const updateCarouselPosition = useCallback(
-    (index: number, offset: number = 0, immediate: boolean = false) => {
-      if (!carouselRef.current) return
-
-      const clampedIndex = Math.min(index, maxIndex)
+  // Update carousel position when currentIndex changes
+  useEffect(() => {
+    if (carouselRef.current) {
+      const constraints = getPageWrapperConstraints()
+      const maxIndex = getMaxIndex()
+      const clampedIndex = Math.min(currentIndex, maxIndex)
 
       // For the last slide, calculate exact position to align with right edge
       if (clampedIndex === maxIndex && maxIndex > 0) {
         const totalWidth = carouselRef.current.scrollWidth
         const exactTranslateX = totalWidth - constraints.contentWidth
-        const finalTranslateX = constraints.leftEdge - exactTranslateX + offset
+        const finalTranslateX = constraints.leftEdge - exactTranslateX
         carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
       } else {
         // Simple slide-based positioning for other slides
         const averageSlideWidth = 300
         const slideTranslateX = clampedIndex * averageSlideWidth
-        const finalTranslateX = constraints.leftEdge - slideTranslateX + offset
+        const finalTranslateX = constraints.leftEdge - slideTranslateX
         carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
       }
-
-      // Update transition duration
-      carouselRef.current.style.transitionDuration = immediate ? '0ms' : '500ms'
-    },
-    [maxIndex, constraints],
-  )
-
-  // Update carousel position when currentIndex changes
-  useEffect(() => {
-    updateCarouselPosition(currentIndex)
-  }, [currentIndex, updateCarouselPosition])
+    }
+  }, [currentIndex, getMaxIndex, getPageWrapperConstraints])
 
   // Mouse follower functionality
   const updateFollowerPosition = () => {
@@ -228,6 +207,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
       if (!rect) return
 
       const clickDirection = determineDirection(e, rect)
+      const maxIndex = getMaxIndex()
 
       if (clickDirection === 'left') {
         setCurrentIndex((prev) => Math.max(0, prev - 1))
@@ -235,59 +215,25 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
         setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
       }
     },
-    [maxIndex],
+    [getMaxIndex],
   )
 
-  // Simple touch support without performance overhead
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
-    let touchStartX = 0
-    let touchStartY = 0
-
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartX = e.touches[0].clientX
-      touchStartY = e.touches[0].clientY
-    }
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      const touchEndX = e.changedTouches[0].clientX
-      const touchEndY = e.changedTouches[0].clientY
-      const deltaX = touchEndX - touchStartX
-      const deltaY = touchEndY - touchStartY
-
-      // Only handle horizontal swipes with minimum distance
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-        if (deltaX > 0) {
-          // Swiped right - previous slide
-          setCurrentIndex((prev) => Math.max(0, prev - 1))
-        } else {
-          // Swiped left - next slide
-          setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
-        }
-      }
-    }
-
-    // Mouse events
     container.addEventListener('mouseenter', handleMouseEnter)
     container.addEventListener('mouseleave', handleMouseLeave)
     container.addEventListener('mousemove', handleMouseMove)
     container.addEventListener('click', handleClick)
-
-    // Simple touch events
-    container.addEventListener('touchstart', handleTouchStart, { passive: true })
-    container.addEventListener('touchend', handleTouchEnd, { passive: true })
 
     return () => {
       container.removeEventListener('mouseenter', handleMouseEnter)
       container.removeEventListener('mouseleave', handleMouseLeave)
       container.removeEventListener('mousemove', handleMouseMove)
       container.removeEventListener('click', handleClick)
-      container.removeEventListener('touchstart', handleTouchStart)
-      container.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [handleMouseEnter, handleMouseLeave, handleMouseMove, handleClick, maxIndex])
+  }, [handleMouseEnter, handleMouseLeave, handleMouseMove, handleClick])
 
   // Handle window resize to recalculate boundaries and positioning
   useEffect(() => {
@@ -322,33 +268,16 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
           className="flex gap-8 transition-transform duration-500 ease-out h-full items-center"
         >
           {childrenArray.map((child, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 flex items-start justify-center"
-              style={{ height: '100%' }}
-            >
+            <div key={index} className="flex-shrink-0 h-full flex items-center justify-center">
               {React.isValidElement(child) ? (
-                // Check if child is a div (team member card) or an Image
-                child.type === 'div' ? (
-                  // Render team member card with proper spacing
-                  cloneElement(child as ReactElementWithProps, {
-                    className: `flex flex-col justify-start ${(child as ReactElementWithProps).props.className || ''}`,
-                    style: {
-                      height: 'auto',
-                      maxHeight: '100%',
-                    },
-                  })
-                ) : (
-                  // Render image with original styling
-                  cloneElement(child as ReactElementWithProps, {
-                    className: `h-full w-auto object-contain rounded-lg ${(child as ReactElementWithProps).props.className || ''}`,
-                    style: {
-                      maxHeight: '100%',
-                      width: 'auto',
-                      ...(child as ReactElementWithProps).props.style,
-                    },
-                  })
-                )
+                cloneElement(child as ReactElementWithProps, {
+                  className: `h-full w-auto object-contain rounded-lg ${(child as ReactElementWithProps).props.className || ''}`,
+                  style: {
+                    maxHeight: '100%',
+                    width: 'auto',
+                    ...(child as ReactElementWithProps).props.style,
+                  },
+                })
               ) : (
                 <div className="h-full aspect-square bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-lg">
                   <span className="text-gray-500">Invalid content</span>
