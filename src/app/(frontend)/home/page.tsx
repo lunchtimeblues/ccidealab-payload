@@ -34,7 +34,7 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={200}>
                   <div className="text-left md:text-right -mr-1">People</div>
                 </ScrollRevealText>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-start md:justify-between">
                   <ScrollRevealText delay={400}>
                     <div
                       className="hidden md:block flex-shrink-0 mr-4"
@@ -186,7 +186,7 @@ export default function HomePage(): React.JSX.Element {
                       Food & Beverage
                     </span>
                   </div>
-                  <p className="text-black text-fluid-sm">Digital Strategy & UX Design</p>
+                  <p className="text-black text-fluid-sm">Creative Production</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>
@@ -209,7 +209,7 @@ export default function HomePage(): React.JSX.Element {
                       Technology
                     </span>
                   </div>
-                  <p className="text-black text-fluid-sm">Brand Identity & Web Development</p>
+                  <p className="text-black text-fluid-sm">Full-Scope Marketing & Design</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>
@@ -229,10 +229,10 @@ export default function HomePage(): React.JSX.Element {
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">CityColor Cosmetics</h3>
                     <span className="text-fluid-sm text-black uppercase tracking-wide">
-                      Beauty & Cosmetics
+                      Health & Beauty
                     </span>
                   </div>
-                  <p className="text-black text-fluid-sm">Brand Strategy & Visual Identity</p>
+                  <p className="text-black text-fluid-sm">Full-Scope Marketing & Design</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>
@@ -255,9 +255,7 @@ export default function HomePage(): React.JSX.Element {
                       Food & Beverage
                     </span>
                   </div>
-                  <p className="text-black text-fluid-sm">
-                    Restaurant Branding & Digital Experience
-                  </p>
+                  <p className="text-black text-fluid-sm">Full-Scope Marketing & Design</p>
                 </ScrollRevealText>
               </TransitionLink>
             </MouseFollower>

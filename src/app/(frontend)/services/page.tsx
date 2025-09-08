@@ -165,7 +165,7 @@ export default function ServicesPage() {
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
               <a href="#about" className="border-b border-black hover:opacity-70 transition">
-                Learn more about our company <span className="inline-block ml-1">↓</span>
+                Learn more <span className="inline-block ml-1">↓</span>
               </a>
               <span className="text-black/60">(SCROLL)</span>
             </div>

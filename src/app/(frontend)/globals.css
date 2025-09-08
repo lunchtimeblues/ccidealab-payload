@@ -218,13 +218,13 @@
 
 @media (max-width: 768px) {
   .almost-full-height {
-    min-height: calc(100vh - 42px);
+    min-height: calc(100vh - 36px);
   }
 }
 
 @media (min-width: 1440px) {
   .almost-full-height {
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 44px);
   }
 }
 

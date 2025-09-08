@@ -218,7 +218,7 @@ export const Footer = () => {
         <ScrollRevealText delay={200}>
           <div className="flex items-center gap-6 mt-4 md:mt-0">
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/company/3212577/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors text-2xl"
@@ -226,20 +226,12 @@ export const Footer = () => {
               <FaLinkedinIn />
             </a>
             <a
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/ccidealab"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors text-2xl"
             >
               <FaInstagram />
-            </a>
-            <a
-              href="https://www.youtube.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors text-2xl"
-            >
-              <FaYoutube />
             </a>
           </div>
         </ScrollRevealText>
