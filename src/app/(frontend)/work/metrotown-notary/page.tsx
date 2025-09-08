@@ -3,6 +3,7 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
@@ -33,7 +34,7 @@ export default function MetrotownNotaryPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[23vw] md:text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">METROTOWN NOTARY</span>
               <span className="mx-8 flex items-center">
@@ -64,12 +65,12 @@ export default function MetrotownNotaryPage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a
-                href="#about"
+              <SmoothScrollButton
+                targetSectionId="metrotown-notary-overview"
                 className="text-white border-b border-white hover:opacity-70 transition"
               >
-                Learn more about our company <span className="inline-block ml-1">↓</span>
-              </a>
+                Learn more <span className="inline-block ml-1">↓</span>
+              </SmoothScrollButton>
               <span className="text-white">(SCROLL)</span>
             </div>
           </Container>

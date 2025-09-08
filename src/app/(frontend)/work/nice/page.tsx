@@ -3,6 +3,7 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
@@ -33,7 +34,7 @@ export default function NicePage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[23vw] md:text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">NICE CLEANING</span>
               <span className="mx-8 flex items-center">
@@ -63,12 +64,12 @@ export default function NicePage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a
-                href="#about"
+              <SmoothScrollButton
+                targetSectionId="nice-overview"
                 className="text-white border-b border-white hover:opacity-70 transition"
               >
-                Learn more about our company <span className="inline-block ml-1">↓</span>
-              </a>
+                Learn more <span className="inline-block ml-1">↓</span>
+              </SmoothScrollButton>
               <span className="text-white">(SCROLL)</span>
             </div>
           </Container>
@@ -76,10 +77,7 @@ export default function NicePage() {
       </section>
 
       {/* Project Overview */}
-      <section
-        id="affinity-overview"
-        className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
-      >
+      <section id="nice-overview" className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
         <Container size="full" className="grid sm:grid-cols-12 gap-8">
           <div className="col-span-12 sm:col-span-4">
             <ScrollRevealText>

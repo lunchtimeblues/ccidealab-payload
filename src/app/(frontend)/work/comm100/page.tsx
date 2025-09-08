@@ -34,7 +34,7 @@ export default function Comm100Page() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[23vw] md:text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">COMM100</span>
               <span className="mx-8 flex items-center">

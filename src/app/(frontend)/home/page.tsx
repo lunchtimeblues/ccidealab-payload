@@ -137,7 +137,6 @@ export default function HomePage(): React.JSX.Element {
                       label="Explore our services →"
                       appearance="inline"
                       transitionType="logoWipe"
-                      transitionColor="#059669"
                       className="pb-1 font-medium text-black border-b-2 border-black hover:underline"
                     />
                   </div>
@@ -189,9 +188,7 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={100}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Uber</h3>
-                    <span className="text-fluid-sm text-black uppercase tracking-wide">
-                      Food & Beverage
-                    </span>
+                    <span className="text-fluid-sm text-black tracking-wide">Food & Beverage</span>
                   </div>
                   <p className="text-black text-fluid-sm">Creative Production</p>
                 </ScrollRevealText>
@@ -212,9 +209,7 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={200}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Affinity</h3>
-                    <span className="text-fluid-sm text-black uppercase tracking-wide">
-                      Technology
-                    </span>
+                    <span className="text-fluid-sm text-black tracking-wide">Technology</span>
                   </div>
                   <p className="text-black text-fluid-sm">Full-Scope Marketing & Design</p>
                 </ScrollRevealText>
@@ -235,9 +230,7 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={300}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">CityColor Cosmetics</h3>
-                    <span className="text-fluid-sm text-black uppercase tracking-wide">
-                      Health & Beauty
-                    </span>
+                    <span className="text-fluid-sm text-black tracking-wide">Health & Beauty</span>
                   </div>
                   <p className="text-black text-fluid-sm">Full-Scope Marketing & Design</p>
                 </ScrollRevealText>
@@ -258,9 +251,7 @@ export default function HomePage(): React.JSX.Element {
                 <ScrollRevealText delay={400}>
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="text-fluid-sm font-medium text-black">Food by Fanta</h3>
-                    <span className="text-fluid-sm text-black uppercase tracking-wide">
-                      Food & Beverage
-                    </span>
+                    <span className="text-fluid-sm text-black tracking-wide">Food & Beverage</span>
                   </div>
                   <p className="text-black text-fluid-sm">Full-Scope Marketing & Design</p>
                 </ScrollRevealText>

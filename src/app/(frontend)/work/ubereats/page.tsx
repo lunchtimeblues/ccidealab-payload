@@ -34,7 +34,7 @@ export default function MarcoPoloPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[23vw] md:text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">UBEREATS</span>
               <span className="mx-8 flex items-center">
@@ -109,16 +109,17 @@ export default function MarcoPoloPage() {
           <div className="col-span-12 sm:col-span-7 sm:col-start-6">
             <ScrollRevealText delay={200}>
               <h2 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                300+ Dishes Captured for Delivery
+                Turning cravings into clicks.
               </h2>
             </ScrollRevealText>
             <ScrollRevealText delay={400}>
               <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                 <p>
-                  We were tasked with producing over 300 high-quality food photographs to enhance
-                  restaurant listings across the platform. Our goal was to capture dishes in a way
-                  that not only reflected each restaurant&apos;s unique identity but also aligned
-                  with Uber Eats&apos; visual standards — clean, appetizing, and conversion-focused.
+                  Every photo on Uber Eats is a moment of decision-making. We helped the platform
+                  strengthen those moments by elevating over 1,500 dishes into imagery that was both
+                  authentic to each restaurant and consistent with Uber Eats’ standards. The impact
+                  was immediate: clearer choices, stronger restaurant presence, and a smoother path
+                  from craving to conversion.
                 </p>
               </div>
             </ScrollRevealText>
@@ -144,22 +145,22 @@ export default function MarcoPoloPage() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Objective</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Applications</p>
               </ScrollRevealText>
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Campaigns
+                  Where localized content drives big impact.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    Each shot was crafted with campaign versatility in mind. The visual quality and
-                    consistency across all 300+ photos make them strong candidates for use in future
-                    Uber Eats marketing campaigns — including digital banners, in-app promotions,
-                    restaurant features, and print materials.
+                    We created localized assets that felt personal while aligning with Uber Eats’
+                    global brand. These images are seamlessly across menus, geo-targeted ads,
+                    outdoor campaigns, and national promotions. These local contents are designed to
+                    fuel advertising campaigns with global consistency.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -205,20 +206,16 @@ export default function MarcoPoloPage() {
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Digital Platform
+                  Consistency across digital platforms.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
                 <div className="text-fluid-base text-black leading-relaxed mb-8 md:pr-16">
                   <p>
-                    All final images were delivered for use within the Uber Eats app to enhance
-                    restaurant listings. Our work helped improve the visual consistency of menus and
-                    gave restaurant partners a polished, professional edge in a highly competitive
-                    platform.
-                    <p></p>
-                    With tight cropping, strong color, and visual clarity, the images are optimized
-                    to grab attention and convert — making them ideal assets for future social media
-                    advertising efforts.
+                    All final images were delivered for use within the Uber Eats ecosystem to
+                    enhance restaurant listings. Our work helped improve the visual consistency of
+                    menus and gave restaurant partners a polished, professional edge in a highly
+                    competitive platform.
                   </p>
                 </div>
               </ScrollRevealText>
@@ -267,13 +264,15 @@ export default function MarcoPoloPage() {
           <div className="grid md:grid-cols-12 gap-8 md:gap-16">
             <div className="md:col-span-4">
               <ScrollRevealText>
-                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Photography</p>
+                <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">
+                  Food Photography
+                </p>
               </ScrollRevealText>
             </div>
             <div className="md:col-span-8">
               <ScrollRevealText delay={200}>
                 <h3 className="text-fluid-3xl font-base text-black mb-8 tracking-tight leading-tight">
-                  Food Gallery
+                  Staying true to UberEat’s visual guidelines.
                 </h3>
               </ScrollRevealText>
               <ScrollRevealText delay={400}>
@@ -283,10 +282,6 @@ export default function MarcoPoloPage() {
                     staying true to Uber Eats’ visual guidelines. Working on-location, we stylized
                     and used clean angles to create consistent, in-app–ready imagery across a wide
                     range of cuisines.
-                  </p>
-                  <p>
-                    The result: bold, appetizing photos that help restaurants stand out and drive
-                    orders.
                   </p>
                 </div>
               </ScrollRevealText>

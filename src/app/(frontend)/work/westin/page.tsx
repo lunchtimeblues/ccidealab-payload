@@ -3,6 +3,7 @@ import { ScrollMarquee } from '@/components/ScrollMarquee'
 import { SpinningStar } from '@/components/SpinningStar'
 import { ScrollRevealText } from '@/components/ScrollRevealText'
 import { ParallaxImage } from '@/components/ParallaxImage'
+import { SmoothScrollButton } from '@/components/SmoothScrollButton'
 import Image from 'next/image'
 import { QuickVideo } from '@/components/QuickVideo'
 import { TransitionLink } from '@/components/TransitionLink'
@@ -33,7 +34,7 @@ export default function WestinPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[23vw] md:text-[12vw] text-white font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">WESTIN</span>
               <span className="mx-8 flex items-center">
@@ -53,8 +54,10 @@ export default function WestinPage() {
             <Container size="full">
               <div className="max-w-3xl mt-12 md:mt-18">
                 <p className="text-fluid-xl leading-snug text-white">
-                  Perched at the pinnacle of the Cambie Corridor, Marco Polo redefines the way we
-                  work and live.
+                  The Westin Bayshore Hotel is a waterfront retreat in downtown Vancouver, BC,
+                  offering panoramic views of the marina, mountains, and Stanley Park. Combining
+                  resort-style amenities with urban sophistication, it’s a destination for both
+                  relaxation and connection to the city.
                 </p>
               </div>
             </Container>
@@ -63,12 +66,12 @@ export default function WestinPage() {
           {/* Hero Footer */}
           <Container size="full" className="w-full">
             <div className="flex justify-between items-end w-full py-6 text-fluid-sm">
-              <a
-                href="#about"
+              <SmoothScrollButton
+                targetSectionId="westin-overview"
                 className="text-white border-b border-white hover:opacity-70 transition"
               >
-                Learn more about our company <span className="inline-block ml-1">↓</span>
-              </a>
+                Learn more <span className="inline-block ml-1">↓</span>
+              </SmoothScrollButton>
               <span className="text-white">(SCROLL)</span>
             </div>
           </Container>
@@ -76,10 +79,7 @@ export default function WestinPage() {
       </section>
 
       {/* Project Overview */}
-      <section
-        id="affinity-overview"
-        className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden"
-      >
+      <section id="westin-overview" className="relative bg-gray-100 py-32 sm:py-48 overflow-hidden">
         <Container size="full" className="grid sm:grid-cols-12 gap-8">
           <div className="col-span-12 sm:col-span-4">
             <ScrollRevealText>
@@ -251,14 +251,14 @@ export default function WestinPage() {
         <Container size="full">
           <div className="grid sm:grid-cols-2 gap-8">
             <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1116612507/rendition/1080p/file.mp4?loc=external&signature=937ff242ca98c48d05acf3b3cb2c30e10f9df4fe6c62f2362ef84abd15a6c027"
+              src="https://player.vimeo.com/progressive_redirect/playback/1116612507/rendition/720p/file.mp4?loc=external&signature=5308d8870e382be09695aaa4d84c6615dbc1affae5aeebd8ad47ed4b6b3b3df3"
               autoPlay={true}
               muted={true}
               loop={true}
               className="relative"
             />
             <QuickVideo
-              src="https://player.vimeo.com/progressive_redirect/playback/1116612480/rendition/1080p/file.mp4?loc=external&signature=bd36793c725b951236036ccef7f171044f844536e89ad25af1442ff2971e5a76"
+              src="https://player.vimeo.com/progressive_redirect/playback/1116612480/rendition/720p/file.mp4?loc=external&signature=bc92a157f5b0a6df9deb6d54ee0c3e13de7f5533f2645d78c6f7be32f04438ec"
               autoPlay={true}
               muted={true}
               loop={true}

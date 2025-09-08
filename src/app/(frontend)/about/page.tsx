@@ -23,7 +23,7 @@ export default function AboutPage() {
               starSpinSpeed={4}
               lines="single"
               direction="left"
-              lineClassName="text-[12vw] font-normal uppercase tracking-tight leading-none"
+              lineClassName="text-[23vw] md:text-[12vw] font-normal uppercase tracking-tight leading-none"
             >
               <span className="mx-8">ABOUT</span>
               <span className="mx-8 flex items-center">
@@ -99,7 +99,7 @@ export default function AboutPage() {
           maxSpeedMultiplier={2}
           lines="dual"
           starSpinSpeed={4}
-          lineClassName="text-[12vw] font-semi-bold uppercase tracking-tight leading-none"
+          lineClassName="text-[23vw] md:text-[12vw] font-semi-bold uppercase tracking-tight leading-none"
         >
           <span className="mx-8">OUR TEAM</span>
           <span className="mx-8 flex items-center">
@@ -206,7 +206,7 @@ export default function AboutPage() {
               />
               <div className="text-black">
                 <h4 className="text-fluid-base font-medium">Ugyen Wangchuk</h4>
-                <p className="text-fluid-sm text-gray-600">Art Director, Videography</p>
+                <p className="text-fluid-sm text-gray-600">Creative Director, Videography</p>
               </div>
             </div>
             <div className="text-center">
@@ -219,7 +219,7 @@ export default function AboutPage() {
               />
               <div className="text-black">
                 <h4 className="text-fluid-base font-medium">Joyce Peng</h4>
-                <p className="text-fluid-sm text-gray-600">Art Director, Graphic Design</p>
+                <p className="text-fluid-sm text-gray-600">Project Manager</p>
               </div>
             </div>
             <div className="text-center">
