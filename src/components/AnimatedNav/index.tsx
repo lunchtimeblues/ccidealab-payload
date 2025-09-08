@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { TransitionLink } from '@/components/TransitionLink'
 import { HamburgerMenu } from '@/components/HamburgerMenu'
 import Image from 'next/image'
@@ -20,7 +21,21 @@ interface AnimatedNavProps {
 
 export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, onToggleMenu }) => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isInHeroSection, setIsInHeroSection] = useState(true)
   const navRef = useRef<HTMLElement>(null)
+  const pathname = usePathname()
+
+  // Check if we're on a project page under /work/
+  const isProjectPage = pathname?.startsWith('/work/') && pathname !== '/work'
+
+  // Determine navigation style based on page type and scroll position
+  const shouldUseBlendMode = isProjectPage
+    ? !isInHeroSection // On project pages: blend mode only after hero section
+    : true // On other pages: always use blend mode
+
+  const navStyle = shouldUseBlendMode
+    ? { mixBlendMode: 'difference' as const }
+    : { mixBlendMode: 'normal' as const }
 
   useEffect(() => {
     if (isMenuOpen) return // pause scroll detection while menu open
@@ -32,18 +47,22 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
       } else if (currentScrollY < 50) {
         setIsScrolled(false)
       }
+
+      // On project pages, detect if we're still in the hero section
+      if (isProjectPage) {
+        // Hero sections are typically viewport height (100vh)
+        // Consider we're out of hero when scrolled more than 80% of viewport height
+        const heroThreshold = window.innerHeight * 0.8
+        setIsInHeroSection(currentScrollY < heroThreshold)
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [isMenuOpen])
+  }, [isMenuOpen, isProjectPage])
 
   return (
-    <nav
-      ref={navRef}
-      className="fixed top-0 left-0 right-0 z-50 py-2"
-      style={{ mixBlendMode: 'difference' }}
-    >
+    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 py-2" style={navStyle}>
       <div className="page-wrapper flex items-center justify-between">
         {/* Logo */}
         <div
