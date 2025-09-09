@@ -93,7 +93,7 @@ export default function HomePage(): React.JSX.Element {
       {/* Scroll Video Section */}
       <section id="scroll-video">
         <ScrollVideo
-          src="https://player.vimeo.com/progressive_redirect/playback/1116629203/rendition/1080p/file.mp4?loc=external&signature=ca3f834866b8ef1ee871d833917b134f97d01aae077be344bb76258054d00df4"
+          src="https://player.vimeo.com/progressive_redirect/playback/1116629203/rendition/720p/file.mp4?loc=external&signature=37b164db9af861b751e02acab33b1633dd9f82510ac33cc559f8bc2e7cdd3a47"
           autoPlay={true}
           muted={true}
           loop={true}
