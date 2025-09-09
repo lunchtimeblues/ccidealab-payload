@@ -206,7 +206,7 @@ export default function AboutPage() {
               />
               <div className="text-black">
                 <h4 className="text-fluid-base font-medium">Ugyen Wangchuk</h4>
-                <p className="text-fluid-sm text-gray-600">Art Director, Videography</p>
+                <p className="text-fluid-sm text-gray-600">Creative Director, Videography</p>
               </div>
             </div>
             <div className="text-center">
