@@ -108,12 +108,12 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
         </div>
 
         {/* Right Side */}
-        <div className="relative flex items-center min-w-[160px]">
+        <div className="relative flex items-center justify-end min-w-[160px]">
           {/* Desktop: Animated Contact and Menu */}
-          <div className="hidden md:block">
+          <div className="hidden md:block relative">
             {/* Contact */}
             <div
-              className={`absolute right-0 transition-all text-white font-base ${
+              className={`absolute right-0 top-0 transition-all text-white font-base ${
                 isScrolled
                   ? 'transform -translate-x-[80px] opacity-100 duration-300'
                   : 'transform translate-x-0 opacity-100 duration-700'
@@ -136,7 +136,7 @@ export const AnimatedNav: React.FC<AnimatedNavProps> = ({ navItems, isMenuOpen, 
             </div>
 
             <div
-              className={`absolute right-0 transition-opacity ${
+              className={`absolute right-0 top-0 transition-opacity ${
                 isScrolled
                   ? 'opacity-100 duration-200'
                   : 'opacity-0 pointer-events-none duration-300'
