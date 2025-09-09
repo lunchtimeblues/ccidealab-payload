@@ -139,7 +139,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     }
   }
 
-  // Touch swipe
+  // Touch swipe - Simple and reliable
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX
   }
@@ -147,14 +147,19 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return
     const deltaX = e.changedTouches[0].clientX - touchStartX.current
-    const threshold = 50
+    const threshold = 50 // Minimum swipe distance
     const maxIndex = getMaxIndex()
 
+    // Swipe right (deltaX > 0) = Previous slide
     if (deltaX > threshold) {
       setCurrentIndex((prev) => Math.max(0, prev - 1))
-    } else if (deltaX < -threshold) {
+    }
+    // Swipe left (deltaX < 0) = Next slide
+    else if (deltaX < -threshold) {
       setCurrentIndex((prev) => Math.min(maxIndex, prev + 1))
     }
+
+    // Reset touch position
     touchStartX.current = null
   }
 

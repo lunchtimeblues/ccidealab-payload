@@ -21,6 +21,7 @@ import { ViewTransitions } from 'next-view-transitions'
 import { NavigationWrapper } from '@/components/NavigationWrapper'
 import { MainContent } from '@/components/MainContent'
 import { SmoothScroll } from '@/components/SmoothScroll'
+import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 
 // Configure Inter font
 const inter = Inter({
@@ -48,6 +49,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
         </head>
         <body suppressHydrationWarning={true}>
+          <GoogleAnalytics />
           <Providers>
             <SmoothScroll>
               {/* Background context for mix-blend-mode */}
