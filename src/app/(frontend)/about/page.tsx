@@ -115,7 +115,7 @@ export default function AboutPage() {
       {/* Story Section */}
       <section className="py-32 sm:py-48 bg-grey-100">
         <Container size="full">
-          <div className="grid sm:grid-cols-12 gap-8 sm:gap-16">
+          <div className="grid sm:grid-cols-12 gap-0 sm:gap-16">
             <div className="col-span-12 sm:col-span-4">
               <ScrollRevealText>
                 <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Our Story</p>

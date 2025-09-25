@@ -192,7 +192,7 @@ export default function ServicesPage() {
         className="relative bg-gray-100 py-32 md:py-48 overflow-hidden"
       >
         <Container size="full">
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16">
+          <div className="grid md:grid-cols-12 gap-0 md:gap-16">
             <div className="col-span-12 md:col-span-4">
               <ScrollRevealText>
                 <p className="text-fluid-lg font-medium text-black mb-8 md:mb-0">Grow with us.</p>
