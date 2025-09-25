@@ -358,7 +358,7 @@
 }
 
 .text-fluid-5xl {
-  font-size: clamp(3rem, 2.5rem + 3vw, 5.6rem); /* 48px → 90px */
+  font-size: clamp(3rem, 2.25rem + 3vw, 5.6rem); /* 48px → 90px */
 }
 
 .text-fluid-6xl {
@@ -380,8 +380,7 @@
 /* Mobile-specific scaling: More conservative to prevent overflow */
 @media (max-width: 767px) {
   .text-fluid-9xl {
-    font-size: clamp(3rem, 8vw, 4.5rem); /* 48px → 72px - much safer for mobile */
-    /* Prevents horizontal overflow on small screens */
+    font-size: clamp(3.75rem, 8vw, 4.5rem); /* 48px → 72px - much safer for mobile */
   }
 
   /* Additional mobile font size constraints */
