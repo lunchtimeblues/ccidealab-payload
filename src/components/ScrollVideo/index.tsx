@@ -123,6 +123,7 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
         muted={muted}
         loop={loop}
         playsInline
+        preload="metadata"
         style={{
           // Choose object-fit based on maintainAspectRatio setting
           objectFit: maintainAspectRatio ? 'cover' : 'cover',

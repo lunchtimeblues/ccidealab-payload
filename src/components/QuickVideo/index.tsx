@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
+
 interface QuickVideoProps {
   src: string
   className?: string
@@ -19,8 +21,39 @@ export const QuickVideo: React.FC<QuickVideoProps> = ({
   loop = true,
   controls = false,
 }) => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || !autoPlay) return
+
+    // Enhanced mobile autoplay handling
+    const attemptAutoplay = async () => {
+      try {
+        // Ensure video is muted for autoplay to work on mobile
+        video.muted = true
+        await video.play()
+      } catch (error) {
+        console.log('Autoplay failed, user interaction required:', error)
+        // Fallback: show poster or first frame
+      }
+    }
+
+    // Try autoplay when video loads
+    if (video.readyState >= 3) {
+      attemptAutoplay()
+    } else {
+      video.addEventListener('loadeddata', attemptAutoplay)
+    }
+
+    return () => {
+      video.removeEventListener('loadeddata', attemptAutoplay)
+    }
+  }, [autoPlay])
+
   return (
     <video
+      ref={videoRef}
       className={`w-full h-full object-cover ${className}`}
       src={src}
       poster={poster}
@@ -29,6 +62,7 @@ export const QuickVideo: React.FC<QuickVideoProps> = ({
       loop={loop}
       controls={controls}
       playsInline
+      preload="metadata"
     />
   )
 }

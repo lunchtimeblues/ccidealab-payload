@@ -377,11 +377,20 @@
   font-size: clamp(4.25rem, 4rem + 6vw, 14rem); /* 68px → 288px */
 }
 
-/* Mobile-specific scaling: More conservative */
+/* Mobile-specific scaling: More conservative to prevent overflow */
 @media (max-width: 767px) {
   .text-fluid-9xl {
-    font-size: clamp(3.5rem, 2rem + 5vw, 14rem); /* 56px → 288px */
-    /* Mobile viewport sizes: 320px=72px, 414px=73px, 768px=70px */
+    font-size: clamp(3rem, 8vw, 4.5rem); /* 48px → 72px - much safer for mobile */
+    /* Prevents horizontal overflow on small screens */
+  }
+
+  /* Additional mobile font size constraints */
+  .text-fluid-6xl {
+    font-size: clamp(2.5rem, 6vw, 4rem); /* 40px → 64px */
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* 24px → 40px */
   }
 }
 
