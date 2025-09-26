@@ -46,22 +46,12 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
     requestAnimationFrame(raf)
 
-    // Handle window resize to update mobile settings
-    const handleResize = () => {
-      const newIsMobile = window.innerWidth < 768
-      if (newIsMobile !== isMobile && lenisRef.current) {
-        // Update Lenis settings on viewport change
-        lenisRef.current.options.duration = newIsMobile ? 0.8 : 1.2
-        lenisRef.current.options.touchMultiplier = newIsMobile ? 1 : 2
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
+    // Note: Lenis settings are optimized for initial viewport size
+    // For orientation changes, the page will reload naturally
 
     return () => {
       // Clean up global reference
       ;(window as any).lenis = null
-      window.removeEventListener('resize', handleResize)
       if (lenisRef.current) {
         lenisRef.current.destroy()
       }
