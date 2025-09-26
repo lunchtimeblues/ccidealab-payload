@@ -16,10 +16,13 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       history.scrollRestoration = 'manual'
     }
 
+    // Detect mobile for optimized settings
+    const isMobile = window.innerWidth < 768
+
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: isMobile ? 0.8 : 1.2, // Faster on mobile
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
+      touchMultiplier: isMobile ? 1 : 2, // Less aggressive on mobile
       infinite: false,
     })
 
@@ -43,9 +46,22 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
     requestAnimationFrame(raf)
 
+    // Handle window resize to update mobile settings
+    const handleResize = () => {
+      const newIsMobile = window.innerWidth < 768
+      if (newIsMobile !== isMobile && lenisRef.current) {
+        // Update Lenis settings on viewport change
+        lenisRef.current.options.duration = newIsMobile ? 0.8 : 1.2
+        lenisRef.current.options.touchMultiplier = newIsMobile ? 1 : 2
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
     return () => {
       // Clean up global reference
       ;(window as any).lenis = null
+      window.removeEventListener('resize', handleResize)
       if (lenisRef.current) {
         lenisRef.current.destroy()
       }

@@ -255,13 +255,53 @@ export const usePageTransition = () => {
     [router],
   )
 
-  // Main navigation function
+  // Simple mobile navigation without complex animations
+  const simpleMobileNavigation = useCallback(
+    (href: string) => {
+      // Disable browser scroll restoration
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'
+      }
+
+      // Add transitioning class
+      document.documentElement.classList.add('transitioning')
+
+      // Temporarily disable Lenis during transition
+      if ((window as any).lenis) {
+        ;(window as any).lenis.stop()
+      }
+
+      // Navigate immediately on mobile
+      router.push(href)
+
+      // Quick scroll to top and cleanup
+      setTimeout(() => {
+        window.scrollTo(0, 0)
+        if ((window as any).lenis) {
+          ;(window as any).lenis.scrollTo(0, { immediate: true })
+          ;(window as any).lenis.start()
+        }
+        document.documentElement.classList.remove('transitioning')
+      }, 100)
+    },
+    [router],
+  )
+
+  // Main navigation function with mobile detection
   const navigateWithTransition = useCallback(
     (href: string, _transitionType: TransitionType = 'logoWipe', color?: string) => {
-      // Always use logoWipe with navigation
-      mottoWipeWithNavigation(href, color)
+      // Detect mobile viewport
+      const isMobile = window.innerWidth < 768
+
+      if (isMobile) {
+        // Use simple navigation for mobile
+        simpleMobileNavigation(href)
+      } else {
+        // Use complex logoWipe for desktop
+        mottoWipeWithNavigation(href, color)
+      }
     },
-    [mottoWipeWithNavigation],
+    [mottoWipeWithNavigation, simpleMobileNavigation],
   )
 
   return {
