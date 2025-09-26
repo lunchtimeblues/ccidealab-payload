@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import Lenis from '@studio-freight/lenis' // You're still using the old package
+import Lenis from '@studio-freight/lenis'
 
 interface SmoothScrollProps {
   children: React.ReactNode
@@ -9,6 +9,7 @@ interface SmoothScrollProps {
 
 export const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const lenisRef = useRef<Lenis | null>(null)
+  const rafId = useRef<number | null>(null)
 
   useEffect(() => {
     // Disable browser scroll restoration
@@ -16,44 +17,43 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
       history.scrollRestoration = 'manual'
     }
 
-    // Detect mobile for optimized settings
     const isMobile = window.innerWidth < 768
 
     const lenis = new Lenis({
       duration: isMobile ? 0.8 : 1.2, // Faster on mobile
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: isMobile ? 1 : 2, // Less aggressive on mobile
+      touchMultiplier: isMobile ? 1 : 2,
       infinite: false,
     })
 
     lenisRef.current = lenis
-
-    // Expose Lenis instance globally for page transitions
     ;(window as any).lenis = lenis
 
-    lenis.on('scroll', (e: { scroll: number; velocity: number }) => {
+    const onScroll = (e: { scroll: number; velocity: number }) => {
       window.dispatchEvent(
         new CustomEvent('lenis-scroll', {
           detail: { scroll: e.scroll, velocity: e.velocity },
         }),
       )
-    })
-
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
     }
 
-    requestAnimationFrame(raf)
+    lenis.on('scroll', onScroll)
 
-    // Note: Lenis settings are optimized for initial viewport size
-    // For orientation changes, the page will reload naturally
+    const raf = (time: number) => {
+      lenis.raf(time)
+      rafId.current = requestAnimationFrame(raf)
+    }
+
+    rafId.current = requestAnimationFrame(raf)
 
     return () => {
-      // Clean up global reference
+      // Cleanup
       ;(window as any).lenis = null
-      if (lenisRef.current) {
-        lenisRef.current.destroy()
+      lenis.off('scroll', onScroll)
+      lenis.destroy()
+
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current)
       }
     }
   }, [])
