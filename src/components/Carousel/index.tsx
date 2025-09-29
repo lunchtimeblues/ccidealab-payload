@@ -44,27 +44,29 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     }
   }, [])
 
+  // Calculate max index with last slide snapping
   const getMaxIndex = useCallback(() => {
     if (!carouselRef.current || slideWidth === 0) return 0
+
     const totalWidth = carouselRef.current.scrollWidth
     const visibleWidth = carouselRef.current.offsetWidth
-    const gap = parseInt(getComputedStyle(carouselRef.current).gap || '0', 10)
+    const maxOffset = totalWidth - visibleWidth
 
-    // Calculate how much content extends beyond visible area
-    const overflowWidth = totalWidth - visibleWidth
-
-    // If no overflow, no scrolling needed
-    if (overflowWidth <= 0) return 0
-
-    // Calculate max index: divide overflow by slideWidth, but account for the last slide not needing a gap
-    return Math.max(0, Math.ceil((overflowWidth + gap) / slideWidth))
+    return maxOffset > 0 ? Math.round(maxOffset / slideWidth) : 0
   }, [slideWidth])
 
+  // Update carousel position with snapping for last slide
   const updateCarouselPosition = useCallback(() => {
     if (!carouselRef.current || slideWidth === 0) return
     const maxIndex = getMaxIndex()
     const clampedIndex = Math.max(0, Math.min(currentIndex, maxIndex))
-    const finalTranslateX = -(clampedIndex * slideWidth)
+
+    const totalWidth = carouselRef.current.scrollWidth
+    const visibleWidth = carouselRef.current.offsetWidth
+    const maxOffset = totalWidth - visibleWidth
+
+    const finalTranslateX = clampedIndex === maxIndex ? -maxOffset : -(clampedIndex * slideWidth)
+
     carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
   }, [currentIndex, slideWidth, getMaxIndex])
 
@@ -107,16 +109,12 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     positionRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
     updateFollower()
     setIsVisible(true)
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'none'
-    }
+    if (containerRef.current) containerRef.current.style.cursor = 'none'
   }
 
   const handleMouseLeave = () => {
     setIsVisible(false)
-    if (containerRef.current) {
-      containerRef.current.style.cursor = 'auto'
-    }
+    if (containerRef.current) containerRef.current.style.cursor = 'auto'
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -131,11 +129,7 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
     const clickDirection = determineDirection(e.clientX, rect)
-    if (clickDirection === 'left') {
-      prevSlide()
-    } else {
-      nextSlide()
-    }
+    clickDirection === 'left' ? prevSlide() : nextSlide()
   }
 
   // Touch swipe support
@@ -191,7 +185,9 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
             >
               {React.isValidElement(child)
                 ? cloneElement(child as React.ReactElement<ChildProps>, {
-                    className: `h-full w-auto object-contain rounded-lg ${(child as React.ReactElement<ChildProps>).props.className || ''}`,
+                    className: `h-full w-auto object-contain rounded-lg ${
+                      (child as React.ReactElement<ChildProps>).props.className || ''
+                    }`,
                     style: {
                       maxHeight: '100%',
                       width: 'auto',
@@ -215,7 +211,6 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
             isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'
           }`}
         >
-          {/* Direction indicator */}
           <div className="flex items-center justify-center">
             {direction === 'left' ? (
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-black">
