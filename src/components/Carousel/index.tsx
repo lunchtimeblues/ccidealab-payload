@@ -48,7 +48,16 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     if (!carouselRef.current || slideWidth === 0) return 0
     const totalWidth = carouselRef.current.scrollWidth
     const visibleWidth = carouselRef.current.offsetWidth
-    return Math.max(0, Math.ceil((totalWidth - visibleWidth) / slideWidth))
+    const gap = parseInt(getComputedStyle(carouselRef.current).gap || '0', 10)
+
+    // Calculate how much content extends beyond visible area
+    const overflowWidth = totalWidth - visibleWidth
+
+    // If no overflow, no scrolling needed
+    if (overflowWidth <= 0) return 0
+
+    // Calculate max index: divide overflow by slideWidth, but account for the last slide not needing a gap
+    return Math.max(0, Math.ceil((overflowWidth + gap) / slideWidth))
   }, [slideWidth])
 
   const updateCarouselPosition = useCallback(() => {
@@ -230,29 +239,8 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
               </svg>
             )}
           </div>
-
-          {/* Subtle inner glow effect */}
-          <div className="absolute inset-1 rounded-full bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
         </div>
       </div>
-
-      {/* Simple Button Controls */}
-      <button
-        onClick={prevSlide}
-        disabled={currentIndex === 0}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white transition-all"
-        aria-label="Previous slide"
-      >
-        ‹
-      </button>
-      <button
-        onClick={nextSlide}
-        disabled={currentIndex >= getMaxIndex()}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm rounded-full shadow-lg px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white transition-all"
-        aria-label="Next slide"
-      >
-        ›
-      </button>
     </div>
   )
 }
