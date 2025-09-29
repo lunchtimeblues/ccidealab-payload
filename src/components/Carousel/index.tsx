@@ -129,7 +129,11 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
     const clickDirection = determineDirection(e.clientX, rect)
-    clickDirection === 'left' ? prevSlide() : nextSlide()
+    if (clickDirection === 'left') {
+      prevSlide()
+    } else {
+      nextSlide()
+    }
   }
 
   // Touch swipe support
