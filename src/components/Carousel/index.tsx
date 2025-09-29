@@ -18,7 +18,9 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
   const carouselRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const touchStartX = useRef<number | null>(null)
+
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [slideWidth, setSlideWidth] = useState(0)
 
   const sizeConfig = {
     sm: 'h-80',
@@ -28,43 +30,42 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     xxl: 'h-[69rem]',
   }
 
-  // Dynamically measure slide width
-  const getSlideWidth = useCallback(() => {
-    if (!carouselRef.current) return 300
+  // Measure slide width + gap dynamically
+  const measureSlideWidth = useCallback(() => {
+    if (!carouselRef.current) return
     const firstSlide = carouselRef.current.querySelector('div')
-    return firstSlide ? (firstSlide as HTMLElement).offsetWidth + 32 : 300
+    if (firstSlide) {
+      const gap = parseInt(getComputedStyle(carouselRef.current).gap || '0', 10)
+      setSlideWidth((firstSlide as HTMLElement).offsetWidth + gap)
+    }
   }, [])
 
   const getMaxIndex = useCallback(() => {
-    if (!carouselRef.current) return 0
+    if (!carouselRef.current || slideWidth === 0) return 0
     const totalWidth = carouselRef.current.scrollWidth
     const visibleWidth = carouselRef.current.offsetWidth
-    const slideWidth = getSlideWidth()
     return Math.max(0, Math.ceil((totalWidth - visibleWidth) / slideWidth))
-  }, [getSlideWidth])
+  }, [slideWidth])
 
   const updateCarouselPosition = useCallback(() => {
-    if (!carouselRef.current) return
-
-    const slideWidth = getSlideWidth()
+    if (!carouselRef.current || slideWidth === 0) return
     const maxIndex = getMaxIndex()
     const clampedIndex = Math.max(0, Math.min(currentIndex, maxIndex))
-
     const finalTranslateX = -(clampedIndex * slideWidth)
     carouselRef.current.style.transform = `translateX(${finalTranslateX}px)`
-  }, [currentIndex, getSlideWidth, getMaxIndex])
+  }, [currentIndex, slideWidth, getMaxIndex])
+
+  // Initial measure & resize handling
+  useEffect(() => {
+    measureSlideWidth()
+    window.addEventListener('resize', measureSlideWidth)
+    return () => window.removeEventListener('resize', measureSlideWidth)
+  }, [measureSlideWidth])
 
   // Update position on index change
   useEffect(() => {
     updateCarouselPosition()
-  }, [updateCarouselPosition])
-
-  // Handle resize with cleanup
-  useEffect(() => {
-    const handleResize = () => updateCarouselPosition()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [updateCarouselPosition])
+  }, [currentIndex, updateCarouselPosition])
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => Math.min(prev + 1, getMaxIndex()))
@@ -83,13 +84,8 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
     if (touchStartX.current === null) return
     const deltaX = e.changedTouches[0].clientX - touchStartX.current
     const threshold = 50
-
-    if (deltaX > threshold) {
-      prevSlide()
-    } else if (deltaX < -threshold) {
-      nextSlide()
-    }
-
+    if (deltaX > threshold) prevSlide()
+    else if (deltaX < -threshold) nextSlide()
     touchStartX.current = null
   }
 
@@ -109,6 +105,9 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
       onTouchEnd={handleTouchEnd}
       onKeyDown={handleKeyDown}
       tabIndex={0}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Image carousel"
     >
       {/* Carousel Container */}
       <div className={`overflow-hidden ${sizeConfig[size]}`}>
@@ -118,7 +117,11 @@ export const Carousel: React.FC<CarouselProps> = ({ children, className = '', si
           style={{ willChange: 'transform' }}
         >
           {childrenArray.map((child, index) => (
-            <div key={index} className="flex-shrink-0 h-full flex items-center justify-center">
+            <div
+              key={index}
+              className="flex-shrink-0 h-full flex items-center justify-center"
+              aria-hidden={index !== currentIndex}
+            >
               {React.isValidElement(child)
                 ? cloneElement(child as React.ReactElement<ChildProps>, {
                     className: `h-full w-auto object-contain rounded-lg ${(child as React.ReactElement<ChildProps>).props.className || ''}`,
