@@ -27,7 +27,7 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     })
 
     lenisRef.current = lenis
-    ;(window as any).lenis = lenis
+    ;(window as any).lenis = lenis // keep global ref if you need it
 
     const onScroll = (e: { scroll: number; velocity: number }) => {
       window.dispatchEvent(
@@ -47,7 +47,6 @@ export const SmoothScroll = ({ children }: SmoothScrollProps) => {
     rafId.current = requestAnimationFrame(raf)
 
     return () => {
-      // Cleanup
       ;(window as any).lenis = null
       lenis.off('scroll', onScroll)
       lenis.destroy()
