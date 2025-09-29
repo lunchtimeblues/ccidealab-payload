@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-// Register ScrollTrigger plugin
+// Register ScrollTrigger plugin once globally
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
@@ -16,7 +16,7 @@ interface ScrollVideoProps {
   autoPlay?: boolean
   muted?: boolean
   loop?: boolean
-  aspectRatio?: string // e.g., "16/9", "4/3", "21/9"
+  aspectRatio?: string // e.g., "16/9"
   maintainAspectRatio?: boolean
 }
 
@@ -36,68 +36,46 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
   useEffect(() => {
     const container = containerRef.current
     const video = videoRef.current
-
     if (!container || !video) return
 
-    // Calculate page-wrapper-xxl constraints (matches Container size="xxl")
-    const getPageConstraints = () => {
+    // Helper to calculate effective container width
+    const getEffectiveWidth = () => {
       const viewportWidth = window.innerWidth
-      // Container xxl max-width is typically 1440px with some padding
       const maxContainerWidth = 1440
-      const containerPadding = viewportWidth < 768 ? 32 : 48 // Mobile vs desktop padding
-      const effectiveContainerWidth = Math.min(
-        maxContainerWidth,
-        viewportWidth - containerPadding * 2,
-      )
-
-      return { viewportWidth, effectiveContainerWidth }
+      const containerPadding = viewportWidth < 768 ? 32 : 48
+      return Math.min(maxContainerWidth, viewportWidth - containerPadding * 2)
     }
 
-    const { effectiveContainerWidth } = getPageConstraints()
-
-    // Set initial state - video starts at page-wrapper-xxl width
+    // Set initial width
+    const initialWidth = getEffectiveWidth()
     gsap.set(video, {
-      width: `${effectiveContainerWidth}px`,
+      width: `${initialWidth}px`,
       transformOrigin: 'center center',
     })
 
-    // Create scroll-triggered expansion animation
+    // Trigger animation when video top enters viewport
     ScrollTrigger.create({
       trigger: container,
-      start: 'top 80%', // Start when video enters viewport
-      end: 'center 50%', // End when video is centered in viewport
-      scrub: 1.5, // Smooth scrubbing tied to scroll position
-      onUpdate: (self) => {
-        // Calculate progress (0 to 1) as user scrolls
-        const progress = self.progress
-
-        // Recalculate constraints in case of resize
-        const {
-          viewportWidth: currentViewportWidth,
-          effectiveContainerWidth: currentContainerWidth,
-        } = getPageConstraints()
-
-        // Calculate video width for expansion effect
-        // At progress 0: video at page-wrapper-xxl width
-        // At progress 1: video at full viewport width
-        const currentWidth =
-          currentContainerWidth + (currentViewportWidth - currentContainerWidth) * progress
-
-        // Apply the width animation to video
-        gsap.set(video, {
-          width: `${currentWidth}px`,
-          ease: 'power2.out',
+      start: 'top center',
+      onEnter: () => {
+        const viewportWidth = window.innerWidth
+        gsap.to(video, {
+          width: viewportWidth,
+          duration: 0.8,
+          ease: 'power4.out',
         })
       },
+      once: true,
     })
 
-    // Handle window resize to recalculate constraints
+    // Refresh ScrollTrigger on resize
     const handleResize = () => {
       ScrollTrigger.refresh()
+      const newWidth = getEffectiveWidth()
+      gsap.set(video, { width: `${newWidth}px` })
     }
 
     window.addEventListener('resize', handleResize)
-
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
       window.removeEventListener('resize', handleResize)
@@ -108,12 +86,8 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
     <div
       ref={containerRef}
       className={`relative w-full overflow-hidden ${className}`}
-      style={{
-        // Use aspect ratio if maintainAspectRatio is true, otherwise use almost-full-height
-        ...(maintainAspectRatio ? { aspectRatio: aspectRatio } : { height: '90vh' }),
-      }}
+      style={maintainAspectRatio ? { aspectRatio } : { height: '90vh' }}
     >
-      {/* Video Element - animates from page-wrapper-xxl width to full width */}
       <video
         ref={videoRef}
         className="h-full mx-auto"
@@ -125,11 +99,9 @@ export const ScrollVideo: React.FC<ScrollVideoProps> = ({
         playsInline
         preload="metadata"
         style={{
-          // Choose object-fit based on maintainAspectRatio setting
-          objectFit: maintainAspectRatio ? 'cover' : 'cover',
+          objectFit: 'cover',
           objectPosition: 'center center',
           height: '100%',
-          // Width will be animated by GSAP
         }}
       />
     </div>
