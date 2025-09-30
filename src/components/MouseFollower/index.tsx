@@ -18,6 +18,9 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   const followerRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  // Unique ID for text path (prevents conflicts with multiple components)
+  const idRef = useRef(`circle-path-${Math.random().toString(36).slice(2, 9)}`)
+
   // Calculate fluid size based on text length and viewport
   const getFluidSize = useCallback(() => {
     if (typeof window === 'undefined') return { width: 176, height: 176 }
@@ -30,19 +33,14 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
 
     // Viewport scaling
     let scaleFactor = 1
-    if (vw < 768) {
-      scaleFactor = 0.8 // Smaller on mobile
-    } else if (vw < 1440) {
-      scaleFactor = 0.9 // Medium on tablet/small desktop
-    } else {
-      scaleFactor = 1 // Full size on large desktop
-    }
+    if (vw < 768) scaleFactor = 0.8
+    else if (vw < 1440) scaleFactor = 0.9
 
     const finalSize = Math.round(baseSize * scaleFactor)
     return { width: finalSize, height: finalSize }
   }, [text])
 
-  // Calculate responsive offset based on current size
+  // Responsive offset
   const getResponsiveOffset = useCallback((size: { width: number; height: number }) => {
     return size.width / 2
   }, [])
@@ -50,10 +48,13 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   const [size, setSize] = useState({ width: 176, height: 176 })
   const [offset, setOffset] = useState(88)
 
+  // Configuration object for better maintainability
   const config = {
     bg: 'bg-white/90 backdrop-blur-md rounded-full',
     text: 'text-black',
     border: 'border border-gray-200/30',
+    shadow: 'shadow-lg',
+    transitions: 'transition-all duration-400 ease-out',
     size,
     offset,
   }
@@ -61,24 +62,18 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
   const updateFollowerPosition = useCallback(() => {
     const follower = followerRef.current
     if (!follower) return
-
     const { x, y } = positionRef.current
     follower.style.transform = `translate(${x - offset}px, ${y - offset}px)`
   }, [offset])
 
-  // Update size and offset on mount and resize
+  // Update size/offset on mount and resize
   useEffect(() => {
     const updateSizeAndOffset = () => {
       const newSize = getFluidSize()
-      const newOffset = getResponsiveOffset(newSize)
       setSize(newSize)
-      setOffset(newOffset)
+      setOffset(getResponsiveOffset(newSize))
     }
-
-    // Set initial size and offset
     updateSizeAndOffset()
-
-    // Update on resize
     window.addEventListener('resize', updateSizeAndOffset)
     return () => window.removeEventListener('resize', updateSizeAndOffset)
   }, [getFluidSize, getResponsiveOffset])
@@ -88,32 +83,26 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
     const follower = followerRef.current
     if (!container || !follower) return
 
+    let animationFrame: number | null = null
+
     const handleMouseEnter = (e: MouseEvent) => {
-      // Set initial position immediately on enter to prevent top-left flash
       const rect = container.getBoundingClientRect()
-      positionRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      }
-
-      // Set position immediately without transition
+      positionRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
       follower.style.transform = `translate(${positionRef.current.x - offset}px, ${positionRef.current.y - offset}px)`
-
-      // Simple entrance - just show
       setIsVisible(true)
     }
 
-    const handleMouseLeave = () => {
-      setIsVisible(false)
-    }
+    const handleMouseLeave = () => setIsVisible(false)
 
     const handleMouseMove = (e: MouseEvent) => {
       const rect = container.getBoundingClientRect()
-      positionRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
+      positionRef.current = { x: e.clientX - rect.left, y: e.clientY - rect.top }
+      if (!animationFrame) {
+        animationFrame = requestAnimationFrame(() => {
+          updateFollowerPosition()
+          animationFrame = null
+        })
       }
-      updateFollowerPosition()
     }
 
     container.addEventListener('mouseenter', handleMouseEnter)
@@ -124,65 +113,61 @@ export const MouseFollower: React.FC<MouseFollowerProps> = ({
       container.removeEventListener('mouseenter', handleMouseEnter)
       container.removeEventListener('mouseleave', handleMouseLeave)
       container.removeEventListener('mousemove', handleMouseMove)
+      if (animationFrame) cancelAnimationFrame(animationFrame)
     }
   }, [offset, updateFollowerPosition])
 
   return (
     <div ref={containerRef} className={`relative ${className} ${isVisible ? 'cursor-none' : ''}`}>
       {children}
+
       <div
         ref={followerRef}
+        aria-hidden="true"
         className="hidden md:block absolute top-0 left-0 pointer-events-none z-50"
-        style={{
-          transform: `translate(-${offset}px, -${offset}px)`, // Initial position off-screen
-        }}
+        style={{ transform: `translate(-${offset}px, -${offset}px)` }}
       >
         <div
           className={`
-            ${config.bg} ${config.text} ${config.border} flex items-center justify-center
-            shadow-lg relative overflow-hidden rounded-full
-            transition-all duration-400 ease-out
+            ${config.bg} ${config.text} ${config.border} ${config.shadow}
+            flex items-center justify-center relative overflow-hidden
+            ${config.transitions}
             ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}
           `}
-          style={{
-            width: `${config.size.width}px`,
-            height: `${config.size.height}px`,
-          }}
+          style={
+            {
+              '--circle-size': `${size.width}px`,
+              width: 'var(--circle-size)',
+              height: 'var(--circle-size)',
+            } as React.CSSProperties
+          }
         >
-          {/* Split text around the circle using SVG - distributed evenly on opposite sides */}
+          {/* Rotating text */}
           <svg
             className="absolute inset-0 w-full h-full animate-spin-slow"
-            viewBox={`0 0 ${config.size.width} ${config.size.height}`}
+            viewBox={`0 0 ${size.width} ${size.height}`}
           >
             <defs>
               <path
-                id="circle-path"
-                d={`M ${config.size.width / 2},${config.size.height / 2} m -${config.size.width / 2 - 20},0 a ${config.size.width / 2 - 20},${config.size.height / 2 - 20} 0 1,1 ${config.size.width - 40},0 a ${config.size.width / 2 - 20},${config.size.height / 2 - 20} 0 1,1 -${config.size.width - 40},0`}
+                id={idRef.current}
+                d={`M ${size.width / 2},${size.height / 2}
+                   m -${size.width / 2 - 20},0
+                   a ${size.width / 2 - 20},${size.height / 2 - 20} 0 1,1 ${size.width - 40},0
+                   a ${size.width / 2 - 20},${size.height / 2 - 20} 0 1,1 -${size.width - 40},0`}
               />
             </defs>
-            {/* First half of text starting at top */}
-            <text className="text-sm font-medium tracking-[0.2em] fill-current">
-              <textPath href="#circle-path" startOffset="0%">
-                {text}
-              </textPath>
-            </text>
-            {/* Second half of text starting at bottom (50% around the circle) */}
-            <text className="text-sm font-medium tracking-[0.2em] fill-current">
-              <textPath href="#circle-path" startOffset="50%">
-                {text}
-              </textPath>
-            </text>
+            {[0, 50].map((textOffset, i) => (
+              <text key={i} className="text-sm font-medium tracking-[0.2em] fill-current">
+                <textPath href={`#${idRef.current}`} startOffset={`${textOffset}%`}>
+                  {text}
+                </textPath>
+              </text>
+            ))}
           </svg>
 
-          {/* Central arrow - larger to better fill the 192px space */}
+          {/* Center arrow */}
           <div className="relative z-10 flex items-center justify-center">
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="transition-all duration-400 ease-out"
-            >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
               <path
                 d="M7 17L17 7M17 7H7M17 7V17"
                 stroke="currentColor"
