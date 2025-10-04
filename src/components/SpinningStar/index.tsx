@@ -15,31 +15,25 @@ interface SpinningStarProps {
 export const SpinningStar: React.FC<SpinningStarProps> = ({
   className = '',
   size = 24,
-  speed, // No default - will use marquee speed if not provided
+  speed,
   syncWithMarquee = true,
 }) => {
-  const starRef = useRef<HTMLDivElement>(null)
+  const starRef = useRef<HTMLDivElement | SVGSVGElement>(null)
   const animationRef = useRef<gsap.core.Tween | null>(null)
   const currentTimeScaleRef = useRef(1)
 
-  // Always call the hook - it will return default values if not in context
   const marqueeSpeed = useMarqueeSpeed()
-
-  // Determine the actual speed to use
   const actualSpeed = speed !== undefined ? speed : (marqueeSpeed?.baseSpinSpeed ?? 2)
 
-  // Determine rotation direction based on marquee direction
   const getRotationDirection = useCallback(() => {
-    const star = starRef.current
+    const star = starRef.current as HTMLElement | null
     if (!star) return -360
 
     let currentElement = star.parentElement
-    let marqueeDirection = 'left' // Default direction
+    let marqueeDirection = 'left'
     let marqueeContainer = null
 
-    // Walk up the DOM to find marquee direction
     while (currentElement) {
-      // Look for the ScrollMarquee container with data-direction attribute
       if (currentElement.dataset?.direction) {
         marqueeContainer = currentElement
         marqueeDirection = currentElement.dataset.direction
@@ -48,38 +42,23 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       currentElement = currentElement.parentElement
     }
 
-    // For dual-line marquees, determine which line this star is in
     if (marqueeContainer) {
       const lines = marqueeContainer.children
       if (lines.length === 2) {
-        // This is a dual-line marquee
-        // Find which line contains this star
         const starLine = star.closest('.relative.overflow-hidden')
-        if (starLine === lines[0]) {
-          // First line always moves left in dual mode
-          marqueeDirection = 'left'
-        } else if (starLine === lines[1]) {
-          // Second line always moves right in dual mode
-          marqueeDirection = 'right'
-        }
+        if (starLine === lines[0]) marqueeDirection = 'left'
+        else if (starLine === lines[1]) marqueeDirection = 'right'
       }
-      // For single-line marquees, use the data-direction attribute as-is
     }
 
-    // Always match the marquee scroll direction for all lines
-    // Right scroll = clockwise (positive), Left scroll = counter-clockwise (negative)
-    const direction = marqueeDirection === 'right' ? 360 : -360
-    return direction
+    return marqueeDirection === 'right' ? 360 : -360
   }, [])
 
-  // Create the base spinning animation
   useEffect(() => {
     const star = starRef.current
     if (!star) return
 
-    // If speed is 0, don't create animation (static star)
     if (actualSpeed === 0) {
-      // Kill any existing animation
       if (animationRef.current) {
         animationRef.current.kill()
         animationRef.current = null
@@ -87,11 +66,7 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       return
     }
 
-    // Get rotation direction when creating animation (DOM is ready)
     const rotationDirection = getRotationDirection()
-
-    // Create continuous rotation animation
-    // Use a large rotation value to ensure continuous spinning
     const targetRotation = rotationDirection > 0 ? '+=360' : '-=360'
 
     animationRef.current = gsap.to(star, {
@@ -102,7 +77,6 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
       transformOrigin: 'center center',
     })
 
-    // Set initial timeScale to 1
     if (animationRef.current) {
       animationRef.current.timeScale(1)
       currentTimeScaleRef.current = 1
@@ -115,48 +89,55 @@ export const SpinningStar: React.FC<SpinningStarProps> = ({
     }
   }, [actualSpeed, getRotationDirection])
 
-  // Expose a method to update speed from parent
   const updateSpeed = useCallback(
     (speedMultiplier: number) => {
-      // If base speed is 0, don't update (star should remain static)
       if (actualSpeed === 0 || !animationRef.current || !syncWithMarquee) return
-
       currentTimeScaleRef.current = speedMultiplier
-
-      // Simple, direct timeScale update - no tweening, no killing
-      if (animationRef.current && animationRef.current.timeScale) {
-        animationRef.current.timeScale(speedMultiplier)
-      }
+      animationRef.current?.timeScale(speedMultiplier)
     },
     [syncWithMarquee, actualSpeed],
   )
 
-  // Store the update function on the element for parent access
   useEffect(() => {
-    const star = starRef.current
+    const star = starRef.current as any
     if (star && syncWithMarquee) {
-      // @ts-expect-error - Adding custom property for parent access
       star._updateSpeed = updateSpeed
     }
   }, [updateSpeed, syncWithMarquee])
 
   return (
-    <div
-      ref={starRef}
-      className={`inline-block ${className}`}
-      style={{
-        willChange: 'transform',
-        width: size,
-        height: size,
-      }}
-    >
-      <Image
-        src="/images/cc-logo-black-minimal.svg"
-        alt="CC Logo"
+    <>
+      {/* --- LOGO VARIANT --- */}
+      {/* <div
+        ref={starRef as React.RefObject<HTMLDivElement>}
+        className={`inline-block ${className}`}
+        style={{ willChange: 'transform', width: size, height: size }}
+      >
+        <Image
+          src="/images/cc-logo-black-minimal.svg"
+          alt="CC Logo"
+          width={size}
+          height={size}
+          className="w-full h-full"
+        />
+      </div> */}
+
+      {/* --- STAR VARIANT --- */}
+
+      <svg
+        ref={starRef as React.RefObject<SVGSVGElement>}
         width={size}
         height={size}
-        className="w-full h-full"
-      />
-    </div>
+        viewBox="0 0 112 112"
+        className={`inline-block ${className}`}
+        style={{ willChange: 'transform' }}
+      >
+        <path
+          className="fill-current"
+          d="m111.547 59.968-50.391-1.406 36.64 34.531-5.155 5.157L58.11 61.61 59.516 112h-7.188l1.407-50.39-34.532 36.64-5.156-5.157 36.64-34.53-50.39 1.405v-7.187l50.39 1.641-36.64-34.61 5.156-5.078 34.532 36.641L52.328.985h7.188l-1.406 50.39 34.53-36.64 5.157 5.077-36.641 34.61 50.39-1.407z"
+          fillRule="nonzero"
+        />
+      </svg>
+    </>
   )
 }
